@@ -21,47 +21,17 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Locale;
 
-import org.apache.log4j.BasicConfigurator;
 import org.dom4j.Document;
 import org.dom4j.DocumentFactory;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
 public class ConfigWriter
 {
-
-	final static Logger logger = LoggerFactory.getLogger(ConfigWriter.class);
-
-	/**
-	 * Test the configuration writer
-	 * 
-	 * @param args
-	 *            none
-	 * @throws IOException
-	 *             on IO failure
-	 */
-	public static void main(String[] args) throws IOException
-	{
-		BasicConfigurator.configure();
-
-		Configuration configuration = Configuration
-				.createDefaultConfiguration();
-
-		String path = ConfigurationHelper.getUserConfigurationFilePath();
-		try {
-			configuration = ConfigReader.read(path);
-		} catch (Exception e) {
-			logger.debug("exception while reading config: " + e.getMessage());
-		}
-
-		write(configuration, System.out);
-	}
 
 	/**
 	 * Write the denoted configuration to the denoted OutputStream

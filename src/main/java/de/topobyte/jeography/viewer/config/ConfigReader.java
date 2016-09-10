@@ -25,7 +25,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
@@ -72,20 +71,6 @@ public class ConfigReader
 		}
 
 		return configHandler.configuration;
-	}
-
-	/**
-	 * Test
-	 * 
-	 * @param args
-	 *            none
-	 * @throws Exception
-	 *             on failure
-	 */
-	public static void main(String[] args) throws Exception
-	{
-		BasicConfigurator.configure();
-		read("res/gis/config1.xml");
 	}
 
 }
