@@ -1,0 +1,46 @@
+<configuration>
+	<option name="grid" value="no" />
+	<option name="tilenumbers" value="no" />
+	<option name="crosshair" value="no" />
+	<option name="overlay" value="no" />
+	<option name="online" value="yes" />
+	<option name="database" value="" />
+	<option name="width" value="1000" />
+	<option name="height" value="600" />
+	<option name="lon" value="13.414" />
+	<option name="lat" value="52.49" />
+	<option name="zoom" value="9" />
+	<tiles
+		name="Mapnik"
+		type="urldisk"
+		url="http://tile.openstreetmap.org/%d/%d/%d.png"
+		path="/tmp/mapImagesMapnik"
+	/>
+	<tiles
+		name="Tiles@Home"
+		type="urldisk"
+		url="http://a.tah.openstreetmap.org/Tiles/tile/%d/%d/%d.png"
+		path="/tmp/mapImagesOsmarender"
+	/>
+	<tiles
+		name="Cyclemap"
+		type="urldisk"
+		url="http://a.andy.sandbox.cloudmade.com/tiles/cycle/%d/%d/%d.png"
+		path="/tmp/mapImagesCyclemap"
+	/>
+	<overlay
+		name="municipalities1"
+		type="disk"
+		path="/tmp/osm/overlays/overlayAll"
+	/>
+	<overlay
+		name="municipalities2"
+		type="disk"
+		path="/tmp/osm/overlays/overlayAB"
+	/>
+	<overlay
+		name="voronois"
+		type="disk"
+		path="/tmp/osm/overlays/overlay"
+	/>
+</configuration>
