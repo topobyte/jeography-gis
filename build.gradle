@@ -22,6 +22,37 @@ repositories {
 }
 
 dependencies {
+    compile 'de.topobyte:commons-cli-helper:0.0.3'
+    compile 'de.topobyte:jts2awt:0.0.1'
+    compile 'de.topobyte:jts-utils:0.0.8'
+    compile 'de.topobyte:jts-indexing:0.0.1'
+    compile 'de.topobyte:melon-casting:0.0.1'
+    compile 'de.topobyte:awt-utils:0.0.3'
+    compile 'de.topobyte:swing-utils:0.0.4'
+    compile 'de.topobyte:jsi:1.1.0'
+    compile 'de.topobyte:mercator-image:0.0.2'
+    compile 'de.topobyte:chromaticity-awt:0.0.2'
+    compile 'de.topobyte:jts-drawing-core:0.0.1'
+    compile 'de.topobyte:jts-drawing-awt:0.0.1'
+    compile 'de.topobyte:jts-drawing-batik:0.0.1'
+    compile 'de.topobyte:jts-drawing-util:0.0.1'
+    compile 'com.bric:javagraphics-color-ui:0.0.2'
+    compile 'de.topobyte:jeography-core:0.0.1'
+    compile 'de.topobyte:async-utils:0.0.1'
+
+    compile 'org.apache.xmlgraphics:batik-transcoder:1.7'
+    compile 'org.apache.xmlgraphics:batik-codec:1.7'
+    compile 'commons-cli:commons-cli:1.2'
+    compile 'commons-codec:commons-codec:1.10'
+    compile 'com.vividsolutions:jts:1.13'
+    compile 'net.sf.trove4j:trove4j:3.0.3'
+    compile 'dom4j:dom4j:1.6.1'
+    compile 'org.dockingframes:docking-frames-core:1.1.1'
+    compile 'org.dockingframes:docking-frames-common:1.1.1'
+
+    compile 'org.slf4j:slf4j-api:1.6.1'
+    runtime 'org.slf4j:slf4j-log4j12:1.6.1'
+    runtime 'log4j:log4j:1.2.16'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
