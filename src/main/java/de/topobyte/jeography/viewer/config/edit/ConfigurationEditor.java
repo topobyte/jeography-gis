@@ -26,19 +26,12 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
-import org.apache.log4j.BasicConfigurator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import de.topobyte.jeography.viewer.config.ConfigReader;
 import de.topobyte.jeography.viewer.config.Configuration;
-import de.topobyte.jeography.viewer.config.ConfigurationHelper;
 import de.topobyte.jeography.viewer.config.edit.other.MiscOptionsPane;
 import de.topobyte.jeography.viewer.config.edit.tileconfig.TileConfigEditorListPanel;
 
@@ -51,59 +44,9 @@ public abstract class ConfigurationEditor extends JPanel implements
 
 	private static final long serialVersionUID = 3497678160259202506L;
 
-	final static Logger logger = LoggerFactory
-			.getLogger(ConfigurationEditor.class);
-
 	private MiscOptionsPane miscOptions;
 	private TileConfigEditorListPanel editorListTiles;
 	private TileConfigEditorListPanel editorListOverlays;
-
-	/**
-	 * A test for the ConfigurationEditor
-	 * 
-	 * @param args
-	 *            none
-	 */
-	public static void main(String[] args)
-	{
-		BasicConfigurator.configure();
-
-		final JFrame frame = new JFrame("Configuration Editor");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		Configuration configuration = Configuration
-				.createDefaultConfiguration();
-
-		String path = ConfigurationHelper.getUserConfigurationFilePath();
-		try {
-			configuration = ConfigReader.read(path);
-		} catch (Exception e) {
-			logger.debug("exception while reading config: " + e.getMessage());
-		}
-
-		ConfigurationEditor configurationEditor = new ConfigurationEditor(
-				configuration) {
-
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void ok()
-			{
-				frame.dispose();
-			}
-
-			@Override
-			public void cancel()
-			{
-				frame.dispose();
-			}
-
-		};
-		frame.setContentPane(configurationEditor);
-
-		frame.setSize(500, 500);
-		frame.setVisible(true);
-	}
 
 	/**
 	 * Create a new editor for the denoted configuration.
