@@ -27,7 +27,6 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -124,21 +123,6 @@ public class GeometryStyles extends JPanel
 		return model;
 	}
 
-	/**
-	 * Simple test to show this list.
-	 * 
-	 * @param args
-	 *            none
-	 */
-	public static void main(String[] args)
-	{
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		GeometryStyles styles = new GeometryStyles();
-		frame.setContentPane(styles);
-		frame.setSize(new Dimension(400, 600));
-		frame.setVisible(true);
-	}
 }
 
 class GeometryStylesRenderer implements ListCellRenderer<GeometryStyle>
