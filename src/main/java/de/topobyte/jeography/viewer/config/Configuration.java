@@ -93,7 +93,10 @@ public class Configuration
 		configuration.tileConfigs.add(new TileConfigUrlDisk(1, "Mapnik",
 				"http://tile.openstreetmap.org/%d/%d/%d.png",
 				"/tmp/mapImagesMapnik"));
-		configuration.tileConfigs.add(new TileConfigUrlDisk(2, "Cyclemap",
+		configuration.tileConfigs.add(new TileConfigUrlDisk(2, "Mapnik (de)",
+				"http://osm.rrze.fau.de/osmde/%d/%d/%d.png",
+				"/tmp/mapImagesMapnikDe"));
+		configuration.tileConfigs.add(new TileConfigUrlDisk(3, "Cyclemap",
 				"http://a.tile.opencyclemap.org/cycle/%d/%d/%d.png",
 				"/tmp/mapImagesCyclemap"));
 
