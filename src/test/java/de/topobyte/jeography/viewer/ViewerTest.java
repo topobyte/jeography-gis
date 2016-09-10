@@ -30,6 +30,7 @@ import de.topobyte.jeography.core.ImageSourceUrlPattern;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileOnWindow;
 import de.topobyte.jeography.core.TileResoluterUrlDisk;
+import de.topobyte.jeography.core.UnwrappingImageSource;
 import de.topobyte.jeography.core.mapwindow.MapWindow;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.core.Viewer;
@@ -114,7 +115,9 @@ public class ViewerTest
 			TileResoluterUrlDisk resolver = new TileResoluterUrlDisk(null,
 					tileUrl);
 			source = new ImageSourceUrlPattern<>(resolver, 3);
-			manager = new ImageManagerSourceRam<>(1, 40, source);
+			UnwrappingImageSource<Tile> unwrapper = new UnwrappingImageSource<>(
+					source);
+			manager = new ImageManagerSourceRam<>(1, 40, unwrapper);
 			manager.addLoadListener(MyViewer.this);
 		}
 

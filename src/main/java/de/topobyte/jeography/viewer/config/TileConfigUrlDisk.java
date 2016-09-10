@@ -21,8 +21,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import de.topobyte.jeography.core.ImageManager;
-import de.topobyte.jeography.core.ImageManagerHttpDisk;
 import de.topobyte.jeography.core.PaintListener;
+import de.topobyte.jeography.core.PriorityImageManagerHttpDisk;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileResoluterUrlDisk;
 
@@ -134,7 +134,6 @@ public class TileConfigUrlDisk implements TileConfig
 	@Override
 	public ImageManager<Tile, BufferedImage> createImageManager()
 	{
-
 		File pathDir = new File(getPath());
 		if (!pathDir.exists()) {
 			pathDir.mkdirs();
@@ -145,8 +144,9 @@ public class TileConfigUrlDisk implements TileConfig
 
 		TileResoluterUrlDisk tileResoluterBase = new TileResoluterUrlDisk(
 				getPath(), getUrl());
-		ImageManagerHttpDisk<Tile> manager = new ImageManagerHttpDisk<>(
-				tileResoluterBase);
+		PriorityImageManagerHttpDisk<Tile> manager = new PriorityImageManagerHttpDisk<>(
+				4, 150, tileResoluterBase);
+
 		if (userAgent != null) {
 			manager.setUserAgent(userAgent);
 		}

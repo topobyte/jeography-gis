@@ -27,6 +27,7 @@ import de.topobyte.jeography.core.ImageManagerSourceRam;
 import de.topobyte.jeography.core.ImageSourceUrlPattern;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileResoluterUrlDisk;
+import de.topobyte.jeography.core.UnwrappingImageSource;
 import de.topobyte.jeography.viewer.config.ManagerTileConfig;
 import de.topobyte.jeography.viewer.core.Viewer;
 
@@ -97,7 +98,9 @@ public class PriorityViewerTest
 	{
 		TileResoluterUrlDisk resolver = new TileResoluterUrlDisk(null, tileUrl);
 		source = new ImageSourceUrlPattern<>(resolver, 3);
-		manager = new ImageManagerSourceRam<>(1, 64, source);
+		UnwrappingImageSource<Tile> unwrapper = new UnwrappingImageSource<>(
+				source);
+		manager = new ImageManagerSourceRam<>(1, 64, unwrapper);
 	}
 
 	void changeTiles()

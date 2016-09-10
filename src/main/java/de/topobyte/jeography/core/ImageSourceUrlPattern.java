@@ -38,7 +38,8 @@ import org.slf4j.LoggerFactory;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class ImageSourceUrlPattern<T> implements ImageSource<T, BufferedImage>
+public class ImageSourceUrlPattern<T> implements
+		ImageSource<T, BufferedImageAndBytes>
 {
 
 	static final Logger logger = LoggerFactory
@@ -50,8 +51,10 @@ public class ImageSourceUrlPattern<T> implements ImageSource<T, BufferedImage>
 
 	private final int nTries;
 
+	private boolean online = true;
+
 	/**
-	 * An ImageSource implementation based that works with PathResoluter
+	 * An ImageSource implementation based that works with UrlResoluter
 	 * 
 	 * @param resolver
 	 *            the url generator
@@ -65,7 +68,7 @@ public class ImageSourceUrlPattern<T> implements ImageSource<T, BufferedImage>
 	}
 
 	/**
-	 * Set the PathResoluter used to resolve image URLs.
+	 * Set the UrlResoluter used to resolve image URLs.
 	 * 
 	 * @param resolver
 	 *            the resolver to use
@@ -86,14 +89,20 @@ public class ImageSourceUrlPattern<T> implements ImageSource<T, BufferedImage>
 		this.userAgent = userAgent;
 	}
 
-	@Override
-	public BufferedImage load(T thing)
+	public boolean isOnline()
 	{
-		BufferedImageAndBytes imageAndBytes = loadImage(thing);
-		if (imageAndBytes == null) {
-			return null;
-		}
-		return imageAndBytes.image;
+		return online;
+	}
+
+	public void setOnline(boolean online)
+	{
+		this.online = online;
+	}
+
+	@Override
+	public BufferedImageAndBytes load(T thing)
+	{
+		return loadImage(thing);
 	}
 
 	/**
@@ -108,6 +117,9 @@ public class ImageSourceUrlPattern<T> implements ImageSource<T, BufferedImage>
 	{
 		String iurl = resolver.getUrl(thing);
 		for (int k = 0; k < nTries; k++) {
+			if (!online) {
+				break;
+			}
 			if (k > 0) {
 				logger.debug("retry #" + k);
 			}

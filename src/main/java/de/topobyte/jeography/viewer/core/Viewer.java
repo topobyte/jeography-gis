@@ -56,6 +56,7 @@ import de.topobyte.jeography.core.MemoryCachePlus;
 import de.topobyte.jeography.core.OverlayPoint;
 import de.topobyte.jeography.core.PaintListener;
 import de.topobyte.jeography.core.PriorityImageManager;
+import de.topobyte.jeography.core.PriorityImageManagerHttpDisk;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileConfigListener;
 import de.topobyte.jeography.core.TileOnWindow;
@@ -222,7 +223,9 @@ public class Viewer extends JPanel implements ComponentListener,
 	public void setNetworkState(boolean state)
 	{
 		if (imageManagerBase instanceof ImageManagerHttpDisk<?>) {
-			((ImageManagerHttpDisk<Tile>) imageManagerBase)
+			((ImageManagerHttpDisk<?>) imageManagerBase).setNetworkState(state);
+		} else if (imageManagerBase instanceof PriorityImageManagerHttpDisk<?>) {
+			((PriorityImageManagerHttpDisk<?>) imageManagerBase)
 					.setNetworkState(state);
 		}
 	}
@@ -235,7 +238,10 @@ public class Viewer extends JPanel implements ComponentListener,
 	public boolean getNetworkState()
 	{
 		if (imageManagerBase instanceof ImageManagerHttpDisk<?>) {
-			return ((ImageManagerHttpDisk<Tile>) imageManagerBase)
+			return ((ImageManagerHttpDisk<?>) imageManagerBase)
+					.getNetworkState();
+		} else if (imageManagerBase instanceof PriorityImageManagerHttpDisk<?>) {
+			return ((PriorityImageManagerHttpDisk<?>) imageManagerBase)
 					.getNetworkState();
 		}
 		return false;
