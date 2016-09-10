@@ -99,6 +99,9 @@ public class Configuration
 		configuration.tileConfigs.add(new TileConfigUrlDisk(3, "Cyclemap",
 				"http://a.tile.opencyclemap.org/cycle/%d/%d/%d.png",
 				"/tmp/mapImagesCyclemap"));
+		configuration.tileConfigs.add(new TileConfigUrlDisk(4, "OpenTopoMap",
+				"http://opentopomap.org/%d/%d/%d.png",
+				"/tmp/mapImagesOpenTopoMap"));
 
 		return configuration;
 	}
