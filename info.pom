@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <name>Jeography GIS</name>
+  <description>GIS application based on the Jeography GIS library</description>
+  <url>https://github.com/topobyte/jeography-gis</url>
+</project>
