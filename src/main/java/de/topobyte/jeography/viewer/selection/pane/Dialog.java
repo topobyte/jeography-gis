@@ -17,82 +17,19 @@
 
 package de.topobyte.jeography.viewer.selection.pane;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
-import com.vividsolutions.jts.geom.LinearRing;
-
 import de.topobyte.jeography.executables.JeographyGIS;
-import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.geometry.manage.EventJDialog;
 import de.topobyte.jeography.viewer.selection.polygonal.PolySelectionAdapter;
-import de.topobyte.jeography.viewer.selection.polygonal.Selection;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;
-import de.topobyte.jts.utils.JtsHelper;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
 public class Dialog extends EventJDialog
 {
-
-	/**
-	 * Test the dialog
-	 * 
-	 * @param args
-	 *            none
-	 */
-	public static void main(String[] args)
-	{
-		Configuration configuration = Configuration
-				.createDefaultConfiguration();
-		JeographyGIS gis = null;
-		try {
-			gis = new JeographyGIS(null, configuration, 0, null, true, false,
-					false, false, false);
-		} catch (Exception e) {
-			return;
-		}
-		SelectionAdapter selectionAdapter = new SelectionAdapter(
-				gis.getViewer());
-		PolySelectionAdapter polySelectionAdapter = new PolySelectionAdapter(
-				gis.getViewer());
-
-		Dialog dialog = new Dialog(null, "Selection Panel", gis,
-				selectionAdapter, polySelectionAdapter);
-		dialog.setSize(500, 400);
-		dialog.pack();
-		dialog.setVisible(true);
-		dialog.addWindowListener(new WindowAdapter() {
-
-			@Override
-			public void windowClosing(WindowEvent event)
-			{
-				System.exit(0);
-			}
-		});
-
-		dialog.tabbed.setSelectedIndex(1);
-
-		Selection selection = polySelectionAdapter.getSelection();
-		List<Double> xs = new ArrayList<>();
-		List<Double> ys = new ArrayList<>();
-		xs.add(11.2335);
-		xs.add(11.2720);
-		xs.add(11.9476);
-		xs.add(11.8762);
-		ys.add(48.2466);
-		ys.add(47.9752);
-		ys.add(47.9900);
-		ys.add(48.3416);
-		LinearRing ring = JtsHelper.toLinearRing(xs, ys, false);
-		selection.add(ring);
-	}
 
 	private static final long serialVersionUID = -7335715034238308994L;
 
