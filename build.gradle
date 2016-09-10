@@ -37,7 +37,7 @@ dependencies {
     compile 'de.topobyte:jts-drawing-batik:0.0.1'
     compile 'de.topobyte:jts-drawing-util:0.0.1'
     compile 'com.bric:javagraphics-color-ui:0.0.2'
-    compile 'de.topobyte:jeography-core:0.0.1'
+    compile 'de.topobyte:jeography-core:0.0.2'
     compile 'de.topobyte:async-utils:0.0.1'
 
     compile 'org.apache.xmlgraphics:batik-transcoder:1.7'
