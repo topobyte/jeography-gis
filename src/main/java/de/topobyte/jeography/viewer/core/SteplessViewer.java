@@ -63,6 +63,7 @@ import de.topobyte.jeography.core.PriorityImageManager;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileConfigListener;
 import de.topobyte.jeography.core.TileOnWindow;
+import de.topobyte.jeography.core.TileUtil;
 import de.topobyte.jeography.core.mapwindow.MapWindowChangeListener;
 import de.topobyte.jeography.core.mapwindow.SteplessMapWindow;
 import de.topobyte.jeography.core.mapwindow.SteppedMapWindow;
@@ -386,11 +387,11 @@ public class SteplessViewer extends JPanel implements ComponentListener,
 			// with simple image manager
 
 			// renew current tiles' cache status
-			for (TileOnWindow tile : tileMapWindow) {
+			for (TileOnWindow tile : TileUtil.valid(tileMapWindow)) {
 				imageManagerBase.willNeed(tile);
 			}
 
-			for (TileOnWindow tile : tileMapWindow) {
+			for (TileOnWindow tile : TileUtil.valid(tileMapWindow)) {
 				BufferedImage image = imageManagerBase.get(tile);
 				drawTile(g, tile, image, scaleCacheBase, tw, th);
 			}
@@ -403,12 +404,12 @@ public class SteplessViewer extends JPanel implements ComponentListener,
 			pimb.cancelJobs();
 
 			// renew current tiles' cache status
-			for (TileOnWindow tile : tileMapWindow) {
+			for (TileOnWindow tile : TileUtil.valid(tileMapWindow)) {
 				pimb.willNeed(tile);
 			}
 
 			// request and draw
-			for (TileOnWindow tile : tileMapWindow) {
+			for (TileOnWindow tile : TileUtil.valid(tileMapWindow)) {
 				// calculate priority
 				int priority = calculatePriority(tile);
 

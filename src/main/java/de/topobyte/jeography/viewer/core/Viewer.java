@@ -59,6 +59,7 @@ import de.topobyte.jeography.core.PriorityImageManager;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileConfigListener;
 import de.topobyte.jeography.core.TileOnWindow;
+import de.topobyte.jeography.core.TileUtil;
 import de.topobyte.jeography.core.mapwindow.MapWindowChangeListener;
 import de.topobyte.jeography.core.mapwindow.SteppedMapWindow;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
@@ -359,11 +360,11 @@ public class Viewer extends JPanel implements ComponentListener,
 			// with simple image manager
 
 			// renew current tiles' cache status
-			for (TileOnWindow tile : getMapWindow()) {
+			for (TileOnWindow tile : TileUtil.valid(mapWindow)) {
 				imageManagerBase.willNeed(tile);
 			}
 
-			for (TileOnWindow tow : mapWindow) {
+			for (TileOnWindow tow : TileUtil.valid(mapWindow)) {
 				BufferedImage image = imageManagerBase.get(tow);
 				if (image != null) {
 					drawImage(g, image, tow, scaleCacheBase);
@@ -381,12 +382,12 @@ public class Viewer extends JPanel implements ComponentListener,
 			pimb.cancelJobs();
 
 			// renew current tiles' cache status
-			for (TileOnWindow tile : getMapWindow()) {
+			for (TileOnWindow tile : TileUtil.valid(mapWindow)) {
 				pimb.willNeed(tile);
 			}
 
 			// request and draw
-			for (TileOnWindow tile : getMapWindow()) {
+			for (TileOnWindow tile : TileUtil.valid(mapWindow)) {
 				// calculate priority
 				int priority = calculatePriority(tile);
 
