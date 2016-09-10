@@ -17,7 +17,6 @@
 
 package de.topobyte.jeography.viewer.geometry.manage;
 
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.File;
@@ -53,27 +52,6 @@ public class GeometryManager extends JPanel
 	// TODO: connect to changes of file-tree-model. on update of namespace, find
 	// connected rules 'rs'. for each 'r' in 'rs': trigger a callback:
 	// 'geometries changed'
-
-	/**
-	 * Simple test to show this manager.
-	 * 
-	 * @param args
-	 *            none
-	 */
-	public static void main(String[] args)
-	{
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		GeometryManager manager = new GeometryManager();
-		frame.setContentPane(manager);
-
-		frame.setSize(new Dimension(400, 600));
-		frame.setVisible(true);
-
-		// manager.displayAddRuleDialog();
-		manager.showTab(Tab.RULES);
-	}
 
 	private GeometryRules rules = new GeometryRules(this);
 	private GeometryStyles styles = new GeometryStyles();
