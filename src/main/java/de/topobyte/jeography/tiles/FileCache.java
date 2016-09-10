@@ -15,66 +15,28 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * @param <T>
- *            the type of things that map to cached images.
- * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class ImageProviderDisk<T> extends ImageProvider<T, BufferedImage>
+public class FileCache<T>
 {
 
+	final static Logger logger = LoggerFactory.getLogger(FileCache.class);
+
 	private PathResoluter<T> resolver;
-	private FileCache<T> cache;
 
-	ImageProviderDisk(PathResoluter<T> resolver)
+	public FileCache(PathResoluter<T> resolver)
 	{
-		super(1);
 		this.resolver = resolver;
-		cache = new FileCache<>(resolver);
-	}
-
-	@Override
-	public BufferedImage load(T thing)
-	{
-		String cacheFile = resolver.getCacheFile(thing);
-
-		File file = new File(cacheFile);
-		if (!file.exists()) {
-			return null;
-		}
-
-		FileInputStream fis = null;
-		try {
-			fis = new FileInputStream(file);
-			BufferedImage image = ImageIO.read(fis);
-			return image;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (fis != null) {
-				try {
-					fis.close();
-				} catch (IOException e) {
-					System.out.println("unable to close FileInputStream: "
-							+ e.getMessage());
-				}
-			}
-		}
-
-		return null;
 	}
 
 	/**
@@ -87,8 +49,17 @@ public class ImageProviderDisk<T> extends ImageProvider<T, BufferedImage>
 	 */
 	public void push(T thing, BufferedImageAndBytes biab)
 	{
-		// TODO: dispatch into separate Thread
-		cache.push(thing, biab);
+		String cacheFileName = resolver.getCacheFile(thing);
+		logger.debug("Writing to cache: " + cacheFileName);
+		try {
+			FileOutputStream fos = new FileOutputStream(cacheFileName);
+			fos.write(biab.bytes);
+			fos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

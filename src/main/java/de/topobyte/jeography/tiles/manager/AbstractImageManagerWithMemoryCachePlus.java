@@ -15,35 +15,51 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles.manager;
+
+import de.topobyte.jeography.tiles.cache.MemoryCachePlus;
 
 /**
  * @param <T>
- *            the type of things.
+ *            type of keys
  * @param <D>
  *            the type of data.
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public interface LoadListener<T, D>
+public abstract class AbstractImageManagerWithMemoryCachePlus<T, D> extends
+		AbstractImageManager<T, D>
 {
 
-	/**
-	 * Notify about the loading of this thing.
-	 * 
-	 * @param thing
-	 *            the thing that got loaded.
-	 * @param data
-	 *            the data loaded.
-	 */
-	void loaded(T thing, D data);
+	protected int desiredCacheSize;
 
-	/**
-	 * Notify about the failure of loading this thing.
-	 * 
-	 * @param thing
-	 *            the thing that failed loading.
-	 */
-	void loadFailed(T thing);
+	protected MemoryCachePlus<T, D> memoryCache;
+
+	public AbstractImageManagerWithMemoryCachePlus()
+	{
+		this(150);
+	}
+
+	public AbstractImageManagerWithMemoryCachePlus(int desiredCacheSize)
+	{
+		this.desiredCacheSize = desiredCacheSize;
+		memoryCache = new MemoryCachePlus<>(desiredCacheSize);
+	}
+
+	@Override
+	public void willNeed(T thing)
+	{
+		memoryCache.refresh(thing);
+	}
+
+	@Override
+	public void setCacheHintMinimumSize(int size)
+	{
+		if (memoryCache.getSize() < size) {
+			memoryCache.setSize(size);
+		} else if (size < desiredCacheSize) {
+			memoryCache.setSize(desiredCacheSize);
+		}
+	}
 
 }

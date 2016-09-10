@@ -15,46 +15,46 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles.manager;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import de.topobyte.jeography.tiles.cache.MemoryCache;
 
 /**
  * @param <T>
- *            the type of things that map to cached images.
+ *            type of keys
+ * @param <D>
+ *            the type of data.
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class ImageProviderHttp<T> extends
-		ImageProvider<T, BufferedImageAndBytes>
+public abstract class AbstractImageManagerWithMemoryCache<T, D> extends
+		AbstractImageManager<T, D>
 {
 
-	static final Logger logger = LoggerFactory.getLogger(ImageProvider.class);
+	protected int desiredCacheSize;
 
-	ImageSourceUrlPattern<T> imageSource;
+	protected MemoryCache<T, D> memoryCache;
 
-	ImageProviderHttp(UrlResoluter<T> resolver, int nThreads, int nTries)
+	public AbstractImageManagerWithMemoryCache()
 	{
-		super(nThreads);
-		imageSource = new ImageSourceUrlPattern<>(resolver, nTries);
+		this(150);
 	}
 
-	/**
-	 * Set the user-agent to use during HTTP-requests.
-	 * 
-	 * @param userAgent
-	 *            the user agent to use.
-	 */
-	public void setUserAgent(String userAgent)
+	public AbstractImageManagerWithMemoryCache(int desiredCacheSize)
 	{
-		imageSource.setUserAgent(userAgent);
+		this.desiredCacheSize = desiredCacheSize;
+		memoryCache = new MemoryCache<>(desiredCacheSize);
+		System.out.println("desired: " + desiredCacheSize);
 	}
 
 	@Override
-	public BufferedImageAndBytes load(T thing)
+	public void setCacheHintMinimumSize(int size)
 	{
-		return imageSource.loadImage(thing);
+		if (memoryCache.getSize() < size) {
+			memoryCache.setSize(size);
+		} else if (size < desiredCacheSize) {
+			memoryCache.setSize(desiredCacheSize);
+		}
 	}
 
 }

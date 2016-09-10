@@ -15,18 +15,25 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles.manager;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.topobyte.jeography.tiles.PathResoluter;
+import de.topobyte.jeography.tiles.UrlResoluter;
+import de.topobyte.jeography.tiles.source.ImageSource;
+import de.topobyte.jeography.tiles.source.ImageSourcePathPattern;
+import de.topobyte.jeography.tiles.source.ImageSourceUrlPattern;
+import de.topobyte.jeography.tiles.source.MultiLevelImageSource;
+import de.topobyte.jeography.tiles.source.UnwrappingImageSourceWithFileCache;
+
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
 public class PriorityImageManagerHttpDisk<T> extends
-		ImageManagerSourceRam<T, BufferedImage> implements
-		PriorityImageManager<T, BufferedImage, Integer>
+		ImageManagerSourceRam<T, BufferedImage>
 {
 
 	boolean online = true;

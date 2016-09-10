@@ -32,13 +32,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.topobyte.adt.geo.BBox;
-import de.topobyte.jeography.core.PathResoluter;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileOnWindow;
-import de.topobyte.jeography.core.TileResoluterUrlDisk;
-import de.topobyte.jeography.core.UrlResoluter;
 import de.topobyte.jeography.core.mapwindow.SteppedMapWindow;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
+import de.topobyte.jeography.tiles.PathResoluter;
+import de.topobyte.jeography.tiles.TileResoluterUrlDisk;
+import de.topobyte.jeography.tiles.UrlResoluter;
 import de.topobyte.jeography.viewer.config.TileConfigUrlDisk;
 import de.topobyte.util.async.Executer;
 

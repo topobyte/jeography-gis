@@ -15,28 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles;
 
 /**
  * @param <T>
- *            the type of things the data is connected to.
- * 
- * @param <D>
- *            the type of objects this image source creates.
+ *            type argument.
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public interface ImageSource<T, D>
+public interface UrlResoluter<T>
 {
 
 	/**
-	 * Create the image.
+	 * Get the url for this thing.
 	 * 
 	 * @param thing
-	 *            the thing to load data for.
-	 * 
-	 * @return the image or null on error.
+	 *            the thing to get.
+	 * @return the url for this thing.
 	 */
-	public D load(T thing);
+	public String getUrl(T thing);
 
 }

@@ -15,17 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles;
 
 /**
+ * @param <T>
+ *            type argument.
+ * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public interface TileConfigListener
+public interface PathResoluter<T>
 {
 
 	/**
-	 * To be called when the config changed.
+	 * Get this thing's associated cache file.
+	 * 
+	 * @param thing
+	 *            the thing to look for.
+	 * @return the filename of the cache file.
 	 */
-	void tileConfigChanged();
+	public String getCacheFile(T thing);
 
 }

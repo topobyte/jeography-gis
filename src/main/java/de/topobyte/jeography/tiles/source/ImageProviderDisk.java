@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles.source;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,64 +25,31 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import de.topobyte.jeography.tiles.BufferedImageAndBytes;
+import de.topobyte.jeography.tiles.FileCache;
+import de.topobyte.jeography.tiles.PathResoluter;
 
 /**
  * @param <T>
- *            the type of objects.
+ *            the type of things that map to cached images.
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class ImageSourcePathPattern<T> implements ImageSource<T, BufferedImage>
+public class ImageProviderDisk<T> extends ImageProvider<T, BufferedImage>
 {
 
-	static final Logger logger = LoggerFactory
-			.getLogger(ImageSourcePathPattern.class);
-
 	private PathResoluter<T> resolver;
+	private FileCache<T> cache;
 
-	/**
-	 * An ImageSource implementation based that works with PathResoluter
-	 * 
-	 * @param resolver
-	 *            the path generator
-	 */
-	public ImageSourcePathPattern(PathResoluter<T> resolver)
+	public ImageProviderDisk(PathResoluter<T> resolver)
 	{
+		super(1);
 		this.resolver = resolver;
-	}
-
-	/**
-	 * Set the PathResoluter used to resolve image URLs.
-	 * 
-	 * @param resolver
-	 *            the resolver to use
-	 */
-	public void setPathResoluter(PathResoluter<T> resolver)
-	{
-		this.resolver = resolver;
+		cache = new FileCache<>(resolver);
 	}
 
 	@Override
 	public BufferedImage load(T thing)
-	{
-		BufferedImage image = loadImage(thing);
-		if (image == null) {
-			return null;
-		}
-		return image;
-	}
-
-	/**
-	 * Load the image and return it as a BufferedImage together with the raw
-	 * bytes.
-	 * 
-	 * @param thing
-	 *            the thing to load the image for.
-	 * @return the image and its bytes.
-	 */
-	public BufferedImage loadImage(T thing)
 	{
 		String cacheFile = resolver.getCacheFile(thing);
 
@@ -112,6 +79,20 @@ public class ImageSourcePathPattern<T> implements ImageSource<T, BufferedImage>
 		}
 
 		return null;
+	}
+
+	/**
+	 * Put this thing's loaded image into the disk-cache.
+	 * 
+	 * @param thing
+	 *            the thing.
+	 * @param biab
+	 *            the thing's data to cache.
+	 */
+	public void push(T thing, BufferedImageAndBytes biab)
+	{
+		// TODO: dispatch into separate Thread
+		cache.push(thing, biab);
 	}
 
 }

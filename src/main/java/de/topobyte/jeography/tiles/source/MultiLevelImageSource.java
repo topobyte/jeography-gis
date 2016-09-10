@@ -15,24 +15,39 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles.source;
+
+import java.util.List;
 
 /**
  * @param <T>
- *            type argument.
+ *            the type of things the data is connected to.
+ * 
+ * @param <D>
+ *            the type of objects this image source creates.
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public interface PathResoluter<T>
+public class MultiLevelImageSource<T, D> implements ImageSource<T, D>
 {
 
-	/**
-	 * Get this thing's associated cache file.
-	 * 
-	 * @param thing
-	 *            the thing to look for.
-	 * @return the filename of the cache file.
-	 */
-	public String getCacheFile(T thing);
+	private List<ImageSource<T, D>> sources;
+
+	public MultiLevelImageSource(List<ImageSource<T, D>> sources)
+	{
+		this.sources = sources;
+	}
+
+	@Override
+	public D load(T thing)
+	{
+		for (ImageSource<T, D> source : sources) {
+			D result = source.load(thing);
+			if (result != null) {
+				return result;
+			}
+		}
+		return null;
+	}
 
 }

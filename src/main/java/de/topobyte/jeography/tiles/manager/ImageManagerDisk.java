@@ -15,12 +15,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles.manager;
 
 import java.awt.image.BufferedImage;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import de.topobyte.jeography.tiles.LoadListener;
+import de.topobyte.jeography.tiles.PathResoluter;
+import de.topobyte.jeography.tiles.source.ImageProviderDisk;
 
 /**
  * @param <T>
@@ -28,16 +32,15 @@ import org.slf4j.LoggerFactory;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class ImageManagerHttpDisk<T> extends
-		AbstractImageManagerWithMemoryCachePlus<T, BufferedImage>
+public class ImageManagerDisk<T> extends
+		AbstractImageManagerWithMemoryCache<T, BufferedImage>
 {
 
 	final static Logger logger = LoggerFactory
-			.getLogger(ImageManagerHttpDisk.class);
+			.getLogger(ImageManagerDisk.class);
 
 	boolean online = true;
 	ImageProviderDisk<T> diskProvider = null;
-	ImageProviderHttp<T> httpProvider = null;
 
 	/**
 	 * Create a new ImageManager that provides tiles from http and backed by a
@@ -46,14 +49,11 @@ public class ImageManagerHttpDisk<T> extends
 	 * @param resolver
 	 *            the information about how to resolve tiles.
 	 */
-	public <X extends PathResoluter<T> & UrlResoluter<T>> ImageManagerHttpDisk(
-			X resolver)
+	public ImageManagerDisk(PathResoluter<T> resolver)
 	{
 		diskProvider = new ImageProviderDisk<>(resolver);
-		httpProvider = new ImageProviderHttp<>(resolver, 4, 5);
 
 		diskProvider.addLoadListener(new LoadListenerDisk(this));
-		httpProvider.addLoadListener(new LoadListenerHttp(this));
 	}
 
 	@Override
@@ -70,9 +70,9 @@ public class ImageManagerHttpDisk<T> extends
 	private class LoadListenerDisk implements LoadListener<T, BufferedImage>
 	{
 
-		private ImageManagerHttpDisk<T> manager;
+		private ImageManagerDisk<T> manager;
 
-		LoadListenerDisk(ImageManagerHttpDisk<T> manager)
+		LoadListenerDisk(ImageManagerDisk<T> manager)
 		{
 			this.manager = manager;
 		}
@@ -80,9 +80,8 @@ public class ImageManagerHttpDisk<T> extends
 		@Override
 		public void loadFailed(T thing)
 		{
-			if (online) {
-				manager.httpProvider.provide(thing);
-			}
+			logger.debug("failed loading from disk");
+			notifyListenersFail(thing);
 		}
 
 		@Override
@@ -90,33 +89,6 @@ public class ImageManagerHttpDisk<T> extends
 		{
 			manager.memoryCache.put(thing, image);
 			notifyListeners(thing, image);
-		}
-	}
-
-	private class LoadListenerHttp implements
-			LoadListener<T, BufferedImageAndBytes>
-	{
-
-		private ImageManagerHttpDisk<T> manager;
-
-		LoadListenerHttp(ImageManagerHttpDisk<T> manager)
-		{
-			this.manager = manager;
-		}
-
-		@Override
-		public void loadFailed(T thing)
-		{
-			logger.debug("failed loading from HTTP ... giving up");
-			notifyListenersFail(thing);
-		}
-
-		@Override
-		public void loaded(T thing, BufferedImageAndBytes image)
-		{
-			manager.memoryCache.put(thing, image.image);
-			notifyListeners(thing, image.image);
-			manager.diskProvider.push(thing, image);
 		}
 	}
 
@@ -139,22 +111,16 @@ public class ImageManagerHttpDisk<T> extends
 		return online;
 	}
 
-	/**
-	 * Set the user-agent to use during HTTP-requests.
-	 * 
-	 * @param userAgent
-	 *            the user agent to use.
-	 */
-	public void setUserAgent(String userAgent)
-	{
-		httpProvider.setUserAgent(userAgent);
-	}
-
 	@Override
 	public void destroy()
 	{
 		diskProvider.stopRunning();
-		httpProvider.stopRunning();
+	}
+
+	@Override
+	public void willNeed(T thing)
+	{
+		// do nothing here
 	}
 
 }

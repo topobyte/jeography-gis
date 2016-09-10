@@ -15,37 +15,32 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles;
 
-import java.awt.image.BufferedImage;
+import de.topobyte.jeography.core.Tile;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class UnwrappingImageSourceWithFileCache<T> implements
-		ImageSource<T, BufferedImage>
+public class TileResoluterDisk implements PathResoluter<Tile>
 {
 
-	public ImageSource<T, BufferedImageAndBytes> source;
-	private FileCache<T> cache;
+	private String cacheFileTemplate;
 
-	public UnwrappingImageSourceWithFileCache(
-			ImageSource<T, BufferedImageAndBytes> source,
-			PathResoluter<T> resolver)
+	/**
+	 * @param cacheDir
+	 *            the dir to store cache images.
+	 */
+	public TileResoluterDisk(String cacheDir)
 	{
-		this.source = source;
-		cache = new FileCache<>(resolver);
+		cacheFileTemplate = cacheDir + "/%d_%d_%d.png";
 	}
 
 	@Override
-	public BufferedImage load(T thing)
+	public String getCacheFile(Tile tile)
 	{
-		BufferedImageAndBytes result = source.load(thing);
-		if (result != null) {
-			cache.push(thing, result);
-			return result.image;
-		}
-		return null;
+		return String.format(cacheFileTemplate, tile.getZoom(), tile.getTx(),
+				tile.getTy());
 	}
 
 }

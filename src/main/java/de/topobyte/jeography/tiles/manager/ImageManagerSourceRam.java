@@ -15,13 +15,16 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles.manager;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Set;
+
+import de.topobyte.jeography.tiles.LoadListener;
+import de.topobyte.jeography.tiles.source.ImageSource;
 
 /**
  * @param <T>

@@ -15,12 +15,12 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles.cache;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import de.topobyte.adt.misc.uniquedeque.UniqueLinkedList;
 
 /**
  * @param <K>
@@ -30,12 +30,12 @@ import java.util.Map;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class MemoryCache<K, V>
+public class MemoryCachePlus<K, V>
 {
 
-	private int size = 20;
+	private int size;
+	private UniqueLinkedList<K> keys = new UniqueLinkedList<>();
 	private Map<K, V> map = new HashMap<>();
-	private List<K> keys = new ArrayList<>();
 
 	/**
 	 * Create a memory cache.
@@ -43,7 +43,7 @@ public class MemoryCache<K, V>
 	 * @param size
 	 *            the number of elements to store.
 	 */
-	public MemoryCache(int size)
+	public MemoryCachePlus(int size)
 	{
 		this.size = size;
 	}
@@ -57,7 +57,7 @@ public class MemoryCache<K, V>
 	{
 		this.size = size;
 		while (keys.size() > size) {
-			K removed = keys.remove(0);
+			K removed = keys.removeLast();
 			map.remove(removed);
 		}
 	}
@@ -69,21 +69,22 @@ public class MemoryCache<K, V>
 	 *            the key.
 	 * @param value
 	 *            the value.
+	 * @return the key removed or null
 	 */
-	public synchronized void put(K key, V value)
+	public synchronized K put(K key, V value)
 	{
 		if (map.containsKey(key)) {
-			// replace...
 			map.put(key, value);
-			// TODO: rearrange in queue
 		} else {
 			map.put(key, value);
-			keys.add(key);
+			keys.addFirst(key);
 			if (keys.size() > size) {
-				K removed = keys.remove(0);
+				K removed = keys.removeLast();
 				map.remove(removed);
+				return removed;
 			}
 		}
+		return null;
 	}
 
 	/**
@@ -113,6 +114,20 @@ public class MemoryCache<K, V>
 			return map.remove(key);
 		}
 		return null;
+	}
+
+	/**
+	 * Reorder the key within the replacement list.
+	 * 
+	 * @param key
+	 *            the key to reorder.
+	 */
+	public synchronized void refresh(K key)
+	{
+		if (!map.containsKey(key)) {
+			return;
+		}
+		keys.moveToFront(key);
 	}
 
 	/**

@@ -15,44 +15,41 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles.source;
+
+import java.awt.image.BufferedImage;
+
+import de.topobyte.jeography.tiles.BufferedImageAndBytes;
+import de.topobyte.jeography.tiles.FileCache;
+import de.topobyte.jeography.tiles.PathResoluter;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class TileResoluterUrlDisk implements PathResoluter<Tile>,
-		UrlResoluter<Tile>
+public class UnwrappingImageSourceWithFileCache<T> implements
+		ImageSource<T, BufferedImage>
 {
 
-	// private String cacheDir;
-	private String cacheFileTemplate;
-	private String urlTemplate;
+	public ImageSource<T, BufferedImageAndBytes> source;
+	private FileCache<T> cache;
 
-	/**
-	 * @param cacheDir
-	 *            the dir to store cache images.
-	 * @param urlTemplate
-	 *            the url template.
-	 */
-	public TileResoluterUrlDisk(String cacheDir, String urlTemplate)
+	public UnwrappingImageSourceWithFileCache(
+			ImageSource<T, BufferedImageAndBytes> source,
+			PathResoluter<T> resolver)
 	{
-		// this.cacheDir = cacheDir;
-		cacheFileTemplate = cacheDir + "/%d_%d_%d.png";
-		this.urlTemplate = urlTemplate;
+		this.source = source;
+		cache = new FileCache<>(resolver);
 	}
 
 	@Override
-	public String getCacheFile(Tile tile)
+	public BufferedImage load(T thing)
 	{
-		return String.format(cacheFileTemplate, tile.getZoom(), tile.getTx(),
-				tile.getTy());
-	}
-
-	@Override
-	public String getUrl(Tile tile)
-	{
-		return String.format(urlTemplate, tile.getZoom(), tile.getTx(),
-				tile.getTy());
+		BufferedImageAndBytes result = source.load(thing);
+		if (result != null) {
+			cache.push(thing, result);
+			return result.getImage();
+		}
+		return null;
 	}
 
 }

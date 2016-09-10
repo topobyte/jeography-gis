@@ -15,24 +15,17 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles;
 
 /**
- * @param <T>
- *            type argument.
- * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public interface UrlResoluter<T>
+public interface TileConfigListener
 {
 
 	/**
-	 * Get the url for this thing.
-	 * 
-	 * @param thing
-	 *            the thing to get.
-	 * @return the url for this thing.
+	 * To be called when the config changed.
 	 */
-	public String getUrl(T thing);
+	void tileConfigChanged();
 
 }

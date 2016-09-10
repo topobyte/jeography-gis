@@ -26,11 +26,11 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.topobyte.jeography.core.ImageManager;
-import de.topobyte.jeography.core.ImageProvider;
-import de.topobyte.jeography.core.LoadListener;
-import de.topobyte.jeography.core.MemoryCache;
 import de.topobyte.jeography.core.Tile;
+import de.topobyte.jeography.tiles.LoadListener;
+import de.topobyte.jeography.tiles.cache.MemoryCache;
+import de.topobyte.jeography.tiles.manager.ImageManager;
+import de.topobyte.jeography.tiles.source.ImageProvider;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)

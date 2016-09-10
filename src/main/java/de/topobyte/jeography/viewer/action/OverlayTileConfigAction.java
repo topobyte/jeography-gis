@@ -24,7 +24,7 @@ import javax.swing.Action;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.topobyte.jeography.core.TileConfigListener;
+import de.topobyte.jeography.tiles.TileConfigListener;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.core.Viewer;
 

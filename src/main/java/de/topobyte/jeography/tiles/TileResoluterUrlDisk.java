@@ -15,49 +15,46 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles;
+
+import de.topobyte.jeography.core.Tile;
 
 /**
- * @param <T>
- *            type of keys
- * @param <D>
- *            the type of data.
- * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public abstract class AbstractImageManagerWithMemoryCachePlus<T, D> extends
-		AbstractImageManager<T, D>
+public class TileResoluterUrlDisk implements PathResoluter<Tile>,
+		UrlResoluter<Tile>
 {
 
-	protected int desiredCacheSize;
+	// private String cacheDir;
+	private String cacheFileTemplate;
+	private String urlTemplate;
 
-	protected MemoryCachePlus<T, D> memoryCache;
-
-	public AbstractImageManagerWithMemoryCachePlus()
+	/**
+	 * @param cacheDir
+	 *            the dir to store cache images.
+	 * @param urlTemplate
+	 *            the url template.
+	 */
+	public TileResoluterUrlDisk(String cacheDir, String urlTemplate)
 	{
-		this(150);
-	}
-
-	public AbstractImageManagerWithMemoryCachePlus(int desiredCacheSize)
-	{
-		this.desiredCacheSize = desiredCacheSize;
-		memoryCache = new MemoryCachePlus<>(desiredCacheSize);
-	}
-
-	@Override
-	public void willNeed(T thing)
-	{
-		memoryCache.refresh(thing);
+		// this.cacheDir = cacheDir;
+		cacheFileTemplate = cacheDir + "/%d_%d_%d.png";
+		this.urlTemplate = urlTemplate;
 	}
 
 	@Override
-	public void setCacheHintMinimumSize(int size)
+	public String getCacheFile(Tile tile)
 	{
-		if (memoryCache.getSize() < size) {
-			memoryCache.setSize(size);
-		} else if (size < desiredCacheSize) {
-			memoryCache.setSize(desiredCacheSize);
-		}
+		return String.format(cacheFileTemplate, tile.getZoom(), tile.getTx(),
+				tile.getTy());
+	}
+
+	@Override
+	public String getUrl(Tile tile)
+	{
+		return String.format(urlTemplate, tile.getZoom(), tile.getTx(),
+				tile.getTy());
 	}
 
 }

@@ -28,8 +28,8 @@ import com.vividsolutions.jts.geom.util.GeometryTransformer;
 
 import de.topobyte.awt.util.GraphicsUtil;
 import de.topobyte.geomath.WGS84;
-import de.topobyte.jeography.core.ImageProvider;
 import de.topobyte.jeography.core.Tile;
+import de.topobyte.jeography.tiles.source.ImageProvider;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryStyle;
 import de.topobyte.jgs.transform.CoordinateTransformer;
 import de.topobyte.jsi.GenericRTree;

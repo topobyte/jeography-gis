@@ -23,11 +23,11 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
-import de.topobyte.jeography.core.ImageManagerSourceRam;
-import de.topobyte.jeography.core.ImageSourceUrlPattern;
 import de.topobyte.jeography.core.Tile;
-import de.topobyte.jeography.core.TileResoluterUrlDisk;
-import de.topobyte.jeography.core.UnwrappingImageSource;
+import de.topobyte.jeography.tiles.TileResoluterUrlDisk;
+import de.topobyte.jeography.tiles.manager.ImageManagerSourceRam;
+import de.topobyte.jeography.tiles.source.ImageSourceUrlPattern;
+import de.topobyte.jeography.tiles.source.UnwrappingImageSource;
 import de.topobyte.jeography.viewer.config.ManagerTileConfig;
 import de.topobyte.jeography.viewer.core.Viewer;
 

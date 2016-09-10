@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles.source;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
@@ -31,6 +31,9 @@ import javax.imageio.ImageIO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import de.topobyte.jeography.tiles.BufferedImageAndBytes;
+import de.topobyte.jeography.tiles.UrlResoluter;
 
 /**
  * @param <T>

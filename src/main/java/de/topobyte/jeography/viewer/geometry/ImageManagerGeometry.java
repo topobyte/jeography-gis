@@ -30,12 +30,12 @@ import org.slf4j.LoggerFactory;
 import com.infomatiq.jsi.Rectangle;
 import com.vividsolutions.jts.geom.Geometry;
 
-import de.topobyte.jeography.core.ImageManager;
-import de.topobyte.jeography.core.LoadListener;
-import de.topobyte.jeography.core.MemoryCache;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.mapwindow.MapWindowChangeListener;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
+import de.topobyte.jeography.tiles.LoadListener;
+import de.topobyte.jeography.tiles.cache.MemoryCache;
+import de.topobyte.jeography.tiles.manager.ImageManager;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryContainer;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryStyle;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryStyleChangeListener;

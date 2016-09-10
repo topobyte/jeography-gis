@@ -17,10 +17,10 @@
 
 package de.topobyte.jeography.viewer;
 
-import de.topobyte.jeography.core.ImageManager;
-import de.topobyte.jeography.core.LoadListener;
-import de.topobyte.jeography.core.PriorityImageManager;
 import de.topobyte.jeography.core.Tile;
+import de.topobyte.jeography.tiles.LoadListener;
+import de.topobyte.jeography.tiles.manager.ImageManager;
+import de.topobyte.jeography.tiles.manager.PriorityImageManager;
 
 /**
  * This is a container for tile-based ImageManagers that will introduce a

@@ -15,7 +15,8 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles.manager;
+
 
 /**
  * An extension of the ImageManager interface that allows priority in requests.

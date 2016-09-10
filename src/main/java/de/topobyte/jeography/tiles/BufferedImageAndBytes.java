@@ -15,14 +15,14 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.core;
+package de.topobyte.jeography.tiles;
 
 import java.awt.image.BufferedImage;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-class BufferedImageAndBytes
+public class BufferedImageAndBytes
 {
 
 	BufferedImage image;
@@ -32,6 +32,16 @@ class BufferedImageAndBytes
 	{
 		this.image = image;
 		this.bytes = bytes;
+	}
+
+	public BufferedImage getImage()
+	{
+		return image;
+	}
+
+	public byte[] getBytes()
+	{
+		return bytes;
 	}
 
 }

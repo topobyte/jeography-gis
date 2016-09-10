@@ -24,12 +24,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import de.topobyte.jeography.core.ImageManager;
-import de.topobyte.jeography.core.LoadListener;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileOnWindow;
 import de.topobyte.jeography.core.TileUtil;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
+import de.topobyte.jeography.tiles.LoadListener;
+import de.topobyte.jeography.tiles.manager.ImageManager;
 import de.topobyte.jeography.viewer.config.ConfigReader;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.config.ConfigurationHelper;
