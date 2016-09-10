@@ -27,6 +27,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -199,6 +200,8 @@ public class JeographyGIS extends JPanel
 			logger.debug("default user config file: " + configFile);
 			try {
 				configuration = ConfigReader.read(configFile);
+			} catch (FileNotFoundException e) {
+				logger.warn("no configuration file found, using default configuration");
 			} catch (Exception e) {
 				logger.warn("unable to read configuration at user home", e);
 				logger.warn("using default configuration");
