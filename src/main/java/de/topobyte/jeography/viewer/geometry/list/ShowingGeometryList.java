@@ -30,9 +30,6 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.DropMode;
 import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -48,9 +45,7 @@ import com.vividsolutions.jts.geom.Geometry;
 import de.topobyte.jeography.core.PaintListener;
 import de.topobyte.jeography.core.TileOnWindow;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
-import de.topobyte.jeography.executables.JeographyGIS;
 import de.topobyte.jeography.geometry.GeoObject;
-import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.jeography.viewer.geometry.ImageManagerGeometry;
 import de.topobyte.jeography.viewer.geometry.list.dnd.GeometryListTransferhandler;
@@ -81,48 +76,6 @@ public class ShowingGeometryList extends JPanel implements PaintListener,
 	private GeomList geomList;
 
 	private ImageManagerGeometry manager;
-
-	/**
-	 * Test for the list
-	 * 
-	 * @param args
-	 *            none
-	 * @throws Exception
-	 *             on failure
-	 */
-	public static void main(String[] args) throws Exception
-	{
-		int zoom = 6;
-		double lon = 10.9, lat = 51.5;
-		int width = 800, height = 600;
-
-		Configuration configuration = Configuration
-				.createDefaultConfiguration();
-
-		JeographyGIS gis = new JeographyGIS(null, configuration, 0, null, true,
-				false, false, false, false);
-
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setContentPane(gis);
-
-		frame.setSize(new Dimension(width, height));
-		frame.setVisible(true);
-
-		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
-
-		gis.getViewer().getMapWindow().gotoLonLat(lon, lat);
-		gis.getViewer().getMapWindow().zoom(zoom);
-		gis.getViewer().repaint();
-
-		JDialog dialog = new JDialog(frame);
-		ShowingGeometryList showingGeometryList = new ShowingGeometryList(
-				gis.getViewer());
-		dialog.setContentPane(showingGeometryList);
-		dialog.pack();
-		dialog.setVisible(true);
-	}
 
 	/**
 	 * Public constructor.
