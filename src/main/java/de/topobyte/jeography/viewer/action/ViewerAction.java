@@ -30,7 +30,7 @@ public abstract class ViewerAction extends SimpleAction
 
 	private static final long serialVersionUID = 5259429457032752597L;
 
-	static final Logger logger1 = LoggerFactory.getLogger(ViewerAction.class);
+	static final Logger logger = LoggerFactory.getLogger(ViewerAction.class);
 
 	private Viewer viewer;
 	private boolean enabled = true;

@@ -32,7 +32,7 @@ public class GeometryListModel extends ArrayListModel<Geometry>
 
 	private static final long serialVersionUID = -3594464507636535851L;
 
-	static final Logger logger2 = LoggerFactory
+	static final Logger logger = LoggerFactory
 			.getLogger(GeometryListModel.class);
 
 	/**

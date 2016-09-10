@@ -35,7 +35,7 @@ public abstract class SimpleAction extends AbstractAction
 
 	private static final long serialVersionUID = 1727617884915345905L;
 
-	final static Logger logger2 = LoggerFactory.getLogger(SimpleAction.class);
+	final static Logger logger = LoggerFactory.getLogger(SimpleAction.class);
 
 	/**
 	 * The name of this action.
@@ -96,7 +96,7 @@ public abstract class SimpleAction extends AbstractAction
 	protected void setIconFromResource(String filename)
 	{
 		if (filename != null) {
-			logger2.debug("loading icon: " + filename);
+			logger.debug("loading icon: " + filename);
 			icon = ImageLoader.load(filename);
 		} else {
 			icon = new EmptyIcon(24);

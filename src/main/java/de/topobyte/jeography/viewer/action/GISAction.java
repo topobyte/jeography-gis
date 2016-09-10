@@ -30,7 +30,7 @@ public abstract class GISAction extends SimpleAction
 
 	private static final long serialVersionUID = -225117643828809550L;
 
-	static final Logger logger1 = LoggerFactory.getLogger(GISAction.class);
+	static final Logger logger = LoggerFactory.getLogger(GISAction.class);
 
 	private JeographyGIS gis;
 	private boolean enabled = true;
