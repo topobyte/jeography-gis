@@ -29,7 +29,6 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
@@ -44,7 +43,6 @@ import de.topobyte.jeography.viewer.geometry.list.panels.GeometryIndexPanel;
 import de.topobyte.jsi.GenericRTree;
 import de.topobyte.jsi.GenericSpatialIndex;
 import de.topobyte.jsijts.JsiAndJts;
-import de.topobyte.swing.util.FrameHelper;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -57,20 +55,6 @@ public class GeometrySelectionOperation extends JPanel
 	private GeometryIndexPanel indexPanel;
 	private ContextEnabledGeometryPanel inputGeometryPanel;
 	private ContextEnabledGeometryPanel outputGeometryPanel;
-
-	/**
-	 * Test the component by displaying it in a frame.
-	 * 
-	 * @param args
-	 *            none.
-	 */
-	public static void main(String[] args)
-	{
-		GeometrySelectionOperation gso = new GeometrySelectionOperation();
-		JFrame frame = FrameHelper.showFrameWithComponent("test", gso, 200,
-				400, 0, 0, true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
 
 	/**
 	 * Create an instance of the selection operation component.
