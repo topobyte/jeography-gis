@@ -19,19 +19,15 @@ package de.topobyte.jeography.viewer.windowpane;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import de.topobyte.jeography.core.mapwindow.MapWindow;
 import de.topobyte.jeography.core.mapwindow.MapWindowChangeListener;
-import de.topobyte.jeography.core.mapwindow.SteppedMapWindow;
 import de.topobyte.jeography.viewer.windowpane.buttons.PositionButtonDeg;
 import de.topobyte.jeography.viewer.windowpane.buttons.PositionButtonFP;
 import de.topobyte.jeography.viewer.windowpane.buttons.PositionButtonXml;
@@ -41,34 +37,6 @@ import de.topobyte.jeography.viewer.windowpane.buttons.PositionButtonXml;
  */
 public class MapWindowPane extends JPanel
 {
-
-	/**
-	 * Simple test for the dialog
-	 * 
-	 * @param args
-	 *            none
-	 */
-	public static void main(String args[])
-	{
-
-		JDialog dialog = new JDialog();
-
-		MapWindow window = new SteppedMapWindow(300, 300, 14, 400, 400, 0, 0);
-		MapWindowPane pane = new MapWindowPane(window);
-		dialog.setContentPane(pane);
-
-		dialog.setSize(300, 200);
-		dialog.setVisible(true);
-
-		dialog.addWindowListener(new WindowAdapter() {
-
-			@Override
-			public void windowClosing(WindowEvent e)
-			{
-				System.exit(0);
-			}
-		});
-	}
 
 	private static final long serialVersionUID = -3817433094278662941L;
 
