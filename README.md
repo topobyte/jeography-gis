@@ -9,3 +9,19 @@ This library is released under the terms of the GNU Lesser General Public
 License.
 
 See  [LGPL.md](LGPL.md) and [GPL.md](GPL.md) for details.
+
+# Running the main GIS user interface
+
+## Using gradle
+You can run the main UI using gradle directly:
+
+    gradle run
+
+## Using scripts
+Setup the execution environment:
+
+    gradle createRuntime
+
+Then you can run the main executables from the build directory:
+
+    ./scripts/jeography
