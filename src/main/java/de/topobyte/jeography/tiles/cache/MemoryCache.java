@@ -33,7 +33,7 @@ import java.util.Map;
 public class MemoryCache<K, V>
 {
 
-	private int size = 20;
+	private int size;
 	private Map<K, V> map = new HashMap<>();
 	private List<K> keys = new ArrayList<>();
 
