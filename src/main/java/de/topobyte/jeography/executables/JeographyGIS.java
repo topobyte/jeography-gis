@@ -115,6 +115,7 @@ import de.topobyte.jeography.viewer.selection.polygonal.PolySelectionAdapter;
 import de.topobyte.jeography.viewer.selection.rectangular.IntSelection;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;
 import de.topobyte.jeography.viewer.util.ActionUtil;
+import de.topobyte.jeography.viewer.util.EmptyIcon;
 import de.topobyte.jeography.viewer.windowpane.MapWindowPane;
 import de.topobyte.jeography.viewer.zoom.ZoomControl;
 import de.topobyte.swing.util.Components;
@@ -795,6 +796,7 @@ public class JeographyGIS extends JPanel
 		menuWindows.add(new JMenuItem(mla));
 
 		JMenu menuOperationsAdd = new JMenu("operations");
+		menuOperationsAdd.setIcon(new EmptyIcon(24));
 		menuWindows.add(menuOperationsAdd);
 
 		menuOperationsAdd.add(new OperationAction(Operations.UNION, gis));

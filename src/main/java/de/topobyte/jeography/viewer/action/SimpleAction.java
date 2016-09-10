@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.topobyte.jeography.util.ImageLoader;
+import de.topobyte.jeography.viewer.util.EmptyIcon;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -94,9 +95,12 @@ public abstract class SimpleAction extends AbstractAction
 	 */
 	protected void setIconFromResource(String filename)
 	{
-		logger2.debug("loading icon: " + filename);
-
-		icon = ImageLoader.load(filename);
+		if (filename != null) {
+			logger2.debug("loading icon: " + filename);
+			icon = ImageLoader.load(filename);
+		} else {
+			icon = new EmptyIcon(24);
+		}
 	}
 
 	/**

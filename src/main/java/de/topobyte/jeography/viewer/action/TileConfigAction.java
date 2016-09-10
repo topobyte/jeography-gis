@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import de.topobyte.jeography.core.TileConfigListener;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.core.Viewer;
+import de.topobyte.jeography.viewer.util.EmptyIcon;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -63,7 +64,7 @@ public class TileConfigAction extends ViewerAction implements
 	public Object getValue(String key)
 	{
 		if (key == Action.SMALL_ICON) {
-			return null;
+			return new EmptyIcon(24);
 		} else if (key.equals(Action.NAME)) {
 			return config.getName();
 		} else if (key.equals(Action.SHORT_DESCRIPTION)) {
