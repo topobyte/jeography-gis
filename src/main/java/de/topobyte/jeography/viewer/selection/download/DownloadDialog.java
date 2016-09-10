@@ -21,8 +21,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +42,10 @@ import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.mapwindow.SteppedMapWindow;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
 import de.topobyte.jeography.executables.JeographyGIS;
-import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.config.TileConfigUrlDisk;
 import de.topobyte.jeography.viewer.geometry.manage.EventJDialog;
 import de.topobyte.jeography.viewer.selection.rectangular.GeographicSelection;
-import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;
 import de.topobyte.swing.util.ButtonPane;
 import de.topobyte.swing.util.Components;
 import de.topobyte.swing.util.ElementWrapper;
@@ -61,47 +57,6 @@ import de.topobyte.swing.util.combobox.ListComboBoxModel;
  */
 public class DownloadDialog extends EventJDialog
 {
-
-	/**
-	 * Test the dialog
-	 * 
-	 * @param args
-	 *            none
-	 */
-	public static void main(String[] args)
-	{
-		Configuration configuration = Configuration
-				.createDefaultConfiguration();
-		JeographyGIS gis = null;
-		try {
-			gis = new JeographyGIS(null, configuration, 0, null, true, false,
-					false, false, false);
-		} catch (Exception e) {
-			return;
-		}
-		SelectionAdapter selectionAdapter = gis.getSelectionAdapter();
-		selectionAdapter.setGeographicSelection(new GeographicSelection(
-				12.969360, 13.840027, 52.703019, 52.305120));
-
-		DownloadDialog dialog = new DownloadDialog(gis, null, "download dialog");
-		dialog.setSize(500, 400);
-		dialog.pack();
-		dialog.setVisible(true);
-		dialog.addWindowListener(new WindowAdapter() {
-
-			@Override
-			public void windowClosing(WindowEvent event)
-			{
-				System.exit(0);
-			}
-
-			@Override
-			public void windowClosed(WindowEvent event)
-			{
-				System.exit(0);
-			}
-		});
-	}
 
 	private static final long serialVersionUID = 5617532574377870576L;
 
