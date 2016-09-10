@@ -25,7 +25,6 @@ import java.util.List;
 
 import javax.swing.DropMode;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -53,26 +52,6 @@ public class MeasureList extends JPanel implements ListDataListener
 {
 
 	private static final long serialVersionUID = -5141716445948665122L;
-
-	/**
-	 * Test the component.
-	 * 
-	 * Display a JFrame containing just the MeasureList
-	 * 
-	 * @param args
-	 *            none
-	 */
-	public static void main(String[] args)
-	{
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		MeasureList measureList = new MeasureList();
-		frame.setContentPane(measureList);
-
-		frame.setVisible(true);
-		frame.setSize(250, 500);
-	}
 
 	private JLabel label = new JLabel();
 	private GeomList list = new GeomList();
