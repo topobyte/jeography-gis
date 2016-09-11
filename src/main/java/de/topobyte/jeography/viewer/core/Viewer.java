@@ -68,6 +68,7 @@ import de.topobyte.jeography.viewer.Constants;
 import de.topobyte.jeography.viewer.MouseUser;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.geometry.ImageManagerUpdateListener;
+import de.topobyte.jeography.viewer.zoom.ZoomMode;
 import de.topobyte.melon.casting.CastUtil;
 
 /**
@@ -89,6 +90,7 @@ public class Viewer extends JPanel implements ComponentListener,
 	private Color colorCrosshair = new Color(127, 0, 0, 255);
 
 	private boolean mouseActive = false;
+	private ZoomMode zoomMode = ZoomMode.ZOOM_AND_CENTER_POINT;
 
 	private boolean drawBorder = true;
 	private boolean drawCrosshair = true;
@@ -563,11 +565,9 @@ public class Viewer extends JPanel implements ComponentListener,
 		if (mouseActive) {
 			if (e.getClickCount() == 2) {
 				if (e.getButton() == MouseEvent.BUTTON1) {
-					// mapWindow.zoomIn();
-					mapWindow.zoomInToPosition(e.getPoint().x, e.getPoint().y);
+					zoomIn(e.getPoint());
 				} else if (e.getButton() == MouseEvent.BUTTON3) {
-					// mapWindow.zoomOut();
-					mapWindow.zoomOutToPosition(e.getPoint().x, e.getPoint().y);
+					zoomOut(e.getPoint());
 				}
 				repaint();
 			}
@@ -679,6 +679,32 @@ public class Viewer extends JPanel implements ComponentListener,
 					}
 				}
 			}
+		}
+	}
+
+	private void zoomIn(Point point)
+	{
+		switch (zoomMode) {
+		default:
+		case ZOOM_AT_CENTER:
+			mapWindow.zoomIn();
+			break;
+		case ZOOM_AND_CENTER_POINT:
+			mapWindow.zoomInToPosition(point.x, point.y);
+			break;
+		}
+	}
+
+	private void zoomOut(Point point)
+	{
+		switch (zoomMode) {
+		default:
+		case ZOOM_AT_CENTER:
+			mapWindow.zoomOut();
+			break;
+		case ZOOM_AND_CENTER_POINT:
+			mapWindow.zoomOutToPosition(point.x, point.y);
+			break;
 		}
 	}
 
@@ -1011,9 +1037,9 @@ public class Viewer extends JPanel implements ComponentListener,
 			int wheelRotation = e.getWheelRotation();
 			// int unitsToScroll = e.getUnitsToScroll();
 			if (wheelRotation < 0) {
-				mapWindow.zoomInToPosition(e.getPoint().x, e.getPoint().y);
+				zoomIn(e.getPoint());
 			} else {
-				mapWindow.zoomOutToPosition(e.getPoint().x, e.getPoint().y);
+				zoomOut(e.getPoint());
 			}
 			repaint();
 		}
