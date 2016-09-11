@@ -76,6 +76,7 @@ import de.topobyte.jeography.viewer.action.GeometryInfoAction;
 import de.topobyte.jeography.viewer.action.GeometryListAction;
 import de.topobyte.jeography.viewer.action.GeometryManagerAction;
 import de.topobyte.jeography.viewer.action.GeometrySelectionAction;
+import de.topobyte.jeography.viewer.action.GotoAction;
 import de.topobyte.jeography.viewer.action.GridAction;
 import de.topobyte.jeography.viewer.action.ManualAction;
 import de.topobyte.jeography.viewer.action.MapWindowPanelAction;
@@ -771,6 +772,11 @@ public class JeographyGIS extends JPanel
 		menuView.add(zoomIn);
 		menuView.add(zoomOut);
 		menuView.add(new JCheckBoxMenuItem(overlay));
+
+		JMenu menuMap = new JMenu("Map");
+		menuMap.setMnemonic('M');
+		menuBar.add(menuMap);
+		menuMap.add(new GotoAction(gis));
 
 		JMenu menuTiles = new JMenu("Tiles");
 		menuTiles.setMnemonic('T');
