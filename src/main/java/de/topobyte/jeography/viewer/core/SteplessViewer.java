@@ -311,16 +311,7 @@ public class SteplessViewer extends AbstractViewer implements
 			}
 		}
 		if (drawCrosshair) {
-			GraphicsUtil.useAntialiasing(g, false);
-			g.setStroke(new BasicStroke(1.0f));
-			g.setColor(colorCrosshair);
-			g.drawLine(getWidth() / 2, 0, getWidth() / 2, getHeight());
-			g.drawLine(0, getHeight() / 2, getWidth(), getHeight() / 2);
-			int d = 20;
-			g.drawArc(getWidth() / 2 - d / 2, getHeight() / 2 - d / 2, d, d, 0,
-					90);
-			g.drawArc(getWidth() / 2 - d / 2, getHeight() / 2 - d / 2, d, d,
-					180, 90);
+			drawCrosshair(g);
 		}
 
 		if (points != null) {

@@ -17,7 +17,9 @@
 
 package de.topobyte.jeography.viewer.core;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragGestureRecognizer;
@@ -38,6 +40,7 @@ import java.util.Set;
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 
+import de.topobyte.awt.util.GraphicsUtil;
 import de.topobyte.jeography.core.mapwindow.MapWindow;
 import de.topobyte.jeography.tiles.TileConfigListener;
 import de.topobyte.jeography.viewer.MouseUser;
@@ -575,6 +578,23 @@ public abstract class AbstractViewer extends JPanel implements MouseUser,
 	public void mouseWheelMoved(MouseWheelEvent e)
 	{
 		// do nothing
+	}
+
+	/*
+	 * Drawing stuff
+	 */
+
+	protected void drawCrosshair(Graphics2D g)
+	{
+		GraphicsUtil.useAntialiasing(g, false);
+		g.setStroke(new BasicStroke(1.0f));
+		g.setColor(colorCrosshair);
+		g.drawLine(getWidth() / 2, 0, getWidth() / 2, getHeight());
+		g.drawLine(0, getHeight() / 2, getWidth(), getHeight() / 2);
+		int d = 20;
+		g.drawArc(getWidth() / 2 - d / 2, getHeight() / 2 - d / 2, d, d, 0, 90);
+		g.drawArc(getWidth() / 2 - d / 2, getHeight() / 2 - d / 2, d, d, 180,
+				90);
 	}
 
 }
