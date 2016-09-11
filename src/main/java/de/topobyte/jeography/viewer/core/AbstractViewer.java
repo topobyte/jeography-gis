@@ -239,6 +239,26 @@ public abstract class AbstractViewer extends JPanel implements MouseUser
 		this.colorCrosshair = color;
 	}
 
+	/**
+	 * Get the current configuration.
+	 * 
+	 * @return the current tile configuration.
+	 */
+	public TileConfig getTileConfig()
+	{
+		return tileConfig;
+	}
+
+	/**
+	 * Get the current overlay configuration.
+	 * 
+	 * @return the current overlay configuration.
+	 */
+	public TileConfig getOverlayTileConfig()
+	{
+		return overlayTileConfig;
+	}
+
 	/*
 	 * Repaint management
 	 */

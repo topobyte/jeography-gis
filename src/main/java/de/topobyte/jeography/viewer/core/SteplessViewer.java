@@ -725,26 +725,6 @@ public class SteplessViewer extends AbstractViewer implements
 		}
 	}
 
-	/**
-	 * Get the current configuration.
-	 * 
-	 * @return the current tile configuration.
-	 */
-	public TileConfig getTileConfig()
-	{
-		return tileConfig;
-	}
-
-	/**
-	 * Get the current overlay configuration.
-	 * 
-	 * @return the current overlay configuration.
-	 */
-	public TileConfig getOverlayTileConfig()
-	{
-		return overlayTileConfig;
-	}
-
 	private Set<TileConfigListener> listeners = new HashSet<>();
 	private Set<TileConfigListener> listenersOverlay = new HashSet<>();
 	private List<PaintListener> paintListeners = new ArrayList<>();
