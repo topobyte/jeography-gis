@@ -18,7 +18,6 @@
 package de.topobyte.jeography.viewer.core;
 
 import java.awt.BasicStroke;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -29,14 +28,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.image.BufferedImage;
-import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.topobyte.adt.geo.Coordinate;
 import de.topobyte.awt.util.GraphicsUtil;
-import de.topobyte.jeography.core.OverlayPoint;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileOnWindow;
 import de.topobyte.jeography.core.TileUtil;
@@ -73,8 +70,6 @@ public class Viewer extends AbstractViewer implements
 
 	private MemoryCachePlus<Tile, Image> scaleCacheBase;
 	private MemoryCachePlus<Tile, Image> scaleCacheOverlay;
-
-	private Set<OverlayPoint> points = null;
 
 	/**
 	 * default constructor
@@ -280,19 +275,8 @@ public class Viewer extends AbstractViewer implements
 			drawCrosshair(g);
 		}
 
-		if (points != null) {
-			for (OverlayPoint point : points) {
-				int px = (int) Math.round(mapWindow.longitudeToX(point
-						.getLongitude()));
-				int py = (int) Math.round(mapWindow.latitudeToY(point
-						.getLatitude()));
+		drawOverlayPoints(g);
 
-				int d = 20;
-				g.setColor(new Color(255, 0, 0, 127));
-				// g.fillArc(px - d / 2, py - d / 2, d, d, 0, 360);
-				g.fillRect(px - d / 2, py - d / 2, d, d);
-			}
-		}
 		triggerPaintListeners(g);
 	}
 
@@ -449,34 +433,6 @@ public class Viewer extends AbstractViewer implements
 		double fy = mapWindow.getY(flat);
 		// shift the map to keep the (lon, lat) fixed
 		mapWindow.move((int) Math.round(fx - x), (int) Math.round(fy - y));
-	}
-
-	/**
-	 * Display the given points as an overlay.
-	 * 
-	 * @param points
-	 *            a set of points to display.
-	 */
-	public void setOverlayPoints(Set<OverlayPoint> points)
-	{
-		this.points = points;
-	}
-
-	/**
-	 * Set the viewport to display the overlay points...
-	 */
-	public void gotoOverlayPoints()
-	{
-		if (points == null || points.size() == 0)
-			return;
-		if (points.size() == 1) {
-			logger.debug("hopping to point");
-			OverlayPoint point = points.iterator().next();
-			mapWindow.gotoLonLat(point.getLongitude(), point.getLatitude());
-		} else {
-			logger.debug("showing points");
-			mapWindow.gotoPoints(points);
-		}
 	}
 
 	/**

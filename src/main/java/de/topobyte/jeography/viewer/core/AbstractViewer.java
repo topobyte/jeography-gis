@@ -31,6 +31,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.awt.geom.Arc2D;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -40,7 +42,11 @@ import java.util.Set;
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.topobyte.awt.util.GraphicsUtil;
+import de.topobyte.jeography.core.OverlayPoint;
 import de.topobyte.jeography.core.mapwindow.MapWindow;
 import de.topobyte.jeography.tiles.TileConfigListener;
 import de.topobyte.jeography.viewer.MouseUser;
@@ -57,6 +63,8 @@ public abstract class AbstractViewer extends JPanel implements MouseUser,
 
 	private static final long serialVersionUID = -3023462611876276320L;
 
+	final static Logger logger = LoggerFactory.getLogger(AbstractViewer.class);
+
 	protected Color colorBackground = new Color(255, 255, 255, 255);
 	protected Color colorBorder = new Color(0, 0, 0, 255);
 	protected Color colorTilenumbers = new Color(0, 0, 0, 255);
@@ -72,6 +80,8 @@ public abstract class AbstractViewer extends JPanel implements MouseUser,
 
 	protected TileConfig tileConfig;
 	protected TileConfig overlayTileConfig;
+
+	private Set<OverlayPoint> points = null;
 
 	protected abstract MapWindow getMapWindow();
 
@@ -597,6 +607,67 @@ public abstract class AbstractViewer extends JPanel implements MouseUser,
 		g.drawArc(getWidth() / 2 - d / 2, getHeight() / 2 - d / 2, d, d, 0, 90);
 		g.drawArc(getWidth() / 2 - d / 2, getHeight() / 2 - d / 2, d, d, 180,
 				90);
+	}
+
+	protected void drawOverlayPoints(Graphics2D g)
+	{
+		if (points == null) {
+			return;
+		}
+		GraphicsUtil.useAntialiasing(g, true);
+		for (OverlayPoint point : points) {
+			double px = getMapWindow().longitudeToX(point.getLongitude());
+			double py = getMapWindow().latitudeToY(point.getLatitude());
+
+			int d = 20;
+			g.setColor(new Color(255, 0, 0, 127));
+
+			boolean circle = false;
+
+			if (circle) {
+				Arc2D arc = new Arc2D.Double(px - d / 2, py - d / 2, d, d, 0,
+						360, Arc2D.CHORD);
+				g.fill(arc);
+			} else {
+				Rectangle2D rect = new Rectangle2D.Double(px - d / 2, py - d
+						/ 2, d, d);
+				g.fill(rect);
+			}
+		}
+	}
+
+	/*
+	 * Overlay points
+	 */
+
+	/**
+	 * Display the given points as an overlay.
+	 * 
+	 * @param points
+	 *            a set of points to display.
+	 */
+	public void setOverlayPoints(Set<OverlayPoint> points)
+	{
+		this.points = points;
+	}
+
+	/**
+	 * Set the viewport to display the overlay points...
+	 */
+	public void gotoOverlayPoints()
+	{
+		if (points == null || points.size() == 0) {
+			return;
+		}
+		if (points.size() == 1) {
+			logger.debug("hopping to point");
+			OverlayPoint point = points.iterator().next();
+			getMapWindow()
+					.gotoLonLat(point.getLongitude(), point.getLatitude());
+		} else {
+			logger.debug("showing points");
+			getMapWindow().gotoPoints(points);
+		}
 	}
 
 }
