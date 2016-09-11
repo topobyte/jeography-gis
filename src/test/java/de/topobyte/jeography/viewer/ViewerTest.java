@@ -17,25 +17,15 @@
 
 package de.topobyte.jeography.viewer;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.swing.JFrame;
 
 import de.topobyte.jeography.core.OverlayPoint;
-import de.topobyte.jeography.core.Tile;
-import de.topobyte.jeography.core.TileOnWindow;
-import de.topobyte.jeography.core.mapwindow.MapWindow;
-import de.topobyte.jeography.tiles.TileResoluterUrlDisk;
-import de.topobyte.jeography.tiles.manager.ImageManagerSourceRam;
-import de.topobyte.jeography.tiles.source.ImageSourceUrlPattern;
-import de.topobyte.jeography.tiles.source.UnwrappingImageSource;
-import de.topobyte.jeography.viewer.config.Configuration;
+import de.topobyte.jeography.viewer.config.TileConfigUrl;
 import de.topobyte.jeography.viewer.core.Viewer;
 
 /**
@@ -107,80 +97,16 @@ public class ViewerTest
 
 		private static final long serialVersionUID = 1L;
 
-		private ImageSourceUrlPattern<Tile> source;
-		private ImageManagerSourceRam<Tile, BufferedImage> manager;
-
 		public MyViewer(String tileUrl)
 		{
-			super(Configuration.createDefaultConfiguration().getTileConfigs()
-					.get(0), null);
-			createManagerFromUrl(tileUrl);
-		}
-
-		private void createManagerFromUrl(String tileUrl)
-		{
-			TileResoluterUrlDisk resolver = new TileResoluterUrlDisk(null,
-					tileUrl);
-			source = new ImageSourceUrlPattern<>(resolver, 3);
-			UnwrappingImageSource<Tile> unwrapper = new UnwrappingImageSource<>(
-					source);
-			manager = new ImageManagerSourceRam<>(1, 40, unwrapper);
-			manager.addLoadListener(MyViewer.this);
+			super(new TileConfigUrl(1, "name", tileUrl), null);
 		}
 
 		public void setTileUrl(String tileUrl)
 		{
-			TileResoluterUrlDisk resolver = new TileResoluterUrlDisk(null,
-					tileUrl);
-			source.setPathResoluter(resolver);
-			manager.cancelJobs();
-			manager.setIgnorePendingProductions();
-			manager.clearCache();
-			viewer.repaint();
+			setTileConfig(new TileConfigUrl(1, "name", tileUrl));
 		}
 
-		@Override
-		public void paintComponent(Graphics g)
-		{
-			g.setColor(Color.WHITE);
-			g.fillRect(0, 0, getWidth(), getHeight());
-
-			// first cancel pending jobs
-			manager.cancelJobs();
-
-			// renew current tiles' cache status
-			for (TileOnWindow tile : getMapWindow()) {
-				manager.willNeed(tile);
-			}
-
-			// request and draw
-			for (TileOnWindow tile : getMapWindow()) {
-				// calculate priority
-				int priority = calculatePriority(tile, getMapWindow());
-
-				// request
-				BufferedImage image = manager.get(tile, priority);
-
-				// draw
-				g.drawImage(image, tile.getDX(), tile.getDY(), null);
-				g.setColor(Color.BLACK);
-				g.drawRect(tile.getDX(), tile.getDY(), Tile.SIZE, Tile.SIZE);
-			}
-		}
-
-		private int calculatePriority(TileOnWindow tile, MapWindow mapWindow)
-		{
-			int width = mapWindow.getWidth();
-			int height = mapWindow.getHeight();
-			int midX = width / 2;
-			int midY = height / 2;
-			int tX = tile.getDX() + Tile.SIZE / 2;
-			int tY = tile.getDY() + Tile.SIZE / 2;
-			int dX = tX - midX;
-			int dY = tY - midY;
-			int dist = dX * dX + dY * dY;
-			return dist;
-		}
 	}
 
 }
