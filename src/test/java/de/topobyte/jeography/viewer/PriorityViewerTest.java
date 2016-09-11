@@ -35,7 +35,7 @@ import de.topobyte.jeography.viewer.config.ManagerTileConfig;
 import de.topobyte.jeography.viewer.core.Viewer;
 
 /**
- * A special test for a map viewer with special tile-management features.
+ * A test for the priority map viewer.
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */

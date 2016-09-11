@@ -36,7 +36,7 @@ import de.topobyte.jeography.viewer.core.SteplessViewer;
 import de.topobyte.jeography.viewer.core.SteplessViewer.TileDrawMode;
 
 /**
- * A special test for a map viewer with special tile-management features.
+ * A test for the stepless map viewer.
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */

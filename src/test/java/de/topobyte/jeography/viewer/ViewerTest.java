@@ -29,7 +29,7 @@ import de.topobyte.jeography.viewer.config.TileConfigUrl;
 import de.topobyte.jeography.viewer.core.Viewer;
 
 /**
- * A special test for a map viewer with special tile-management features.
+ * A test for the basic map viewer.
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
