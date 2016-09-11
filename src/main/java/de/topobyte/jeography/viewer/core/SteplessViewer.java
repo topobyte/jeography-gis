@@ -712,6 +712,26 @@ public class SteplessViewer extends JPanel implements ComponentListener,
 	}
 
 	@Override
+	public void mouseWheelMoved(MouseWheelEvent e)
+	{
+		int scrollType = e.getScrollType();
+		if (scrollType == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
+			int wheelRotation = e.getWheelRotation();
+			// int unitsToScroll = e.getUnitsToScroll();
+			if (wheelRotation < 0) {
+				// mapWindow.zoomInToPosition(e.getPoint().x, e.getPoint().y,
+				// zoomStep);
+				mapWindow.zoomIn(zoomStep);
+			} else {
+				// mapWindow.zoomOutToPosition(e.getPoint().x, e.getPoint().y,
+				// zoomStep);
+				mapWindow.zoomOut(zoomStep);
+			}
+			repaint();
+		}
+	}
+
+	@Override
 	public void loadFailed(Tile thing)
 	{
 		// do nothing currently
@@ -1082,26 +1102,6 @@ public class SteplessViewer extends JPanel implements ComponentListener,
 	{
 		// TODO: use TileResolutor here...
 		return 22;
-	}
-
-	@Override
-	public void mouseWheelMoved(MouseWheelEvent e)
-	{
-		int scrollType = e.getScrollType();
-		if (scrollType == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
-			int wheelRotation = e.getWheelRotation();
-			// int unitsToScroll = e.getUnitsToScroll();
-			if (wheelRotation < 0) {
-				// mapWindow.zoomInToPosition(e.getPoint().x, e.getPoint().y,
-				// zoomStep);
-				mapWindow.zoomIn(zoomStep);
-			} else {
-				// mapWindow.zoomOutToPosition(e.getPoint().x, e.getPoint().y,
-				// zoomStep);
-				mapWindow.zoomOut(zoomStep);
-			}
-			repaint();
-		}
 	}
 
 	@Override
