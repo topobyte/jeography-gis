@@ -17,13 +17,10 @@
 
 package de.topobyte.jeography.viewer.geometry.list;
 
-import java.awt.Dimension;
-
 import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JMenuBar;
 
 import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.TestUtil;
 import de.topobyte.jeography.viewer.config.Configuration;
 
 /**
@@ -44,7 +41,6 @@ public class TestShowingGeometryList
 	{
 		int zoom = 6;
 		double lon = 10.9, lat = 51.5;
-		int width = 800, height = 600;
 
 		Configuration configuration = Configuration
 				.createDefaultConfiguration();
@@ -52,21 +48,13 @@ public class TestShowingGeometryList
 		JeographyGIS gis = new JeographyGIS(null, configuration, 0, null, true,
 				false, false, false, false);
 
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setContentPane(gis);
-
-		frame.setSize(new Dimension(width, height));
-		frame.setVisible(true);
-
-		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
-
 		gis.getViewer().getMapWindow().gotoLonLat(lon, lat);
 		gis.getViewer().getMapWindow().zoom(zoom);
 		gis.getViewer().repaint();
 
-		JDialog dialog = new JDialog(frame);
+		JDialog dialog = new JDialog();
+		TestUtil.exitOnClose(dialog);
+
 		ShowingGeometryList showingGeometryList = new ShowingGeometryList(
 				gis.getViewer());
 		dialog.setContentPane(showingGeometryList);
