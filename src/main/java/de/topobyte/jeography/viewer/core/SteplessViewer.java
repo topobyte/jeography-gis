@@ -723,7 +723,7 @@ public class SteplessViewer extends AbstractViewer implements
 	{
 		synchronized (paintListeners) {
 			for (PaintListener pl : paintListeners) {
-				// pl.onPaint(mapWindow, g);
+				pl.onPaint(tileMapWindow, g);
 			}
 		}
 	}
