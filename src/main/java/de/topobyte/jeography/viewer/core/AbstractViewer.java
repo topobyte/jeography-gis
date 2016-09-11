@@ -239,6 +239,10 @@ public abstract class AbstractViewer extends JPanel implements MouseUser
 		this.colorCrosshair = color;
 	}
 
+	/*
+	 * Repaint management
+	 */
+
 	boolean shallRepaint = true;
 	Object repaintLock = new Object();
 
@@ -280,6 +284,10 @@ public abstract class AbstractViewer extends JPanel implements MouseUser
 			}
 		}
 	}
+
+	/*
+	 * Drag gesture detection
+	 */
 
 	private DragGestureRecognizer recognizer;
 	private DragGestureListener currentDragGestureListener = null;
