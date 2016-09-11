@@ -43,7 +43,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 
 import org.slf4j.Logger;
@@ -78,10 +77,11 @@ import de.topobyte.melon.casting.CastUtil;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class SteplessViewer extends JPanel implements ComponentListener,
-		MouseMotionListener, MouseListener, MouseWheelListener, MouseUser,
-		LoadListener<Tile, BufferedImage>, ImageManagerUpdateListener,
-		MapWindowChangeListener, ZoomChangedListener
+public class SteplessViewer extends AbstractViewer implements
+		ComponentListener, MouseMotionListener, MouseListener,
+		MouseWheelListener, MouseUser, LoadListener<Tile, BufferedImage>,
+		ImageManagerUpdateListener, MapWindowChangeListener,
+		ZoomChangedListener
 {
 
 	private static final long serialVersionUID = -2141729332089589643L;
