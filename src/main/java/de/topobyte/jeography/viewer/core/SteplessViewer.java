@@ -68,10 +68,8 @@ import de.topobyte.jeography.tiles.manager.ImageManager;
 import de.topobyte.jeography.tiles.manager.ImageManagerHttpDisk;
 import de.topobyte.jeography.tiles.manager.PriorityImageManager;
 import de.topobyte.jeography.viewer.Constants;
-import de.topobyte.jeography.viewer.MouseUser;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.geometry.ImageManagerUpdateListener;
-import de.topobyte.jeography.viewer.zoom.ZoomMode;
 import de.topobyte.melon.casting.CastUtil;
 
 /**
@@ -79,7 +77,7 @@ import de.topobyte.melon.casting.CastUtil;
  */
 public class SteplessViewer extends AbstractViewer implements
 		ComponentListener, MouseMotionListener, MouseListener,
-		MouseWheelListener, MouseUser, LoadListener<Tile, BufferedImage>,
+		MouseWheelListener, LoadListener<Tile, BufferedImage>,
 		ImageManagerUpdateListener, MapWindowChangeListener,
 		ZoomChangedListener
 {
@@ -87,22 +85,6 @@ public class SteplessViewer extends AbstractViewer implements
 	private static final long serialVersionUID = -2141729332089589643L;
 
 	final static Logger logger = LoggerFactory.getLogger(SteplessViewer.class);
-
-	private Color colorBackground = new Color(255, 255, 255, 255);
-	private Color colorBorder = new Color(0, 0, 0, 255);
-	private Color colorTilenumbers = new Color(0, 0, 0, 255);
-	private Color colorCrosshair = new Color(127, 0, 0, 255);
-
-	private boolean mouseActive = false;
-	private ZoomMode zoomMode = ZoomMode.ZOOM_AND_KEEP_POINT;
-
-	private boolean drawBorder = true;
-	private boolean drawCrosshair = true;
-	private boolean drawOverlay = true;
-	private boolean drawTileNumbers = true;
-
-	private TileConfig tileConfig;
-	private TileConfig overlayTileConfig;
 
 	private SteplessMapWindow mapWindow;
 	private TileMapWindow tileMapWindow;
@@ -260,102 +242,6 @@ public class SteplessViewer extends AbstractViewer implements
 					.getNetworkState();
 		}
 		return false;
-	}
-
-	@Override
-	public boolean getMouseActive()
-	{
-		return mouseActive;
-	}
-
-	@Override
-	public void setMouseActive(boolean state)
-	{
-		mouseActive = state;
-	}
-
-	/**
-	 * Get the color of the background
-	 * 
-	 * @return a color.
-	 */
-	public Color getColorBackground()
-	{
-		return colorBackground;
-	}
-
-	/**
-	 * Set the color of the background
-	 * 
-	 * @param color
-	 *            the color to set
-	 */
-	public void setColorBackground(Color color)
-	{
-		this.colorBackground = color;
-	}
-
-	/**
-	 * Get the color of the tile borders
-	 * 
-	 * @return a color.
-	 */
-	public Color getColorBorder()
-	{
-		return colorBorder;
-	}
-
-	/**
-	 * Set the color of the tile borders
-	 * 
-	 * @param color
-	 *            the color to set
-	 */
-	public void setColorBorder(Color color)
-	{
-		this.colorBorder = color;
-	}
-
-	/**
-	 * Get the color of the tile number font
-	 * 
-	 * @return a color.
-	 */
-	public Color getColorTilenumbers()
-	{
-		return colorTilenumbers;
-	}
-
-	/**
-	 * Set the color of the tile number font
-	 * 
-	 * @param color
-	 *            the color to set
-	 */
-	public void setColorTilenumbers(Color color)
-	{
-		this.colorTilenumbers = color;
-	}
-
-	/**
-	 * Get the color of the crosshair
-	 * 
-	 * @return a color.
-	 */
-	public Color getColorCrosshair()
-	{
-		return colorCrosshair;
-	}
-
-	/**
-	 * Set the color of the crosshair
-	 * 
-	 * @param color
-	 *            the color to set
-	 */
-	public void setColorCrosshair(Color color)
-	{
-		this.colorCrosshair = color;
 	}
 
 	public void setMode(TileDrawMode mode)
@@ -632,9 +518,6 @@ public class SteplessViewer extends AbstractViewer implements
 	private Point pointPress;
 	private boolean mousePressed = false;
 
-	boolean shallRepaint = true;
-	Object repaintLock = new Object();
-
 	private double zoomStep = 0.05;
 
 	@Override
@@ -738,45 +621,6 @@ public class SteplessViewer extends AbstractViewer implements
 		dispatchRepaint();
 	}
 
-	private void dispatchRepaint()
-	{
-		synchronized (repaintLock) {
-			shallRepaint = true;
-			repaintLock.notify();
-		}
-	}
-
-	// this is to dispatch repainting into a separate thread.
-	// events that normally generate a repaint will use dispatchRepaint instead.
-	private class Repainter implements Runnable
-	{
-
-		Repainter()
-		{
-			// do nothing
-		}
-
-		@Override
-		public void run()
-		{
-			while (true) {
-				synchronized (repaintLock) {
-					shallRepaint = false;
-				}
-				repaint();
-				synchronized (repaintLock) {
-					if (!shallRepaint) {
-						try {
-							repaintLock.wait();
-						} catch (InterruptedException e) {
-							// do nothing
-						}
-					}
-				}
-			}
-		}
-	}
-
 	private void zoomIn(Point point, double zoomStep)
 	{
 		switch (zoomMode) {
@@ -870,38 +714,6 @@ public class SteplessViewer extends AbstractViewer implements
 		double lon = mapWindow.getPositionLon(position.x);
 		double lat = mapWindow.getPositionLat(position.y);
 		return new Coordinate(lon, lat);
-	}
-
-	/**
-	 * @return whether a border is drawn around tiles.
-	 */
-	public boolean isDrawBorder()
-	{
-		return drawBorder;
-	}
-
-	/**
-	 * @return whether the crosshair is shown.
-	 */
-	public boolean isDrawCrosshair()
-	{
-		return drawCrosshair;
-	}
-
-	/**
-	 * @return whether the overlay will be drawn.
-	 */
-	public boolean isDrawOverlay()
-	{
-		return drawOverlay;
-	}
-
-	/**
-	 * @return whether to draw each tile's number.
-	 */
-	public boolean isDrawTileNumbers()
-	{
-		return drawTileNumbers;
 	}
 
 	/**
@@ -1067,54 +879,6 @@ public class SteplessViewer extends AbstractViewer implements
 				// pl.onPaint(mapWindow, g);
 			}
 		}
-	}
-
-	/**
-	 * Set whether a border shall be drawn around tiles.
-	 * 
-	 * @param drawBorder
-	 *            whether to draw a border around tiles.
-	 */
-	public void setDrawBorder(boolean drawBorder)
-	{
-		this.drawBorder = drawBorder;
-		dispatchRepaint();
-	}
-
-	/**
-	 * Set whether a crosshair shall be drawn in the middle of the viewport.
-	 * 
-	 * @param drawCrosshair
-	 *            whether to draw a crosshair.
-	 */
-	public void setDrawCrosshair(boolean drawCrosshair)
-	{
-		this.drawCrosshair = drawCrosshair;
-		dispatchRepaint();
-	}
-
-	/**
-	 * Set whether the overlay will be drawn.
-	 * 
-	 * @param drawOverlay
-	 *            whether to draw an overlay.
-	 */
-	public void setDrawOverlay(boolean drawOverlay)
-	{
-		this.drawOverlay = drawOverlay;
-		dispatchRepaint();
-	}
-
-	/**
-	 * Set whether the tile's numbers will be drawn.
-	 * 
-	 * @param drawTileNumbers
-	 *            whether to draw each tile's number.
-	 */
-	public void setDrawTileNumbers(boolean drawTileNumbers)
-	{
-		this.drawTileNumbers = drawTileNumbers;
-		dispatchRepaint();
 	}
 
 	/**
