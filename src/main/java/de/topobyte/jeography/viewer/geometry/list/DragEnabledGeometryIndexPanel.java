@@ -73,7 +73,6 @@ public class DragEnabledGeometryIndexPanel extends JPanel implements
 	@Override
 	public void dragGestureRecognized(DragGestureEvent dge)
 	{
-		logger.debug("drag gesture");
 		TransferHandler handler = this.getTransferHandler();
 		handler.exportAsDrag(this, dge.getTriggerEvent(), TransferHandler.COPY);
 	}

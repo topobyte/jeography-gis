@@ -96,7 +96,6 @@ public class BboxDragGeometryPanel extends JPanel implements
 	@Override
 	public void dragGestureRecognized(DragGestureEvent dge)
 	{
-		System.out.println("drag gesture");
 		JComponent c = this;
 		TransferHandler handler = c.getTransferHandler();
 		handler.exportAsDrag(c, dge.getTriggerEvent(), TransferHandler.COPY);
