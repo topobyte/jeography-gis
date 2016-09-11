@@ -251,7 +251,7 @@ public class SteplessViewer extends AbstractViewer implements
 
 		// draw global stuff
 		if (globalManager != null) {
-			// globalManager.onPaint(mapWindow, g);
+			globalManager.onPaint(tileMapWindow, g);
 		}
 
 		// draw overlay
