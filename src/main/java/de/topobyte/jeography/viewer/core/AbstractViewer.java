@@ -18,6 +18,7 @@
 package de.topobyte.jeography.viewer.core;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragGestureRecognizer;
 import java.awt.dnd.DragSource;
@@ -37,6 +38,7 @@ import java.util.Set;
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 
+import de.topobyte.jeography.core.mapwindow.MapWindow;
 import de.topobyte.jeography.tiles.TileConfigListener;
 import de.topobyte.jeography.viewer.MouseUser;
 import de.topobyte.jeography.viewer.config.TileConfig;
@@ -67,6 +69,8 @@ public abstract class AbstractViewer extends JPanel implements MouseUser,
 
 	protected TileConfig tileConfig;
 	protected TileConfig overlayTileConfig;
+
+	protected abstract MapWindow getMapWindow();
 
 	@Override
 	public boolean getMouseActive()
@@ -493,13 +497,29 @@ public abstract class AbstractViewer extends JPanel implements MouseUser,
 	}
 
 	/*
+	 * Mouse logic
+	 */
+
+	private Point pointPress;
+	private boolean mousePressed = false;
+
+	/*
 	 * MouseMotionListener implementation
 	 */
 
 	@Override
 	public void mouseDragged(MouseEvent e)
 	{
-		// do nothing
+		if (mouseActive && mousePressed) {
+			Point currentPoint = e.getPoint();
+			int dx = pointPress.x - currentPoint.x;
+			int dy = pointPress.y - currentPoint.y;
+			pointPress = currentPoint;
+			// down right movement is negative for both
+			// System.out.println(String.format("%d %d", dx, dy));
+			getMapWindow().move(dx, dy);
+			repaint();
+		}
 	}
 
 	@Override
@@ -521,13 +541,18 @@ public abstract class AbstractViewer extends JPanel implements MouseUser,
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
-		// do nothing
+		if (e.getButton() == MouseEvent.BUTTON1) {
+			pointPress = e.getPoint();
+			mousePressed = true;
+		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e)
 	{
-		// do nothing
+		if (e.getButton() == MouseEvent.BUTTON1) {
+			mousePressed = false;
+		}
 	}
 
 	@Override

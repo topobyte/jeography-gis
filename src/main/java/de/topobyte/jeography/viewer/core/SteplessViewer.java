@@ -150,6 +150,7 @@ public class SteplessViewer extends AbstractViewer implements
 	 * 
 	 * @return the underlying MapWindow.
 	 */
+	@Override
 	public SteplessMapWindow getMapWindow()
 	{
 		return mapWindow;
@@ -436,9 +437,6 @@ public class SteplessViewer extends AbstractViewer implements
 		repaint();
 	}
 
-	private Point pointPress;
-	private boolean mousePressed = false;
-
 	private double zoomStep = 0.05;
 
 	@Override
@@ -458,40 +456,6 @@ public class SteplessViewer extends AbstractViewer implements
 		// TODO: the listeners only get triggered on click currently
 		for (MouseListener listener : mouseListeners) {
 			listener.mouseClicked(e);
-		}
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e)
-	{
-		if (e.getButton() == MouseEvent.BUTTON1) {
-			// System.out.println("press");
-			pointPress = e.getPoint();
-			mousePressed = true;
-		}
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e)
-	{
-		if (e.getButton() == MouseEvent.BUTTON1) {
-			// System.out.println("release");
-			mousePressed = false;
-		}
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent e)
-	{
-		if (mouseActive && mousePressed) {
-			Point currentPoint = e.getPoint();
-			int dx = pointPress.x - currentPoint.x;
-			int dy = pointPress.y - currentPoint.y;
-			pointPress = currentPoint;
-			// down right movement is negative for both
-			// System.out.println(String.format("%d %d", dx, dy));
-			mapWindow.move(dx, dy);
-			repaint();
 		}
 	}
 
