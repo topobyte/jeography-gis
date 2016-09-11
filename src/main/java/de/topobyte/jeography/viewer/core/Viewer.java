@@ -631,6 +631,22 @@ public class Viewer extends JPanel implements ComponentListener,
 	}
 
 	@Override
+	public void mouseWheelMoved(MouseWheelEvent e)
+	{
+		int scrollType = e.getScrollType();
+		if (scrollType == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
+			int wheelRotation = e.getWheelRotation();
+			// int unitsToScroll = e.getUnitsToScroll();
+			if (wheelRotation < 0) {
+				zoomIn(e.getPoint());
+			} else {
+				zoomOut(e.getPoint());
+			}
+			repaint();
+		}
+	}
+
+	@Override
 	public void loadFailed(Tile thing)
 	{
 		// do nothing currently
@@ -1027,22 +1043,6 @@ public class Viewer extends JPanel implements ComponentListener,
 	{
 		// TODO: use TileResolutor here...
 		return 22;
-	}
-
-	@Override
-	public void mouseWheelMoved(MouseWheelEvent e)
-	{
-		int scrollType = e.getScrollType();
-		if (scrollType == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
-			int wheelRotation = e.getWheelRotation();
-			// int unitsToScroll = e.getUnitsToScroll();
-			if (wheelRotation < 0) {
-				zoomIn(e.getPoint());
-			} else {
-				zoomOut(e.getPoint());
-			}
-			repaint();
-		}
 	}
 
 	@Override
