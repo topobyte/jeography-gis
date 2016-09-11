@@ -61,6 +61,16 @@ public abstract class AbstractViewer extends JPanel implements MouseUser
 		mouseActive = state;
 	}
 
+	public ZoomMode getZoomMode()
+	{
+		return zoomMode;
+	}
+
+	public void setZoomMode(ZoomMode zoomMode)
+	{
+		this.zoomMode = zoomMode;
+	}
+
 	/**
 	 * @return whether a border is drawn around tiles.
 	 */
