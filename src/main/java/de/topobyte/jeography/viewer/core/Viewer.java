@@ -90,7 +90,7 @@ public class Viewer extends JPanel implements ComponentListener,
 	private Color colorCrosshair = new Color(127, 0, 0, 255);
 
 	private boolean mouseActive = false;
-	private ZoomMode zoomMode = ZoomMode.ZOOM_AND_CENTER_POINT;
+	private ZoomMode zoomMode = ZoomMode.ZOOM_AND_KEEP_POINT;
 
 	private boolean drawBorder = true;
 	private boolean drawCrosshair = true;
@@ -708,6 +708,9 @@ public class Viewer extends JPanel implements ComponentListener,
 		case ZOOM_AND_CENTER_POINT:
 			mapWindow.zoomInToPosition(point.x, point.y);
 			break;
+		case ZOOM_AND_KEEP_POINT:
+			zoomFixed(point.x, point.y, true);
+			break;
 		}
 	}
 
@@ -721,7 +724,29 @@ public class Viewer extends JPanel implements ComponentListener,
 		case ZOOM_AND_CENTER_POINT:
 			mapWindow.zoomOutToPosition(point.x, point.y);
 			break;
+		case ZOOM_AND_KEEP_POINT:
+			zoomFixed(point.x, point.y, false);
+			break;
 		}
+	}
+
+	private void zoomFixed(int x, int y, boolean in)
+	{
+		// (lon, lat) that we want to keep fixed at the screen point (x, y)
+		double flon = mapWindow.getPositionLon(x);
+		double flat = mapWindow.getPositionLat(y);
+
+		if (in) {
+			mapWindow.zoomIn();
+		} else {
+			mapWindow.zoomOut();
+		}
+
+		// (x, y) of the (lon, lat) after applying the zoom change
+		double fx = mapWindow.getX(flon);
+		double fy = mapWindow.getY(flat);
+		// shift the map to keep the (lon, lat) fixed
+		mapWindow.move((int) Math.round(fx - x), (int) Math.round(fy - y));
 	}
 
 	/**
