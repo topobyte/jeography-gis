@@ -27,9 +27,7 @@ import java.awt.Point;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 import java.util.Set;
 
@@ -59,9 +57,9 @@ import de.topobyte.melon.casting.CastUtil;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class Viewer extends AbstractViewer implements MouseMotionListener,
-		MouseListener, MouseWheelListener, LoadListener<Tile, BufferedImage>,
-		ImageManagerUpdateListener, MapWindowChangeListener
+public class Viewer extends AbstractViewer implements
+		LoadListener<Tile, BufferedImage>, ImageManagerUpdateListener,
+		MapWindowChangeListener
 {
 
 	private static final long serialVersionUID = -2141729332089589643L;
@@ -385,18 +383,6 @@ public class Viewer extends AbstractViewer implements MouseMotionListener,
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e)
-	{
-		// do nothing here
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e)
-	{
-		// do nothing here
-	}
-
-	@Override
 	public void mousePressed(MouseEvent e)
 	{
 		if (e.getButton() == MouseEvent.BUTTON1) {
@@ -428,12 +414,6 @@ public class Viewer extends AbstractViewer implements MouseMotionListener,
 			mapWindow.move(dx, dy);
 			repaint();
 		}
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e)
-	{
-		// do nothing here
 	}
 
 	@Override

@@ -27,9 +27,7 @@ import java.awt.Point;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -64,7 +62,6 @@ import de.topobyte.melon.casting.CastUtil;
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
 public class SteplessViewer extends AbstractViewer implements
-		MouseMotionListener, MouseListener, MouseWheelListener,
 		LoadListener<Tile, BufferedImage>, ImageManagerUpdateListener,
 		MapWindowChangeListener, ZoomChangedListener
 {
@@ -465,18 +462,6 @@ public class SteplessViewer extends AbstractViewer implements
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e)
-	{
-		// do nothing here
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e)
-	{
-		// do nothing here
-	}
-
-	@Override
 	public void mousePressed(MouseEvent e)
 	{
 		if (e.getButton() == MouseEvent.BUTTON1) {
@@ -508,12 +493,6 @@ public class SteplessViewer extends AbstractViewer implements
 			mapWindow.move(dx, dy);
 			repaint();
 		}
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e)
-	{
-		// do nothing here
 	}
 
 	@Override

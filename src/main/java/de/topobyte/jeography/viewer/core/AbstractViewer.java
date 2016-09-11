@@ -23,7 +23,11 @@ import java.awt.dnd.DragGestureRecognizer;
 import java.awt.dnd.DragSource;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -42,7 +46,8 @@ import de.topobyte.jeography.viewer.zoom.ZoomMode;
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
 public abstract class AbstractViewer extends JPanel implements MouseUser,
-		ComponentListener
+		ComponentListener, MouseMotionListener, MouseListener,
+		MouseWheelListener
 {
 
 	private static final long serialVersionUID = -3023462611876276320L;
@@ -485,6 +490,66 @@ public abstract class AbstractViewer extends JPanel implements MouseUser,
 	{
 		// Invoked when the component has been made invisible.
 		// Do nothing by default
+	}
+
+	/*
+	 * MouseMotionListener implementation
+	 */
+
+	@Override
+	public void mouseDragged(MouseEvent e)
+	{
+		// do nothing
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e)
+	{
+		// do nothing
+	}
+
+	/*
+	 * MouseListener implementation
+	 */
+
+	@Override
+	public void mouseClicked(MouseEvent e)
+	{
+		// do nothing
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e)
+	{
+		// do nothing
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e)
+	{
+		// do nothing
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e)
+	{
+		// do nothing
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e)
+	{
+		// do nothing
+	}
+
+	/*
+	 * MouseWheelListener
+	 */
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e)
+	{
+		// do nothing
 	}
 
 }
