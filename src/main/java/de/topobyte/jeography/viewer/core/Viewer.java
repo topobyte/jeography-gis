@@ -25,7 +25,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -60,10 +59,9 @@ import de.topobyte.melon.casting.CastUtil;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class Viewer extends AbstractViewer implements ComponentListener,
-		MouseMotionListener, MouseListener, MouseWheelListener,
-		LoadListener<Tile, BufferedImage>, ImageManagerUpdateListener,
-		MapWindowChangeListener
+public class Viewer extends AbstractViewer implements MouseMotionListener,
+		MouseListener, MouseWheelListener, LoadListener<Tile, BufferedImage>,
+		ImageManagerUpdateListener, MapWindowChangeListener
 {
 
 	private static final long serialVersionUID = -2141729332089589643L;
@@ -354,18 +352,6 @@ public class Viewer extends AbstractViewer implements ComponentListener,
 	}
 
 	@Override
-	public void componentHidden(ComponentEvent e)
-	{
-		// do nothing here
-	}
-
-	@Override
-	public void componentMoved(ComponentEvent e)
-	{
-		// do nothing here
-	}
-
-	@Override
 	public void componentResized(ComponentEvent e)
 	{
 		int width = getWidth();
@@ -373,12 +359,6 @@ public class Viewer extends AbstractViewer implements ComponentListener,
 		// System.out.println(String.format("resized to %d,%d", width, height));
 		mapWindow.resize(width, height);
 		repaint();
-	}
-
-	@Override
-	public void componentShown(ComponentEvent e)
-	{
-		// do nothing here
 	}
 
 	private Point pointPress;

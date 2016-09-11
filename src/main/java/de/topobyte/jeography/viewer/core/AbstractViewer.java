@@ -21,6 +21,8 @@ import java.awt.Color;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragGestureRecognizer;
 import java.awt.dnd.DragSource;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -39,7 +41,8 @@ import de.topobyte.jeography.viewer.zoom.ZoomMode;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public abstract class AbstractViewer extends JPanel implements MouseUser
+public abstract class AbstractViewer extends JPanel implements MouseUser,
+		ComponentListener
 {
 
 	private static final long serialVersionUID = -3023462611876276320L;
@@ -450,6 +453,38 @@ public abstract class AbstractViewer extends JPanel implements MouseUser
 	public void setMouseListeners(Collection<MouseListener> listeners)
 	{
 		mouseListeners = listeners;
+	}
+
+	/*
+	 * ComponentListener implementation
+	 */
+
+	@Override
+	public void componentResized(ComponentEvent e)
+	{
+		// Invoked when the component's size changes.
+		// Do nothing by default
+	}
+
+	@Override
+	public void componentMoved(ComponentEvent e)
+	{
+		// Invoked when the component's position changes.
+		// Do nothing by default
+	}
+
+	@Override
+	public void componentShown(ComponentEvent e)
+	{
+		// Invoked when the component has been made visible.
+		// Do nothing by default
+	}
+
+	@Override
+	public void componentHidden(ComponentEvent e)
+	{
+		// Invoked when the component has been made invisible.
+		// Do nothing by default
 	}
 
 }
