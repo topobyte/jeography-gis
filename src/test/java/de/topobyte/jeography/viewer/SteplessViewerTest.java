@@ -20,9 +20,12 @@ package de.topobyte.jeography.viewer;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.JFrame;
 
+import de.topobyte.jeography.core.OverlayPoint;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.tiles.TileResoluterUrlDisk;
 import de.topobyte.jeography.tiles.manager.ImageManagerSourceRam;
@@ -78,6 +81,10 @@ public class SteplessViewerTest
 		viewer.setDrawBorder(false);
 		viewer.setDrawTileNumbers(false);
 		viewer.setMode(TileDrawMode.SCALE_SMOOTH);
+
+		Set<OverlayPoint> ps = new HashSet<>();
+		ps.add(new OverlayPoint(Constants.DEFAULT_LON, Constants.DEFAULT_LAT));
+		viewer.setOverlayPoints(ps);
 
 		JFrame frame = new JFrame("Stepless Viewer Test");
 		frame.setContentPane(viewer);
