@@ -731,7 +731,6 @@ public class Viewer extends AbstractViewer implements ComponentListener,
 				scaleCacheOverlay.clear();
 			}
 			tileSizeChanged(tileSize);
-
 			repaint();
 		}
 	}
