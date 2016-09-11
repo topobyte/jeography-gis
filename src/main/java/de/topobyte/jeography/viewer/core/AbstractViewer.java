@@ -18,8 +18,12 @@
 package de.topobyte.jeography.viewer.core;
 
 import java.awt.Color;
+import java.awt.dnd.DragGestureListener;
+import java.awt.dnd.DragGestureRecognizer;
+import java.awt.dnd.DragSource;
 
 import javax.swing.JPanel;
+import javax.swing.TransferHandler;
 
 import de.topobyte.jeography.viewer.MouseUser;
 import de.topobyte.jeography.viewer.config.TileConfig;
@@ -275,6 +279,51 @@ public abstract class AbstractViewer extends JPanel implements MouseUser
 				}
 			}
 		}
+	}
+
+	private DragGestureRecognizer recognizer;
+	private DragGestureListener currentDragGestureListener = null;
+	private DragGestureListener dragGestureListener = null;
+
+	/**
+	 * Set whether dragging the mouse starts an drag event.
+	 * 
+	 * @param drag
+	 *            whether to allow dragging.
+	 */
+	public void setDragging(boolean drag)
+	{
+		if (drag) {
+			if (dragGestureListener != null) {
+				uninstallDragSource();
+				DragSource dragSource = new DragSource();
+				currentDragGestureListener = dragGestureListener;
+				recognizer = dragSource.createDefaultDragGestureRecognizer(
+						this, TransferHandler.COPY, dragGestureListener);
+			}
+		} else {
+			uninstallDragSource();
+		}
+	}
+
+	private void uninstallDragSource()
+	{
+		if (recognizer != null) {
+			recognizer.removeDragGestureListener(currentDragGestureListener);
+			recognizer.setComponent(null);
+			recognizer = null;
+		}
+	}
+
+	/**
+	 * Set the DragGestureListener to use.
+	 * 
+	 * @param listener
+	 *            the listener to use after invoking setDragging();
+	 */
+	public void setDragGestureListener(DragGestureListener listener)
+	{
+		dragGestureListener = listener;
 	}
 
 }

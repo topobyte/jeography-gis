@@ -24,9 +24,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.dnd.DragGestureListener;
-import java.awt.dnd.DragGestureRecognizer;
-import java.awt.dnd.DragSource;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
@@ -40,8 +37,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import javax.swing.TransferHandler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -140,51 +135,6 @@ public class Viewer extends AbstractViewer implements ComponentListener,
 		Repainter repainter = new Repainter();
 		Thread repainterThread = new Thread(repainter);
 		repainterThread.start();
-	}
-
-	private DragGestureRecognizer recognizer;
-	private DragGestureListener currentDragGestureListener = null;
-	private DragGestureListener dragGestureListener = null;
-
-	/**
-	 * Set whether dragging the mouse starts an drag event.
-	 * 
-	 * @param drag
-	 *            whether to allow dragging.
-	 */
-	public void setDragging(boolean drag)
-	{
-		if (drag) {
-			if (dragGestureListener != null) {
-				uninstallDragSource();
-				DragSource dragSource = new DragSource();
-				currentDragGestureListener = dragGestureListener;
-				recognizer = dragSource.createDefaultDragGestureRecognizer(
-						this, TransferHandler.COPY, dragGestureListener);
-			}
-		} else {
-			uninstallDragSource();
-		}
-	}
-
-	private void uninstallDragSource()
-	{
-		if (recognizer != null) {
-			recognizer.removeDragGestureListener(currentDragGestureListener);
-			recognizer.setComponent(null);
-			recognizer = null;
-		}
-	}
-
-	/**
-	 * Set the DragGestureListener to use.
-	 * 
-	 * @param listener
-	 *            the listener to use after invoking setDragging();
-	 */
-	public void setDragGestureListener(DragGestureListener listener)
-	{
-		dragGestureListener = listener;
 	}
 
 	/**
