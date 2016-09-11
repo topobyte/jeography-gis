@@ -34,10 +34,10 @@ import com.vividsolutions.jts.geom.Polygon;
 
 import de.topobyte.awt.util.GraphicsUtil;
 import de.topobyte.chromaticity.ColorCode;
-import de.topobyte.jeography.core.PaintListener;
 import de.topobyte.jeography.core.mapwindow.MapWindowChangeListener;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
 import de.topobyte.jeography.viewer.MouseUser;
+import de.topobyte.jeography.viewer.core.PaintListener;
 import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.jgs.transform.IdentityCoordinateTransformer;
 import de.topobyte.jts.drawing.DrawMode;

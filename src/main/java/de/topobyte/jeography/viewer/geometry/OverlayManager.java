@@ -31,12 +31,12 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.topobyte.jeography.core.PaintListener;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileOnWindow;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
 import de.topobyte.jeography.executables.JeographyGIS;
 import de.topobyte.jeography.tiles.manager.ImageManager;
+import de.topobyte.jeography.viewer.core.PaintListener;
 import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryManager;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryRule;

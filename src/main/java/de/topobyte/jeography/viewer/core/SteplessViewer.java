@@ -44,7 +44,6 @@ import de.topobyte.adt.geo.BBox;
 import de.topobyte.adt.geo.Coordinate;
 import de.topobyte.awt.util.GraphicsUtil;
 import de.topobyte.jeography.core.OverlayPoint;
-import de.topobyte.jeography.core.PaintListener;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileOnWindow;
 import de.topobyte.jeography.core.TileUtil;

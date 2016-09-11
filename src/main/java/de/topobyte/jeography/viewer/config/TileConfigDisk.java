@@ -20,11 +20,11 @@ package de.topobyte.jeography.viewer.config;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-import de.topobyte.jeography.core.PaintListener;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.tiles.TileResoluterDisk;
 import de.topobyte.jeography.tiles.manager.ImageManager;
 import de.topobyte.jeography.tiles.manager.ImageManagerDisk;
+import de.topobyte.jeography.viewer.core.PaintListener;
 
 /**
  * Information about a storage directory.

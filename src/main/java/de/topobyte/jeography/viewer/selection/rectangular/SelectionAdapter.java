@@ -32,10 +32,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.topobyte.awt.util.GraphicsUtil;
-import de.topobyte.jeography.core.PaintListener;
 import de.topobyte.jeography.core.mapwindow.MapWindowChangeListener;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
 import de.topobyte.jeography.viewer.MouseUser;
+import de.topobyte.jeography.viewer.core.PaintListener;
 import de.topobyte.jeography.viewer.core.Viewer;
 
 /**

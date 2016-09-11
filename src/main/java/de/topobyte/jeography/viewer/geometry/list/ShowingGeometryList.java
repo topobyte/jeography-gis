@@ -42,10 +42,10 @@ import org.slf4j.LoggerFactory;
 
 import com.vividsolutions.jts.geom.Geometry;
 
-import de.topobyte.jeography.core.PaintListener;
 import de.topobyte.jeography.core.TileOnWindow;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
 import de.topobyte.jeography.geometry.GeoObject;
+import de.topobyte.jeography.viewer.core.PaintListener;
 import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.jeography.viewer.geometry.ImageManagerGeometry;
 import de.topobyte.jeography.viewer.geometry.list.dnd.GeometryListTransferhandler;

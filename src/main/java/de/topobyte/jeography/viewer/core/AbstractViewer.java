@@ -31,7 +31,6 @@ import java.util.Set;
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 
-import de.topobyte.jeography.core.PaintListener;
 import de.topobyte.jeography.tiles.TileConfigListener;
 import de.topobyte.jeography.viewer.MouseUser;
 import de.topobyte.jeography.viewer.config.TileConfig;

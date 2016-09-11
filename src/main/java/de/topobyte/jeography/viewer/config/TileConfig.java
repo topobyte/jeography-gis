@@ -19,9 +19,9 @@ package de.topobyte.jeography.viewer.config;
 
 import java.awt.image.BufferedImage;
 
-import de.topobyte.jeography.core.PaintListener;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.tiles.manager.ImageManager;
+import de.topobyte.jeography.viewer.core.PaintListener;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)

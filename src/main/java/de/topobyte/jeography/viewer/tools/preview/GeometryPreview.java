@@ -41,7 +41,6 @@ import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.Geometry;
 
 import de.topobyte.adt.geo.BBox;
-import de.topobyte.jeography.core.PaintListener;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileOnWindow;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
@@ -49,6 +48,7 @@ import de.topobyte.jeography.geometry.GeoObject;
 import de.topobyte.jeography.tiles.manager.ImageManager;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.config.TileConfig;
+import de.topobyte.jeography.viewer.core.PaintListener;
 import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.jeography.viewer.geometry.ImageManagerGeometry;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryContainer;
