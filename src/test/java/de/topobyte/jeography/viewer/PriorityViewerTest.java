@@ -27,11 +27,8 @@ import javax.swing.JFrame;
 
 import de.topobyte.jeography.core.OverlayPoint;
 import de.topobyte.jeography.core.Tile;
-import de.topobyte.jeography.tiles.TileResoluterUrlDisk;
 import de.topobyte.jeography.tiles.manager.ImageManagerSourceRam;
 import de.topobyte.jeography.tiles.source.ImageSourceUrlPattern;
-import de.topobyte.jeography.tiles.source.UnwrappingImageSource;
-import de.topobyte.jeography.viewer.config.ManagerTileConfig;
 import de.topobyte.jeography.viewer.core.Viewer;
 
 /**
@@ -46,14 +43,8 @@ public class PriorityViewerTest
 	 * Change tiles when hitting the space key.
 	 */
 
-	String tileUrl1 = "http://tile.openstreetmap.org/%d/%d/%d.png";
-	String tileUrl2 = "http://tiles-base.openstreetbrowser.org/tiles/basemap_base/%d/%d/%d.png";
-	String[] urls = new String[] { tileUrl1, tileUrl2 };
-
 	int currentTiles = 0;
 	Viewer viewer;
-
-	ManagerTileConfig tileConfig;
 
 	// TODO: add clearCache under a different name to PriorityImageManager
 	// PriorityImageManager<Tile, BufferedImage, Integer> manager;
@@ -74,9 +65,7 @@ public class PriorityViewerTest
 
 	private void start()
 	{
-		createManagerFromUrl(tileUrl1);
-		tileConfig = new ManagerTileConfig(1, "test", manager);
-		viewer = new Viewer(tileConfig, null);
+		viewer = new Viewer(TestConfigs.configs.get(0), null);
 		viewer.setMouseActive(true);
 
 		Set<OverlayPoint> ps = new HashSet<>();
@@ -101,29 +90,10 @@ public class PriorityViewerTest
 		});
 	}
 
-	private void createManagerFromUrl(String tileUrl)
-	{
-		TileResoluterUrlDisk resolver = new TileResoluterUrlDisk(null, tileUrl);
-		source = new ImageSourceUrlPattern<>(resolver, 3);
-		UnwrappingImageSource<Tile> unwrapper = new UnwrappingImageSource<>(
-				source);
-		manager = new ImageManagerSourceRam<>(1, 64, unwrapper);
-	}
-
 	void changeTiles()
 	{
-		currentTiles = (currentTiles + 1) % urls.length;
-		setTileUrl(urls[currentTiles]);
-	}
-
-	private void setTileUrl(String tileUrl)
-	{
-		TileResoluterUrlDisk resolver = new TileResoluterUrlDisk(null, tileUrl);
-		source.setPathResoluter(resolver);
-		manager.cancelJobs();
-		manager.setIgnorePendingProductions();
-		manager.clearCache();
-		viewer.repaint();
+		currentTiles = (currentTiles + 1) % TestConfigs.configs.size();
+		viewer.setTileConfig(TestConfigs.configs.get(currentTiles));
 	}
 
 }

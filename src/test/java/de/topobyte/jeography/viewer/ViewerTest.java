@@ -25,7 +25,6 @@ import java.util.Set;
 import javax.swing.JFrame;
 
 import de.topobyte.jeography.core.OverlayPoint;
-import de.topobyte.jeography.viewer.config.TileConfigUrl;
 import de.topobyte.jeography.viewer.core.Viewer;
 
 /**
@@ -40,12 +39,8 @@ public class ViewerTest
 	 * Change tiles when hitting the space key.
 	 */
 
-	String tileUrl1 = "http://tile.openstreetmap.org/%d/%d/%d.png";
-	String tileUrl2 = "http://tiles-base.openstreetbrowser.org/tiles/basemap_base/%d/%d/%d.png";
-	String[] urls = new String[] { tileUrl1, tileUrl2 };
-
 	int currentTiles = 0;
-	MyViewer viewer;
+	Viewer viewer;
 
 	/**
 	 * Execute the test
@@ -61,7 +56,7 @@ public class ViewerTest
 
 	private void start()
 	{
-		viewer = new MyViewer(tileUrl1);
+		viewer = new Viewer(TestConfigs.configs.get(0), null);
 		viewer.setMouseActive(true);
 
 		Set<OverlayPoint> ps = new HashSet<>();
@@ -88,25 +83,8 @@ public class ViewerTest
 
 	void changeTiles()
 	{
-		currentTiles = (currentTiles + 1) % urls.length;
-		viewer.setTileUrl(urls[currentTiles]);
-	}
-
-	class MyViewer extends Viewer
-	{
-
-		private static final long serialVersionUID = 1L;
-
-		public MyViewer(String tileUrl)
-		{
-			super(new TileConfigUrl(1, "name", tileUrl), null);
-		}
-
-		public void setTileUrl(String tileUrl)
-		{
-			setTileConfig(new TileConfigUrl(1, "name", tileUrl));
-		}
-
+		currentTiles = (currentTiles + 1) % TestConfigs.configs.size();
+		viewer.setTileConfig(TestConfigs.configs.get(currentTiles));
 	}
 
 }
