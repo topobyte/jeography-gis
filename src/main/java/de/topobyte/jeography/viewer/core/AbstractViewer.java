@@ -21,10 +21,18 @@ import java.awt.Color;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragGestureRecognizer;
 import java.awt.dnd.DragSource;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 
+import de.topobyte.jeography.core.PaintListener;
+import de.topobyte.jeography.tiles.TileConfigListener;
 import de.topobyte.jeography.viewer.MouseUser;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.zoom.ZoomMode;
@@ -352,6 +360,97 @@ public abstract class AbstractViewer extends JPanel implements MouseUser
 	public void setDragGestureListener(DragGestureListener listener)
 	{
 		dragGestureListener = listener;
+	}
+
+	/*
+	 * Tile config listeners
+	 */
+
+	private Set<TileConfigListener> listeners = new HashSet<>();
+	private Set<TileConfigListener> listenersOverlay = new HashSet<>();
+
+	/**
+	 * Add this listener to the set of listeners.
+	 * 
+	 * @param listener
+	 *            the listener to add.
+	 */
+	public void addTileConfigListener(TileConfigListener listener)
+	{
+		listeners.add(listener);
+	}
+
+	/**
+	 * Add this listener to the set of listeners.
+	 * 
+	 * @param listener
+	 *            the listener to add.
+	 */
+	public void addOverlayTileConfigListener(TileConfigListener listener)
+	{
+		listenersOverlay.add(listener);
+	}
+
+	protected void triggerTileConfigListeners()
+	{
+		for (TileConfigListener listener : listeners) {
+			listener.tileConfigChanged();
+		}
+	}
+
+	protected void triggerOverlayTileConfigListeners()
+	{
+		for (TileConfigListener listener : listenersOverlay) {
+			listener.tileConfigChanged();
+		}
+	}
+
+	/*
+	 * Paint listeners
+	 */
+
+	protected List<PaintListener> paintListeners = new ArrayList<>();
+
+	/**
+	 * Add the given PaintListener to the list of paintListeners
+	 * 
+	 * @param paintListener
+	 *            the listener to add.
+	 */
+	public void addPaintListener(PaintListener paintListener)
+	{
+		synchronized (paintListeners) {
+			paintListeners.add(paintListener);
+		}
+	}
+
+	/**
+	 * Remove the given PaintListener from the list of paintListeners.
+	 * 
+	 * @param paintListener
+	 *            the listener to remove.
+	 */
+	public void removePaintListener(PaintListener paintListener)
+	{
+		synchronized (paintListeners) {
+			paintListeners.remove(paintListener);
+		}
+	}
+
+	/*
+	 * Mouse listeners
+	 */
+
+	protected Collection<MouseListener> mouseListeners = new ArrayList<>();
+
+	/**
+	 * @param listeners
+	 *            the collection of mouse listeners to notify about mouse
+	 *            events.
+	 */
+	public void setMouseListeners(Collection<MouseListener> listeners)
+	{
+		mouseListeners = listeners;
 	}
 
 }

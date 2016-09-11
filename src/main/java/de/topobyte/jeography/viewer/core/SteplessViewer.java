@@ -34,10 +34,6 @@ import java.awt.event.MouseWheelListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -57,7 +53,6 @@ import de.topobyte.jeography.core.mapwindow.SteplessMapWindow;
 import de.topobyte.jeography.core.mapwindow.SteppedMapWindow;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
 import de.topobyte.jeography.tiles.LoadListener;
-import de.topobyte.jeography.tiles.TileConfigListener;
 import de.topobyte.jeography.tiles.cache.MemoryCachePlus;
 import de.topobyte.jeography.tiles.manager.ImageManager;
 import de.topobyte.jeography.tiles.manager.ImageManagerHttpDisk;
@@ -723,83 +718,6 @@ public class SteplessViewer extends AbstractViewer implements
 			triggerOverlayTileConfigListeners();
 			dispatchRepaint();
 		}
-	}
-
-	private Set<TileConfigListener> listeners = new HashSet<>();
-	private Set<TileConfigListener> listenersOverlay = new HashSet<>();
-	private List<PaintListener> paintListeners = new ArrayList<>();
-	private Collection<MouseListener> mouseListeners = new ArrayList<>();
-
-	/**
-	 * Add this listener to the set of listeners.
-	 * 
-	 * @param listener
-	 *            the listener to add.
-	 */
-	public void addTileConfigListener(TileConfigListener listener)
-	{
-		listeners.add(listener);
-	}
-
-	/**
-	 * Add this listener to the set of listeners.
-	 * 
-	 * @param listener
-	 *            the listener to add.
-	 */
-	public void addOverlayTileConfigListener(TileConfigListener listener)
-	{
-		listenersOverlay.add(listener);
-	}
-
-	private void triggerTileConfigListeners()
-	{
-		for (TileConfigListener listener : listeners) {
-			listener.tileConfigChanged();
-		}
-	}
-
-	private void triggerOverlayTileConfigListeners()
-	{
-		for (TileConfigListener listener : listenersOverlay) {
-			listener.tileConfigChanged();
-		}
-	}
-
-	/**
-	 * Add the given PaintListener to the list of paintListeners
-	 * 
-	 * @param paintListener
-	 *            the listener to add.
-	 */
-	public void addPaintListener(PaintListener paintListener)
-	{
-		synchronized (paintListeners) {
-			paintListeners.add(paintListener);
-		}
-	}
-
-	/**
-	 * Remove the given PaintListener from the list of paintListeners.
-	 * 
-	 * @param paintListener
-	 *            the listener to remove.
-	 */
-	public void removePaintListener(PaintListener paintListener)
-	{
-		synchronized (paintListeners) {
-			paintListeners.remove(paintListener);
-		}
-	}
-
-	/**
-	 * @param listeners
-	 *            the collection of mouse listeners to notify about mouse
-	 *            events.
-	 */
-	public void setMouseListeners(Collection<MouseListener> listeners)
-	{
-		mouseListeners = listeners;
 	}
 
 	private void triggerPaintListeners(Graphics g)
