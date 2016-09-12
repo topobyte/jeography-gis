@@ -131,15 +131,20 @@ public class GotoDialog extends JDialog
 		setFocusTraversalPolicy(new DefaultComponentTraversalPolicy(
 				field.getComponent()));
 
-		button.getComponent().addActionListener(new ActionListener() {
+		ActionListener fireAction = new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				fireListener();
+				if (location != null) {
+					fireListener();
+				}
 			}
 
-		});
+		};
+
+		button.getComponent().addActionListener(fireAction);
+		field.getComponent().addActionListener(fireAction);
 
 		buttonHelp.getComponent().addActionListener(new ActionListener() {
 
