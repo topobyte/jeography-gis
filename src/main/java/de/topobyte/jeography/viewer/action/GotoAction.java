@@ -24,8 +24,11 @@ import javax.swing.JFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.topobyte.jeography.core.mapwindow.TileMapWindow;
 import de.topobyte.jeography.executables.JeographyGIS;
 import de.topobyte.jeography.viewer.gotolocation.GotoDialog;
+import de.topobyte.jeography.viewer.gotolocation.GotoListener;
+import de.topobyte.jeography.viewer.gotolocation.Location;
 import de.topobyte.swing.util.Components;
 
 /**
@@ -58,6 +61,19 @@ public class GotoAction extends GISAction
 		GotoDialog dialog = new GotoDialog(frame);
 		dialog.pack();
 		dialog.setVisible(true);
+		dialog.setGotoListener(new GotoListener() {
+
+			@Override
+			public void gotoLocation(Location location)
+			{
+				TileMapWindow mapWindow = getGIS().getViewer().getMapWindow();
+				mapWindow.gotoLonLat(location.getLon(), location.getLat());
+				if (location.hasZoom()) {
+					mapWindow.zoom(location.getZoom());
+				}
+				getGIS().getViewer().repaint();
+			}
+		});
 	}
 
 }

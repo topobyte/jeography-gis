@@ -20,6 +20,8 @@ package de.topobyte.jeography.viewer.gotolocation;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +54,11 @@ public class GotoDialog extends JDialog
 	private ComponentPanel<JButton> button;
 	private JLabel recognized;
 	private ComponentPanel<JButton> buttonHelp;
+
+	// The parsed location
+	private Location location = null;
+
+	private GotoListener listener;
 
 	public GotoDialog(Frame owner)
 	{
@@ -123,6 +130,29 @@ public class GotoDialog extends JDialog
 
 		setFocusTraversalPolicy(new DefaultComponentTraversalPolicy(
 				field.getComponent()));
+
+		button.getComponent().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				fireListener();
+			}
+
+		});
+	}
+
+	public void setGotoListener(GotoListener listener)
+	{
+		this.listener = listener;
+	}
+
+	protected void fireListener()
+	{
+		if (listener == null) {
+			return;
+		}
+		listener.gotoLocation(location);
 	}
 
 	private List<PatternRecognizer> recognizers = new ArrayList<>();
@@ -134,7 +164,7 @@ public class GotoDialog extends JDialog
 	{
 		String text = field.getComponent().getText();
 
-		Location location = null;
+		location = null;
 
 		boolean valid = false;
 		if (!text.isEmpty()) {
