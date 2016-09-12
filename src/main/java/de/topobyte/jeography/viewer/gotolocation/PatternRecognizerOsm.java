@@ -26,10 +26,8 @@ import java.util.regex.Pattern;
 public class PatternRecognizerOsm implements PatternRecognizer
 {
 
-	private String regex = "http://www.openstreetmap.org/#map=%d/%f/%f";
-	{
-		regex = "(https?://)?(www\\.)?openstreetmap.org/#map=(\\d*)/(.*)/(.*)";
-	}
+	// http://www.openstreetmap.org/#map=%d/%f/%f
+	private String regex = "(https?://)?(www\\.)?openstreetmap.org/#map=(\\d*)/(.*)/(.*)";
 	private Pattern pattern = Pattern.compile(regex);
 
 	@Override
