@@ -32,7 +32,7 @@ public class Location
 	{
 		this.lon = lon;
 		this.lat = lat;
-		hasZoom = true;
+		hasZoom = false;
 	}
 
 	public Location(double lon, double lat, int zoom)
