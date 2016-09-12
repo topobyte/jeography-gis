@@ -49,6 +49,7 @@ public class GotoDialog extends JDialog
 	private ComponentPanel<JTextField> field;
 	private ComponentPanel<JButton> button;
 	private JLabel recognized;
+	private ComponentPanel<JButton> buttonHelp;
 
 	public GotoDialog()
 	{
@@ -61,11 +62,13 @@ public class GotoDialog extends JDialog
 		field = new ComponentPanel<>(new JTextField());
 		recognized = new JLabel(MESSAGE_NOTHING_YET);
 		button = new ComponentPanel<>(new JButton("Go"));
+		buttonHelp = new ComponentPanel<>(new JButton("?"));
 
 		BorderHelper.addEmptyBorder(text, 5);
 		BorderHelper.addEmptyBorder(recognized, 5);
 		BorderHelper.addEmptyBorder(field, 5);
 		BorderHelper.addEmptyBorder(button, 5);
+		BorderHelper.addEmptyBorder(buttonHelp, 5);
 
 		field.getComponent().setColumns(50);
 		field.getComponent().setBorder(Borders.validityBorder(false));
@@ -76,14 +79,20 @@ public class GotoDialog extends JDialog
 		c.anchor(GridBagConstraints.LINE_START);
 
 		// Label and input field
-		c.gridWidth(2);
 
 		// first row: label
+		c.gridWidth(1);
+
 		c.weight(1.0, 0.0);
 		c.gridPos(0, 0);
 		panel.add(text, c.getConstraints());
+		c.weight(0.0, 0.0);
+		c.gridPos(1, 0);
+		panel.add(buttonHelp, c.getConstraints());
 
 		// next row: input
+		c.gridWidth(2);
+
 		c.weight(1.0, 1.0);
 		c.gridPos(0, 1);
 		panel.add(field, c.getConstraints());
