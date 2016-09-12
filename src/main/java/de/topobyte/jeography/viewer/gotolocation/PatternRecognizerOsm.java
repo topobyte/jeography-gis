@@ -28,7 +28,7 @@ public class PatternRecognizerOsm implements PatternRecognizer
 
 	private String regex = "http://www.openstreetmap.org/#map=%d/%f/%f";
 	{
-		regex = "http://www.openstreetmap.org/#map=(\\d*)/(.*)/(.*)";
+		regex = "(https?://)?(www\\.)?openstreetmap.org/#map=(\\d*)/(.*)/(.*)";
 	}
 	private Pattern pattern = Pattern.compile(regex);
 
@@ -40,9 +40,9 @@ public class PatternRecognizerOsm implements PatternRecognizer
 		Location result = null;
 		if (matcher.matches()) {
 			try {
-				String sZoom = matcher.group(1);
-				String sLat = matcher.group(2);
-				String sLon = matcher.group(3);
+				String sZoom = matcher.group(3);
+				String sLat = matcher.group(4);
+				String sLon = matcher.group(5);
 				int zoom = Integer.parseInt(sZoom);
 				double lat = Double.parseDouble(sLat);
 				double lon = Double.parseDouble(sLon);

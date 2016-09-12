@@ -17,7 +17,6 @@
 
 package de.topobyte.jeography.viewer.gotolocation;
 
-
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
@@ -27,9 +26,19 @@ public class TestParsers
 	public static void main(String[] args)
 	{
 		PatternRecognizerOsm recognizer = new PatternRecognizerOsm();
-		Location location = recognizer
-				.parse("http://www.openstreetmap.org/#map=15/33.810398/-117.921046");
-		System.out.println(location);
+
+		String[] strings = {
+				"http://www.openstreetmap.org/#map=15/33.810398/-117.921046",
+				"http://openstreetmap.org/#map=15/33.810398/-117.921046",
+				"https://www.openstreetmap.org/#map=15/33.810398/-117.921046",
+				"https://openstreetmap.org/#map=15/33.810398/-117.921046",
+				"www.openstreetmap.org/#map=15/33.810398/-117.921046",
+				"openstreetmap.org/#map=15/33.810398/-117.921046" };
+
+		for (String string : strings) {
+			Location location = recognizer.parse(string);
+			System.out.println(location);
+		}
 	}
 
 }

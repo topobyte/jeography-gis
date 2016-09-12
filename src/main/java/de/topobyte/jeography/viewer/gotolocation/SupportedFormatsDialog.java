@@ -64,7 +64,7 @@ public class SupportedFormatsDialog extends JDialog
 		BorderHelper.addEmptyBorder(label, 5, 5, 10, 5);
 		panel.add(label, c.getConstraints());
 
-		String[] formats = { "http://www.openstreetmap.org/#map=15/33.810398/-117.921046" };
+		String[] formats = { "[http[s]://][www.]openstreetmap.org/#map=15/33.810398/-117.921046" };
 		for (String format : formats) {
 			JLabel l = new JLabel(format);
 			BorderHelper.addEmptyBorder(l, 5, 5, 5, 5);
