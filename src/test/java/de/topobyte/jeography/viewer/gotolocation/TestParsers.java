@@ -27,6 +27,7 @@ public class TestParsers
 	{
 		testLonLat();
 		testOsm();
+		testOsm2();
 	}
 
 	private static void testLonLat()
@@ -59,4 +60,21 @@ public class TestParsers
 		}
 	}
 
+	private static void testOsm2()
+	{
+		PatternRecognizer recognizer = new PatternRecognizerOsm2();
+
+		String[] strings = {
+				"http://www.openstreetmap.org/?lat=33.81211&lon=-117.91914&zoom=16",
+				"http://openstreetmap.org/?lat=33.81211&lon=-117.91914&zoom=16",
+				"https://www.openstreetmap.org/?lat=33.81211&lon=-117.91914&zoom=16",
+				"https://openstreetmap.org/?lat=33.81211&lon=-117.91914&zoom=16",
+				"www.openstreetmap.org/?lat=33.81211&lon=-117.91914&zoom=16",
+				"openstreetmap.org/?lat=33.81211&lon=-117.91914&zoom=16" };
+
+		for (String string : strings) {
+			Location location = recognizer.parse(string);
+			System.out.println(location);
+		}
+	}
 }
