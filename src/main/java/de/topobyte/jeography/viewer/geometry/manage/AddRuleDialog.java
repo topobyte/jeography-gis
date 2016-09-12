@@ -18,7 +18,6 @@
 package de.topobyte.jeography.viewer.geometry.manage;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -43,10 +42,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 
 import de.topobyte.jeography.viewer.geometry.manage.filetree.Entry;
+import de.topobyte.jeography.viewer.util.Borders;
 import de.topobyte.swing.util.DocumentAdapter;
 
 /**
@@ -226,9 +225,6 @@ public class AddRuleDialog extends JDialog
 		checkValidityAndUpdateGui();
 	}
 
-	private static final Color green = new Color(0xaa00ff00, true);
-	private static final Color red = new Color(0xaaff0000, true);
-
 	private boolean checkValidity()
 	{
 		return checkName() && checkStyle() && checkFilter();
@@ -236,10 +232,10 @@ public class AddRuleDialog extends JDialog
 
 	void checkValidityAndUpdateGui()
 	{
-		fieldName.setBorder(getBorder(checkName()));
-		fieldStyle.setBorder(getBorder(checkStyle()));
-		fieldNamespace.setBorder(getBorder(checkNamespace()));
-		fieldFilter.setBorder(getBorder(checkFilter()));
+		fieldName.setBorder(Borders.validityBorder(checkName()));
+		fieldStyle.setBorder(Borders.validityBorder(checkStyle()));
+		fieldNamespace.setBorder(Borders.validityBorder(checkNamespace()));
+		fieldFilter.setBorder(Borders.validityBorder(checkFilter()));
 	}
 
 	private boolean checkName()
@@ -278,15 +274,6 @@ public class AddRuleDialog extends JDialog
 	{
 		boolean filterValid = true;
 		return filterValid;
-	}
-
-	private Border getBorder(boolean valid)
-	{
-		Border b1 = BorderFactory.createEmptyBorder(5, 5, 5, 5);
-		Border b2 = BorderFactory.createLineBorder(valid ? green : red);
-		Border b3 = BorderFactory.createEmptyBorder(1, 1, 1, 1);
-		return BorderFactory.createCompoundBorder(b3,
-				BorderFactory.createCompoundBorder(b2, b1));
 	}
 
 	/**
