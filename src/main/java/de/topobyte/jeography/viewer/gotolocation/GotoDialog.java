@@ -169,6 +169,7 @@ public class GotoDialog extends JDialog
 
 	private List<PatternRecognizer> recognizers = new ArrayList<>();
 	{
+		recognizers.add(new PatternRecognizerLonLat());
 		recognizers.add(new PatternRecognizerOsm());
 	}
 

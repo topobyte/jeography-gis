@@ -25,7 +25,25 @@ public class TestParsers
 
 	public static void main(String[] args)
 	{
-		PatternRecognizerOsm recognizer = new PatternRecognizerOsm();
+		testLonLat();
+		testOsm();
+	}
+
+	private static void testLonLat()
+	{
+		PatternRecognizer recognizer = new PatternRecognizerLonLat();
+
+		String[] strings = { "33.810398,-117.921046", };
+
+		for (String string : strings) {
+			Location location = recognizer.parse(string);
+			System.out.println(location);
+		}
+	}
+
+	private static void testOsm()
+	{
+		PatternRecognizer recognizer = new PatternRecognizerOsm();
 
 		String[] strings = {
 				"http://www.openstreetmap.org/#map=15/33.810398/-117.921046",
