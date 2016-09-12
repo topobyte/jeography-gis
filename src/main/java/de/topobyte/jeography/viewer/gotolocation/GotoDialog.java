@@ -31,6 +31,7 @@ import javax.swing.event.DocumentEvent;
 
 import de.topobyte.awt.util.GridBagConstraintsEditor;
 import de.topobyte.jeography.viewer.util.Borders;
+import de.topobyte.jeography.viewer.util.DefaultComponentTraversalPolicy;
 import de.topobyte.swing.util.BorderHelper;
 import de.topobyte.swing.util.ComponentPanel;
 import de.topobyte.swing.util.DocumentAdapter;
@@ -117,6 +118,9 @@ public class GotoDialog extends JDialog
 					}
 
 				});
+
+		setFocusTraversalPolicy(new DefaultComponentTraversalPolicy(
+				field.getComponent()));
 	}
 
 	private List<PatternRecognizer> recognizers = new ArrayList<>();
