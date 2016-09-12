@@ -140,6 +140,18 @@ public class GotoDialog extends JDialog
 			}
 
 		});
+
+		buttonHelp.getComponent().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				SupportedFormatsDialog dialog = new SupportedFormatsDialog(
+						getOwner());
+				dialog.pack();
+				dialog.setVisible(true);
+			}
+		});
 	}
 
 	public void setGotoListener(GotoListener listener)
