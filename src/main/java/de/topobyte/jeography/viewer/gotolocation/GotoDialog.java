@@ -30,6 +30,9 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 
 import de.topobyte.awt.util.GridBagConstraintsEditor;
+import de.topobyte.jeography.viewer.util.Borders;
+import de.topobyte.swing.util.BorderHelper;
+import de.topobyte.swing.util.ComponentPanel;
 import de.topobyte.swing.util.DocumentAdapter;
 
 /**
@@ -43,8 +46,8 @@ public class GotoDialog extends JDialog
 	private static final String MESSAGE_NOTHING_YET = "nothing yet";
 	private static final String MESSAGE_UNABLE_TO_PARSE = "unable to parse";
 
-	private JTextField field;
-	private JButton button;
+	private ComponentPanel<JTextField> field;
+	private ComponentPanel<JButton> button;
 	private JLabel recognized;
 
 	public GotoDialog()
@@ -55,11 +58,18 @@ public class GotoDialog extends JDialog
 		add(panel);
 
 		JLabel text = new JLabel("Paste something here:");
-		field = new JTextField();
+		field = new ComponentPanel<>(new JTextField());
 		recognized = new JLabel(MESSAGE_NOTHING_YET);
-		button = new JButton("Go");
+		button = new ComponentPanel<>(new JButton("Go"));
 
-		field.setColumns(50);
+		BorderHelper.addEmptyBorder(text, 5);
+		BorderHelper.addEmptyBorder(recognized, 5);
+		BorderHelper.addEmptyBorder(field, 5);
+		BorderHelper.addEmptyBorder(button, 5);
+
+		field.getComponent().setColumns(50);
+		field.getComponent().setBorder(Borders.validityBorder(false));
+		button.setEnabled(false);
 
 		GridBagConstraintsEditor c = new GridBagConstraintsEditor();
 		c.fill(GridBagConstraints.BOTH);
@@ -88,15 +98,16 @@ public class GotoDialog extends JDialog
 		c.gridPos(1, 2);
 		panel.add(button, c.getConstraints());
 
-		field.getDocument().addDocumentListener(new DocumentAdapter() {
+		field.getComponent().getDocument()
+				.addDocumentListener(new DocumentAdapter() {
 
-			@Override
-			public void update(DocumentEvent e)
-			{
-				tryToParse();
-			}
+					@Override
+					public void update(DocumentEvent e)
+					{
+						tryToParse();
+					}
 
-		});
+				});
 	}
 
 	private List<PatternRecognizer> recognizers = new ArrayList<>();
@@ -106,7 +117,7 @@ public class GotoDialog extends JDialog
 
 	private void tryToParse()
 	{
-		String text = field.getText();
+		String text = field.getComponent().getText();
 
 		Location location = null;
 
@@ -122,6 +133,7 @@ public class GotoDialog extends JDialog
 		}
 
 		button.setEnabled(valid);
+		field.getComponent().setBorder(Borders.validityBorder(valid));
 
 		if (text.isEmpty()) {
 			recognized.setText(MESSAGE_NOTHING_YET);
