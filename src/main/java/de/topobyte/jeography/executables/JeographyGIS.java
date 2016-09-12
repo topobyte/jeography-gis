@@ -697,6 +697,7 @@ public class JeographyGIS extends JPanel
 		GeometrySelectionAction gsa = new GeometrySelectionAction(gis);
 		MeasurePanelAction mla = new MeasurePanelAction(gis);
 		FullscreenAction fullscreen = new FullscreenAction(gis);
+		GotoAction gta = new GotoAction(gis);
 
 		ManualAction manual = new ManualAction(gis);
 		AboutAction about = new AboutAction(gis);
@@ -776,7 +777,7 @@ public class JeographyGIS extends JPanel
 		JMenu menuMap = new JMenu("Map");
 		menuMap.setMnemonic('M');
 		menuBar.add(menuMap);
-		menuMap.add(new GotoAction(gis));
+		menuMap.add(gta);
 
 		JMenu menuTiles = new JMenu("Tiles");
 		menuTiles.setMnemonic('T');
@@ -909,7 +910,7 @@ public class JeographyGIS extends JPanel
 				KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK),
 				"ctrl p");
 
-		actionMap.put("ctrl g", gma);
+		actionMap.put("ctrl g", gta);
 		actionMap.put("ctrl s", srpa);
 		actionMap.put("ctrl p", mpa);
 
