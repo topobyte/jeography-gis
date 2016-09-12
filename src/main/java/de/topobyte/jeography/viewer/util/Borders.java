@@ -35,9 +35,7 @@ public class Borders
 	{
 		Border b1 = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 		Border b2 = BorderFactory.createLineBorder(valid ? green : red);
-		Border b3 = BorderFactory.createEmptyBorder(1, 1, 1, 1);
-		return BorderFactory.createCompoundBorder(b3,
-				BorderFactory.createCompoundBorder(b2, b1));
+		return BorderFactory.createCompoundBorder(b2, b1);
 	}
 
 }
