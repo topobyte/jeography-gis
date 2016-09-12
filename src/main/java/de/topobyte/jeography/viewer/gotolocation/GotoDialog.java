@@ -66,7 +66,7 @@ public class GotoDialog extends JDialog
 		setTitle("Go To");
 
 		JPanel panel = new JPanel(new GridBagLayout());
-		add(panel);
+		setContentPane(panel);
 
 		JLabel text = new JLabel("Paste something here:");
 		field = new ComponentPanel<>(new JTextField());
