@@ -17,6 +17,7 @@
 
 package de.topobyte.jeography.viewer.gotolocation;
 
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
@@ -52,8 +53,9 @@ public class GotoDialog extends JDialog
 	private JLabel recognized;
 	private ComponentPanel<JButton> buttonHelp;
 
-	public GotoDialog()
+	public GotoDialog(Frame owner)
 	{
+		super(owner);
 		setTitle("Go To");
 
 		JPanel panel = new JPanel(new GridBagLayout());

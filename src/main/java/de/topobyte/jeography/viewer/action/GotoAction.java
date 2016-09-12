@@ -19,10 +19,14 @@ package de.topobyte.jeography.viewer.action;
 
 import java.awt.event.ActionEvent;
 
+import javax.swing.JFrame;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.gotolocation.GotoDialog;
+import de.topobyte.swing.util.Components;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -50,7 +54,10 @@ public class GotoAction extends GISAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO: implement this
+		JFrame frame = Components.getContainingFrame(getGIS());
+		GotoDialog dialog = new GotoDialog(frame);
+		dialog.pack();
+		dialog.setVisible(true);
 	}
 
 }

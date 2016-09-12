@@ -27,7 +27,7 @@ public class TestGotoDialog
 
 	public static void main(String[] args)
 	{
-		GotoDialog dialog = new GotoDialog();
+		GotoDialog dialog = new GotoDialog(null);
 		TestUtil.exitOnClose(dialog);
 		dialog.pack();
 		dialog.setVisible(true);
