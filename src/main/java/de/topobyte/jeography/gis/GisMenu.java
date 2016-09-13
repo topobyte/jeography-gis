@@ -82,12 +82,11 @@ public class GisMenu
 		addCheckbox(menuView, actions.grid, KeyEvent.VK_F5);
 		addCheckbox(menuView, actions.tileNumbers, KeyEvent.VK_F6);
 		addCheckbox(menuView, actions.crosshair, KeyEvent.VK_F7);
-		addItem(menuView, actions.zoomIn);
-		addItem(menuView, actions.zoomOut);
 		addCheckbox(menuView, actions.overlay, KeyEvent.VK_F8);
-
 		addCheckbox(menuView, actions.geometryInfo, KeyEvent.VK_F9);
 		addCheckbox(menuView, actions.fullscreen, KeyEvent.VK_F11);
+		addItem(menuView, actions.zoomIn);
+		addItem(menuView, actions.zoomOut);
 
 		JMenu menuMap = new JMenu("Map");
 		add(menuMap, 'M');
