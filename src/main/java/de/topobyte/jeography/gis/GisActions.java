@@ -19,7 +19,6 @@ package de.topobyte.jeography.gis;
 
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ActionMap;
@@ -35,37 +34,10 @@ import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 
 import de.topobyte.jeography.executables.JeographyGIS;
-import de.topobyte.jeography.viewer.MouseMode;
-import de.topobyte.jeography.viewer.action.AboutAction;
-import de.topobyte.jeography.viewer.action.ConfigurationAction;
-import de.topobyte.jeography.viewer.action.CrosshairAction;
 import de.topobyte.jeography.viewer.action.DialogAction;
-import de.topobyte.jeography.viewer.action.FullscreenAction;
-import de.topobyte.jeography.viewer.action.GeometryIndexAction;
-import de.topobyte.jeography.viewer.action.GeometryInfoAction;
-import de.topobyte.jeography.viewer.action.GeometryListAction;
-import de.topobyte.jeography.viewer.action.GeometryManagerAction;
-import de.topobyte.jeography.viewer.action.GeometrySelectionAction;
-import de.topobyte.jeography.viewer.action.GotoAction;
-import de.topobyte.jeography.viewer.action.GridAction;
-import de.topobyte.jeography.viewer.action.ManualAction;
-import de.topobyte.jeography.viewer.action.MapWindowPanelAction;
-import de.topobyte.jeography.viewer.action.MeasurePanelAction;
-import de.topobyte.jeography.viewer.action.MouseModeAction;
-import de.topobyte.jeography.viewer.action.NetworkStateAction;
 import de.topobyte.jeography.viewer.action.OperationAction;
-import de.topobyte.jeography.viewer.action.OverlayAction;
 import de.topobyte.jeography.viewer.action.OverlayTileConfigAction;
-import de.topobyte.jeography.viewer.action.PolygonalSelectionSnapAction;
-import de.topobyte.jeography.viewer.action.QuitAction;
-import de.topobyte.jeography.viewer.action.SelectionPolyPanelAction;
-import de.topobyte.jeography.viewer.action.SelectionRectPanelAction;
-import de.topobyte.jeography.viewer.action.SelectionSnapAction;
-import de.topobyte.jeography.viewer.action.ShowStatusbarAction;
-import de.topobyte.jeography.viewer.action.ShowToolbarAction;
 import de.topobyte.jeography.viewer.action.TileConfigAction;
-import de.topobyte.jeography.viewer.action.TileNumberAction;
-import de.topobyte.jeography.viewer.action.ZoomAction;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.jeography.viewer.geometry.list.operation.OperationList;
@@ -88,60 +60,25 @@ public class GisActions
 	{
 		final Viewer viewer = gis.getViewer();
 
-		MouseModeAction mma1 = new MouseModeAction(gis, MouseMode.NAVIGATE);
-		MouseModeAction mma2 = new MouseModeAction(gis, MouseMode.SELECT);
-		MouseModeAction mma3 = new MouseModeAction(gis, MouseMode.POLYSELECT);
-		MouseModeAction mma4 = new MouseModeAction(gis, MouseMode.DRAG);
-		List<MouseModeAction> actions = new ArrayList<>();
-		actions.add(mma1);
-		actions.add(mma2);
-		actions.add(mma3);
-		actions.add(mma4);
-		SelectionSnapAction snap = new SelectionSnapAction(gis);
-		PolygonalSelectionSnapAction snapPolygonal = new PolygonalSelectionSnapAction(
-				gis);
+		Actions actions = new Actions(gis, viewer, frame);
 
-		ConfigurationAction configure = new ConfigurationAction(gis);
-		NetworkStateAction network = new NetworkStateAction(viewer);
-		ShowStatusbarAction ssa = new ShowStatusbarAction(gis);
-		ShowToolbarAction sta = new ShowToolbarAction(gis);
-		GridAction grid = new GridAction(viewer);
-		TileNumberAction tileNumbers = new TileNumberAction(viewer);
-		CrosshairAction crosshair = new CrosshairAction(viewer);
-		ZoomAction zoomIn = new ZoomAction(viewer, true);
-		ZoomAction zoomOut = new ZoomAction(viewer, false);
-		OverlayAction overlay = new OverlayAction(viewer);
-		GeometryInfoAction geometryInfo = new GeometryInfoAction(gis);
-		QuitAction quit = new QuitAction(gis, frame);
-		GeometryManagerAction gma = new GeometryManagerAction(gis);
-		SelectionRectPanelAction srpa = new SelectionRectPanelAction(gis);
-		SelectionPolyPanelAction sppa = new SelectionPolyPanelAction(gis);
-		MapWindowPanelAction mpa = new MapWindowPanelAction(gis);
-		GeometryListAction gla = new GeometryListAction(viewer, viewer);
-		GeometryIndexAction gia = new GeometryIndexAction(gis);
-		GeometrySelectionAction gsa = new GeometrySelectionAction(gis);
-		MeasurePanelAction mla = new MeasurePanelAction(gis);
-		FullscreenAction fullscreen = new FullscreenAction(gis);
-		GotoAction gta = new GotoAction(gis);
-
-		ManualAction manual = new ManualAction(gis);
-		AboutAction about = new AboutAction(gis);
-
-		JToggleButton buttonMma1 = new JToggleButton(mma1);
-		JToggleButton buttonMma2 = new JToggleButton(mma2);
-		JToggleButton buttonMma3 = new JToggleButton(mma3);
-		JToggleButton buttonMma4 = new JToggleButton(mma4);
-		JToggleButton buttonGrid = new JToggleButton(grid);
-		JToggleButton buttonTileNumbers = new JToggleButton(tileNumbers);
-		JToggleButton buttonCrosshair = new JToggleButton(crosshair);
-		JToggleButton buttonOverlay = new JToggleButton(overlay);
-		JToggleButton buttonGeometryInfo = new JToggleButton(geometryInfo);
-		JToggleButton buttonSnap = new JToggleButton(snap);
-		JToggleButton buttonSnapPolygonal = new JToggleButton(snapPolygonal);
-		JToggleButton buttonGM = new JToggleButton(gma);
-		JToggleButton buttonSRP = new JToggleButton(srpa);
-		JToggleButton buttonSPP = new JToggleButton(sppa);
-		JToggleButton buttonMWP = new JToggleButton(mpa);
+		JToggleButton buttonMma1 = new JToggleButton(actions.mma1);
+		JToggleButton buttonMma2 = new JToggleButton(actions.mma2);
+		JToggleButton buttonMma3 = new JToggleButton(actions.mma3);
+		JToggleButton buttonMma4 = new JToggleButton(actions.mma4);
+		JToggleButton buttonGrid = new JToggleButton(actions.grid);
+		JToggleButton buttonTileNumbers = new JToggleButton(actions.tileNumbers);
+		JToggleButton buttonCrosshair = new JToggleButton(actions.crosshair);
+		JToggleButton buttonOverlay = new JToggleButton(actions.overlay);
+		JToggleButton buttonGeometryInfo = new JToggleButton(
+				actions.geometryInfo);
+		JToggleButton buttonSnap = new JToggleButton(actions.snap);
+		JToggleButton buttonSnapPolygonal = new JToggleButton(
+				actions.snapPolygonal);
+		JToggleButton buttonGM = new JToggleButton(actions.gma);
+		JToggleButton buttonSRP = new JToggleButton(actions.srpa);
+		JToggleButton buttonSPP = new JToggleButton(actions.sppa);
+		JToggleButton buttonMWP = new JToggleButton(actions.mpa);
 		buttonMma1.setText(null);
 		buttonMma2.setText(null);
 		buttonMma3.setText(null);
@@ -158,7 +95,7 @@ public class GisActions
 		buttonSPP.setText(null);
 		buttonMWP.setText(null);
 
-		toolbar.add(network);
+		toolbar.add(actions.network);
 		toolbar.addSeparator();
 		toolbar.add(buttonMma1);
 		toolbar.add(buttonMma2);
@@ -168,8 +105,8 @@ public class GisActions
 		toolbar.add(buttonGrid);
 		toolbar.add(buttonTileNumbers);
 		toolbar.add(buttonCrosshair);
-		toolbar.add(zoomIn);
-		toolbar.add(zoomOut);
+		toolbar.add(actions.zoomIn);
+		toolbar.add(actions.zoomOut);
 		toolbar.add(buttonOverlay);
 		toolbar.add(buttonSnap);
 		toolbar.add(buttonSnapPolygonal);
@@ -183,26 +120,26 @@ public class GisActions
 		JMenu menuFile = new JMenu("File");
 		menuFile.setMnemonic('F');
 		menuBar.add(menuFile);
-		menuFile.add(new JMenuItem(network));
-		menuFile.add(new JMenuItem(configure));
-		menuFile.add(new JMenuItem(quit));
+		menuFile.add(new JMenuItem(actions.network));
+		menuFile.add(new JMenuItem(actions.configure));
+		menuFile.add(new JMenuItem(actions.quit));
 
 		JMenu menuView = new JMenu("View");
 		menuView.setMnemonic('V');
 		menuBar.add(menuView);
-		menuView.add(new JCheckBoxMenuItem(ssa));
-		menuView.add(new JCheckBoxMenuItem(sta));
-		menuView.add(new JCheckBoxMenuItem(grid));
-		menuView.add(new JCheckBoxMenuItem(tileNumbers));
-		menuView.add(new JCheckBoxMenuItem(crosshair));
-		menuView.add(zoomIn);
-		menuView.add(zoomOut);
-		menuView.add(new JCheckBoxMenuItem(overlay));
+		menuView.add(new JCheckBoxMenuItem(actions.ssa));
+		menuView.add(new JCheckBoxMenuItem(actions.sta));
+		menuView.add(new JCheckBoxMenuItem(actions.grid));
+		menuView.add(new JCheckBoxMenuItem(actions.tileNumbers));
+		menuView.add(new JCheckBoxMenuItem(actions.crosshair));
+		menuView.add(actions.zoomIn);
+		menuView.add(actions.zoomOut);
+		menuView.add(new JCheckBoxMenuItem(actions.overlay));
 
 		JMenu menuMap = new JMenu("Map");
 		menuMap.setMnemonic('M');
 		menuBar.add(menuMap);
-		menuMap.add(gta);
+		menuMap.add(actions.gta);
 
 		JMenu menuTiles = new JMenu("Tiles");
 		menuTiles.setMnemonic('T');
@@ -221,14 +158,14 @@ public class GisActions
 		JMenu menuWindows = new JMenu("Windows");
 		menuWindows.setMnemonic('W');
 		menuBar.add(menuWindows);
-		menuWindows.add(new JCheckBoxMenuItem(gma));
-		menuWindows.add(new JCheckBoxMenuItem(srpa));
-		menuWindows.add(new JCheckBoxMenuItem(mpa));
+		menuWindows.add(new JCheckBoxMenuItem(actions.gma));
+		menuWindows.add(new JCheckBoxMenuItem(actions.srpa));
+		menuWindows.add(new JCheckBoxMenuItem(actions.mpa));
 
-		menuWindows.add(new JMenuItem(gia));
-		menuWindows.add(new JMenuItem(gsa));
-		menuWindows.add(new JMenuItem(gla));
-		menuWindows.add(new JMenuItem(mla));
+		menuWindows.add(new JMenuItem(actions.gia));
+		menuWindows.add(new JMenuItem(actions.gsa));
+		menuWindows.add(new JMenuItem(actions.gla));
+		menuWindows.add(new JMenuItem(actions.mla));
 
 		JMenu menuOperationsAdd = new JMenu("operations");
 		menuOperationsAdd.setIcon(new EmptyIcon(24));
@@ -283,8 +220,8 @@ public class GisActions
 		JMenu menuHelp = new JMenu("Help");
 		menuHelp.setMnemonic('H');
 		menuBar.add(menuHelp);
-		menuHelp.add(new JMenuItem(manual));
-		menuHelp.add(new JMenuItem(about));
+		menuHelp.add(new JMenuItem(actions.manual));
+		menuHelp.add(new JMenuItem(actions.about));
 
 		menuBar.updateUI();
 
@@ -301,10 +238,10 @@ public class GisActions
 		inputMap.put(KeyStroke.getKeyStroke('d'), "d");
 		inputMap.put(KeyStroke.getKeyStroke('f'), "f");
 
-		actionMap.put("a", mma1);
-		actionMap.put("s", mma2);
-		actionMap.put("d", mma3);
-		actionMap.put("f", mma4);
+		actionMap.put("a", actions.mma1);
+		actionMap.put("s", actions.mma2);
+		actionMap.put("d", actions.mma3);
+		actionMap.put("f", actions.mma4);
 
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "f5");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F6, 0), "f6");
@@ -315,12 +252,12 @@ public class GisActions
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0), "f11");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F12, 0), "f12");
 
-		actionMap.put("f5", grid);
-		actionMap.put("f6", tileNumbers);
-		actionMap.put("f7", crosshair);
-		actionMap.put("f8", overlay);
-		actionMap.put("f9", geometryInfo);
-		actionMap.put("f11", fullscreen);
+		actionMap.put("f5", actions.grid);
+		actionMap.put("f6", actions.tileNumbers);
+		actionMap.put("f7", actions.crosshair);
+		actionMap.put("f8", actions.overlay);
+		actionMap.put("f9", actions.geometryInfo);
+		actionMap.put("f11", actions.fullscreen);
 
 		inputMap.put(
 				KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK),
@@ -335,9 +272,9 @@ public class GisActions
 				KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK),
 				"ctrl p");
 
-		actionMap.put("ctrl g", gta);
-		actionMap.put("ctrl s", srpa);
-		actionMap.put("ctrl p", mpa);
+		actionMap.put("ctrl g", actions.gta);
+		actionMap.put("ctrl s", actions.srpa);
+		actionMap.put("ctrl p", actions.mpa);
 
 		inputMap.put(
 				KeyStroke.getKeyStroke(KeyEvent.VK_F1, InputEvent.CTRL_MASK),
@@ -381,7 +318,7 @@ public class GisActions
 				gis));
 		actionMap.put("ctrl f3",
 				new OperationAction(Operations.DIFFERENCE, gis));
-		actionMap.put("ctrl f5", gla);
+		actionMap.put("ctrl f5", actions.gla);
 	}
 
 }
