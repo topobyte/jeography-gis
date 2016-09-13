@@ -59,15 +59,15 @@ public class FullscreenAction extends GISAction
 
 	private Point lastNonFullscreenLocation = null;
 	private Dimension lastNonFullscreenSize = null;
+	private int lastExtendedState = JFrame.NORMAL;
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment()
 				.getDefaultScreenDevice();
-		if (!gd.isFullScreenSupported()) {
-			return;
-		}
+		logger.debug("exclusive fullscreen supported?: "
+				+ gd.isFullScreenSupported());
 
 		JFrame frame = Components.getContainingFrame(getGIS());
 		boolean currentlyFullscreen = (gd.getFullScreenWindow() == frame);
@@ -77,6 +77,7 @@ public class FullscreenAction extends GISAction
 		if (!currentlyFullscreen) {
 			lastNonFullscreenSize = frame.getSize();
 			lastNonFullscreenLocation = frame.getLocationOnScreen();
+			lastExtendedState = frame.getExtendedState();
 		}
 		List<Window> windows = new ArrayList<>();
 		for (Window window : frame.getOwnedWindows()) {
@@ -88,8 +89,10 @@ public class FullscreenAction extends GISAction
 		frame.dispose();
 		frame.setUndecorated(!currentlyFullscreen);
 		if (currentlyFullscreen) {
+			frame.setExtendedState(lastExtendedState);
 			gd.setFullScreenWindow(null);
 		} else {
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 			gd.setFullScreenWindow(frame);
 		}
 		if (currentlyFullscreen) {
