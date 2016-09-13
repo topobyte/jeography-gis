@@ -19,6 +19,7 @@ package de.topobyte.jeography.gis;
 
 import java.util.List;
 
+import javax.swing.Action;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -66,32 +67,28 @@ public class GisMenu
 	public void setupMenu()
 	{
 		JMenu menuFile = new JMenu("File");
-		menuFile.setMnemonic('F');
-		menuBar.add(menuFile);
+		add(menuFile, 'F');
 		menuFile.add(new JMenuItem(actions.network));
 		menuFile.add(new JMenuItem(actions.configure));
 		menuFile.add(new JMenuItem(actions.quit));
 
 		JMenu menuView = new JMenu("View");
-		menuView.setMnemonic('V');
-		menuBar.add(menuView);
-		menuView.add(new JCheckBoxMenuItem(actions.ssa));
-		menuView.add(new JCheckBoxMenuItem(actions.sta));
-		menuView.add(new JCheckBoxMenuItem(actions.grid));
-		menuView.add(new JCheckBoxMenuItem(actions.tileNumbers));
-		menuView.add(new JCheckBoxMenuItem(actions.crosshair));
-		menuView.add(actions.zoomIn);
-		menuView.add(actions.zoomOut);
-		menuView.add(new JCheckBoxMenuItem(actions.overlay));
+		add(menuView, 'V');
+		addCheckbox(menuView, actions.ssa);
+		addCheckbox(menuView, actions.sta);
+		addCheckbox(menuView, actions.grid);
+		addCheckbox(menuView, actions.tileNumbers);
+		addCheckbox(menuView, actions.crosshair);
+		addItem(menuView, actions.zoomIn);
+		addItem(menuView, actions.zoomOut);
+		addCheckbox(menuView, actions.overlay);
 
 		JMenu menuMap = new JMenu("Map");
-		menuMap.setMnemonic('M');
-		menuBar.add(menuMap);
+		add(menuMap, 'M');
 		menuMap.add(actions.gta);
 
 		JMenu menuTiles = new JMenu("Tiles");
-		menuTiles.setMnemonic('T');
-		menuBar.add(menuTiles);
+		add(menuTiles, 'T');
 		for (TileConfig config : tileConfigs) {
 			menuTiles.add(new TileConfigAction(viewer, config));
 		}
@@ -104,16 +101,15 @@ public class GisMenu
 		}
 
 		JMenu menuWindows = new JMenu("Windows");
-		menuWindows.setMnemonic('W');
-		menuBar.add(menuWindows);
-		menuWindows.add(new JCheckBoxMenuItem(actions.gma));
-		menuWindows.add(new JCheckBoxMenuItem(actions.srpa));
-		menuWindows.add(new JCheckBoxMenuItem(actions.mpa));
+		add(menuWindows, 'W');
+		addCheckbox(menuWindows, actions.gma);
+		addCheckbox(menuWindows, actions.srpa);
+		addCheckbox(menuWindows, actions.mpa);
 
-		menuWindows.add(new JMenuItem(actions.gia));
-		menuWindows.add(new JMenuItem(actions.gsa));
-		menuWindows.add(new JMenuItem(actions.gla));
-		menuWindows.add(new JMenuItem(actions.mla));
+		addItem(menuWindows, actions.gia);
+		addItem(menuWindows, actions.gsa);
+		addItem(menuWindows, actions.gla);
+		addItem(menuWindows, actions.mla);
 
 		JMenu menuOperationsAdd = new JMenu("operations");
 		menuOperationsAdd.setIcon(new EmptyIcon(24));
@@ -166,12 +162,27 @@ public class GisMenu
 		});
 
 		JMenu menuHelp = new JMenu("Help");
-		menuHelp.setMnemonic('H');
-		menuBar.add(menuHelp);
-		menuHelp.add(new JMenuItem(actions.manual));
-		menuHelp.add(new JMenuItem(actions.about));
+		add(menuHelp, 'H');
+		addItem(menuHelp, actions.manual);
+		addItem(menuHelp, actions.about);
 
 		menuBar.updateUI();
+	}
+
+	private void add(JMenu menu, char mnemonic)
+	{
+		menu.setMnemonic(mnemonic);
+		menuBar.add(menu);
+	}
+
+	private void addItem(JMenu menu, Action action)
+	{
+		menu.add(new JMenuItem(action));
+	}
+
+	private void addCheckbox(JMenu menu, Action action)
+	{
+		menu.add(new JCheckBoxMenuItem(action));
 	}
 
 }
