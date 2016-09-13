@@ -62,6 +62,108 @@ public class GisActions
 
 		Actions actions = new Actions(gis, viewer, frame);
 
+		setupToolbar(toolbar, actions);
+
+		setupMenu(menuBar, actions, gis, viewer, tileConfigs, overlayConfigs);
+
+		/* key bindings */
+
+		InputMap inputMap = gis.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		ActionMap actionMap = gis.getActionMap();
+
+		ActionUtil.setupMovementActions(viewer, inputMap, actionMap);
+		ActionUtil.setupZoomActions(viewer, inputMap, actionMap);
+
+		inputMap.put(KeyStroke.getKeyStroke('a'), "a");
+		inputMap.put(KeyStroke.getKeyStroke('s'), "s");
+		inputMap.put(KeyStroke.getKeyStroke('d'), "d");
+		inputMap.put(KeyStroke.getKeyStroke('f'), "f");
+
+		actionMap.put("a", actions.mma1);
+		actionMap.put("s", actions.mma2);
+		actionMap.put("d", actions.mma3);
+		actionMap.put("f", actions.mma4);
+
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "f5");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F6, 0), "f6");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F7, 0), "f7");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0), "f8");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F9, 0), "f9");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F10, 0), "f10");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0), "f11");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F12, 0), "f12");
+
+		actionMap.put("f5", actions.grid);
+		actionMap.put("f6", actions.tileNumbers);
+		actionMap.put("f7", actions.crosshair);
+		actionMap.put("f8", actions.overlay);
+		actionMap.put("f9", actions.geometryInfo);
+		actionMap.put("f11", actions.fullscreen);
+
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK),
+				"ctrl f");
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_MASK),
+				"ctrl g");
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK),
+				"ctrl s");
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK),
+				"ctrl p");
+
+		actionMap.put("ctrl g", actions.gta);
+		actionMap.put("ctrl s", actions.srpa);
+		actionMap.put("ctrl p", actions.mpa);
+
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_F1, InputEvent.CTRL_MASK),
+				"ctrl f1");
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_F2, InputEvent.CTRL_MASK),
+				"ctrl f2");
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_F3, InputEvent.CTRL_MASK),
+				"ctrl f3");
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.CTRL_MASK),
+				"ctrl f4");
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_F5, InputEvent.CTRL_MASK),
+				"ctrl f5");
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_F6, InputEvent.CTRL_MASK),
+				"ctrl f6");
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_F7, InputEvent.CTRL_MASK),
+				"ctrl f7");
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_F8, InputEvent.CTRL_MASK),
+				"ctrl f8");
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_F9, InputEvent.CTRL_MASK),
+				"ctrl f9");
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_F10, InputEvent.CTRL_MASK),
+				"ctrl f10");
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_F11, InputEvent.CTRL_MASK),
+				"ctrl f11");
+		inputMap.put(
+				KeyStroke.getKeyStroke(KeyEvent.VK_F12, InputEvent.CTRL_MASK),
+				"ctrl f12");
+
+		actionMap.put("ctrl f1", new OperationAction(Operations.UNION, gis));
+		actionMap.put("ctrl f2", new OperationAction(Operations.INTERSECTION,
+				gis));
+		actionMap.put("ctrl f3",
+				new OperationAction(Operations.DIFFERENCE, gis));
+		actionMap.put("ctrl f5", actions.gla);
+	}
+
+	private static void setupToolbar(JToolBar toolbar, Actions actions)
+	{
 		JToggleButton buttonMma1 = new JToggleButton(actions.mma1);
 		JToggleButton buttonMma2 = new JToggleButton(actions.mma2);
 		JToggleButton buttonMma3 = new JToggleButton(actions.mma3);
@@ -116,7 +218,12 @@ public class GisActions
 		toolbar.add(buttonSRP);
 		toolbar.add(buttonSPP);
 		toolbar.add(buttonGM);
+	}
 
+	private static void setupMenu(JMenuBar menuBar, Actions actions,
+			JeographyGIS gis, final Viewer viewer,
+			List<TileConfig> tileConfigs, List<TileConfig> overlayConfigs)
+	{
 		JMenu menuFile = new JMenu("File");
 		menuFile.setMnemonic('F');
 		menuBar.add(menuFile);
@@ -224,101 +331,6 @@ public class GisActions
 		menuHelp.add(new JMenuItem(actions.about));
 
 		menuBar.updateUI();
-
-		/* key bindings */
-
-		InputMap inputMap = gis.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-		ActionMap actionMap = gis.getActionMap();
-
-		ActionUtil.setupMovementActions(viewer, inputMap, actionMap);
-		ActionUtil.setupZoomActions(viewer, inputMap, actionMap);
-
-		inputMap.put(KeyStroke.getKeyStroke('a'), "a");
-		inputMap.put(KeyStroke.getKeyStroke('s'), "s");
-		inputMap.put(KeyStroke.getKeyStroke('d'), "d");
-		inputMap.put(KeyStroke.getKeyStroke('f'), "f");
-
-		actionMap.put("a", actions.mma1);
-		actionMap.put("s", actions.mma2);
-		actionMap.put("d", actions.mma3);
-		actionMap.put("f", actions.mma4);
-
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "f5");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F6, 0), "f6");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F7, 0), "f7");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0), "f8");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F9, 0), "f9");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F10, 0), "f10");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0), "f11");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F12, 0), "f12");
-
-		actionMap.put("f5", actions.grid);
-		actionMap.put("f6", actions.tileNumbers);
-		actionMap.put("f7", actions.crosshair);
-		actionMap.put("f8", actions.overlay);
-		actionMap.put("f9", actions.geometryInfo);
-		actionMap.put("f11", actions.fullscreen);
-
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK),
-				"ctrl f");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_MASK),
-				"ctrl g");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK),
-				"ctrl s");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK),
-				"ctrl p");
-
-		actionMap.put("ctrl g", actions.gta);
-		actionMap.put("ctrl s", actions.srpa);
-		actionMap.put("ctrl p", actions.mpa);
-
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_F1, InputEvent.CTRL_MASK),
-				"ctrl f1");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_F2, InputEvent.CTRL_MASK),
-				"ctrl f2");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_F3, InputEvent.CTRL_MASK),
-				"ctrl f3");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.CTRL_MASK),
-				"ctrl f4");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_F5, InputEvent.CTRL_MASK),
-				"ctrl f5");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_F6, InputEvent.CTRL_MASK),
-				"ctrl f6");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_F7, InputEvent.CTRL_MASK),
-				"ctrl f7");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_F8, InputEvent.CTRL_MASK),
-				"ctrl f8");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_F9, InputEvent.CTRL_MASK),
-				"ctrl f9");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_F10, InputEvent.CTRL_MASK),
-				"ctrl f10");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_F11, InputEvent.CTRL_MASK),
-				"ctrl f11");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_F12, InputEvent.CTRL_MASK),
-				"ctrl f12");
-
-		actionMap.put("ctrl f1", new OperationAction(Operations.UNION, gis));
-		actionMap.put("ctrl f2", new OperationAction(Operations.INTERSECTION,
-				gis));
-		actionMap.put("ctrl f3",
-				new OperationAction(Operations.DIFFERENCE, gis));
-		actionMap.put("ctrl f5", actions.gla);
 	}
 
 }
