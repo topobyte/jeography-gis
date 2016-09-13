@@ -17,6 +17,8 @@
 
 package de.topobyte.jeography.gis;
 
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 import javax.swing.Action;
@@ -24,6 +26,7 @@ import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
 
 import de.topobyte.jeography.executables.JeographyGIS;
 import de.topobyte.jeography.viewer.action.DialogAction;
@@ -76,16 +79,19 @@ public class GisMenu
 		add(menuView, 'V');
 		addCheckbox(menuView, actions.ssa);
 		addCheckbox(menuView, actions.sta);
-		addCheckbox(menuView, actions.grid);
-		addCheckbox(menuView, actions.tileNumbers);
-		addCheckbox(menuView, actions.crosshair);
+		addCheckbox(menuView, actions.grid, KeyEvent.VK_F5);
+		addCheckbox(menuView, actions.tileNumbers, KeyEvent.VK_F6);
+		addCheckbox(menuView, actions.crosshair, KeyEvent.VK_F7);
 		addItem(menuView, actions.zoomIn);
 		addItem(menuView, actions.zoomOut);
-		addCheckbox(menuView, actions.overlay);
+		addCheckbox(menuView, actions.overlay, KeyEvent.VK_F8);
+
+		addCheckbox(menuView, actions.geometryInfo, KeyEvent.VK_F9);
+		addCheckbox(menuView, actions.fullscreen, KeyEvent.VK_F11);
 
 		JMenu menuMap = new JMenu("Map");
 		add(menuMap, 'M');
-		menuMap.add(actions.gta);
+		addItem(menuMap, actions.gta, InputEvent.CTRL_MASK, KeyEvent.VK_G);
 
 		JMenu menuTiles = new JMenu("Tiles");
 		add(menuTiles, 'T');
@@ -103,8 +109,10 @@ public class GisMenu
 		JMenu menuWindows = new JMenu("Windows");
 		add(menuWindows, 'W');
 		addCheckbox(menuWindows, actions.gma);
-		addCheckbox(menuWindows, actions.srpa);
-		addCheckbox(menuWindows, actions.mpa);
+		addCheckbox(menuWindows, actions.srpa, InputEvent.CTRL_MASK,
+				KeyEvent.VK_S);
+		addCheckbox(menuWindows, actions.mpa, InputEvent.CTRL_MASK,
+				KeyEvent.VK_P);
 
 		addItem(menuWindows, actions.gia);
 		addItem(menuWindows, actions.gsa);
@@ -180,9 +188,42 @@ public class GisMenu
 		menu.add(new JMenuItem(action));
 	}
 
+	private void addItem(JMenu menu, Action action, KeyStroke keyStroke)
+	{
+		JMenuItem item = new JMenuItem(action);
+		item.setAccelerator(keyStroke);
+		menu.add(item);
+	}
+
+	private void addItem(JMenu menu, Action action, int modifiers, int keyCode)
+	{
+		KeyStroke keyStroke = KeyStroke.getKeyStroke(keyCode, modifiers);
+		addItem(menu, action, keyStroke);
+	}
+
 	private void addCheckbox(JMenu menu, Action action)
 	{
 		menu.add(new JCheckBoxMenuItem(action));
+	}
+
+	private void addCheckbox(JMenu menu, Action action, KeyStroke keyStroke)
+	{
+		JCheckBoxMenuItem item = new JCheckBoxMenuItem(action);
+		item.setAccelerator(keyStroke);
+		menu.add(item);
+	}
+
+	private void addCheckbox(JMenu menu, Action action, int keyCode)
+	{
+		KeyStroke keyStroke = KeyStroke.getKeyStroke(keyCode, 0);
+		addCheckbox(menu, action, keyStroke);
+	}
+
+	private void addCheckbox(JMenu menu, Action action, int modifiers,
+			int keyCode)
+	{
+		KeyStroke keyStroke = KeyStroke.getKeyStroke(keyCode, modifiers);
+		addCheckbox(menu, action, keyStroke);
 	}
 
 }

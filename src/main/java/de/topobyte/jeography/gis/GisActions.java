@@ -75,39 +75,6 @@ public class GisActions
 		actionMap.put("d", actions.mma3);
 		actionMap.put("f", actions.mma4);
 
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "f5");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F6, 0), "f6");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F7, 0), "f7");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F8, 0), "f8");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F9, 0), "f9");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F10, 0), "f10");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0), "f11");
-		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_F12, 0), "f12");
-
-		actionMap.put("f5", actions.grid);
-		actionMap.put("f6", actions.tileNumbers);
-		actionMap.put("f7", actions.crosshair);
-		actionMap.put("f8", actions.overlay);
-		actionMap.put("f9", actions.geometryInfo);
-		actionMap.put("f11", actions.fullscreen);
-
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK),
-				"ctrl f");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_G, InputEvent.CTRL_MASK),
-				"ctrl g");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK),
-				"ctrl s");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK),
-				"ctrl p");
-
-		actionMap.put("ctrl g", actions.gta);
-		actionMap.put("ctrl s", actions.srpa);
-		actionMap.put("ctrl p", actions.mpa);
-
 		inputMap.put(
 				KeyStroke.getKeyStroke(KeyEvent.VK_F1, InputEvent.CTRL_MASK),
 				"ctrl f1");
