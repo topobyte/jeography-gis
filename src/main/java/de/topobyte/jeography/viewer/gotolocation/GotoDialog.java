@@ -38,6 +38,7 @@ import de.topobyte.jeography.viewer.util.DefaultComponentTraversalPolicy;
 import de.topobyte.swing.util.BorderHelper;
 import de.topobyte.swing.util.ComponentPanel;
 import de.topobyte.swing.util.DocumentAdapter;
+import de.topobyte.swing.util.Windows;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -64,6 +65,7 @@ public class GotoDialog extends JDialog
 	{
 		super(owner);
 		setTitle("Go To");
+		Windows.setCloseOnEscape(this);
 
 		JPanel panel = new JPanel(new GridBagLayout());
 		setContentPane(panel);
