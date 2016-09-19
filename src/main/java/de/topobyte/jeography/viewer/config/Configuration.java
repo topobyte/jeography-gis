@@ -17,6 +17,8 @@
 
 package de.topobyte.jeography.viewer.config;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +48,8 @@ public class Configuration
 
 	private List<TileConfig> tileConfigs = new ArrayList<>();
 	private List<TileConfig> tileConfigsOverlay = new ArrayList<>();
+
+	private Path pathDatabase = Paths.get("/tmp/places.sqlite");
 
 	/**
 	 * @param tileConfigs
@@ -369,6 +373,11 @@ public class Configuration
 	public void setLookAndFeel(String lookAndFeel)
 	{
 		this.lookAndFeel = lookAndFeel;
+	}
+
+	public Path getPathDatabase()
+	{
+		return pathDatabase;
 	}
 
 }

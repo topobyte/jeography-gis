@@ -43,6 +43,7 @@ import de.topobyte.jeography.viewer.action.NetworkStateAction;
 import de.topobyte.jeography.viewer.action.OverlayAction;
 import de.topobyte.jeography.viewer.action.PolygonalSelectionSnapAction;
 import de.topobyte.jeography.viewer.action.QuitAction;
+import de.topobyte.jeography.viewer.action.SearchAction;
 import de.topobyte.jeography.viewer.action.SelectionPolyPanelAction;
 import de.topobyte.jeography.viewer.action.SelectionRectPanelAction;
 import de.topobyte.jeography.viewer.action.SelectionSnapAction;
@@ -87,6 +88,7 @@ public class Actions
 	MeasurePanelAction mla;
 	FullscreenAction fullscreen;
 	GotoAction gta;
+	SearchAction sa;
 	ManualAction manual;
 	AboutAction about;
 
@@ -128,6 +130,7 @@ public class Actions
 		mla = new MeasurePanelAction(gis);
 		fullscreen = new FullscreenAction(gis);
 		gta = new GotoAction(gis);
+		sa = new SearchAction(gis);
 
 		manual = new ManualAction(gis);
 		about = new AboutAction(gis);
