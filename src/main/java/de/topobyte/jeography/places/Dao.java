@@ -63,6 +63,7 @@ public class Dao
 	private QueryBuilder qb = new QueryBuilder(new SqliteDialect());
 
 	private TablePlaces tablePlaces;
+	private List<String> languages;
 
 	private int idxPlacesName;
 	private int idxPlacesType;
@@ -73,8 +74,7 @@ public class Dao
 	{
 		this.connection = connection;
 
-		// Get available languages from database table names
-		List<String> languages = new ArrayList<>();
+		languages = new ArrayList<>();
 
 		String query = String.format("pragma table_info(%s);",
 				Tables.TABLE_NAME_PLACES);
@@ -150,6 +150,16 @@ public class Dao
 			double lon = results.getDouble(idxPlacesLon);
 			double lat = results.getDouble(idxPlacesLat);
 			list.add(new Place(name, altNames, lon, lat));
+			for (String language : languages) {
+				int idx = tablePlaces
+						.getColumnIndexSafe(Tables.COLUMN_PREFIX_NAME
+								+ language);
+				String altName = results.getString(idx);
+				if (altName == null) {
+					continue;
+				}
+				altNames.put(language, altName);
+			}
 		}
 
 		return list;
