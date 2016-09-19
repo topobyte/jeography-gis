@@ -41,7 +41,7 @@ public class PlaceResultListModel extends
 {
 
 	private List<ElementWrapper<Place>> results;
-	private static final int max = 20;
+	private static final int max = 100;
 
 	private IConnection connection;
 	private Dao dao;
