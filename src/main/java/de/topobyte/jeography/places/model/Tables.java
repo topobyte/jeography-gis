@@ -33,6 +33,8 @@ public class Tables
 	public static String COLUMN_TYPE = "type";
 	public static String COLUMN_NAME = "name";
 	public static String COLUMN_PREFIX_NAME = "name_";
+	public static String COLUMN_LON = "lon";
+	public static String COLUMN_LAT = "lat";
 
 	public static Table PLACETYPES = new Table("placetypes");
 	static {

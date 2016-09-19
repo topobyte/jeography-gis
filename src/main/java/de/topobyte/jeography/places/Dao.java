@@ -87,13 +87,15 @@ public class Dao
 		return results.getInt(1);
 	}
 
-	public long addPlace(int type, String name, Map<String, String> altNames)
-			throws QueryException
+	public long addPlace(int type, String name, Map<String, String> altNames,
+			double lon, double lat) throws QueryException
 	{
 		IPreparedStatement stmt = connection.prepareStatement(qb
 				.insert(tablePlaces));
 		int idxName = tablePlaces.getColumnIndexSafe(Tables.COLUMN_NAME);
 		int idxType = tablePlaces.getColumnIndexSafe(Tables.COLUMN_TYPE);
+		int idxLon = tablePlaces.getColumnIndexSafe(Tables.COLUMN_LON);
+		int idxLat = tablePlaces.getColumnIndexSafe(Tables.COLUMN_LAT);
 
 		stmt.setInt(idxType, type);
 		stmt.setString(idxName, name);
@@ -103,6 +105,9 @@ public class Dao
 					+ language);
 			stmt.setString(idx, altNames.get(language));
 		}
+
+		stmt.setDouble(idxLon, lon);
+		stmt.setDouble(idxLat, lat);
 
 		IResultSet results = stmt.executeQuery();
 		return results.getLong(1);

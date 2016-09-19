@@ -39,6 +39,8 @@ public class TablePlaces extends Table
 		addColumn(ColumnClass.LONG, Tables.COLUMN_ID,
 				ColumnExtension.PRIMARY_AUTO_INCREMENT);
 		addColumn(ColumnClass.INT, Tables.COLUMN_TYPE);
+		addColumn(ColumnClass.DOUBLE, Tables.COLUMN_LON);
+		addColumn(ColumnClass.DOUBLE, Tables.COLUMN_LAT);
 		addColumn(ColumnClass.VARCHAR, Tables.COLUMN_NAME);
 
 		for (String language : languages) {
