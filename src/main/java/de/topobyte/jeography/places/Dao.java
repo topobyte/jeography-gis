@@ -28,6 +28,7 @@ import de.topobyte.jeography.places.model.Place;
 import de.topobyte.jeography.places.model.TablePlaces;
 import de.topobyte.jeography.places.model.Tables;
 import de.topobyte.jsqltables.dialect.SqliteDialect;
+import de.topobyte.jsqltables.index.Indexes;
 import de.topobyte.jsqltables.query.Select;
 import de.topobyte.jsqltables.query.order.OrderDirection;
 import de.topobyte.jsqltables.query.order.SingleOrder;
@@ -57,6 +58,9 @@ public class Dao
 
 		connection.execute(createTypes);
 		connection.execute(createPlaces);
+
+		connection.execute(Indexes.createStatement(Tables.TABLE_NAME_PLACES, "places_name",
+				Tables.COLUMN_NAME));
 	}
 
 	private IConnection connection;
