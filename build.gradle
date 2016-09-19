@@ -39,6 +39,11 @@ dependencies {
     compile 'com.bric:javagraphics-color-ui:0.0.2'
     compile 'de.topobyte:jeography-core:0.0.2'
     compile 'de.topobyte:async-utils:0.0.1'
+    compile 'de.topobyte:osm4j-utils:0.0.22'
+    compile 'de.topobyte:jsqltables:0.0.8'
+
+    compile 'de.topobyte:luqe-jdbc:0.0.6'
+    runtime 'org.xerial:sqlite-jdbc:3.8.9.1'
 
     compile 'org.apache.xmlgraphics:batik-transcoder:1.7'
     compile 'org.apache.xmlgraphics:batik-codec:1.7'
