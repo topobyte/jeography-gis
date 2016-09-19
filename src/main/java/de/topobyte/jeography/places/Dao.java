@@ -18,12 +18,21 @@
 package de.topobyte.jeography.places;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.SortOrder;
+
+import de.topobyte.jeography.places.model.Place;
 import de.topobyte.jeography.places.model.TablePlaces;
 import de.topobyte.jeography.places.model.Tables;
 import de.topobyte.jsqltables.dialect.SqliteDialect;
+import de.topobyte.jsqltables.query.Select;
+import de.topobyte.jsqltables.query.order.OrderDirection;
+import de.topobyte.jsqltables.query.order.SingleOrder;
+import de.topobyte.jsqltables.query.where.Comparison;
+import de.topobyte.jsqltables.query.where.SingleCondition;
 import de.topobyte.jsqltables.table.QueryBuilder;
 import de.topobyte.luqe.iface.IConnection;
 import de.topobyte.luqe.iface.IPreparedStatement;
@@ -55,6 +64,11 @@ public class Dao
 
 	private TablePlaces tablePlaces;
 
+	private int idxPlacesName;
+	private int idxPlacesType;
+	private int idxPlacesLon;
+	private int idxPlacesLat;
+
 	public Dao(IConnection connection) throws QueryException
 	{
 		this.connection = connection;
@@ -75,6 +89,12 @@ public class Dao
 		}
 
 		tablePlaces = new TablePlaces(languages);
+
+		idxPlacesName = tablePlaces.getColumnIndexSafe(Tables.COLUMN_NAME);
+		idxPlacesType = tablePlaces.getColumnIndexSafe(Tables.COLUMN_TYPE);
+
+		idxPlacesLon = tablePlaces.getColumnIndexSafe(Tables.COLUMN_LON);
+		idxPlacesLat = tablePlaces.getColumnIndexSafe(Tables.COLUMN_LAT);
 	}
 
 	public int addType(String name) throws QueryException
@@ -92,13 +112,9 @@ public class Dao
 	{
 		IPreparedStatement stmt = connection.prepareStatement(qb
 				.insert(tablePlaces));
-		int idxName = tablePlaces.getColumnIndexSafe(Tables.COLUMN_NAME);
-		int idxType = tablePlaces.getColumnIndexSafe(Tables.COLUMN_TYPE);
-		int idxLon = tablePlaces.getColumnIndexSafe(Tables.COLUMN_LON);
-		int idxLat = tablePlaces.getColumnIndexSafe(Tables.COLUMN_LAT);
 
-		stmt.setInt(idxType, type);
-		stmt.setString(idxName, name);
+		stmt.setInt(idxPlacesType, type);
+		stmt.setString(idxPlacesName, name);
 
 		for (String language : tablePlaces.getLanguages()) {
 			int idx = tablePlaces.getColumnIndexSafe(Tables.COLUMN_PREFIX_NAME
@@ -106,11 +122,37 @@ public class Dao
 			stmt.setString(idx, altNames.get(language));
 		}
 
-		stmt.setDouble(idxLon, lon);
-		stmt.setDouble(idxLat, lat);
+		stmt.setDouble(idxPlacesLon, lon);
+		stmt.setDouble(idxPlacesLat, lat);
 
 		IResultSet results = stmt.executeQuery();
 		return results.getLong(1);
+	}
+
+	public List<Place> getPlaces(String query, SortOrder order, int max,
+			int offset) throws QueryException
+	{
+		List<Place> list = new ArrayList<>();
+
+		Select select = new Select(tablePlaces);
+		select.where(new SingleCondition(select.getMainTable(),
+				Tables.COLUMN_NAME, Comparison.LIKE));
+		select.order(new SingleOrder(select.getMainTable(), Tables.COLUMN_NAME,
+				OrderDirection.ASC));
+
+		IPreparedStatement stmt = connection.prepareStatement(select.sql());
+		stmt.setString(1, "%" + query + "%");
+
+		IResultSet results = stmt.executeQuery();
+		while (results.next()) {
+			String name = results.getString(idxPlacesName);
+			Map<String, String> altNames = new HashMap<>();
+			double lon = results.getDouble(idxPlacesLon);
+			double lat = results.getDouble(idxPlacesLat);
+			list.add(new Place(name, altNames, lon, lat));
+		}
+
+		return list;
 	}
 
 }
