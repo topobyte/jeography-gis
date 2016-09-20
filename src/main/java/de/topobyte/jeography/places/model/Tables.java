@@ -36,6 +36,15 @@ public class Tables
 	public static String COLUMN_LON = "lon";
 	public static String COLUMN_LAT = "lat";
 
+	public static String COLUMN_KEY = "key";
+	public static String COLUMN_VALUE = "value";
+
+	public static Table METADATA = new Table("metadata");
+	static {
+		METADATA.addColumn(ColumnClass.VARCHAR, COLUMN_KEY);
+		METADATA.addColumn(ColumnClass.VARCHAR, COLUMN_VALUE);
+	}
+
 	public static Table PLACETYPES = new Table("placetypes");
 	static {
 		PLACETYPES.addColumn(ColumnClass.INT, COLUMN_ID,

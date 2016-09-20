@@ -52,11 +52,13 @@ public class Dao
 	{
 		QueryBuilder qb = new QueryBuilder(new SqliteDialect());
 
+		String createMeta = qb.create(Tables.METADATA, true);
 		String createTypes = qb.create(Tables.PLACETYPES, true);
 
 		TablePlaces tablePlaces = new TablePlaces(languages);
 		String createPlaces = qb.create(tablePlaces, true);
 
+		connection.execute(createMeta);
 		connection.execute(createTypes);
 		connection.execute(createPlaces);
 
@@ -82,6 +84,11 @@ public class Dao
 			.getColumnIndexSafe(Tables.COLUMN_ID);
 	private int idxTypesName = Tables.PLACETYPES
 			.getColumnIndexSafe(Tables.COLUMN_NAME);
+
+	private int idxMetaKey = Tables.METADATA
+			.getColumnIndexSafe(Tables.COLUMN_KEY);
+	private int idxMetaValue = Tables.METADATA
+			.getColumnIndexSafe(Tables.COLUMN_VALUE);
 
 	public Dao(IConnection connection) throws QueryException
 	{
@@ -137,6 +144,18 @@ public class Dao
 		}
 		results.close();
 		return idToType;
+	}
+
+	public void addMetadata(String key, String value) throws QueryException
+	{
+		IPreparedStatement stmt = connection.prepareStatement(qb
+				.insert(Tables.METADATA));
+
+		stmt.setString(idxMetaKey, key);
+		stmt.setString(idxMetaValue, value);
+
+		IResultSet results = stmt.executeQuery();
+		results.close();
 	}
 
 	public long addPlace(int type, String name, Map<String, String> altNames,
