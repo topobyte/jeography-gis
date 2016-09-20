@@ -88,6 +88,8 @@ public class SearchUI extends JPanel implements ActionListener,
 
 		listResults.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
+		resultModel.update(input.getText());
+
 		// Layout
 
 		setLayout(new GridBagLayout());
