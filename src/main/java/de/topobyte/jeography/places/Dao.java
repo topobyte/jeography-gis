@@ -33,7 +33,10 @@ import de.topobyte.jsqltables.query.LimitOffset;
 import de.topobyte.jsqltables.query.Select;
 import de.topobyte.jsqltables.query.order.OrderDirection;
 import de.topobyte.jsqltables.query.order.SingleOrder;
+import de.topobyte.jsqltables.query.where.BooleanOperator;
+import de.topobyte.jsqltables.query.where.CombinedCondition;
 import de.topobyte.jsqltables.query.where.Comparison;
+import de.topobyte.jsqltables.query.where.Condition;
 import de.topobyte.jsqltables.query.where.SingleCondition;
 import de.topobyte.jsqltables.table.QueryBuilder;
 import de.topobyte.luqe.iface.IConnection;
@@ -188,14 +191,26 @@ public class Dao
 		List<Place> list = new ArrayList<>();
 
 		Select select = new Select(tablePlaces);
-		select.where(new SingleCondition(select.getMainTable(),
-				Tables.COLUMN_NAME, Comparison.LIKE));
+
+		List<String> queryLangs = new ArrayList<>(languages);
+
+		Condition condition = new SingleCondition(select.getMainTable(),
+				Tables.COLUMN_NAME, Comparison.LIKE);
+		for (String language : queryLangs) {
+			Condition c = new SingleCondition(select.getMainTable(),
+					Tables.COLUMN_PREFIX_NAME + language, Comparison.LIKE);
+			condition = new CombinedCondition(BooleanOperator.OR, condition, c);
+		}
+
+		select.where(condition);
 		select.order(new SingleOrder(select.getMainTable(), Tables.COLUMN_NAME,
 				OrderDirection.ASC));
 		select.limit(new LimitOffset(max, offset));
 
 		IPreparedStatement stmt = connection.prepareStatement(select.sql());
-		stmt.setString(1, "%" + query + "%");
+		for (int i = 0; i <= queryLangs.size(); i++) {
+			stmt.setString(i + 1, "%" + query + "%");
+		}
 
 		IResultSet results = stmt.executeQuery();
 		while (results.next()) {
