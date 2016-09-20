@@ -74,8 +74,8 @@ public class ConfigWriter
 				configuration.isShowOverlay());
 		addOption(documentFactory, eConfiguration, "online",
 				configuration.isOnline());
-		addOption(documentFactory, eConfiguration, "database",
-				configuration.getFileDb());
+		addOption(documentFactory, eConfiguration, "database", configuration
+				.getPathDatabase().toString());
 		addOption(documentFactory, eConfiguration, "width",
 				configuration.getWidth());
 		addOption(documentFactory, eConfiguration, "height",

@@ -20,6 +20,7 @@ package de.topobyte.jeography.viewer.config;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -165,7 +166,7 @@ class ConfigHandler extends DefaultHandler
 		} else if (name.equals("tilenumbers")) {
 			configuration.setShowGrid(parseBoolean(value));
 		} else if (name.equals("database")) {
-			configuration.setFileDb(value);
+			configuration.setPathDatabase(Paths.get(value));
 		} else if (name.equals("width")) {
 			configuration.setWidth(parseInteger(value));
 		} else if (name.equals("height")) {

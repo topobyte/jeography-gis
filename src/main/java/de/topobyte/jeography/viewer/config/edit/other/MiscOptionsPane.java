@@ -21,6 +21,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Rectangle;
+import java.nio.file.Paths;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -93,7 +94,8 @@ public class MiscOptionsPane extends JPanel implements Scrollable
 		showCrosshair.setAlignmentX(0.0f);
 		showOverlay.setAlignmentX(0.0f);
 		isOnline.setAlignmentX(0.0f);
-		databaseFile = new TextOption("database", configuration.getFileDb());
+		databaseFile = new TextOption("database", configuration
+				.getPathDatabase().toString());
 		width = new IntegerOption("width", configuration.getWidth());
 		height = new IntegerOption("height", configuration.getHeight());
 		lon = new DoubleOption("lon", configuration.getLon());
@@ -202,7 +204,7 @@ public class MiscOptionsPane extends JPanel implements Scrollable
 		configuration.setZoom(zoom.getValue());
 		configuration.setLon(lon.getValue());
 		configuration.setLat(lat.getValue());
-		configuration.setFileDb(databaseFile.getValue());
+		configuration.setPathDatabase(Paths.get(databaseFile.getValue()));
 		configuration.setLookAndFeel(lafSelector.getSelectedLookAndFeel());
 	}
 

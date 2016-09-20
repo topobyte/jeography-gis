@@ -31,7 +31,6 @@ public class Configuration
 {
 
 	private int width = 1000, height = 600;
-	private String fileDb = null;
 	private boolean isOnline = true;
 	private boolean showCrosshair = false;
 	private boolean showGrid = false;
@@ -49,7 +48,7 @@ public class Configuration
 	private List<TileConfig> tileConfigs = new ArrayList<>();
 	private List<TileConfig> tileConfigsOverlay = new ArrayList<>();
 
-	private Path pathDatabase = Paths.get("/tmp/places.sqlite");
+	private Path pathDatabase = null;
 
 	/**
 	 * @param tileConfigs
@@ -107,6 +106,8 @@ public class Configuration
 				"http://opentopomap.org/%d/%d/%d.png",
 				"/tmp/mapImagesOpenTopoMap"));
 
+		configuration.pathDatabase = Paths.get("/tmp/places.sqlite");
+
 		return configuration;
 	}
 
@@ -142,23 +143,6 @@ public class Configuration
 	public void setHeight(int height)
 	{
 		this.height = height;
-	}
-
-	/**
-	 * @return the fileDb
-	 */
-	public String getFileDb()
-	{
-		return fileDb;
-	}
-
-	/**
-	 * @param fileDb
-	 *            the fileDb to set
-	 */
-	public void setFileDb(String fileDb)
-	{
-		this.fileDb = fileDb;
 	}
 
 	/**
@@ -378,6 +362,11 @@ public class Configuration
 	public Path getPathDatabase()
 	{
 		return pathDatabase;
+	}
+
+	public void setPathDatabase(Path pathDatabase)
+	{
+		this.pathDatabase = pathDatabase;
 	}
 
 }

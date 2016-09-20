@@ -26,6 +26,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -164,7 +166,7 @@ public class JeographyGIS extends JPanel
 
 		int width = configuration.getWidth(), height = configuration
 				.getHeight();
-		String fileDb = configuration.getFileDb();
+		Path pathDatabase = configuration.getPathDatabase();
 		boolean isOnline = configuration.isOnline();
 		boolean showCrosshair = configuration.isShowCrosshair();
 		boolean showGrid = configuration.isShowGrid();
@@ -209,7 +211,7 @@ public class JeographyGIS extends JPanel
 			showTileNumbers = line.getOptionValue("tile_numbers").equals("yes");
 		}
 		if (line.hasOption("db")) {
-			fileDb = line.getOptionValue("db");
+			pathDatabase = Paths.get(line.getOptionValue("db"));
 		}
 
 		if (line.hasOption("lon")) {
@@ -241,7 +243,7 @@ public class JeographyGIS extends JPanel
 		}
 
 		final JeographyGIS gis = new JeographyGIS(configFile, configuration,
-				tilesIndex, fileDb, isOnline, showGrid, showTileNumbers,
+				tilesIndex, pathDatabase, isOnline, showGrid, showTileNumbers,
 				showCrosshair, showOverlay, zoom, lon, lat);
 
 		final int fWidth = width;
@@ -396,9 +398,8 @@ public class JeographyGIS extends JPanel
 	 *            the path to the configuration file in use.
 	 * @param configuration
 	 *            the configuration to use.
-	 * @param fileDB
-	 *            a String denoting a filename to a SQLite database for address
-	 *            searching.
+	 * @param pathDatabase
+	 *            a path to a SQLite database for place lookup.
 	 * @param isOnline
 	 *            whether the applications shall use internet connection.
 	 * @param showGrid
@@ -411,11 +412,12 @@ public class JeographyGIS extends JPanel
 	 *            whether to show the overlay
 	 */
 	public JeographyGIS(String configFile, Configuration configuration,
-			int tilesIndex, String fileDB, boolean isOnline, boolean showGrid,
-			boolean showTileNumbers, boolean showCrosshair, boolean showOverlay)
+			int tilesIndex, Path pathDatabase, boolean isOnline,
+			boolean showGrid, boolean showTileNumbers, boolean showCrosshair,
+			boolean showOverlay)
 	{
-		this(configFile, configuration, tilesIndex, fileDB, isOnline, showGrid,
-				showTileNumbers, showCrosshair, showOverlay,
+		this(configFile, configuration, tilesIndex, pathDatabase, isOnline,
+				showGrid, showTileNumbers, showCrosshair, showOverlay,
 				Constants.DEFAULT_ZOOM, Constants.DEFAULT_LON,
 				Constants.DEFAULT_LAT);
 	}
@@ -427,9 +429,8 @@ public class JeographyGIS extends JPanel
 	 *            the path to the configuration file in use.
 	 * @param configuration
 	 *            the configuration to use.
-	 * @param fileDB
-	 *            a String denoting a filename to a SQLite database for address
-	 *            searching.
+	 * @param pathDatabase
+	 *            a path to a SQLite database for place lookup.
 	 * @param isOnline
 	 *            whether the applications shall use internet connection.
 	 * @param showGrid
@@ -448,8 +449,8 @@ public class JeographyGIS extends JPanel
 	 *            startup latitude
 	 */
 	public JeographyGIS(String configFile, Configuration configuration,
-			int tilesIndex, String fileDB, boolean isOnline, boolean showGrid,
-			boolean showTileNumbers, boolean showCrosshair,
+			int tilesIndex, Path pathDatabase, boolean isOnline,
+			boolean showGrid, boolean showTileNumbers, boolean showCrosshair,
 			boolean showOverlay, int zoom, double lon, double lat)
 	{
 		this.configFile = configFile;
