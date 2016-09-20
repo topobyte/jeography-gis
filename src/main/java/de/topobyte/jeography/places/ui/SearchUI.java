@@ -22,8 +22,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +39,6 @@ import org.slf4j.LoggerFactory;
 import de.topobyte.jeography.places.model.Place;
 import de.topobyte.luqe.iface.IConnection;
 import de.topobyte.luqe.iface.QueryException;
-import de.topobyte.luqe.jdbc.JdbcConnection;
 import de.topobyte.swing.util.DocumentAdapter;
 
 /**
@@ -58,15 +55,11 @@ public class SearchUI extends JPanel implements ActionListener,
 	ActivatableJList<Place> listResults;
 	UpdateableDataListModel<Place> resultModel;
 
-	private final IConnection connex;
-
-	public SearchUI(Connection connection) throws SQLException, QueryException
+	public SearchUI(IConnection connection) throws QueryException
 	{
-		this.connex = new JdbcConnection(connection);
-
 		final JTextField input = new JTextField("");
 
-		resultModel = new PlaceResultListModel(connex);
+		resultModel = new PlaceResultListModel(connection);
 
 		JScrollPane jspPlaces = new JScrollPane();
 		listResults = new ActivatableJList<>(resultModel);

@@ -35,7 +35,9 @@ import de.topobyte.jeography.places.model.Place;
 import de.topobyte.jeography.places.ui.PlaceActivationListener;
 import de.topobyte.jeography.places.ui.SearchUI;
 import de.topobyte.jeography.viewer.core.Viewer;
+import de.topobyte.luqe.iface.IConnection;
 import de.topobyte.luqe.iface.QueryException;
+import de.topobyte.luqe.jdbc.JdbcConnection;
 import de.topobyte.swing.util.Components;
 
 /**
@@ -97,10 +99,18 @@ public class SearchAction extends GISAction
 			return;
 		}
 
+		IConnection connection;
+		try {
+			connection = new JdbcConnection(connex);
+		} catch (SQLException e) {
+			logger.error("unable to create jdbc connection wrapper", e);
+			return;
+		}
+
 		SearchUI searchUI;
 		try {
-			searchUI = new SearchUI(connex);
-		} catch (SQLException | QueryException e) {
+			searchUI = new SearchUI(connection);
+		} catch (QueryException e) {
 			logger.error("unable to initialize search UI", e);
 			return;
 		}

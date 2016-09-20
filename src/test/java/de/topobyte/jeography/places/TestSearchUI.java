@@ -28,7 +28,9 @@ import javax.swing.JFrame;
 import de.topobyte.jeography.places.model.Place;
 import de.topobyte.jeography.places.ui.PlaceActivationListener;
 import de.topobyte.jeography.places.ui.SearchUI;
+import de.topobyte.luqe.iface.IConnection;
 import de.topobyte.luqe.iface.QueryException;
+import de.topobyte.luqe.jdbc.JdbcConnection;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -46,10 +48,12 @@ public class TestSearchUI
 		String url = "jdbc:sqlite:" + pathDatabase;
 		Connection connex = DriverManager.getConnection(url);
 
+		IConnection connection = new JdbcConnection(connex);
+
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		SearchUI searchUI = new SearchUI(connex);
+		SearchUI searchUI = new SearchUI(connection);
 		frame.setContentPane(searchUI);
 
 		frame.pack();
