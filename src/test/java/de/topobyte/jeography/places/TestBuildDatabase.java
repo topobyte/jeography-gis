@@ -147,6 +147,19 @@ public class TestBuildDatabase
 				if (name == null && altNames.isEmpty()) {
 					continue;
 				}
+				if (name == null) {
+					// Make sure that name != null. From all alternative names
+					// choose the first non-null name in order of the languages
+					// array.
+					for (String language : languages) {
+						String altName = altNames.get(language);
+						if (altName == null) {
+							continue;
+						}
+						name = altName;
+						break;
+					}
+				}
 				dao.addPlace(typeId, name, altNames, node.getLongitude(),
 						node.getLatitude());
 			}
