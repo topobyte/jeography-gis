@@ -67,12 +67,15 @@ public class SearchAction extends GISAction
 	{
 		Path pathDatabase = getGIS().getConfiguration().getPathDatabase();
 
-		if (!Files.isRegularFile(pathDatabase)) {
+		if (!Files.exists(pathDatabase)) {
+			logger.error(String.format("File does not exists '%s'",
+					pathDatabase));
 			// TODO: display error dialog
 			return;
 		}
 
-		if (!Files.exists(pathDatabase)) {
+		if (!Files.isRegularFile(pathDatabase)) {
+			logger.error(String.format("Not a regular file '%s'", pathDatabase));
 			// TODO: display error dialog
 			return;
 		}
