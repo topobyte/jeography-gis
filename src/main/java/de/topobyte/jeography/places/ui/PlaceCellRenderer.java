@@ -51,8 +51,8 @@ public class PlaceCellRenderer extends DefaultListCellRenderer
 		Place place = (Place) value;
 
 		JLabel labelName = new JLabel(toString(place));
-		JLabel labelMeta = new JLabel(String.format("%.3f %.3f",
-				place.getLon(), place.getLat()));
+		JLabel labelMeta = new JLabel(String.format("%s @ %.3f %.3f",
+				place.getType(), place.getLon(), place.getLat()));
 
 		labelMeta.setFont(labelMeta.getFont().deriveFont(Font.PLAIN));
 

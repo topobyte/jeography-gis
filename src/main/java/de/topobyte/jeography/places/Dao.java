@@ -69,11 +69,18 @@ public class Dao
 	private TablePlaces tablePlaces;
 	private List<String> languages;
 
+	private Map<Integer, String> types;
+
 	private int idxPlacesId;
 	private int idxPlacesName;
 	private int idxPlacesType;
 	private int idxPlacesLon;
 	private int idxPlacesLat;
+
+	private int idxTypesId = Tables.PLACETYPES
+			.getColumnIndexSafe(Tables.COLUMN_ID);
+	private int idxTypesName = Tables.PLACETYPES
+			.getColumnIndexSafe(Tables.COLUMN_NAME);
 
 	public Dao(IConnection connection) throws QueryException
 	{
@@ -100,16 +107,31 @@ public class Dao
 		idxPlacesType = tablePlaces.getColumnIndexSafe(Tables.COLUMN_TYPE);
 		idxPlacesLon = tablePlaces.getColumnIndexSafe(Tables.COLUMN_LON);
 		idxPlacesLat = tablePlaces.getColumnIndexSafe(Tables.COLUMN_LAT);
+
+		types = getTypes();
 	}
 
 	public int addType(String name) throws QueryException
 	{
 		IPreparedStatement stmt = connection.prepareStatement(qb
 				.insert(Tables.PLACETYPES));
-		int idxName = Tables.PLACETYPES.getColumnIndexSafe(Tables.COLUMN_NAME);
-		stmt.setString(idxName, name);
+		stmt.setString(idxTypesName, name);
 		IResultSet results = stmt.executeQuery();
 		return results.getInt(1);
+	}
+
+	private Map<Integer, String> getTypes() throws QueryException
+	{
+		Map<Integer, String> idToType = new HashMap<>();
+		Select select = new Select(Tables.PLACETYPES);
+		IPreparedStatement stmt = connection.prepareStatement(select.sql());
+		IResultSet results = stmt.executeQuery();
+		while (results.next()) {
+			int id = results.getInt(idxTypesId);
+			String name = results.getString(idxTypesName);
+			idToType.put(id, name);
+		}
+		return idToType;
 	}
 
 	public long addPlace(int type, String name, Map<String, String> altNames,
@@ -151,7 +173,8 @@ public class Dao
 		IResultSet results = stmt.executeQuery();
 		while (results.next()) {
 			long id = results.getLong(idxPlacesId);
-			String type = ""; // TODO: replace dummy value
+			int typeId = results.getInt(idxPlacesType);
+			String type = types.get(typeId);
 			String name = results.getString(idxPlacesName);
 			Map<String, String> altNames = new HashMap<>();
 			double lon = results.getDouble(idxPlacesLon);
