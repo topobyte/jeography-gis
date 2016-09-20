@@ -66,6 +66,12 @@ public class SearchAction extends GISAction
 	public void actionPerformed(ActionEvent event)
 	{
 		Path pathDatabase = getGIS().getConfiguration().getPathDatabase();
+
+		if (!Files.isRegularFile(pathDatabase)) {
+			// TODO: display error dialog
+			return;
+		}
+
 		if (!Files.exists(pathDatabase)) {
 			// TODO: display error dialog
 			return;
