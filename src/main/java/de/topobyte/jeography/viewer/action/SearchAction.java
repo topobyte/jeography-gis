@@ -17,7 +17,6 @@
 
 package de.topobyte.jeography.viewer.action;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -110,8 +109,8 @@ public class SearchAction extends GISAction
 
 		JDialog dialog = new JDialog(frame);
 		dialog.setTitle("Search");
-		dialog.setSize(new Dimension(500, 400));
 		dialog.setContentPane(searchUI);
+		dialog.pack();
 
 		dialog.setVisible(true);
 

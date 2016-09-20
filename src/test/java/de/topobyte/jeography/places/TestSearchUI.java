@@ -17,7 +17,6 @@
 
 package de.topobyte.jeography.places;
 
-import java.awt.Dimension;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
@@ -48,12 +47,12 @@ public class TestSearchUI
 		Connection connex = DriverManager.getConnection(url);
 
 		JFrame frame = new JFrame();
-		frame.setSize(new Dimension(500, 400));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		SearchUI searchUI = new SearchUI(connex);
 		frame.setContentPane(searchUI);
 
+		frame.pack();
 		frame.setVisible(true);
 
 		searchUI.addPlaceActivationListener(new PlaceActivationListener() {

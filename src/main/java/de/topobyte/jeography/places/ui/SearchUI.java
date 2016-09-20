@@ -17,6 +17,7 @@
 
 package de.topobyte.jeography.places.ui;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -70,6 +71,8 @@ public class SearchUI extends JPanel implements ActionListener,
 		JScrollPane jspPlaces = new JScrollPane();
 		listResults = new ActivatableJList<>(resultModel);
 		jspPlaces.setViewportView(listResults);
+
+		listResults.setPreferredSize(new Dimension(500, 400));
 
 		listResults.addActionListener(this);
 
