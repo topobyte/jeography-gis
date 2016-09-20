@@ -173,25 +173,29 @@ public class Dao
 		results.close();
 	}
 
+	private IPreparedStatement stmtInsertPlace;
+
 	public long addPlace(int type, String name, Map<String, String> altNames,
 			double lon, double lat) throws QueryException
 	{
-		IPreparedStatement stmt = connection.prepareStatement(qb
-				.insert(tablePlaces));
+		if (stmtInsertPlace == null) {
+			stmtInsertPlace = connection.prepareStatement(qb
+					.insert(tablePlaces));
+		}
 
-		stmt.setInt(idxPlacesType, type);
-		stmt.setString(idxPlacesName, name);
+		stmtInsertPlace.setInt(idxPlacesType, type);
+		stmtInsertPlace.setString(idxPlacesName, name);
 
 		for (String language : tablePlaces.getLanguages()) {
 			int idx = tablePlaces.getColumnIndexSafe(Tables.COLUMN_PREFIX_NAME
 					+ language);
-			stmt.setString(idx, altNames.get(language));
+			stmtInsertPlace.setString(idx, altNames.get(language));
 		}
 
-		stmt.setDouble(idxPlacesLon, lon);
-		stmt.setDouble(idxPlacesLat, lat);
+		stmtInsertPlace.setDouble(idxPlacesLon, lon);
+		stmtInsertPlace.setDouble(idxPlacesLat, lat);
 
-		IResultSet results = stmt.executeQuery();
+		IResultSet results = stmtInsertPlace.executeQuery();
 		long id = results.getLong(1);
 		results.close();
 
@@ -213,14 +217,18 @@ public class Dao
 		return id;
 	}
 
+	private IPreparedStatement s2;
+	private IPreparedStatement s3;
+
 	private void insertSearchNames(long id, List<String> names)
 			throws QueryException
 	{
-		IPreparedStatement s2 = connection.prepareStatement(qb
-				.insert(Tables.SEARCH));
-
-		IPreparedStatement s3 = connection.prepareStatement(qb
-				.insert(Tables.SEARCH_MAP));
+		if (s2 == null) {
+			s2 = connection.prepareStatement(qb.insert(Tables.SEARCH));
+		}
+		if (s3 == null) {
+			s3 = connection.prepareStatement(qb.insert(Tables.SEARCH_MAP));
+		}
 
 		for (String n : names) {
 			s2.setString(1, n);
