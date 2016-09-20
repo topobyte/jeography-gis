@@ -106,6 +106,16 @@ public class Configuration
 				"http://opentopomap.org/%d/%d/%d.png",
 				"/tmp/mapImagesOpenTopoMap"));
 
+		String userAgent = "Jeography GIS";
+
+		for (TileConfig tileConfig : configuration.tileConfigs) {
+			if (tileConfig instanceof TileConfigUrl) {
+				((TileConfigUrl) tileConfig).setUserAgent(userAgent);
+			} else if (tileConfig instanceof TileConfigUrlDisk) {
+				((TileConfigUrlDisk) tileConfig).setUserAgent(userAgent);
+			}
+		}
+
 		configuration.pathDatabase = Paths.get("/tmp/places.sqlite");
 
 		return configuration;
