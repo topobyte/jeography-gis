@@ -25,18 +25,42 @@ import java.util.Map;
 public class Place
 {
 
+	private long id;
+	private String type;
 	private String name;
 	private Map<String, String> altNames;
 	private double lon;
 	private double lat;
 
-	public Place(String name, Map<String, String> altNames, double lon,
-			double lat)
+	public Place(long id, String type, String name,
+			Map<String, String> altNames, double lon, double lat)
 	{
+		this.id = id;
+		this.type = type;
 		this.name = name;
 		this.altNames = altNames;
 		this.lon = lon;
 		this.lat = lat;
+	}
+
+	public long getId()
+	{
+		return id;
+	}
+
+	public void setId(long id)
+	{
+		this.id = id;
+	}
+
+	public String getType()
+	{
+		return type;
+	}
+
+	public void setType(String type)
+	{
+		this.type = type;
 	}
 
 	public String getName()

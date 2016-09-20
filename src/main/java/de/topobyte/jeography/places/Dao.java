@@ -59,8 +59,8 @@ public class Dao
 		connection.execute(createTypes);
 		connection.execute(createPlaces);
 
-		connection.execute(Indexes.createStatement(Tables.TABLE_NAME_PLACES, "places_name",
-				Tables.COLUMN_NAME));
+		connection.execute(Indexes.createStatement(Tables.TABLE_NAME_PLACES,
+				"places_name", Tables.COLUMN_NAME));
 	}
 
 	private IConnection connection;
@@ -69,6 +69,7 @@ public class Dao
 	private TablePlaces tablePlaces;
 	private List<String> languages;
 
+	private int idxPlacesId;
 	private int idxPlacesName;
 	private int idxPlacesType;
 	private int idxPlacesLon;
@@ -94,9 +95,9 @@ public class Dao
 
 		tablePlaces = new TablePlaces(languages);
 
+		idxPlacesId = tablePlaces.getColumnIndexSafe(Tables.COLUMN_ID);
 		idxPlacesName = tablePlaces.getColumnIndexSafe(Tables.COLUMN_NAME);
 		idxPlacesType = tablePlaces.getColumnIndexSafe(Tables.COLUMN_TYPE);
-
 		idxPlacesLon = tablePlaces.getColumnIndexSafe(Tables.COLUMN_LON);
 		idxPlacesLat = tablePlaces.getColumnIndexSafe(Tables.COLUMN_LAT);
 	}
@@ -149,11 +150,13 @@ public class Dao
 
 		IResultSet results = stmt.executeQuery();
 		while (results.next()) {
+			long id = results.getLong(idxPlacesId);
+			String type = ""; // TODO: replace dummy value
 			String name = results.getString(idxPlacesName);
 			Map<String, String> altNames = new HashMap<>();
 			double lon = results.getDouble(idxPlacesLon);
 			double lat = results.getDouble(idxPlacesLat);
-			list.add(new Place(name, altNames, lon, lat));
+			list.add(new Place(id, type, name, altNames, lon, lat));
 			for (String language : languages) {
 				int idx = tablePlaces
 						.getColumnIndexSafe(Tables.COLUMN_PREFIX_NAME
