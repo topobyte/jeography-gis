@@ -80,8 +80,13 @@ public class PlaceCellRenderer extends DefaultListCellRenderer
 	{
 		StringBuilder buffer = new StringBuilder();
 		Set<String> names = new HashSet<>();
-		names.add(element.getName());
-		buffer.append(element.getName());
+
+		String nativeName = element.getName();
+		if (nativeName == null) {
+			nativeName = element.getAltNames().values().iterator().next();
+		}
+		buffer.append(nativeName);
+		names.add(nativeName);
 
 		int n = 0;
 		for (String name : element.getAltNames().values()) {
@@ -101,5 +106,4 @@ public class PlaceCellRenderer extends DefaultListCellRenderer
 
 		return buffer.toString();
 	}
-
 }

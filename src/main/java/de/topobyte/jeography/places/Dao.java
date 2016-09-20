@@ -31,10 +31,10 @@ import de.topobyte.jsqltables.dialect.SqliteDialect;
 import de.topobyte.jsqltables.index.Indexes;
 import de.topobyte.jsqltables.query.LimitOffset;
 import de.topobyte.jsqltables.query.Select;
+import de.topobyte.jsqltables.query.TableReference;
 import de.topobyte.jsqltables.query.order.OrderDirection;
 import de.topobyte.jsqltables.query.order.SingleOrder;
-import de.topobyte.jsqltables.query.where.BooleanOperator;
-import de.topobyte.jsqltables.query.where.CombinedCondition;
+import de.topobyte.jsqltables.query.select.AllColumn;
 import de.topobyte.jsqltables.query.where.Comparison;
 import de.topobyte.jsqltables.query.where.Condition;
 import de.topobyte.jsqltables.query.where.SingleCondition;
@@ -57,6 +57,7 @@ public class Dao
 
 		String createMeta = qb.create(Tables.METADATA, true);
 		String createTypes = qb.create(Tables.PLACETYPES, true);
+		String createSearchMap = qb.create(Tables.SEARCH_MAP, true);
 
 		TablePlaces tablePlaces = new TablePlaces(languages);
 		String createPlaces = qb.create(tablePlaces, true);
@@ -64,9 +65,20 @@ public class Dao
 		connection.execute(createMeta);
 		connection.execute(createTypes);
 		connection.execute(createPlaces);
+		connection.execute(createSearchMap);
 
 		connection.execute(Indexes.createStatement(Tables.TABLE_NAME_PLACES,
 				"places_name", Tables.COLUMN_NAME));
+
+		connection.execute(Indexes.createStatement(Tables.TABLE_NAME_PLACES,
+				"places_id", Tables.COLUMN_ID));
+
+		connection.execute(Indexes.createStatement(Tables.SEARCH_MAP,
+				"map_index", Tables.COLUMN_FTS_ID, Tables.COLUMN_ID));
+
+		connection.execute("create virtual table " + Tables.TABLE_NAME_FTS
+				+ " using fts3(" + Tables.SEARCH.getColumn(1).getName()
+				+ " TEXT);");
 	}
 
 	private IConnection connection;
@@ -182,7 +194,44 @@ public class Dao
 		IResultSet results = stmt.executeQuery();
 		long id = results.getLong(1);
 		results.close();
+
+		List<String> names = new ArrayList<>();
+
+		if (name != null) {
+			names.add(name);
+		}
+		for (String language : tablePlaces.getLanguages()) {
+			String altName = altNames.get(language);
+			if (altName == null) {
+				continue;
+			}
+			names.add(altName);
+		}
+
+		insertSearchNames(id, names);
+
 		return id;
+	}
+
+	private void insertSearchNames(long id, List<String> names)
+			throws QueryException
+	{
+		IPreparedStatement s2 = connection.prepareStatement(qb
+				.insert(Tables.SEARCH));
+
+		IPreparedStatement s3 = connection.prepareStatement(qb
+				.insert(Tables.SEARCH_MAP));
+
+		for (String n : names) {
+			s2.setString(1, n);
+			IResultSet results = s2.executeQuery();
+			long ftsId = results.getLong(1);
+			results.close();
+
+			s3.setLong(1, id);
+			s3.setLong(2, ftsId);
+			s3.executeQuery().close();
+		}
 	}
 
 	public List<Place> getPlaces(String query, SortOrder order, int max,
@@ -191,16 +240,16 @@ public class Dao
 		List<Place> list = new ArrayList<>();
 
 		Select select = new Select(tablePlaces);
+		TableReference map = select.join(Tables.SEARCH_MAP, Tables.COLUMN_ID,
+				Tables.COLUMN_ID);
+		TableReference search = select.join(map, Tables.SEARCH,
+				Tables.COLUMN_FTS_ID, "rowid");
 
-		List<String> queryLangs = new ArrayList<>(languages);
+		select.distinct();
+		select.addSelectColumn(new AllColumn(select.getMainTable()));
 
-		Condition condition = new SingleCondition(select.getMainTable(),
-				Tables.COLUMN_NAME, Comparison.LIKE);
-		for (String language : queryLangs) {
-			Condition c = new SingleCondition(select.getMainTable(),
-					Tables.COLUMN_PREFIX_NAME + language, Comparison.LIKE);
-			condition = new CombinedCondition(BooleanOperator.OR, condition, c);
-		}
+		Condition condition = new SingleCondition(search, Tables.COLUMN_NAME,
+				Comparison.LIKE);
 
 		select.where(condition);
 		select.order(new SingleOrder(select.getMainTable(), Tables.COLUMN_NAME,
@@ -208,9 +257,7 @@ public class Dao
 		select.limit(new LimitOffset(max, offset));
 
 		IPreparedStatement stmt = connection.prepareStatement(select.sql());
-		for (int i = 0; i <= queryLangs.size(); i++) {
-			stmt.setString(i + 1, "%" + query + "%");
-		}
+		stmt.setString(1, "%" + query + "%");
 
 		IResultSet results = stmt.executeQuery();
 		while (results.next()) {

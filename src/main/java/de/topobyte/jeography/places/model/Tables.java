@@ -28,6 +28,7 @@ public class Tables
 {
 
 	public static String TABLE_NAME_PLACES = "places";
+	public static String TABLE_NAME_FTS = "search";
 
 	public static String COLUMN_ID = "id";
 	public static String COLUMN_TYPE = "type";
@@ -35,6 +36,8 @@ public class Tables
 	public static String COLUMN_PREFIX_NAME = "name_";
 	public static String COLUMN_LON = "lon";
 	public static String COLUMN_LAT = "lat";
+
+	public static String COLUMN_FTS_ID = "fts_id";
 
 	public static String COLUMN_KEY = "key";
 	public static String COLUMN_VALUE = "value";
@@ -50,6 +53,20 @@ public class Tables
 		PLACETYPES.addColumn(ColumnClass.INT, COLUMN_ID,
 				ColumnExtension.PRIMARY_AUTO_INCREMENT);
 		PLACETYPES.addColumn(ColumnClass.VARCHAR, COLUMN_NAME);
+	}
+
+	// This table contains the names of places in a FTS table
+	public static Table SEARCH = new Table(TABLE_NAME_FTS);
+	static {
+		SEARCH.addColumn(ColumnClass.VARCHAR, COLUMN_NAME);
+	}
+
+	// This table maps row-ids of the FTS table to ids of the places table so
+	// that they can be joined
+	public static Table SEARCH_MAP = new Table("search_map");
+	static {
+		SEARCH_MAP.addColumn(ColumnClass.LONG, COLUMN_ID);
+		SEARCH_MAP.addColumn(ColumnClass.LONG, COLUMN_FTS_ID);
 	}
 
 }

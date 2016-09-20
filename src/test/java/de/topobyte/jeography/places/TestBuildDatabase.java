@@ -137,7 +137,13 @@ public class TestBuildDatabase
 				Map<String, String> altNames = new HashMap<>();
 				for (String language : languages) {
 					String langName = tags.get("name:" + language);
+					if (langName == null) {
+						continue;
+					}
 					altNames.put(language, langName);
+				}
+				if (name == null && altNames.isEmpty()) {
+					continue;
 				}
 				dao.addPlace(typeId, name, altNames, node.getLongitude(),
 						node.getLatitude());
