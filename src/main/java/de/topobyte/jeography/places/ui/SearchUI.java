@@ -73,6 +73,8 @@ public class SearchUI extends JPanel implements ActionListener,
 
 		listResults.addActionListener(this);
 
+		listResults.setCellRenderer(new PlaceCellRenderer());
+
 		input.getDocument().addDocumentListener(new DocumentAdapter() {
 
 			@Override
