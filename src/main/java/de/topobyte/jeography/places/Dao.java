@@ -29,6 +29,7 @@ import de.topobyte.jeography.places.model.TablePlaces;
 import de.topobyte.jeography.places.model.Tables;
 import de.topobyte.jsqltables.dialect.SqliteDialect;
 import de.topobyte.jsqltables.index.Indexes;
+import de.topobyte.jsqltables.query.LimitOffset;
 import de.topobyte.jsqltables.query.Select;
 import de.topobyte.jsqltables.query.order.OrderDirection;
 import de.topobyte.jsqltables.query.order.SingleOrder;
@@ -172,6 +173,7 @@ public class Dao
 				Tables.COLUMN_NAME, Comparison.LIKE));
 		select.order(new SingleOrder(select.getMainTable(), Tables.COLUMN_NAME,
 				OrderDirection.ASC));
+		select.limit(new LimitOffset(max, offset));
 
 		IPreparedStatement stmt = connection.prepareStatement(select.sql());
 		stmt.setString(1, "%" + query + "%");
