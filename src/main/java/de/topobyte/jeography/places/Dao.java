@@ -99,6 +99,7 @@ public class Dao
 				languages.add(colName.substring(prefix.length()));
 			}
 		}
+		results.close();
 
 		tablePlaces = new TablePlaces(languages);
 
@@ -117,7 +118,9 @@ public class Dao
 				.insert(Tables.PLACETYPES));
 		stmt.setString(idxTypesName, name);
 		IResultSet results = stmt.executeQuery();
-		return results.getInt(1);
+		int id = results.getInt(1);
+		results.close();
+		return id;
 	}
 
 	private Map<Integer, String> getTypes() throws QueryException
@@ -131,6 +134,7 @@ public class Dao
 			String name = results.getString(idxTypesName);
 			idToType.put(id, name);
 		}
+		results.close();
 		return idToType;
 	}
 
@@ -153,7 +157,9 @@ public class Dao
 		stmt.setDouble(idxPlacesLat, lat);
 
 		IResultSet results = stmt.executeQuery();
-		return results.getLong(1);
+		long id = results.getLong(1);
+		results.close();
+		return id;
 	}
 
 	public List<Place> getPlaces(String query, SortOrder order, int max,
@@ -191,6 +197,7 @@ public class Dao
 				altNames.put(language, altName);
 			}
 		}
+		results.close();
 
 		return list;
 	}
