@@ -53,6 +53,11 @@ public class PlaceResultListModel extends AbstractResultListModel<Place>
 		fire(new ListDataEvent(this, ListDataEvent.CONTENTS_CHANGED, 0, 0));
 	}
 
+	public boolean hasMaxResults()
+	{
+		return getSize() >= max;
+	}
+
 	@Override
 	public Place getElementAt(int index)
 	{

@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -53,7 +54,10 @@ public class SearchUI extends JPanel implements ActionListener,
 	final static Logger logger = LoggerFactory.getLogger(SearchUI.class);
 
 	ActivatableJList<Place> listResults;
-	UpdateableDataListModel<Place> resultModel;
+	PlaceResultListModel resultModel;
+
+	private JPanel statusBar;
+	private JLabel statusLabel;
 
 	public SearchUI(IConnection connection) throws QueryException
 	{
@@ -77,16 +81,17 @@ public class SearchUI extends JPanel implements ActionListener,
 			public void update(DocumentEvent e)
 			{
 				try {
-					resultModel.update(input.getText());
+					SearchUI.this.update(input.getText());
 				} catch (QueryException ex) {
 					ex.printStackTrace();
 				}
 			}
+
 		});
 
 		listResults.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		resultModel.update(input.getText());
+		createStatusBar();
 
 		// Layout
 
@@ -100,6 +105,32 @@ public class SearchUI extends JPanel implements ActionListener,
 		add(input, c);
 		c.weighty = 1.0;
 		add(jspPlaces, c);
+		c.weighty = 0.0;
+		add(statusBar, c);
+
+		update(input.getText());
+	}
+
+	protected void update(String text) throws QueryException
+	{
+		resultModel.update(text);
+		String patternNumResults = resultModel.hasMaxResults() ? ">= %d" : "%d";
+		String numResults = String.format(patternNumResults,
+				resultModel.getSize());
+		String statusText = String.format("query '%s', results: %s", text,
+				numResults);
+		statusLabel.setText(statusText);
+	}
+
+	private void createStatusBar()
+	{
+		statusBar = new JPanel(new GridBagLayout());
+		statusLabel = new JLabel();
+
+		GridBagConstraints c = new GridBagConstraints();
+		c.weightx = 1.0;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		statusBar.add(statusLabel, c);
 	}
 
 	@Override
