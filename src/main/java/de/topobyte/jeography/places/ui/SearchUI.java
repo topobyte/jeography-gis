@@ -65,7 +65,7 @@ public class SearchUI extends JPanel implements ActionListener,
 		listResults = new ActivatableJList<>(resultModel);
 		jspPlaces.setViewportView(listResults);
 
-		listResults.setPreferredSize(new Dimension(500, 400));
+		jspPlaces.setPreferredSize(new Dimension(500, 400));
 
 		listResults.addActionListener(this);
 
