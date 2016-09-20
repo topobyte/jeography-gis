@@ -90,6 +90,8 @@ public class TestBuildDatabase
 			System.exit(1);
 		}
 
+		jdbcConnection.setAutoCommit(false);
+
 		List<String> languages = new ArrayList<>();
 		languages.add("en");
 		languages.add("de");
