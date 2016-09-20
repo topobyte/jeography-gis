@@ -21,6 +21,8 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
@@ -30,7 +32,6 @@ import javax.swing.JPanel;
 
 import de.topobyte.awt.util.GridBagConstraintsEditor;
 import de.topobyte.jeography.places.model.Place;
-import de.topobyte.swing.util.ElementWrapper;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -47,10 +48,9 @@ public class PlaceCellRenderer extends DefaultListCellRenderer
 		JPanel panel = new JPanel(new GridBagLayout());
 		panel.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
 
-		ElementWrapper<Place> wrapper = (ElementWrapper<Place>) value;
-		Place place = wrapper.getElement();
+		Place place = (Place) value;
 
-		JLabel labelName = new JLabel(value.toString());
+		JLabel labelName = new JLabel(toString(place));
 		JLabel labelMeta = new JLabel(String.format("%.3f %.3f",
 				place.getLon(), place.getLat()));
 
@@ -74,6 +74,32 @@ public class PlaceCellRenderer extends DefaultListCellRenderer
 		}
 
 		return panel;
+	}
+
+	public String toString(Place element)
+	{
+		StringBuilder buffer = new StringBuilder();
+		Set<String> names = new HashSet<>();
+		names.add(element.getName());
+		buffer.append(element.getName());
+
+		int n = 0;
+		for (String name : element.getAltNames().values()) {
+			if (!names.contains(name)) {
+				if (n++ == 0) {
+					buffer.append(" (");
+				} else {
+					buffer.append(", ");
+				}
+				names.add(name);
+				buffer.append(name);
+			}
+		}
+		if (n > 0) {
+			buffer.append(")");
+		}
+
+		return buffer.toString();
 	}
 
 }

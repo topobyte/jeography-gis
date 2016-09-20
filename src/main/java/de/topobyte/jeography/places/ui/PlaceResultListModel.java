@@ -17,10 +17,7 @@
 
 package de.topobyte.jeography.places.ui;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.swing.SortOrder;
 import javax.swing.event.ListDataEvent;
@@ -29,18 +26,15 @@ import de.topobyte.jeography.places.Dao;
 import de.topobyte.jeography.places.model.Place;
 import de.topobyte.luqe.iface.IConnection;
 import de.topobyte.luqe.iface.QueryException;
-import de.topobyte.swing.util.DefaultElementWrapper;
-import de.topobyte.swing.util.ElementWrapper;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class PlaceResultListModel extends
-		AbstractResultListModel<ElementWrapper<Place>> implements
-		UpdateableDataListModel<ElementWrapper<Place>>
+public class PlaceResultListModel extends AbstractResultListModel<Place>
+		implements UpdateableDataListModel<Place>
 {
 
-	private List<ElementWrapper<Place>> results;
+	private List<Place> results;
 	private static final int max = 100;
 
 	private IConnection connection;
@@ -55,19 +49,12 @@ public class PlaceResultListModel extends
 	@Override
 	public void update(String textNew) throws QueryException
 	{
-		List<Place> list = dao.getPlaces(textNew, SortOrder.ASCENDING, max, 0);
-
-		List<ElementWrapper<Place>> newResults = new ArrayList<>();
-		for (Place poi : list) {
-			newResults.add(new ElementWrapperImpl(poi));
-		}
-		results = newResults;
-
+		results = dao.getPlaces(textNew, SortOrder.ASCENDING, max, 0);
 		fire(new ListDataEvent(this, ListDataEvent.CONTENTS_CHANGED, 0, 0));
 	}
 
 	@Override
-	public ElementWrapper<Place> getElementAt(int index)
+	public Place getElementAt(int index)
 	{
 		if (results.size() <= index) {
 			return null;
@@ -87,49 +74,7 @@ public class PlaceResultListModel extends
 	@Override
 	public Place getObject(int index)
 	{
-		return results.get(index).getElement();
-	}
-
-	public String toString(Place element)
-	{
-		StringBuilder buffer = new StringBuilder();
-		Set<String> names = new HashSet<>();
-		names.add(element.getName());
-		buffer.append(element.getName());
-
-		int n = 0;
-		for (String name : element.getAltNames().values()) {
-			if (!names.contains(name)) {
-				if (n++ == 0) {
-					buffer.append(" (");
-				} else {
-					buffer.append(", ");
-				}
-				names.add(name);
-				buffer.append(name);
-			}
-		}
-		if (n > 0) {
-			buffer.append(")");
-		}
-
-		return buffer.toString();
-	}
-
-	private class ElementWrapperImpl extends DefaultElementWrapper<Place>
-	{
-
-		public ElementWrapperImpl(Place element)
-		{
-			super(element);
-		}
-
-		@Override
-		public String toString()
-		{
-			return PlaceResultListModel.this.toString(element);
-		}
-
+		return results.get(index);
 	}
 
 }

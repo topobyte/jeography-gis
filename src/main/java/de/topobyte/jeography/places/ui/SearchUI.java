@@ -54,8 +54,8 @@ public class SearchUI extends JPanel implements ActionListener,
 
 	final static Logger logger = LoggerFactory.getLogger(SearchUI.class);
 
-	ActivatableJList listResults;
-	UpdateableDataListModel resultModel;
+	ActivatableJList<Place> listResults;
+	UpdateableDataListModel<Place> resultModel;
 
 	private final IConnection connex;
 
@@ -68,7 +68,7 @@ public class SearchUI extends JPanel implements ActionListener,
 		resultModel = new PlaceResultListModel(connex);
 
 		JScrollPane jspPlaces = new JScrollPane();
-		listResults = new ActivatableJList(resultModel);
+		listResults = new ActivatableJList<>(resultModel);
 		jspPlaces.setViewportView(listResults);
 
 		listResults.addActionListener(this);
