@@ -77,7 +77,7 @@ public class Dao
 				"map_index", Tables.COLUMN_FTS_ID, Tables.COLUMN_ID));
 
 		connection.execute("create virtual table " + Tables.TABLE_NAME_FTS
-				+ " using fts3(" + Tables.SEARCH.getColumn(1).getName()
+				+ " using fts4(" + Tables.SEARCH.getColumn(1).getName()
 				+ " TEXT);");
 	}
 
