@@ -165,6 +165,8 @@ public class TestBuildDatabase
 			}
 		}
 
+		dao.populateSearchTable();
+
 		/*
 		 * Close connection
 		 */

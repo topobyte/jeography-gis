@@ -199,28 +199,56 @@ public class Dao
 		long id = results.getLong(1);
 		results.close();
 
-		List<String> names = new ArrayList<>();
-
-		if (name != null) {
-			names.add(name);
-		}
-		for (String language : tablePlaces.getLanguages()) {
-			String altName = altNames.get(language);
-			if (altName == null) {
-				continue;
-			}
-			names.add(altName);
-		}
-
-		insertSearchNames(id, names);
-
 		return id;
+	}
+
+	public void populateSearchTable() throws QueryException
+	{
+		Select select = new Select(tablePlaces);
+		select.order(new SingleOrder(select.getMainTable(), Tables.COLUMN_NAME,
+				OrderDirection.ASC));
+		IPreparedStatement stmt = connection.prepareStatement(select.sql());
+
+		IResultSet results = stmt.executeQuery();
+		while (results.next()) {
+			long id = results.getLong(idxPlacesId);
+			String name = results.getString(idxPlacesName);
+			Map<String, String> altNames = new HashMap<>();
+
+			for (String language : languages) {
+				int idx = tablePlaces
+						.getColumnIndexSafe(Tables.COLUMN_PREFIX_NAME
+								+ language);
+				String altName = results.getString(idx);
+				if (altName == null) {
+					continue;
+				}
+				altNames.put(language, altName);
+			}
+
+			List<String> names = new ArrayList<>();
+
+			if (name != null) {
+				names.add(name);
+			}
+			for (String language : tablePlaces.getLanguages()) {
+				String altName = altNames.get(language);
+				if (altName == null) {
+					continue;
+				}
+				names.add(altName);
+			}
+
+			insertSearchNames(id, names);
+		}
+		results.close();
+
 	}
 
 	private IPreparedStatement s2;
 	private IPreparedStatement s3;
 
-	private void insertSearchNames(long id, List<String> names)
+	public void insertSearchNames(long id, List<String> names)
 			throws QueryException
 	{
 		if (s2 == null) {
@@ -260,8 +288,7 @@ public class Dao
 				Comparison.LIKE);
 
 		select.where(condition);
-		select.order(new SingleOrder(select.getMainTable(), Tables.COLUMN_NAME,
-				OrderDirection.ASC));
+		select.order(new SingleOrder(search, "rowid", OrderDirection.ASC));
 		select.limit(new LimitOffset(max, offset));
 
 		IPreparedStatement stmt = connection.prepareStatement(select.sql());
