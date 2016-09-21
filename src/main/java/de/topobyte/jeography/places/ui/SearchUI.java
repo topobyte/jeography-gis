@@ -37,6 +37,7 @@ import javax.swing.event.ListSelectionListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.topobyte.jeography.places.Dao;
 import de.topobyte.jeography.places.model.Place;
 import de.topobyte.luqe.iface.IConnection;
 import de.topobyte.luqe.iface.QueryException;
@@ -59,11 +60,15 @@ public class SearchUI extends JPanel implements ActionListener,
 	private JPanel statusBar;
 	private JLabel statusLabel;
 
+	private SearchWorker worker;
+
+	private String query = null;
+
 	public SearchUI(IConnection connection) throws QueryException
 	{
 		final JTextField input = new JTextField("");
 
-		resultModel = new PlaceResultListModel(connection);
+		resultModel = new PlaceResultListModel();
 
 		JScrollPane jspPlaces = new JScrollPane();
 		listResults = new ActivatableJList<>(resultModel);
@@ -108,12 +113,33 @@ public class SearchUI extends JPanel implements ActionListener,
 		c.weighty = 0.0;
 		add(statusBar, c);
 
+		Dao dao = new Dao(connection);
+		worker = new SearchWorker(this, dao);
+		Thread thread = new Thread(worker);
+		thread.start();
+
 		update(input.getText());
+	}
+
+	private synchronized void setQuery(String query)
+	{
+		this.query = query;
+	}
+
+	synchronized String getQuery()
+	{
+		return query;
 	}
 
 	protected void update(String text) throws QueryException
 	{
-		resultModel.update(text);
+		setQuery(text);
+		worker.kickOff();
+	}
+
+	protected void updateWithResults(String text, List<Place> results)
+	{
+		resultModel.update(results);
 		String patternNumResults = resultModel.hasMaxResults() ? ">= %d" : "%d";
 		String numResults = String.format(patternNumResults,
 				resultModel.getSize());

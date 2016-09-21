@@ -17,18 +17,12 @@
 
 package de.topobyte.jeography.places.ui;
 
-import java.util.List;
-
-import javax.swing.ListModel;
-
-import de.topobyte.luqe.iface.QueryException;
-
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public interface UpdateableListModel<E> extends ListModel<E>
+public class SearchConfig
 {
 
-	public void update(List<E> data) throws QueryException;
+	public static int MAX_RESULTS = 100;
 
 }

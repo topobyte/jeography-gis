@@ -17,15 +17,12 @@
 
 package de.topobyte.jeography.places.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.SortOrder;
 import javax.swing.event.ListDataEvent;
 
-import de.topobyte.jeography.places.Dao;
 import de.topobyte.jeography.places.model.Place;
-import de.topobyte.luqe.iface.IConnection;
-import de.topobyte.luqe.iface.QueryException;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -34,28 +31,18 @@ public class PlaceResultListModel extends AbstractResultListModel<Place>
 		implements UpdateableDataListModel<Place>
 {
 
-	private List<Place> results;
-	private static final int max = 100;
-
-	private IConnection connection;
-	private Dao dao;
-
-	public PlaceResultListModel(IConnection connection) throws QueryException
-	{
-		this.connection = connection;
-		dao = new Dao(connection);
-	}
+	private List<Place> results = new ArrayList<>();
 
 	@Override
-	public void update(String textNew) throws QueryException
+	public void update(List<Place> newResults)
 	{
-		results = dao.getPlaces(textNew, SortOrder.ASCENDING, max, 0);
+		results = newResults;
 		fire(new ListDataEvent(this, ListDataEvent.CONTENTS_CHANGED, 0, 0));
 	}
 
 	public boolean hasMaxResults()
 	{
-		return getSize() >= max;
+		return getSize() >= SearchConfig.MAX_RESULTS;
 	}
 
 	@Override
@@ -73,7 +60,7 @@ public class PlaceResultListModel extends AbstractResultListModel<Place>
 		if (results == null) {
 			return 0;
 		}
-		return results.size() > max ? max : results.size();
+		return results.size();
 	}
 
 	@Override
