@@ -159,7 +159,7 @@ public class DatabaseBuilder
 
 		for (String type : types) {
 			int id = dao.addType(type);
-			System.out.println("type " + id + " " + type);
+			logger.info("type " + id + " " + type);
 			typeToId.put(type, id);
 		}
 	}
@@ -179,7 +179,7 @@ public class DatabaseBuilder
 					Files.newInputStream(file), FileFormat.TBO, false);
 			InMemoryListDataSet data = ListDataSetLoader.read(reader, true,
 					true, true);
-			System.out.println(type + ": " + data.getNodes().size());
+			logger.info(type + ": " + data.getNodes().size());
 			for (OsmNode node : data.getNodes()) {
 				Map<String, String> tags = OsmModelUtil.getTagsAsMap(node);
 				String name = tags.get("name");
