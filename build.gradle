@@ -43,7 +43,7 @@ dependencies {
     compile 'de.topobyte:jsqltables:0.0.8'
 
     compile 'de.topobyte:luqe-jdbc:0.0.6'
-    runtime 'org.xerial:sqlite-jdbc:3.8.9.1'
+    runtime 'org.xerial:sqlite-jdbc:3.8.11.2'
 
     compile 'org.apache.xmlgraphics:batik-transcoder:1.7'
     compile 'org.apache.xmlgraphics:batik-codec:1.7'
