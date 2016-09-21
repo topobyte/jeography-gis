@@ -50,7 +50,7 @@ public class TestSearchUI
 
 		IConnection connection = new JdbcConnection(connex);
 
-		JFrame frame = new JFrame();
+		JFrame frame = new JFrame("Search");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		SearchUI searchUI = new SearchUI(connection);
