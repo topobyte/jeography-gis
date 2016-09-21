@@ -18,11 +18,8 @@
 package de.topobyte.jeography.places;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,16 +29,12 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.Lists;
+
+import de.topobyte.jeography.places.setup.DatabaseBuilder;
+import de.topobyte.jeography.places.setup.DatabaseBuildingException;
 import de.topobyte.luqe.iface.QueryException;
-import de.topobyte.luqe.jdbc.JdbcConnection;
 import de.topobyte.osm4j.core.access.OsmInputException;
-import de.topobyte.osm4j.core.access.OsmReader;
-import de.topobyte.osm4j.core.dataset.InMemoryListDataSet;
-import de.topobyte.osm4j.core.dataset.ListDataSetLoader;
-import de.topobyte.osm4j.core.model.iface.OsmNode;
-import de.topobyte.osm4j.core.model.util.OsmModelUtil;
-import de.topobyte.osm4j.utils.FileFormat;
-import de.topobyte.osm4j.utils.OsmIoUtils;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -52,127 +45,31 @@ public class TestBuildDatabase
 	final static Logger logger = LoggerFactory
 			.getLogger(TestBuildDatabase.class);
 
-	public static void main(String[] args) throws IOException,
-			OsmInputException, QueryException, SQLException
+	public static void main(String[] args) throws DatabaseBuildingException,
+			SQLException, QueryException, IOException, OsmInputException
+
 	{
 		Path dir = Paths.get("/raid/osm/planet/planet-derivatives/160516");
-		String[] types = { "country", "state", "county", "city", "town",
-				"village", "region", "island" };
 
 		Path pathDatabase = Paths.get("/tmp/places.sqlite");
-
-		try {
-			Class.forName("org.sqlite.JDBC");
-		} catch (ClassNotFoundException e) {
-			logger.error("sqlite driver not found", e);
-			System.exit(1);
-		}
-
-		/*
-		 * Setup database connection
-		 */
-
-		logger.debug("configuring output connection");
-		Connection jdbcConnection = null;
-		try {
-			jdbcConnection = DriverManager.getConnection("jdbc:sqlite:"
-					+ pathDatabase);
-			jdbcConnection.setAutoCommit(false);
-		} catch (SQLException e) {
-			logger.error("unable to create jdbc connection", e);
-			System.exit(1);
-		}
-		JdbcConnection connection = null;
-		try {
-			connection = new JdbcConnection(jdbcConnection);
-		} catch (SQLException e) {
-			logger.error("unable to create jdbc connection", e);
-			System.exit(1);
-		}
-
-		jdbcConnection.setAutoCommit(false);
 
 		List<String> languages = new ArrayList<>();
 		languages.add("en");
 		languages.add("de");
 
-		Dao.createSchema(connection, languages);
+		List<String> types = Lists.newArrayList("country", "state", "county",
+				"city", "town", "village", "region", "island");
 
-		Dao dao = new Dao(connection);
-
-		/*
-		 * Add metadata
-		 */
-
-		dao.addMetadata("schema-version", "1");
-
-		/*
-		 * Insert place types
-		 */
-
-		Map<String, Integer> typeToId = new HashMap<>();
-
+		Map<String, Path> files = new HashMap<>();
 		for (String type : types) {
-			int id = dao.addType(type);
-			System.out.println("type " + id + " " + type);
-			typeToId.put(type, id);
-		}
-
-		/*
-		 * Read and insert data
-		 */
-
-		for (String type : types) {
-			int typeId = typeToId.get(type);
-
 			String filename = String.format("place-%s.tbo", type);
 			Path file = dir.resolve(filename);
-
-			OsmReader reader = OsmIoUtils.setupOsmReader(
-					Files.newInputStream(file), FileFormat.TBO, false);
-			InMemoryListDataSet data = ListDataSetLoader.read(reader, true,
-					true, true);
-			System.out.println(type + ": " + data.getNodes().size());
-			for (OsmNode node : data.getNodes()) {
-				Map<String, String> tags = OsmModelUtil.getTagsAsMap(node);
-				String name = tags.get("name");
-				Map<String, String> altNames = new HashMap<>();
-				for (String language : languages) {
-					String langName = tags.get("name:" + language);
-					if (langName == null) {
-						continue;
-					}
-					altNames.put(language, langName);
-				}
-				if (name == null && altNames.isEmpty()) {
-					continue;
-				}
-				if (name == null) {
-					// Make sure that name != null. From all alternative names
-					// choose the first non-null name in order of the languages
-					// array.
-					for (String language : languages) {
-						String altName = altNames.get(language);
-						if (altName == null) {
-							continue;
-						}
-						name = altName;
-						break;
-					}
-				}
-				dao.addPlace(typeId, name, altNames, node.getLongitude(),
-						node.getLatitude());
-			}
+			files.put(type, file);
 		}
 
-		dao.populateSearchTable();
-
-		/*
-		 * Close connection
-		 */
-
-		jdbcConnection.commit();
-		jdbcConnection.close();
+		DatabaseBuilder databaseBuilder = new DatabaseBuilder(pathDatabase,
+				languages, types, files);
+		databaseBuilder.build();
 	}
 
 }
