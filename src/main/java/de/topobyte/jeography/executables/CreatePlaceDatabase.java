@@ -24,7 +24,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +31,8 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 
 import de.topobyte.jeography.places.setup.DatabaseBuilder;
@@ -58,6 +59,8 @@ public class CreatePlaceDatabase extends AbstractExecutableSingleInputFile
 			.getLogger(CreatePlaceDatabase.class);
 
 	private static final String OPTION_OUTPUT = "output";
+	private static final String OPTION_LANGUAGES = "langs";
+	private static final String OPTION_TYPES = "types";
 
 	public static void main(String[] args) throws DatabaseBuildingException,
 			SQLException, QueryException, IOException, OsmInputException
@@ -77,10 +80,25 @@ public class CreatePlaceDatabase extends AbstractExecutableSingleInputFile
 		return CreatePlaceDatabase.class.getSimpleName() + " [args]";
 	}
 
+	private static List<String> DEFAULT_LANGUAGES = Lists.newArrayList("en",
+			"de");
+
+	private static List<String> DEFAULT_TYPES = Lists.newArrayList("country",
+			"state", "county", "city", "town", "village", "region", "island");
+
+	private Joiner joiner = Joiner.on(", ");
+
+	private List<String> languages = DEFAULT_LANGUAGES;
+	private List<String> types = DEFAULT_TYPES;
+
 	public CreatePlaceDatabase()
 	{
 		// @formatter:off
 		OptionHelper.addL(options, OPTION_OUTPUT, true, true, "database output file");
+		OptionHelper.addL(options, OPTION_LANGUAGES, true, false, "languages to use"
+				+ " (default value: " + joiner.join(DEFAULT_LANGUAGES) + ")");
+		OptionHelper.addL(options, OPTION_TYPES, true, false, "place types to use"
+				+ " (default value: " + joiner.join(DEFAULT_TYPES) + ")");
 		// @formatter:on
 	}
 
@@ -88,18 +106,27 @@ public class CreatePlaceDatabase extends AbstractExecutableSingleInputFile
 	protected void setup(String[] args)
 	{
 		super.setup(args);
+
 		pathDatabase = Paths.get(line.getOptionValue(OPTION_OUTPUT));
+
+		Splitter splitter = Splitter.on(",").trimResults().omitEmptyStrings();
+
+		if (line.hasOption(OPTION_LANGUAGES)) {
+			String value = line.getOptionValue(OPTION_LANGUAGES);
+			languages = splitter.splitToList(value);
+		}
+		logger.info("Using languages: " + joiner.join(languages));
+
+		if (line.hasOption(OPTION_TYPES)) {
+			String value = line.getOptionValue(OPTION_TYPES);
+			types = splitter.splitToList(value);
+		}
+		logger.info("Using types: " + joiner.join(types));
 	}
 
 	public void execute() throws DatabaseBuildingException, SQLException,
 			QueryException, IOException, OsmInputException
 	{
-		List<String> languages = new ArrayList<>();
-		languages.add("en");
-		languages.add("de");
-
-		List<String> types = Lists.newArrayList("country", "state", "county",
-				"city", "town", "village", "region", "island");
 
 		/*
 		 * Build temporary data
