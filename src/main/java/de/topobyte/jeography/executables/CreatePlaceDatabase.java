@@ -24,9 +24,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -122,12 +125,37 @@ public class CreatePlaceDatabase extends AbstractExecutableSingleInputFile
 			types = splitter.splitToList(value);
 		}
 		logger.info("Using types: " + joiner.join(types));
+
+		List<String> duplicateLanguages = duplicates(languages);
+		if (!duplicateLanguages.isEmpty()) {
+			logger.error("duplicate languages : " + duplicateLanguages);
+			System.exit(1);
+		}
+
+		List<String> duplicateTypes = duplicates(types);
+		if (!duplicateTypes.isEmpty()) {
+			logger.error("duplicate types : " + duplicateTypes);
+			System.exit(1);
+		}
+	}
+
+	private List<String> duplicates(List<String> values)
+	{
+		List<String> duplicates = new ArrayList<>();
+		Set<String> set = new HashSet<>();
+		for (String value : values) {
+			if (set.contains(value)) {
+				duplicates.add(value);
+			} else {
+				set.add(value);
+			}
+		}
+		return duplicates;
 	}
 
 	public void execute() throws DatabaseBuildingException, SQLException,
 			QueryException, IOException, OsmInputException
 	{
-
 		/*
 		 * Build temporary data
 		 */
