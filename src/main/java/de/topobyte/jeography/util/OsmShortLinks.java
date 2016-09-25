@@ -38,8 +38,8 @@ public class OsmShortLinks
 	public static String encode(double lon, double lat, int zoom)
 	{
 		long scale = 1L << 32;
-		long x = (long) ((lon + 180) * scale / 360);
-		long y = (long) ((lat + 90) * scale / 180);
+		long x = (long) ((lon + 180) / 360 * scale);
+		long y = (long) ((lat + 90) / 180 * scale);
 		long code = interleaveBits(x, y);
 
 		StringBuilder buf = new StringBuilder();
