@@ -17,33 +17,46 @@
 
 package de.topobyte.jeography.viewer.gotolocation;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
 public class TestParsers
 {
 
-	public static void main(String[] args)
+	private Location noZoom = new Location(-117.921046, 33.810398);
+	private Location withZoom = new Location(-117.921046, 33.810398, 15);
+
+	private void assertEquals(Location expected, Location actual, double delta)
 	{
-		testLonLat();
-		testOsm();
-		testOsm2();
+		Assert.assertEquals(expected.hasZoom(), actual.hasZoom());
+		if (actual.hasZoom()) {
+			Assert.assertEquals(expected.getZoom(), actual.getZoom());
+		}
+		Assert.assertEquals(expected.getLon(), actual.getLon(), delta);
+		Assert.assertEquals(expected.getLat(), actual.getLat(), delta);
 	}
 
-	private static void testLonLat()
+	@Test
+	public void testLonLat()
 	{
+		double delta = 0.000001;
 		PatternRecognizer recognizer = new PatternRecognizerLonLat();
 
 		String[] strings = { "33.810398,-117.921046", };
 
 		for (String string : strings) {
 			Location location = recognizer.parse(string);
-			System.out.println(location);
+			assertEquals(noZoom, location, delta);
 		}
 	}
 
-	private static void testOsm()
+	@Test
+	public void testOsm()
 	{
+		double delta = 0.000001;
 		PatternRecognizer recognizer = new PatternRecognizerOsm();
 
 		String[] strings = {
@@ -56,25 +69,28 @@ public class TestParsers
 
 		for (String string : strings) {
 			Location location = recognizer.parse(string);
-			System.out.println(location);
+			assertEquals(withZoom, location, delta);
 		}
 	}
 
-	private static void testOsm2()
+	@Test
+	public void testOsm2()
 	{
+		double delta = 0.000001;
 		PatternRecognizer recognizer = new PatternRecognizerOsm2();
 
 		String[] strings = {
-				"http://www.openstreetmap.org/?lat=33.81211&lon=-117.91914&zoom=16",
-				"http://openstreetmap.org/?lat=33.81211&lon=-117.91914&zoom=16",
-				"https://www.openstreetmap.org/?lat=33.81211&lon=-117.91914&zoom=16",
-				"https://openstreetmap.org/?lat=33.81211&lon=-117.91914&zoom=16",
-				"www.openstreetmap.org/?lat=33.81211&lon=-117.91914&zoom=16",
-				"openstreetmap.org/?lat=33.81211&lon=-117.91914&zoom=16" };
+				"http://www.openstreetmap.org/?lat=33.810398&lon=-117.921046&zoom=15",
+				"http://openstreetmap.org/?lat=33.810398&lon=-117.921046&zoom=15",
+				"https://www.openstreetmap.org/?lat=33.810398&lon=-117.921046&zoom=15",
+				"https://openstreetmap.org/?lat=33.810398&lon=-117.921046&zoom=15",
+				"www.openstreetmap.org/?lat=33.810398&lon=-117.921046&zoom=15",
+				"openstreetmap.org/?lat=33.810398&lon=-117.921046&zoom=15" };
 
 		for (String string : strings) {
 			Location location = recognizer.parse(string);
-			System.out.println(location);
+			assertEquals(withZoom, location, delta);
 		}
 	}
+
 }
