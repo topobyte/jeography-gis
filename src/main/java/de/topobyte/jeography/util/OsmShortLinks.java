@@ -17,6 +17,11 @@
 
 package de.topobyte.jeography.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import de.topobyte.jeography.viewer.gotolocation.Location;
+
 /**
  * This class is based on LGPL code by Matt Amos <zerebubuth@gmail.com>
  * originally part of the openstreetmap-website project. See <a href=
@@ -34,6 +39,14 @@ public class OsmShortLinks
 			'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
 			'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6',
 			'7', '8', '9', '_', '~' };
+
+	private static final Map<Character, Integer> REVERSE = new HashMap<>();
+
+	static {
+		for (int i = 0; i < ARRAY.length; i++) {
+			REVERSE.put(ARRAY[i], i);
+		}
+	}
 
 	public static String encode(double lon, double lat, int zoom)
 	{
@@ -73,6 +86,62 @@ public class OsmShortLinks
 			c = (c << 1) | ((y >> i) & 1);
 		}
 		return c;
+	}
+
+	public static Location decode(String str)
+	{
+		long x = 0, y = 0;
+		int z = 0;
+		int zOffset = 0;
+
+		// Support old shortlinks with @
+		str = str.replaceAll("@", "~");
+
+		for (char c : str.toCharArray()) {
+			if (c == '-') {
+				zOffset += 1;
+				continue;
+			}
+			Integer index = REVERSE.get(c);
+			if (index == null) {
+				throw new IllegalArgumentException("Invalid character: '" + c
+						+ "'");
+			}
+			int t = index;
+			for (int i = 0; i < 3; i++) {
+				x <<= 1;
+				if ((t & 32) != 0) {
+					x |= 1;
+				}
+				t <<= 1;
+
+				y <<= 1;
+				if ((t & 32) != 0) {
+					y |= 1;
+				}
+				t <<= 1;
+			}
+			z += 3;
+		}
+		x <<= 32 - z;
+		y <<= 32 - z;
+
+		double scale = 1L << 32;
+		double lon = (x / scale * 360d) - 180;
+		double lat = (y / scale * 180d) - 90;
+
+		int zoom = z - 8;
+		if (zOffset == 0) {
+			// do nothing
+		} else if (zOffset == 1) {
+			zoom -= 2;
+		} else if (zOffset == 2) {
+			zoom -= 1;
+		} else {
+			throw new IllegalArgumentException("Too many '-' signs");
+		}
+
+		return new Location(lon, lat, zoom);
 	}
 
 }
