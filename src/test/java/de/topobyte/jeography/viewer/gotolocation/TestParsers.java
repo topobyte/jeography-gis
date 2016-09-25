@@ -98,8 +98,10 @@ public class TestParsers
 		}
 	}
 
-	private String[] shortLinkFormats = { "http://osm.org/go/%s", //
+	private String[] shortLinkFormats = { "osm.org/go/%s", //
+			"http://osm.org/go/%s", //
 			"https://osm.org/go/%s", //
+			"openstreetmap.org/go/%s", //
 			"http://openstreetmap.org/go/%s", //
 			"https://openstreetmap.org/go/%s", //
 			"http://osm.org/go/%s?m", //
