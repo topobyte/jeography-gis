@@ -98,7 +98,7 @@ public class OsmShortLinks
 		str = str.replaceAll("@", "~");
 
 		for (char c : str.toCharArray()) {
-			if (c == '-') {
+			if (c == '-' || c == '=') {
 				zOffset += 1;
 				continue;
 			}
