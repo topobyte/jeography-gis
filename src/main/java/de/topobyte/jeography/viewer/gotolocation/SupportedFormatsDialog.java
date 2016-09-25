@@ -67,7 +67,8 @@ public class SupportedFormatsDialog extends JDialog
 		String[] formats = {
 				"lat,lon → e.g. 33.810398,-117.921046",
 				"[http[s]://][www.]openstreetmap.org/#map=15/33.810398/-117.921046",
-				"[http[s]://][www.]openstreetmap.org/?lat=33.810398&lon=-117.921046&zoom=15" };
+				"[http[s]://][www.]openstreetmap.org/?lat=33.810398&lon=-117.921046&zoom=15",
+				"[http[s]://]osm.org/go/21ABCD--", };
 		for (String format : formats) {
 			JLabel l = new JLabel(format);
 			BorderHelper.addEmptyBorder(l, 5, 5, 5, 5);

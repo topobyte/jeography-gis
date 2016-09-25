@@ -179,6 +179,7 @@ public class GotoDialog extends JDialog
 		recognizers.add(new PatternRecognizerLonLat());
 		recognizers.add(new PatternRecognizerOsm());
 		recognizers.add(new PatternRecognizerOsm2());
+		recognizers.add(new PatternRecognizerShortLink());
 	}
 
 	private void tryToParse()

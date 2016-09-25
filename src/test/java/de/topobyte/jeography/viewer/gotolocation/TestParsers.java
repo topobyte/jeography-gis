@@ -17,8 +17,13 @@
 
 package de.topobyte.jeography.viewer.gotolocation;
 
+import java.util.Random;
+
 import org.junit.Assert;
 import org.junit.Test;
+
+import de.topobyte.jeography.util.OsmShortLinks;
+import de.topobyte.jeography.util.TestCase;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -93,4 +98,38 @@ public class TestParsers
 		}
 	}
 
+	private String[] shortLinkFormats = { "http://osm.org/go/%s", //
+			"https://osm.org/go/%s", //
+			"http://openstreetmap.org/go/%s", //
+			"https://openstreetmap.org/go/%s", //
+			"http://osm.org/go/%s?m", //
+			"http://osm.org/go/%s?layers=T&m", //
+	};
+
+	@Test
+	public void testShortLink()
+	{
+		PatternRecognizer recognizer = new PatternRecognizerShortLink();
+
+		Random random = new Random(0);
+		for (int zoom = 1; zoom <= 18; zoom++) {
+			double digits = Math.max(0, (zoom) / 3d);
+			double delta = 5 * Math.pow(0.1, digits);
+
+			for (int i = 0; i < 100; i++) {
+				double lon = random.nextDouble() * 360 - 180;
+				double lat = random.nextDouble() * 180 - 90;
+				String result = OsmShortLinks.encode(lon, lat, zoom);
+				TestCase test = new TestCase(lon, lat, zoom, result);
+
+				Location expected = new Location(test.lon, test.lat, test.zoom);
+
+				for (String format : shortLinkFormats) {
+					String link = String.format(format, result);
+					Location location = recognizer.parse(link);
+					assertEquals(expected, location, delta);
+				}
+			}
+		}
+	}
 }

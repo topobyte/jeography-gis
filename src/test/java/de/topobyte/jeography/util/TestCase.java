@@ -17,13 +17,13 @@
 
 package de.topobyte.jeography.util;
 
-class TestCase
+public class TestCase
 {
 
-	double lon;
-	double lat;
-	int zoom;
-	String result;
+	public double lon;
+	public double lat;
+	public int zoom;
+	public String result;
 
 	public TestCase(double lon, double lat, int zoom, String result)
 	{
