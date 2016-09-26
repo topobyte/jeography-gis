@@ -104,3 +104,15 @@ afterEvaluate { project ->
         }
     }
 }
+
+task jarMain(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'de.topobyte.jeography.executables.JeographyGIS'
+    }
+    baseName = 'jeography'
+    from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+task fatJars(dependsOn: ['jarMain']) {
+}
