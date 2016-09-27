@@ -33,10 +33,10 @@ import java.awt.image.BufferedImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.topboyte.interactiveview.ZoomChangedListener;
 import de.topobyte.adt.geo.BBox;
 import de.topobyte.adt.geo.Coordinate;
 import de.topobyte.awt.util.GraphicsUtil;
+import de.topobyte.interactiveview.ZoomChangedListener;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileOnWindow;
 import de.topobyte.jeography.core.TileUtil;

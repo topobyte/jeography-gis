@@ -24,7 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
-import de.topboyte.interactiveview.ZoomChangedListener;
+import de.topobyte.interactiveview.ZoomChangedListener;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)

@@ -29,7 +29,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import de.topboyte.interactiveview.ZoomChangedListener;
+import de.topobyte.interactiveview.ZoomChangedListener;
 import de.topobyte.jeography.util.ImageLoader;
 
 /**

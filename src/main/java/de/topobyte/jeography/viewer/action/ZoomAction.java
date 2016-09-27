@@ -24,7 +24,7 @@ import javax.swing.Action;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.topboyte.interactiveview.ZoomChangedListener;
+import de.topobyte.interactiveview.ZoomChangedListener;
 import de.topobyte.jeography.viewer.core.Viewer;
 
 /**
