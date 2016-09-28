@@ -32,9 +32,9 @@ public class FileCache<T>
 
 	final static Logger logger = LoggerFactory.getLogger(FileCache.class);
 
-	private PathResoluter<T> resolver;
+	private CachePathProvider<T> resolver;
 
-	public FileCache(PathResoluter<T> resolver)
+	public FileCache(CachePathProvider<T> resolver)
 	{
 		this.resolver = resolver;
 	}

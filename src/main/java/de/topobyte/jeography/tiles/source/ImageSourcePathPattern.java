@@ -28,7 +28,7 @@ import javax.imageio.ImageIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.topobyte.jeography.tiles.PathResoluter;
+import de.topobyte.jeography.tiles.CachePathProvider;
 
 /**
  * @param <T>
@@ -42,7 +42,7 @@ public class ImageSourcePathPattern<T> implements ImageSource<T, BufferedImage>
 	static final Logger logger = LoggerFactory
 			.getLogger(ImageSourcePathPattern.class);
 
-	private PathResoluter<T> resolver;
+	private CachePathProvider<T> resolver;
 
 	/**
 	 * An ImageSource implementation based that works with PathResoluter
@@ -50,7 +50,7 @@ public class ImageSourcePathPattern<T> implements ImageSource<T, BufferedImage>
 	 * @param resolver
 	 *            the path generator
 	 */
-	public ImageSourcePathPattern(PathResoluter<T> resolver)
+	public ImageSourcePathPattern(CachePathProvider<T> resolver)
 	{
 		this.resolver = resolver;
 	}
@@ -61,7 +61,7 @@ public class ImageSourcePathPattern<T> implements ImageSource<T, BufferedImage>
 	 * @param resolver
 	 *            the resolver to use
 	 */
-	public void setPathResoluter(PathResoluter<T> resolver)
+	public void setPathResoluter(CachePathProvider<T> resolver)
 	{
 		this.resolver = resolver;
 	}

@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.topobyte.jeography.tiles.BufferedImageAndBytes;
-import de.topobyte.jeography.tiles.UrlResoluter;
+import de.topobyte.jeography.tiles.UrlProvider;
 
 /**
  * @param <T>
@@ -37,7 +37,7 @@ public class ImageProviderHttp<T> extends
 
 	ImageSourceUrlPattern<T> imageSource;
 
-	public ImageProviderHttp(UrlResoluter<T> resolver, int nThreads, int nTries)
+	public ImageProviderHttp(UrlProvider<T> resolver, int nThreads, int nTries)
 	{
 		super(nThreads);
 		imageSource = new ImageSourceUrlPattern<>(resolver, nTries);

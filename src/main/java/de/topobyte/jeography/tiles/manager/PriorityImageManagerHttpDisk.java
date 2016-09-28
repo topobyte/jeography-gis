@@ -21,8 +21,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.topobyte.jeography.tiles.PathResoluter;
-import de.topobyte.jeography.tiles.UrlResoluter;
+import de.topobyte.jeography.tiles.CachePathProvider;
+import de.topobyte.jeography.tiles.UrlProvider;
 import de.topobyte.jeography.tiles.source.ImageSource;
 import de.topobyte.jeography.tiles.source.ImageSourcePathPattern;
 import de.topobyte.jeography.tiles.source.ImageSourceUrlPattern;
@@ -52,7 +52,7 @@ public class PriorityImageManagerHttpDisk<T> extends
 	 * @param source
 	 *            the ImageSource to use for creation of unknown requests.
 	 */
-	public <X extends PathResoluter<T> & UrlResoluter<T>> PriorityImageManagerHttpDisk(
+	public <X extends CachePathProvider<T> & UrlProvider<T>> PriorityImageManagerHttpDisk(
 			int nThreads, int cacheSize, X resolver)
 	{
 		super(nThreads, cacheSize, null);

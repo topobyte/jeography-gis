@@ -28,7 +28,7 @@ import javax.swing.JFrame;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileOnWindow;
 import de.topobyte.jeography.core.mapwindow.MapWindow;
-import de.topobyte.jeography.tiles.TileResoluterUrlDisk;
+import de.topobyte.jeography.tiles.TileUrlAndCachePathProvider;
 import de.topobyte.jeography.tiles.manager.ImageManagerSourceRam;
 import de.topobyte.jeography.tiles.source.ImageSourceUrlPattern;
 import de.topobyte.jeography.tiles.source.UnwrappingImageSource;
@@ -108,8 +108,8 @@ public class CustomViewerTest
 
 		private void createManagerFromUrl(String tileUrl)
 		{
-			TileResoluterUrlDisk resolver = new TileResoluterUrlDisk(null,
-					tileUrl);
+			TileUrlAndCachePathProvider resolver = new TileUrlAndCachePathProvider(
+					null, tileUrl);
 			source = new ImageSourceUrlPattern<>(resolver, 3);
 			UnwrappingImageSource<Tile> unwrapper = new UnwrappingImageSource<>(
 					source);
@@ -119,8 +119,8 @@ public class CustomViewerTest
 
 		public void setTileUrl(String tileUrl)
 		{
-			TileResoluterUrlDisk resolver = new TileResoluterUrlDisk(null,
-					tileUrl);
+			TileUrlAndCachePathProvider resolver = new TileUrlAndCachePathProvider(
+					null, tileUrl);
 			source.setPathResoluter(resolver);
 			manager.cancelJobs();
 			manager.setIgnorePendingProductions();

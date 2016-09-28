@@ -15,18 +15,32 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.viewer.selection.download;
-
-import java.io.File;
+package de.topobyte.jeography.tiles;
 
 import de.topobyte.jeography.core.Tile;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public interface TilePathResoluter
+public class TileCachePathProvider implements CachePathProvider<Tile>
 {
 
-	public File getPath(Tile tile);
+	private String cacheFileTemplate;
+
+	/**
+	 * @param cacheDir
+	 *            the dir to store cache images.
+	 */
+	public TileCachePathProvider(String cacheDir)
+	{
+		cacheFileTemplate = cacheDir + "/%d_%d_%d.png";
+	}
+
+	@Override
+	public String getCacheFile(Tile tile)
+	{
+		return String.format(cacheFileTemplate, tile.getZoom(), tile.getTx(),
+				tile.getTy());
+	}
 
 }

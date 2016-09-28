@@ -21,7 +21,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import de.topobyte.jeography.core.Tile;
-import de.topobyte.jeography.tiles.TileResoluterUrlDisk;
+import de.topobyte.jeography.tiles.TileUrlAndCachePathProvider;
 import de.topobyte.jeography.tiles.manager.ImageManager;
 import de.topobyte.jeography.tiles.manager.PriorityImageManagerHttpDisk;
 import de.topobyte.jeography.viewer.core.PaintListener;
@@ -142,7 +142,7 @@ public class TileConfigUrlDisk implements TileConfig
 			return null;
 		}
 
-		TileResoluterUrlDisk tileResoluterBase = new TileResoluterUrlDisk(
+		TileUrlAndCachePathProvider tileResoluterBase = new TileUrlAndCachePathProvider(
 				getPath(), getUrl());
 		PriorityImageManagerHttpDisk<Tile> manager = new PriorityImageManagerHttpDisk<>(
 				4, 150, tileResoluterBase);

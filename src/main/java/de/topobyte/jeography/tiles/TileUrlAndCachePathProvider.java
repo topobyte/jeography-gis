@@ -22,24 +22,38 @@ import de.topobyte.jeography.core.Tile;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class TileResoluterDisk implements PathResoluter<Tile>
+public class TileUrlAndCachePathProvider implements CachePathProvider<Tile>,
+		UrlProvider<Tile>
 {
 
+	// private String cacheDir;
 	private String cacheFileTemplate;
+	private String urlTemplate;
 
 	/**
 	 * @param cacheDir
 	 *            the dir to store cache images.
+	 * @param urlTemplate
+	 *            the url template.
 	 */
-	public TileResoluterDisk(String cacheDir)
+	public TileUrlAndCachePathProvider(String cacheDir, String urlTemplate)
 	{
+		// this.cacheDir = cacheDir;
 		cacheFileTemplate = cacheDir + "/%d_%d_%d.png";
+		this.urlTemplate = urlTemplate;
 	}
 
 	@Override
 	public String getCacheFile(Tile tile)
 	{
 		return String.format(cacheFileTemplate, tile.getZoom(), tile.getTx(),
+				tile.getTy());
+	}
+
+	@Override
+	public String getUrl(Tile tile)
+	{
+		return String.format(urlTemplate, tile.getZoom(), tile.getTx(),
 				tile.getTy());
 	}
 

@@ -21,7 +21,7 @@ import java.awt.image.BufferedImage;
 
 import de.topobyte.jeography.tiles.BufferedImageAndBytes;
 import de.topobyte.jeography.tiles.FileCache;
-import de.topobyte.jeography.tiles.PathResoluter;
+import de.topobyte.jeography.tiles.CachePathProvider;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -35,7 +35,7 @@ public class UnwrappingImageSourceWithFileCache<T> implements
 
 	public UnwrappingImageSourceWithFileCache(
 			ImageSource<T, BufferedImageAndBytes> source,
-			PathResoluter<T> resolver)
+			CachePathProvider<T> resolver)
 	{
 		this.source = source;
 		cache = new FileCache<>(resolver);

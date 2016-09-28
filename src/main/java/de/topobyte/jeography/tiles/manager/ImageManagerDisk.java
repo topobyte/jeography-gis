@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.topobyte.jeography.tiles.LoadListener;
-import de.topobyte.jeography.tiles.PathResoluter;
+import de.topobyte.jeography.tiles.CachePathProvider;
 import de.topobyte.jeography.tiles.source.ImageProviderDisk;
 
 /**
@@ -49,7 +49,7 @@ public class ImageManagerDisk<T> extends
 	 * @param resolver
 	 *            the information about how to resolve tiles.
 	 */
-	public ImageManagerDisk(PathResoluter<T> resolver)
+	public ImageManagerDisk(CachePathProvider<T> resolver)
 	{
 		diskProvider = new ImageProviderDisk<>(resolver);
 

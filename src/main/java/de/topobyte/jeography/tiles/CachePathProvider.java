@@ -17,30 +17,22 @@
 
 package de.topobyte.jeography.tiles;
 
-import de.topobyte.jeography.core.Tile;
-
 /**
+ * @param <T>
+ *            type argument.
+ * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class TileResoluterUrl implements UrlResoluter<Tile>
+public interface CachePathProvider<T>
 {
 
-	private String urlTemplate;
-
 	/**
-	 * @param urlTemplate
-	 *            the url template.
+	 * Get this thing's associated cache file.
+	 * 
+	 * @param thing
+	 *            the thing to look for.
+	 * @return the filename of the cache file.
 	 */
-	public TileResoluterUrl(String urlTemplate)
-	{
-		this.urlTemplate = urlTemplate;
-	}
-
-	@Override
-	public String getUrl(Tile tile)
-	{
-		return String.format(urlTemplate, tile.getZoom(), tile.getTx(),
-				tile.getTy());
-	}
+	public String getCacheFile(T thing);
 
 }

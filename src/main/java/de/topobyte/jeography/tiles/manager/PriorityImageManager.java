@@ -17,7 +17,6 @@
 
 package de.topobyte.jeography.tiles.manager;
 
-
 /**
  * An extension of the ImageManager interface that allows priority in requests.
  * 

@@ -27,7 +27,7 @@ import javax.imageio.ImageIO;
 
 import de.topobyte.jeography.tiles.BufferedImageAndBytes;
 import de.topobyte.jeography.tiles.FileCache;
-import de.topobyte.jeography.tiles.PathResoluter;
+import de.topobyte.jeography.tiles.CachePathProvider;
 
 /**
  * @param <T>
@@ -38,10 +38,10 @@ import de.topobyte.jeography.tiles.PathResoluter;
 public class ImageProviderDisk<T> extends ImageProvider<T, BufferedImage>
 {
 
-	private PathResoluter<T> resolver;
+	private CachePathProvider<T> resolver;
 	private FileCache<T> cache;
 
-	public ImageProviderDisk(PathResoluter<T> resolver)
+	public ImageProviderDisk(CachePathProvider<T> resolver)
 	{
 		super(1);
 		this.resolver = resolver;

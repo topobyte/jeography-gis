@@ -262,14 +262,14 @@ public class DownloadDialog extends EventJDialog
 			}
 		}
 
-		TilePathResoluter resoluter = null;
+		TilePathProvider resoluter = null;
 		if (!useDefaultLocation) {
 
 			final File directory = panelLocation.getSelectedFolder();
 			directory.mkdirs();
 			final String pattern = "%d_%d_%d.png";
 
-			resoluter = new TilePathResoluter() {
+			resoluter = new TilePathProvider() {
 
 				@Override
 				public File getPath(Tile tile)

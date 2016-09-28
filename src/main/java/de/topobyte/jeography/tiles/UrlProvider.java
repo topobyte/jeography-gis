@@ -23,16 +23,16 @@ package de.topobyte.jeography.tiles;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public interface PathResoluter<T>
+public interface UrlProvider<T>
 {
 
 	/**
-	 * Get this thing's associated cache file.
+	 * Get the url for this thing.
 	 * 
 	 * @param thing
-	 *            the thing to look for.
-	 * @return the filename of the cache file.
+	 *            the thing to get.
+	 * @return the url for this thing.
 	 */
-	public String getCacheFile(T thing);
+	public String getUrl(T thing);
 
 }

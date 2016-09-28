@@ -20,7 +20,7 @@ package de.topobyte.jeography.viewer.config;
 import java.awt.image.BufferedImage;
 
 import de.topobyte.jeography.core.Tile;
-import de.topobyte.jeography.tiles.TileResoluterUrl;
+import de.topobyte.jeography.tiles.TileUrlProvider;
 import de.topobyte.jeography.tiles.manager.ImageManager;
 import de.topobyte.jeography.tiles.manager.PriorityImageManagerHttp;
 import de.topobyte.jeography.viewer.core.PaintListener;
@@ -120,7 +120,7 @@ public class TileConfigUrl implements TileConfig
 	@Override
 	public ImageManager<Tile, BufferedImage> createImageManager()
 	{
-		TileResoluterUrl tileResoluterBase = new TileResoluterUrl(getUrl());
+		TileUrlProvider tileResoluterBase = new TileUrlProvider(getUrl());
 		PriorityImageManagerHttp<Tile> manager = new PriorityImageManagerHttp<>(
 				4, 150, tileResoluterBase);
 

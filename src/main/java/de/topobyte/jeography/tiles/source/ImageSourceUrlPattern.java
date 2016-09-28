@@ -33,7 +33,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.topobyte.jeography.tiles.BufferedImageAndBytes;
-import de.topobyte.jeography.tiles.UrlResoluter;
+import de.topobyte.jeography.tiles.UrlProvider;
 
 /**
  * @param <T>
@@ -48,7 +48,7 @@ public class ImageSourceUrlPattern<T> implements
 	static final Logger logger = LoggerFactory
 			.getLogger(ImageSourceUrlPattern.class);
 
-	private UrlResoluter<T> resolver;
+	private UrlProvider<T> resolver;
 
 	private String userAgent;
 
@@ -64,7 +64,7 @@ public class ImageSourceUrlPattern<T> implements
 	 * @param nTries
 	 *            the number of times to retry failing images before giving up
 	 */
-	public ImageSourceUrlPattern(UrlResoluter<T> resolver, int nTries)
+	public ImageSourceUrlPattern(UrlProvider<T> resolver, int nTries)
 	{
 		this.resolver = resolver;
 		this.nTries = nTries;
@@ -76,7 +76,7 @@ public class ImageSourceUrlPattern<T> implements
 	 * @param resolver
 	 *            the resolver to use
 	 */
-	public void setPathResoluter(UrlResoluter<T> resolver)
+	public void setPathResoluter(UrlProvider<T> resolver)
 	{
 		this.resolver = resolver;
 	}

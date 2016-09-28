@@ -21,7 +21,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import de.topobyte.jeography.core.Tile;
-import de.topobyte.jeography.tiles.TileResoluterDisk;
+import de.topobyte.jeography.tiles.TileCachePathProvider;
 import de.topobyte.jeography.tiles.manager.ImageManager;
 import de.topobyte.jeography.tiles.manager.ImageManagerDisk;
 import de.topobyte.jeography.viewer.core.PaintListener;
@@ -109,7 +109,8 @@ public class TileConfigDisk implements TileConfig
 			return null;
 		}
 
-		TileResoluterDisk tileResoluterBase = new TileResoluterDisk(getPath());
+		TileCachePathProvider tileResoluterBase = new TileCachePathProvider(
+				getPath());
 		ImageManagerDisk<Tile> manager = new ImageManagerDisk<>(
 				tileResoluterBase);
 		return manager;

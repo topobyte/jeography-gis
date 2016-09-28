@@ -15,24 +15,18 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.tiles;
+package de.topobyte.jeography.viewer.selection.download;
+
+import java.io.File;
+
+import de.topobyte.jeography.core.Tile;
 
 /**
- * @param <T>
- *            type argument.
- * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public interface UrlResoluter<T>
+public interface TilePathProvider
 {
 
-	/**
-	 * Get the url for this thing.
-	 * 
-	 * @param thing
-	 *            the thing to get.
-	 * @return the url for this thing.
-	 */
-	public String getUrl(T thing);
+	public File getPath(Tile tile);
 
 }

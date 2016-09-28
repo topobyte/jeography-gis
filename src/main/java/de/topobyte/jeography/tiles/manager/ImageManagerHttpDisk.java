@@ -24,8 +24,8 @@ import org.slf4j.LoggerFactory;
 
 import de.topobyte.jeography.tiles.BufferedImageAndBytes;
 import de.topobyte.jeography.tiles.LoadListener;
-import de.topobyte.jeography.tiles.PathResoluter;
-import de.topobyte.jeography.tiles.UrlResoluter;
+import de.topobyte.jeography.tiles.CachePathProvider;
+import de.topobyte.jeography.tiles.UrlProvider;
 import de.topobyte.jeography.tiles.source.ImageProviderDisk;
 import de.topobyte.jeography.tiles.source.ImageProviderHttp;
 
@@ -53,7 +53,7 @@ public class ImageManagerHttpDisk<T> extends
 	 * @param resolver
 	 *            the information about how to resolve tiles.
 	 */
-	public <X extends PathResoluter<T> & UrlResoluter<T>> ImageManagerHttpDisk(
+	public <X extends CachePathProvider<T> & UrlProvider<T>> ImageManagerHttpDisk(
 			X resolver)
 	{
 		diskProvider = new ImageProviderDisk<>(resolver);

@@ -19,7 +19,7 @@ package de.topobyte.jeography.tiles.manager;
 
 import java.awt.image.BufferedImage;
 
-import de.topobyte.jeography.tiles.UrlResoluter;
+import de.topobyte.jeography.tiles.UrlProvider;
 import de.topobyte.jeography.tiles.source.ImageSourceUrlPattern;
 import de.topobyte.jeography.tiles.source.UnwrappingImageSource;
 
@@ -45,7 +45,7 @@ public class PriorityImageManagerHttp<T> extends
 	 * @param source
 	 *            the ImageSource to use for creation of unknown requests.
 	 */
-	public <X extends UrlResoluter<T>> PriorityImageManagerHttp(int nThreads,
+	public <X extends UrlProvider<T>> PriorityImageManagerHttp(int nThreads,
 			int cacheSize, X resolver)
 	{
 		super(nThreads, cacheSize, null);

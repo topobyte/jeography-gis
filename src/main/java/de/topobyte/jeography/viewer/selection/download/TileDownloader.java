@@ -36,9 +36,9 @@ import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileOnWindow;
 import de.topobyte.jeography.core.mapwindow.SteppedMapWindow;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
-import de.topobyte.jeography.tiles.PathResoluter;
-import de.topobyte.jeography.tiles.TileResoluterUrlDisk;
-import de.topobyte.jeography.tiles.UrlResoluter;
+import de.topobyte.jeography.tiles.CachePathProvider;
+import de.topobyte.jeography.tiles.TileUrlAndCachePathProvider;
+import de.topobyte.jeography.tiles.UrlProvider;
 import de.topobyte.jeography.viewer.config.TileConfigUrlDisk;
 import de.topobyte.util.async.Executer;
 
@@ -54,8 +54,8 @@ public class TileDownloader
 	final BBox boundingBox;
 	final List<Integer> zoomLevels;
 
-	private UrlResoluter<Tile> urlResoluter;
-	private PathResoluter<Tile> pathResoluter;
+	private UrlProvider<Tile> urlResoluter;
+	private CachePathProvider<Tile> pathResoluter;
 
 	private int numberOfTilesToDownload = 0;
 
@@ -64,7 +64,7 @@ public class TileDownloader
 
 	private List<DownloadProgressListener> progressListeners = new ArrayList<>();
 
-	private TilePathResoluter customResoluter;
+	private TilePathProvider customResoluter;
 
 	/**
 	 * Create a new TileDownloader instance.
@@ -78,7 +78,7 @@ public class TileDownloader
 	 *            the zoom levels to retrieve tiles for.
 	 */
 	public TileDownloader(TileConfigUrlDisk config,
-			TilePathResoluter customResoluter, BBox boundingBox,
+			TilePathProvider customResoluter, BBox boundingBox,
 			List<Integer> zoomLevels)
 	{
 		this.customResoluter = customResoluter;
@@ -86,7 +86,7 @@ public class TileDownloader
 		this.boundingBox = boundingBox;
 		this.zoomLevels = zoomLevels;
 
-		TileResoluterUrlDisk resoluter = new TileResoluterUrlDisk(
+		TileUrlAndCachePathProvider resoluter = new TileUrlAndCachePathProvider(
 				config.getPath(), config.getUrl());
 		urlResoluter = resoluter;
 		pathResoluter = resoluter;
