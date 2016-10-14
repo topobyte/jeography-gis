@@ -54,6 +54,7 @@ import bibliothek.gui.dock.common.CGrid;
 import bibliothek.gui.dock.common.DefaultSingleCDockable;
 import bibliothek.gui.dock.common.SingleCDockable;
 import de.topobyte.adt.geo.Coordinate;
+import de.topobyte.awt.util.GridBagConstraintsEditor;
 import de.topobyte.interactiveview.ZoomChangedListener;
 import de.topobyte.jeography.core.mapwindow.MapWindowChangeListener;
 import de.topobyte.jeography.gis.GisActions;
@@ -367,14 +368,12 @@ public class JeographyGIS extends JPanel
 		});
 
 		statusBar.setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
-		c.weightx = 1.0;
-		c.fill = GridBagConstraints.HORIZONTAL;
+		GridBagConstraintsEditor c = new GridBagConstraintsEditor();
+		c.weightX(1.0).fill(GridBagConstraints.HORIZONTAL);
 		statusLabel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
-		statusBar.add(statusLabel, c);
-		c.weightx = 0.0;
-		c.fill = GridBagConstraints.NONE;
-		statusBar.add(zoomControl, c);
+		statusBar.add(statusLabel, c.getConstraints());
+		c.weightX(0.0).fill(GridBagConstraints.NONE);
+		statusBar.add(zoomControl, c.getConstraints());
 
 		GisActions.setupActions(frame, this, toolbar, menuBar,
 				configuration.getTileConfigs(),
