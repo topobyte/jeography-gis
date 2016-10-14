@@ -34,7 +34,7 @@ public class PatternUrlButton extends UrlButton
 
 	public PatternUrlButton(String title, MapWindow mapWindow, String pattern)
 	{
-		super(title);
+		super("Browser: " + title);
 		this.mapWindow = mapWindow;
 		this.pattern = pattern;
 	}
