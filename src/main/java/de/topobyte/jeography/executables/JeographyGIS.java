@@ -73,6 +73,7 @@ import de.topobyte.jeography.viewer.selection.pane.RectPane;
 import de.topobyte.jeography.viewer.selection.polygonal.PolySelectionAdapter;
 import de.topobyte.jeography.viewer.selection.rectangular.IntSelection;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;
+import de.topobyte.jeography.viewer.statusbar.StatusBarCallback;
 import de.topobyte.jeography.viewer.windowpane.MapWindowPane;
 import de.topobyte.jeography.viewer.zoom.ZoomControl;
 import de.topobyte.swing.util.Components;
@@ -157,15 +158,16 @@ public class JeographyGIS extends JPanel
 			try {
 				configuration = ConfigReader.read(configFile);
 			} catch (FileNotFoundException e) {
-				logger.warn("no configuration file found, using default configuration");
+				logger.warn(
+						"no configuration file found, using default configuration");
 			} catch (Exception e) {
 				logger.warn("unable to read configuration at user home", e);
 				logger.warn("using default configuration");
 			}
 		}
 
-		int width = configuration.getWidth(), height = configuration
-				.getHeight();
+		int width = configuration.getWidth(),
+				height = configuration.getHeight();
 		Path pathDatabase = configuration.getPathDatabase();
 		boolean isOnline = configuration.isOnline();
 		boolean showCrosshair = configuration.isShowCrosshair();
@@ -236,9 +238,9 @@ public class JeographyGIS extends JPanel
 			try {
 				UIManager.setLookAndFeel(lookAndFeel);
 			} catch (Exception e) {
-				logger.error("error while setting look and feel '"
-						+ lookAndFeel + "': " + e.getClass().getSimpleName()
-						+ ", message: " + e.getMessage());
+				logger.error("error while setting look and feel '" + lookAndFeel
+						+ "': " + e.getClass().getSimpleName() + ", message: "
+						+ e.getMessage());
 			}
 		}
 
@@ -291,6 +293,8 @@ public class JeographyGIS extends JPanel
 	private DefaultSingleCDockable bookmarksDockable = null;
 
 	private boolean showGeometryInfo = false;
+
+	private String statusBarText = null;
 
 	public void create(int width, int height, boolean showGeometryManager,
 			boolean showSelectionRectDialog, boolean showSelectionPolyDialog,
@@ -595,20 +599,23 @@ public class JeographyGIS extends JPanel
 		Coordinate coordinate = viewer.getMouseGeoPosition();
 		IntSelection selection = selectionAdapter.getSelection();
 		String s = selection == null ? "none" : selection.toString();
+		String text = null;
 		if (coordinate == null) {
-			statusLabel.setText(String.format(
-					"center: %f:%f mouse: n/a zoom: %d selection: %s", viewer
-							.getMapWindow().getCenterLon(), viewer
-							.getMapWindow().getCenterLat(), viewer
-							.getZoomLevel(), s));
+			text = String.format(
+					"center: %f:%f mouse: n/a zoom: %d selection: %s",
+					viewer.getMapWindow().getCenterLon(),
+					viewer.getMapWindow().getCenterLat(), viewer.getZoomLevel(),
+					s);
 		} else {
-			statusLabel.setText(String.format(
-					"center: %f:%f mouse: %f:%f zoom: %d selection: %s", viewer
-							.getMapWindow().getCenterLon(), viewer
-							.getMapWindow().getCenterLat(), coordinate
-							.getLongitude(), coordinate.getLatitude(), viewer
-							.getZoomLevel(), s));
+			text = String.format(
+					"center: %f:%f mouse: %f:%f zoom: %d selection: %s",
+					viewer.getMapWindow().getCenterLon(),
+					viewer.getMapWindow().getCenterLat(),
+					coordinate.getLongitude(), coordinate.getLatitude(),
+					viewer.getZoomLevel(), s);
 		}
+		statusBarText = text;
+		statusLabel.setText(text);
 	}
 
 	/**
@@ -676,8 +683,8 @@ public class JeographyGIS extends JPanel
 
 	void setupMapWindowDialog(boolean show)
 	{
-		MapWindowPane mapWindowPane = new MapWindowPane(getViewer()
-				.getMapWindow());
+		MapWindowPane mapWindowPane = new MapWindowPane(
+				getViewer().getMapWindow());
 
 		mapWindowDockable = new DefaultSingleCDockable("map-window",
 				"Map Window", mapWindowPane);
@@ -692,14 +699,30 @@ public class JeographyGIS extends JPanel
 		mapWindowDockable.setMinimizable(false);
 		mapWindowDockable.setMaximizable(false);
 		mapWindowDockable.setCloseable(true);
+
+		mapWindowPane.addStatusBarCallback(new StatusBarCallback() {
+
+			@Override
+			public void noInfoAvailable()
+			{
+				statusLabel.setText(statusBarText);
+			}
+
+			@Override
+			public void infoAvailable(String info)
+			{
+				statusLabel.setText(info);
+			}
+
+		});
 	}
 
 	void setupBookmarksDialog(boolean show)
 	{
 		Bookmarks bookmarks = new Bookmarks(this);
 
-		bookmarksDockable = new DefaultSingleCDockable("bookmarks",
-				"Bookmarks", bookmarks);
+		bookmarksDockable = new DefaultSingleCDockable("bookmarks", "Bookmarks",
+				bookmarks);
 		bookmarksDockable.setExternalizable(true);
 		bookmarksDockable.setMinimizable(true);
 
@@ -790,9 +813,8 @@ public class JeographyGIS extends JPanel
 	 */
 	public static void showReallyExitDialog(JFrame frame)
 	{
-		int status = JOptionPane.showConfirmDialog(frame,
-				"Exit Jeography GIS?", "Confirm Exit",
-				JOptionPane.OK_CANCEL_OPTION);
+		int status = JOptionPane.showConfirmDialog(frame, "Exit Jeography GIS?",
+				"Confirm Exit", JOptionPane.OK_CANCEL_OPTION);
 		if (status == JOptionPane.YES_OPTION) {
 			System.exit(0);
 		}

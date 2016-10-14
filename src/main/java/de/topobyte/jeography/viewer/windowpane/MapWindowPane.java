@@ -19,6 +19,8 @@ package de.topobyte.jeography.viewer.windowpane;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,12 +31,14 @@ import javax.swing.SwingConstants;
 
 import de.topobyte.jeography.core.mapwindow.MapWindow;
 import de.topobyte.jeography.core.mapwindow.MapWindowChangeListener;
+import de.topobyte.jeography.viewer.statusbar.StatusBarCallback;
+import de.topobyte.jeography.viewer.statusbar.StatusBarInfoEmitter;
 import de.topobyte.jeography.viewer.windowpane.patterns.Formatters;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class MapWindowPane extends JPanel
+public class MapWindowPane extends JPanel implements StatusBarInfoEmitter
 {
 
 	private static final long serialVersionUID = -3817433094278662941L;
@@ -108,6 +112,25 @@ public class MapWindowPane extends JPanel
 			button.setHorizontalAlignment(SwingConstants.LEFT);
 		}
 
+		for (JButton button : buttons) {
+			if (button instanceof CoordinateFormatterClipboardButton) {
+				final CoordinateFormatterClipboardButton cfcb = (CoordinateFormatterClipboardButton) button;
+				button.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent evt)
+					{
+						triggerStatusBarInfoAvailable(cfcb.getClipboardText());
+					}
+
+					@Override
+					public void mouseExited(MouseEvent evt)
+					{
+						triggerStatusBarNoInfo();
+					}
+				});
+			}
+		}
+
 		c.weightx = 1.0;
 		c.weighty = 0.0;
 		c.anchor = GridBagConstraints.PAGE_START;
@@ -152,6 +175,34 @@ public class MapWindowPane extends JPanel
 
 		labelCenterLon.setText(lon);
 		labelCenterLat.setText(lat);
+	}
+
+	private List<StatusBarCallback> statusBarCallbacks = new ArrayList<>();
+
+	@Override
+	public void addStatusBarCallback(StatusBarCallback callback)
+	{
+		statusBarCallbacks.add(callback);
+	}
+
+	@Override
+	public void removeStatusBarCallback(StatusBarCallback callback)
+	{
+		statusBarCallbacks.remove(callback);
+	}
+
+	private void triggerStatusBarInfoAvailable(String info)
+	{
+		for (StatusBarCallback callback : statusBarCallbacks) {
+			callback.infoAvailable(info);
+		}
+	}
+
+	private void triggerStatusBarNoInfo()
+	{
+		for (StatusBarCallback callback : statusBarCallbacks) {
+			callback.noInfoAvailable();
+		}
 	}
 
 }
