@@ -70,6 +70,7 @@ public class MapWindowPane extends JPanel
 				updateCenterPosition();
 			}
 		});
+		updateCenterPosition();
 
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
