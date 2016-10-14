@@ -25,6 +25,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import de.topobyte.jeography.core.mapwindow.MapWindow;
 import de.topobyte.jeography.core.mapwindow.MapWindowChangeListener;
@@ -102,6 +103,10 @@ public class MapWindowPane extends JPanel
 		buttons.add(buttonOsmWeb);
 		buttons.add(buttonPotlatch1);
 		buttons.add(buttonPotlatch2);
+
+		for (JButton button : buttons) {
+			button.setHorizontalAlignment(SwingConstants.LEFT);
+		}
 
 		c.weightx = 1.0;
 		c.weighty = 0.0;
