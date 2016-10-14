@@ -29,6 +29,7 @@ import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
@@ -369,6 +370,7 @@ public class JeographyGIS extends JPanel
 		GridBagConstraints c = new GridBagConstraints();
 		c.weightx = 1.0;
 		c.fill = GridBagConstraints.HORIZONTAL;
+		statusLabel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
 		statusBar.add(statusLabel, c);
 		c.weightx = 0.0;
 		c.fill = GridBagConstraints.NONE;
