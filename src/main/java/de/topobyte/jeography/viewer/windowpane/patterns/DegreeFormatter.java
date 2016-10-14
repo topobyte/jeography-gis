@@ -15,33 +15,24 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.viewer.windowpane.buttons;
-
-import de.topobyte.jeography.core.mapwindow.MapWindow;
-import de.topobyte.jeography.viewer.windowpane.ClipboardButton;
+package de.topobyte.jeography.viewer.windowpane.patterns;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class PositionButtonDeg extends ClipboardButton
+public class DegreeFormatter implements CoordinateFormatter
 {
 
-	private static final long serialVersionUID = 9182954207805942607L;
-
-	private MapWindow mapWindow;
-
-	public PositionButtonDeg(String title, MapWindow mapWindow)
+	@Override
+	public String getName()
 	{
-		super(title);
-		this.mapWindow = mapWindow;
+		return "Degrees";
 	}
 
 	@Override
-	public String getClipboardText()
+	public String format(double lon, double lat)
 	{
-		String text = degMinSec(mapWindow.getCenterLat(),
-				mapWindow.getCenterLon());
-		return text;
+		return degMinSec(lat, lon);
 	}
 
 	private String degMinSec(double centerLat, double centerLon)

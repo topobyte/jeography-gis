@@ -28,9 +28,7 @@ import javax.swing.JPanel;
 
 import de.topobyte.jeography.core.mapwindow.MapWindow;
 import de.topobyte.jeography.core.mapwindow.MapWindowChangeListener;
-import de.topobyte.jeography.viewer.windowpane.buttons.PositionButtonDeg;
-import de.topobyte.jeography.viewer.windowpane.buttons.PositionButtonFP;
-import de.topobyte.jeography.viewer.windowpane.buttons.PositionButtonXml;
+import de.topobyte.jeography.viewer.windowpane.patterns.Formatters;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -83,25 +81,22 @@ public class MapWindowPane extends JPanel
 		JButton buttonOsmWeb = new PatternUrlButton("Openstreetmap Mapnik",
 				mapWindow,
 				"http://www.openstreetmap.org/?lat=%f&lon=%f&zoom=%d&layers=M");
-		JButton buttonPotlatch1 = new PatternUrlButton(
-				"Potlatch 1",
-				mapWindow,
+		JButton buttonPotlatch1 = new PatternUrlButton("Potlatch 1", mapWindow,
 				"http://www.openstreetmap.org/edit?editor=potlatch&lat=%f&lon=%f&zoom=%d&layers=M");
-		JButton buttonPotlatch2 = new PatternUrlButton(
-				"Potlatch 2",
-				mapWindow,
+		JButton buttonPotlatch2 = new PatternUrlButton("Potlatch 2", mapWindow,
 				"http://www.openstreetmap.org/edit?editor=potlatch2&lat=%f&lon=%f&zoom=%d&layers=M");
 
-		JButton buttonCopyDouble = new PositionButtonFP(
-				"Clipboard (floating point)", mapWindow);
+		JButton buttonCopyFpLatLon = new CoordinateFormatterClipboardButton(
+				Formatters.FORMATTER_FP_LAT_LON, mapWindow);
+		JButton buttonCopyFpLonLat = new CoordinateFormatterClipboardButton(
+				Formatters.FORMATTER_FP_LON_LAT, mapWindow);
+		JButton buttonCopyDegMinSec = new CoordinateFormatterClipboardButton(
+				Formatters.FORMATTER_DEGREES, mapWindow);
+		JButton buttonCopyXml = new CoordinateFormatterClipboardButton(
+				Formatters.FORMATTER_XML, mapWindow);
 
-		JButton buttonCopyDegMinSec = new PositionButtonDeg(
-				"Clipboard (deg/min/sec/)", mapWindow);
-
-		JButton buttonCopyXml = new PositionButtonXml("Clipboard (xml)",
-				mapWindow);
-
-		buttons.add(buttonCopyDouble);
+		buttons.add(buttonCopyFpLatLon);
+		buttons.add(buttonCopyFpLonLat);
 		buttons.add(buttonCopyDegMinSec);
 		buttons.add(buttonCopyXml);
 		buttons.add(buttonOsmWeb);

@@ -15,32 +15,35 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.viewer.windowpane.buttons;
+package de.topobyte.jeography.viewer.windowpane;
 
 import de.topobyte.jeography.core.mapwindow.MapWindow;
-import de.topobyte.jeography.viewer.windowpane.ClipboardButton;
+import de.topobyte.jeography.viewer.windowpane.patterns.CoordinateFormatter;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class PositionButtonXml extends ClipboardButton
+public class CoordinateFormatterClipboardButton extends ClipboardButton
 {
 
-	private static final long serialVersionUID = 3436492547881016495L;
+	private static final long serialVersionUID = -6147035074142020179L;
 
+	private CoordinateFormatter formatter;
 	private MapWindow mapWindow;
 
-	public PositionButtonXml(String title, MapWindow mapWindow)
+	public CoordinateFormatterClipboardButton(CoordinateFormatter formatter,
+			MapWindow mapWindow)
 	{
-		super(title);
+		super("Clipboard: " + formatter.getName());
+		this.formatter = formatter;
 		this.mapWindow = mapWindow;
 	}
 
 	@Override
 	public String getClipboardText()
 	{
-		return String.format("lat=\"%.5f\" lon=\"%.5f\"",
-				mapWindow.getCenterLat(), mapWindow.getCenterLon());
+		return formatter.format(mapWindow.getCenterLon(),
+				mapWindow.getCenterLat());
 	}
 
 }
