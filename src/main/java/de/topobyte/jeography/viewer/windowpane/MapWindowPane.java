@@ -116,6 +116,7 @@ public class MapWindowPane extends JPanel implements StatusBarInfoEmitter
 			if (button instanceof CoordinateFormatterClipboardButton) {
 				final CoordinateFormatterClipboardButton cfcb = (CoordinateFormatterClipboardButton) button;
 				button.addMouseListener(new MouseAdapter() {
+
 					@Override
 					public void mouseEntered(MouseEvent evt)
 					{
@@ -127,6 +128,24 @@ public class MapWindowPane extends JPanel implements StatusBarInfoEmitter
 					{
 						triggerStatusBarNoInfo();
 					}
+
+				});
+			} else if (button instanceof UrlButton) {
+				final UrlButton urlButton = (UrlButton) button;
+				button.addMouseListener(new MouseAdapter() {
+
+					@Override
+					public void mouseEntered(MouseEvent evt)
+					{
+						triggerStatusBarInfoAvailable(urlButton.getUrl());
+					}
+
+					@Override
+					public void mouseExited(MouseEvent evt)
+					{
+						triggerStatusBarNoInfo();
+					}
+
 				});
 			}
 		}
