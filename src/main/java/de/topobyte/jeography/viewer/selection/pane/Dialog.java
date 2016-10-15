@@ -20,7 +20,7 @@ package de.topobyte.jeography.viewer.selection.pane;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.geometry.manage.EventJDialog;
 import de.topobyte.jeography.viewer.selection.polygonal.PolySelectionAdapter;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;

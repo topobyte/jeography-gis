@@ -19,7 +19,7 @@ package de.topobyte.jeography.viewer.geometry.list;
 
 import javax.swing.JDialog;
 
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.TestUtil;
 import de.topobyte.jeography.viewer.config.Configuration;
 

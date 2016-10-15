@@ -24,7 +24,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.action.GISAction;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.export.ImageExporter;

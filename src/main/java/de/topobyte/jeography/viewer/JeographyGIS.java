@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.executables;
+package de.topobyte.jeography.viewer;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -50,8 +50,6 @@ import de.topobyte.awt.util.GridBagConstraintsEditor;
 import de.topobyte.interactiveview.ZoomChangedListener;
 import de.topobyte.jeography.core.mapwindow.MapWindowChangeListener;
 import de.topobyte.jeography.gis.GisActions;
-import de.topobyte.jeography.viewer.Constants;
-import de.topobyte.jeography.viewer.MouseMode;
 import de.topobyte.jeography.viewer.bookmarks.Bookmarks;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.config.TileConfig;

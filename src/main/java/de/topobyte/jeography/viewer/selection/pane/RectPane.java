@@ -30,8 +30,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import de.topobyte.jeography.executables.JeographyGIS;
 import de.topobyte.jeography.util.ImageLoader;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.selection.action.ApiAction;
 import de.topobyte.jeography.viewer.selection.action.ClipboardAction;
 import de.topobyte.jeography.viewer.selection.action.DismissAction;

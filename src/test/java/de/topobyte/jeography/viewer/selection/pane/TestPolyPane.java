@@ -26,7 +26,7 @@ import javax.swing.JDialog;
 
 import com.vividsolutions.jts.geom.LinearRing;
 
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.selection.polygonal.PolySelectionAdapter;
 import de.topobyte.jeography.viewer.selection.polygonal.Selection;

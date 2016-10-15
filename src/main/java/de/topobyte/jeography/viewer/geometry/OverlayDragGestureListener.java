@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import com.vividsolutions.jts.geom.Geometry;
 
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.geometry.list.dnd.GeometrySourceTransferHandler;
 
 /**

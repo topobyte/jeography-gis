@@ -29,7 +29,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.action.DialogAction;
 import de.topobyte.jeography.viewer.action.OperationAction;
 import de.topobyte.jeography.viewer.action.OverlayTileConfigAction;

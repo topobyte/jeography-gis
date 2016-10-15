@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.Action;
 
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.geometry.manage.VisibilityListener;
 
 /**

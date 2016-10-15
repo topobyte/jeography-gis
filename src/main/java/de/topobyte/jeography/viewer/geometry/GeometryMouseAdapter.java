@@ -35,7 +35,7 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
 
 import de.topobyte.jeography.core.mapwindow.MapWindow;
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryContainer;
 import de.topobyte.jeography.viewer.geometry.manage.StyledGeometry;
 import de.topobyte.jts.indexing.GeometryTesselationMap;

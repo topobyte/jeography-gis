@@ -17,7 +17,7 @@
 
 package de.topobyte.jeography.viewer.action;
 
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)

@@ -15,7 +15,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.executables;
+package de.topobyte.jeography.viewer;
 
 import java.io.File;
 import java.util.ArrayList;

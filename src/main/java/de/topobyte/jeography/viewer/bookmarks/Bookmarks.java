@@ -27,7 +27,7 @@ import javax.swing.JScrollPane;
 
 import com.vividsolutions.jts.geom.Coordinate;
 
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.melon.casting.CastUtil;
 import de.topobyte.swing.util.list.ArrayListModel;

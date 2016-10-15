@@ -20,7 +20,7 @@ package de.topobyte.jeography.viewer.selection.download;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.selection.rectangular.GeographicSelection;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;

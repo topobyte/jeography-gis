@@ -24,7 +24,7 @@ import javax.swing.Action;
 import bibliothek.gui.dock.common.event.CDockableStateListener;
 import bibliothek.gui.dock.common.intern.CDockable;
 import bibliothek.gui.dock.common.mode.ExtendedMode;
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)

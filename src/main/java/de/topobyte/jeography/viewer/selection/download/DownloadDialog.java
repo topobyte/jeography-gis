@@ -41,7 +41,7 @@ import de.topobyte.adt.geo.BBox;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.mapwindow.SteppedMapWindow;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.config.TileConfigUrlDisk;
 import de.topobyte.jeography.viewer.geometry.manage.EventJDialog;

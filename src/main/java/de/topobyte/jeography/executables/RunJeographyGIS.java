@@ -33,6 +33,7 @@ import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.config.ConfigReader;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.config.ConfigurationHelper;

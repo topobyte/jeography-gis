@@ -28,7 +28,7 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.action.GISAction;
 import de.topobyte.jeography.viewer.selection.rectangular.GeographicSelection;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;

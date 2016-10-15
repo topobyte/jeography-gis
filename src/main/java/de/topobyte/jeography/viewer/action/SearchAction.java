@@ -30,10 +30,10 @@ import javax.swing.JFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.topobyte.jeography.executables.JeographyGIS;
 import de.topobyte.jeography.places.model.Place;
 import de.topobyte.jeography.places.ui.PlaceActivationListener;
 import de.topobyte.jeography.places.ui.SearchUI;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.luqe.iface.IConnection;
 import de.topobyte.luqe.iface.QueryException;

@@ -22,7 +22,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.MouseMode;
 import de.topobyte.jeography.viewer.action.AboutAction;
 import de.topobyte.jeography.viewer.action.ConfigurationAction;

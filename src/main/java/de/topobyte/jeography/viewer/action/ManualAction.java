@@ -31,7 +31,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.jeography.viewer.JeographyGIS;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
