@@ -32,7 +32,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.topobyte.jeography.executables.JeographyGIS;
-import de.topobyte.swing.util.Components;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -60,7 +59,7 @@ public class AboutAction extends GISAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		JFrame frame = Components.getContainingFrame(getGIS());
+		JFrame frame = getMainFrame();
 		AboutDialog aboutDialog = new AboutDialog(frame);
 		aboutDialog.setSize(400, 300);
 		aboutDialog.setLocationRelativeTo(frame);

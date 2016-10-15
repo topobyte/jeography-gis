@@ -17,10 +17,13 @@
 
 package de.topobyte.jeography.viewer.action;
 
+import javax.swing.JFrame;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.topobyte.jeography.executables.JeographyGIS;
+import de.topobyte.swing.util.Components;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -71,6 +74,11 @@ public abstract class GISAction extends SimpleAction
 	public JeographyGIS getGIS()
 	{
 		return gis;
+	}
+
+	public JFrame getMainFrame()
+	{
+		return Components.getContainingFrame(getGIS().getMainPanel());
 	}
 
 	@Override

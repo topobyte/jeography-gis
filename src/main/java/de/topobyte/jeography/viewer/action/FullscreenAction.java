@@ -32,7 +32,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.topobyte.jeography.executables.JeographyGIS;
-import de.topobyte.swing.util.Components;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -69,7 +68,7 @@ public class FullscreenAction extends GISAction
 		logger.debug("exclusive fullscreen supported?: "
 				+ gd.isFullScreenSupported());
 
-		JFrame frame = Components.getContainingFrame(getGIS());
+		JFrame frame = getMainFrame();
 		boolean currentlyFullscreen = (gd.getFullScreenWindow() == frame);
 
 		logger.debug("currently fullscreen?: " + currentlyFullscreen);

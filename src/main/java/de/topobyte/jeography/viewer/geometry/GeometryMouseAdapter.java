@@ -109,8 +109,8 @@ public class GeometryMouseAdapter extends MouseAdapter
 			}
 		}
 		String message = strb.toString();
-		JOptionPane.showMessageDialog(gis, message, "Interesection",
-				JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(gis.getMainPanel(), message,
+				"Interesection", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }

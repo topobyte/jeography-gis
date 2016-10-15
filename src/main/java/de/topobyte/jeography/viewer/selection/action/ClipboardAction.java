@@ -76,7 +76,8 @@ public class ClipboardAction extends GISAction
 		logger.debug("geo: " + selection.toString());
 		logger.debug("box: " + selection.toBoundingBox());
 
-		Clipboard clipboard = getGIS().getToolkit().getSystemClipboard();
+		Clipboard clipboard = getGIS().getMainPanel().getToolkit()
+				.getSystemClipboard();
 		logger.debug(clipboard.toString());
 
 		Transferable transferable = new Transferable() {
@@ -120,9 +121,9 @@ public class ClipboardAction extends GISAction
 		String realPattern = String.format(pattern, digits, digits, digits,
 				digits);
 		System.out.println(realPattern);
-		text = String.format(realPattern, selection.getX1().value(), selection
-				.getX2().value(), selection.getY1().value(), selection.getY2()
-				.value());
+		text = String.format(realPattern, selection.getX1().value(),
+				selection.getX2().value(), selection.getY1().value(),
+				selection.getY2().value());
 		return text;
 	}
 

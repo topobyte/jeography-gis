@@ -41,7 +41,6 @@ import de.topobyte.jeography.executables.JeographyGIS;
 import de.topobyte.jeography.viewer.config.ConfigWriter;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.config.edit.ConfigurationEditor;
-import de.topobyte.swing.util.Components;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -102,8 +101,8 @@ public class ConfigurationAction extends GISAction
 
 		};
 
-		JFrame parentFrame = Components.getContainingFrame(getGIS());
-		dialog = new JDialog(parentFrame, "Settings: " + configFile);
+		JFrame frame = getMainFrame();
+		dialog = new JDialog(frame, "Settings: " + configFile);
 		dialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
 		dialog.setContentPane(configurationEditor);
@@ -120,7 +119,7 @@ public class ConfigurationAction extends GISAction
 		dialog.setModal(true);
 		dialog.setSize(500, 500);
 
-		dialog.setLocationRelativeTo(parentFrame);
+		dialog.setLocationRelativeTo(frame);
 		dialog.setVisible(true);
 	}
 

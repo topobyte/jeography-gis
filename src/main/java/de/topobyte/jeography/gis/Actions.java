@@ -125,9 +125,9 @@ public class Actions
 		sppa = new SelectionPolyPanelAction(gis);
 		mpa = new MapWindowPanelAction(gis);
 		gla = new GeometryListAction(viewer, viewer);
-		gia = new GeometryIndexAction(gis);
-		gsa = new GeometrySelectionAction(gis);
-		mla = new MeasurePanelAction(gis);
+		gia = new GeometryIndexAction(gis.getMainPanel());
+		gsa = new GeometrySelectionAction(gis.getMainPanel());
+		mla = new MeasurePanelAction(gis.getMainPanel());
 		fullscreen = new FullscreenAction(gis);
 		gta = new GotoAction(gis);
 		sa = new SearchAction(gis);

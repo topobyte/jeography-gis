@@ -38,7 +38,6 @@ import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.luqe.iface.IConnection;
 import de.topobyte.luqe.iface.QueryException;
 import de.topobyte.luqe.jdbc.JdbcConnection;
-import de.topobyte.swing.util.Components;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -69,14 +68,15 @@ public class SearchAction extends GISAction
 		Path pathDatabase = getGIS().getConfiguration().getPathDatabase();
 
 		if (!Files.exists(pathDatabase)) {
-			logger.error(String.format("File does not exists '%s'",
-					pathDatabase));
+			logger.error(
+					String.format("File does not exists '%s'", pathDatabase));
 			// TODO: display error dialog
 			return;
 		}
 
 		if (!Files.isRegularFile(pathDatabase)) {
-			logger.error(String.format("Not a regular file '%s'", pathDatabase));
+			logger.error(
+					String.format("Not a regular file '%s'", pathDatabase));
 			// TODO: display error dialog
 			return;
 		}
@@ -115,7 +115,7 @@ public class SearchAction extends GISAction
 			return;
 		}
 
-		JFrame frame = Components.getContainingFrame(getGIS());
+		JFrame frame = getMainFrame();
 
 		JDialog dialog = new JDialog(frame);
 		dialog.setTitle("Search");
@@ -133,8 +133,8 @@ public class SearchAction extends GISAction
 						place.getName(), place.getLon(), place.getLat()));
 
 				Viewer viewer = getGIS().getViewer();
-				viewer.getMapWindow()
-						.gotoLonLat(place.getLon(), place.getLat());
+				viewer.getMapWindow().gotoLonLat(place.getLon(),
+						place.getLat());
 				viewer.repaint();
 			}
 		});

@@ -26,6 +26,7 @@ import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import de.topobyte.jeography.executables.JeographyGIS;
@@ -123,14 +124,17 @@ public class GisMenu
 		menuOperationsAdd.setIcon(new EmptyIcon(24));
 		menuWindows.add(menuOperationsAdd);
 
-		menuOperationsAdd.add(new OperationAction(Operations.UNION, gis));
+		JPanel source = gis.getMainPanel();
+		menuOperationsAdd.add(new OperationAction(Operations.UNION, source));
 		menuOperationsAdd
-				.add(new OperationAction(Operations.INTERSECTION, gis));
-		menuOperationsAdd.add(new OperationAction(Operations.DIFFERENCE, gis));
-		menuOperationsAdd.add(new OperationAction(Operations.COLLECTION, gis));
-		menuOperationsAdd.add(new OperationAction(Operations.HULL, gis));
+				.add(new OperationAction(Operations.INTERSECTION, source));
+		menuOperationsAdd
+				.add(new OperationAction(Operations.DIFFERENCE, source));
+		menuOperationsAdd
+				.add(new OperationAction(Operations.COLLECTION, source));
+		menuOperationsAdd.add(new OperationAction(Operations.HULL, source));
 
-		menuOperationsAdd.add(new DialogAction(gis,
+		menuOperationsAdd.add(new DialogAction(source,
 				"res/images/geometryOperation/union.png", "Union Buffered",
 				"union geometries and create a buffer of the result") {
 
@@ -143,7 +147,7 @@ public class GisMenu
 			}
 		});
 
-		menuOperationsAdd.add(new DialogAction(gis,
+		menuOperationsAdd.add(new DialogAction(source,
 				"res/images/geometryOperation/collection.png", "Translate",
 				"collect and translate geometries") {
 
@@ -156,7 +160,7 @@ public class GisMenu
 			}
 		});
 
-		menuOperationsAdd.add(new DialogAction(gis,
+		menuOperationsAdd.add(new DialogAction(source,
 				"res/images/geometryOperation/collection.png", "Transform",
 				"collect and transform geometries") {
 

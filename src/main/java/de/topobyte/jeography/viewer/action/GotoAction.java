@@ -29,7 +29,6 @@ import de.topobyte.jeography.executables.JeographyGIS;
 import de.topobyte.jeography.viewer.gotolocation.GotoDialog;
 import de.topobyte.jeography.viewer.gotolocation.GotoListener;
 import de.topobyte.jeography.viewer.gotolocation.Location;
-import de.topobyte.swing.util.Components;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -57,7 +56,7 @@ public class GotoAction extends GISAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		JFrame frame = Components.getContainingFrame(getGIS());
+		JFrame frame = getMainFrame();
 		GotoDialog dialog = new GotoDialog(frame);
 		dialog.pack();
 		dialog.setVisible(true);

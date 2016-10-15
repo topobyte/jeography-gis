@@ -25,6 +25,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.nio.file.Path;
 
 import javax.swing.BorderFactory;
@@ -71,21 +73,22 @@ import de.topobyte.swing.util.Components;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class JeographyGIS extends JPanel
+public class JeographyGIS
 {
-
-	private static final long serialVersionUID = 8968318299129493776L;
 
 	static final Logger logger = LoggerFactory.getLogger(JeographyGIS.class);
 
 	private String configFile;
 	private Configuration configuration;
 
+	private JPanel mainPanel;
 	private Viewer viewer;
 	private JPanel statusBar;
 	private JLabel statusLabel;
 	private JToolBar toolbar;
 	private ZoomControl zoomControl;
+
+	private PropertyChangeSupport changeSupport;
 
 	private CControl control;
 	private CGrid grid;
@@ -127,12 +130,12 @@ public class JeographyGIS extends JPanel
 
 		control = new CControl(frame);
 
-		setLayout(new BorderLayout());
-		frame.setContentPane(this);
+		mainPanel = new JPanel(new BorderLayout());
+		frame.setContentPane(mainPanel);
 
-		add(toolbar, BorderLayout.NORTH);
-		add(control.getContentArea(), BorderLayout.CENTER);
-		add(statusBar, BorderLayout.SOUTH);
+		mainPanel.add(toolbar, BorderLayout.NORTH);
+		mainPanel.add(control.getContentArea(), BorderLayout.CENTER);
+		mainPanel.add(statusBar, BorderLayout.SOUTH);
 
 		grid = new CGrid(control);
 		grid.add(0, 0, 1, 10, dockableViewer);
@@ -191,6 +194,11 @@ public class JeographyGIS extends JPanel
 		GisActions.setupActions(frame, this, toolbar, menuBar,
 				configuration.getTileConfigs(),
 				configuration.getTileConfigsOverlay());
+	}
+
+	public JPanel getMainPanel()
+	{
+		return mainPanel;
 	}
 
 	/**
@@ -273,6 +281,8 @@ public class JeographyGIS extends JPanel
 	{
 		this.configFile = configFile;
 		this.configuration = configuration;
+
+		changeSupport = new PropertyChangeSupport(this);
 
 		// here's the GUI
 		TileConfig configOverlay = null;
@@ -397,7 +407,7 @@ public class JeographyGIS extends JPanel
 		case DRAG:
 			viewer.setDragging(true);
 		}
-		firePropertyChange("mouseMode", oldMode, mode);
+		changeSupport.firePropertyChange("mouseMode", oldMode, mode);
 	}
 
 	/**
@@ -450,7 +460,7 @@ public class JeographyGIS extends JPanel
 
 	void setupGeometryList()
 	{
-		JFrame frame = Components.getContainingFrame(this);
+		JFrame frame = Components.getContainingFrame(mainPanel);
 
 		geometryManagerDialog = new EventJDialog(frame, "Geometry Manager");
 		geometryManagerDialog.setContentPane(geometryManager);
@@ -677,6 +687,16 @@ public class JeographyGIS extends JPanel
 	public void setShowToolBar(boolean visible)
 	{
 		toolbar.setVisible(visible);
+	}
+
+	public void addPropertyChangeListener(PropertyChangeListener listener)
+	{
+		changeSupport.addPropertyChangeListener(listener);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener listener)
+	{
+		changeSupport.removePropertyChangeListener(listener);
 	}
 
 }

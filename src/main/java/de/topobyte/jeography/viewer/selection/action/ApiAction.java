@@ -77,7 +77,8 @@ public class ApiAction extends GISAction
 		logger.debug("geo: " + selection.toString());
 		logger.debug("box: " + selection.toBoundingBox());
 
-		Clipboard clipboard = getGIS().getToolkit().getSystemClipboard();
+		Clipboard clipboard = getGIS().getMainPanel().getToolkit()
+				.getSystemClipboard();
 		logger.debug(clipboard.toString());
 
 		Transferable transferable = new Transferable() {
@@ -102,12 +103,12 @@ public class ApiAction extends GISAction
 					throws UnsupportedFlavorException
 			{
 				if (flavor.equals(DataFlavor.stringFlavor)) {
-					String text = String
-							.format(Locale.US,
-									"http://www.openstreetmap.org/api/0.6/map?bbox=%.6f,%.6f,%.6f,%.6f",
-									selection.getX1().value(), selection
-											.getY2().value(), selection.getX2()
-											.value(), selection.getY1().value());
+					String text = String.format(Locale.US,
+							"http://www.openstreetmap.org/api/0.6/map?bbox=%.6f,%.6f,%.6f,%.6f",
+							selection.getX1().value(),
+							selection.getY2().value(),
+							selection.getX2().value(),
+							selection.getY1().value());
 					return text;
 				}
 				throw new UnsupportedFlavorException(flavor);

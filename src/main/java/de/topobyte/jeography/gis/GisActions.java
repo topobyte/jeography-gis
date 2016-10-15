@@ -26,6 +26,7 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
@@ -59,8 +60,11 @@ public class GisActions
 
 		/* key bindings */
 
-		InputMap inputMap = gis.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-		ActionMap actionMap = gis.getActionMap();
+		JPanel source = gis.getMainPanel();
+
+		InputMap inputMap = source
+				.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+		ActionMap actionMap = source.getActionMap();
 
 		ActionUtil.setupMovementActions(viewer, inputMap, actionMap);
 		ActionUtil.setupZoomActions(viewer, inputMap, actionMap);
@@ -112,11 +116,11 @@ public class GisActions
 				KeyStroke.getKeyStroke(KeyEvent.VK_F12, InputEvent.CTRL_MASK),
 				"ctrl f12");
 
-		actionMap.put("ctrl f1", new OperationAction(Operations.UNION, gis));
+		actionMap.put("ctrl f1", new OperationAction(Operations.UNION, source));
 		actionMap.put("ctrl f2", new OperationAction(Operations.INTERSECTION,
-				gis));
+				gis.getMainPanel()));
 		actionMap.put("ctrl f3",
-				new OperationAction(Operations.DIFFERENCE, gis));
+				new OperationAction(Operations.DIFFERENCE, source));
 		actionMap.put("ctrl f5", actions.gla);
 	}
 
@@ -127,7 +131,8 @@ public class GisActions
 		JToggleButton buttonMma3 = new JToggleButton(actions.mma3);
 		JToggleButton buttonMma4 = new JToggleButton(actions.mma4);
 		JToggleButton buttonGrid = new JToggleButton(actions.grid);
-		JToggleButton buttonTileNumbers = new JToggleButton(actions.tileNumbers);
+		JToggleButton buttonTileNumbers = new JToggleButton(
+				actions.tileNumbers);
 		JToggleButton buttonCrosshair = new JToggleButton(actions.crosshair);
 		JToggleButton buttonOverlay = new JToggleButton(actions.overlay);
 		JToggleButton buttonGeometryInfo = new JToggleButton(

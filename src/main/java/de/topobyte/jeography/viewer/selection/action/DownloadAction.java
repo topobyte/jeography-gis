@@ -31,7 +31,6 @@ import de.topobyte.jeography.viewer.selection.rectangular.Latitude;
 import de.topobyte.jeography.viewer.selection.rectangular.Longitude;
 import de.topobyte.jeography.viewer.selection.rectangular.Selection;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;
-import de.topobyte.swing.util.Components;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -78,7 +77,7 @@ public class DownloadAction extends GISAction
 		logger.debug("geo: " + selection.toString());
 		logger.debug("zoom: " + getGIS().getViewer().getZoomLevel());
 
-		JFrame frame = Components.getContainingFrame(getGIS());
+		JFrame frame = getMainFrame();
 		DownloadDialog dialog = new DownloadDialog(getGIS(), frame,
 				"download options");
 		dialog.pack();

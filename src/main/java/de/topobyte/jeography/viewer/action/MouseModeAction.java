@@ -32,8 +32,8 @@ import de.topobyte.jeography.viewer.MouseMode;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class MouseModeAction extends ViewerAction implements
-		PropertyChangeListener
+public class MouseModeAction extends ViewerAction
+		implements PropertyChangeListener
 {
 
 	private static final long serialVersionUID = 7666117851502031731L;
