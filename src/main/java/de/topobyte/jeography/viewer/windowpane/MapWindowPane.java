@@ -31,6 +31,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import de.topobyte.awt.util.GridBagConstraintsEditor;
 import de.topobyte.jeography.core.mapwindow.MapWindow;
 import de.topobyte.jeography.core.mapwindow.MapWindowChangeListener;
 import de.topobyte.jeography.viewer.statusbar.StatusBarCallback;
@@ -79,7 +80,6 @@ public class MapWindowPane extends JPanel implements StatusBarInfoEmitter
 		updateCenterPosition();
 
 		setLayout(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
 
 		JLabel label = new JLabel("center position:");
 		JLabel labelLon = new JLabel("lon:");
@@ -153,52 +153,41 @@ public class MapWindowPane extends JPanel implements StatusBarInfoEmitter
 			}
 		}
 
-		c.weightx = 1.0;
-		c.weighty = 0.0;
-		c.anchor = GridBagConstraints.PAGE_START;
+		GridBagConstraintsEditor ce = new GridBagConstraintsEditor();
+		GridBagConstraints c = ce.getConstraints();
 
-		c.gridx = 0;
-		c.gridy = 0;
-		c.gridwidth = 2;
-		c.fill = GridBagConstraints.HORIZONTAL;
+		ce.weight(1.0, 0.0).anchor(GridBagConstraints.PAGE_START);
+
+		ce.gridPos(0, 0).gridWidth(2).fill(GridBagConstraints.HORIZONTAL);
 		add(label, c);
 
-		c.gridwidth = 1;
-		c.gridy = 1;
-		c.gridx = 0;
+		ce.gridPos(0, 1).gridWidth(1);
 		add(labelLon, c);
-		c.gridx = 1;
+		ce.gridX(1);
 		add(labelCenterLon, c);
 
-		c.gridy = 2;
-		c.gridx = 0;
+		ce.gridPos(0, 2);
 		add(labelLat, c);
-		c.gridx = 1;
+		ce.gridX(1);
 		add(labelCenterLat, c);
 
 		ScrollablePanel buttonPane = new ScrollablePanel(new GridBagLayout());
 		buttonPane.setTracksViewportWidth(true);
 		JScrollPane jsp = new JScrollPane(buttonPane);
 
-		c.gridx = 0;
-		c.gridy += 1;
-		c.gridwidth = 2;
-		c.weighty = 1.0;
-		c.fill = GridBagConstraints.BOTH;
+		ce.gridWidth(2).weightY(1.0).fill(GridBagConstraints.BOTH);
+		ce.gridPos(0, GridBagConstraints.RELATIVE);
 		add(jsp, c);
 
-		GridBagConstraints d = new GridBagConstraints();
-		d.gridy = 0;
-		d.weightx = 1.0;
-		d.fill = GridBagConstraints.HORIZONTAL;
-		d.anchor = GridBagConstraints.PAGE_START;
+		GridBagConstraintsEditor de = new GridBagConstraintsEditor();
+		GridBagConstraints d = de.getConstraints();
+		de.gridPos(0, GridBagConstraints.RELATIVE).weightX(1.0);
+		de.fill(GridBagConstraints.HORIZONTAL)
+				.anchor(GridBagConstraints.PAGE_START);
 		for (JButton button : buttons) {
-			d.gridy += 1;
 			buttonPane.add(button, d);
 		}
-		d.weighty = 1.0;
-		d.gridy += 1;
-		d.fill = GridBagConstraints.BOTH;
+		de.weightY(1.0).fill(GridBagConstraints.BOTH);
 		JPanel filler = new JPanel();
 		filler.setPreferredSize(new Dimension(0, 0));
 		buttonPane.add(filler, d);
