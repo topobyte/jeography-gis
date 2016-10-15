@@ -17,6 +17,7 @@
 
 package de.topobyte.jeography.viewer.windowpane;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
@@ -27,12 +28,14 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 import de.topobyte.jeography.core.mapwindow.MapWindow;
 import de.topobyte.jeography.core.mapwindow.MapWindowChangeListener;
 import de.topobyte.jeography.viewer.statusbar.StatusBarCallback;
 import de.topobyte.jeography.viewer.statusbar.StatusBarInfoEmitter;
+import de.topobyte.jeography.viewer.util.ScrollablePanel;
 import de.topobyte.jeography.viewer.windowpane.patterns.Formatters;
 
 /**
@@ -173,15 +176,32 @@ public class MapWindowPane extends JPanel implements StatusBarInfoEmitter
 		c.gridx = 1;
 		add(labelCenterLat, c);
 
-		c.gridx = 0;
-		c.gridwidth = 2;
-		for (JButton button : buttons) {
-			c.gridy += 1;
-			add(button, c);
-		}
+		ScrollablePanel buttonPane = new ScrollablePanel(new GridBagLayout());
+		buttonPane.setTracksViewportWidth(true);
+		JScrollPane jsp = new JScrollPane(buttonPane);
 
+		c.gridx = 0;
+		c.gridy += 1;
+		c.gridwidth = 2;
 		c.weighty = 1.0;
-		add(new JPanel(), c);
+		c.fill = GridBagConstraints.BOTH;
+		add(jsp, c);
+
+		GridBagConstraints d = new GridBagConstraints();
+		d.gridy = 0;
+		d.weightx = 1.0;
+		d.fill = GridBagConstraints.HORIZONTAL;
+		d.anchor = GridBagConstraints.PAGE_START;
+		for (JButton button : buttons) {
+			d.gridy += 1;
+			buttonPane.add(button, d);
+		}
+		d.weighty = 1.0;
+		d.gridy += 1;
+		d.fill = GridBagConstraints.BOTH;
+		JPanel filler = new JPanel();
+		filler.setPreferredSize(new Dimension(0, 0));
+		buttonPane.add(filler, d);
 	}
 
 	void updateCenterPosition()
