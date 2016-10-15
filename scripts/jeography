@@ -2,6 +2,6 @@
 
 DIR=$(dirname $0)
 CMD="$DIR/jeography-gis.sh"
-CLASS="de.topobyte.jeography.executables.JeographyGIS"
+CLASS="de.topobyte.jeography.executables.RunJeographyGIS"
 
 exec "$CMD" "$CLASS" "$@"

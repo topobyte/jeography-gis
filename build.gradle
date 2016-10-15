@@ -63,7 +63,7 @@ dependencies {
     testCompile 'org.buildobjects:jproc:2.2.0'
 }
 
-mainClassName = 'de.topobyte.jeography.executables.JeographyGIS'
+mainClassName = 'de.topobyte.jeography.executables.RunJeographyGIS'
 applicationDefaultJvmArgs = ["-Dlog4j.configuration=file:log4j.properties"]
 
 task sourcesJar(type: Jar, dependsOn: classes) {
