@@ -23,8 +23,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.topobyte.jeography.tiles.BufferedImageAndBytes;
-import de.topobyte.jeography.tiles.LoadListener;
 import de.topobyte.jeography.tiles.CachePathProvider;
+import de.topobyte.jeography.tiles.LoadListener;
 import de.topobyte.jeography.tiles.UrlProvider;
 import de.topobyte.jeography.tiles.source.ImageProviderDisk;
 import de.topobyte.jeography.tiles.source.ImageProviderHttp;

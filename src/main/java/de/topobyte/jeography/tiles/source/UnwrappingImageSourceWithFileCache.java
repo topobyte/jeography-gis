@@ -20,8 +20,8 @@ package de.topobyte.jeography.tiles.source;
 import java.awt.image.BufferedImage;
 
 import de.topobyte.jeography.tiles.BufferedImageAndBytes;
-import de.topobyte.jeography.tiles.FileCache;
 import de.topobyte.jeography.tiles.CachePathProvider;
+import de.topobyte.jeography.tiles.FileCache;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)

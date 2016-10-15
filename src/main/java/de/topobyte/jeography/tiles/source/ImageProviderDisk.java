@@ -26,8 +26,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import de.topobyte.jeography.tiles.BufferedImageAndBytes;
-import de.topobyte.jeography.tiles.FileCache;
 import de.topobyte.jeography.tiles.CachePathProvider;
+import de.topobyte.jeography.tiles.FileCache;
 
 /**
  * @param <T>

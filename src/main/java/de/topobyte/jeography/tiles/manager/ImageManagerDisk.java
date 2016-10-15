@@ -22,8 +22,8 @@ import java.awt.image.BufferedImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.topobyte.jeography.tiles.LoadListener;
 import de.topobyte.jeography.tiles.CachePathProvider;
+import de.topobyte.jeography.tiles.LoadListener;
 import de.topobyte.jeography.tiles.source.ImageProviderDisk;
 
 /**
