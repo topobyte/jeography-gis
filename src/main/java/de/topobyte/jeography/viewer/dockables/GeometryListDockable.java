@@ -31,7 +31,7 @@ public class GeometryListDockable extends DefaultMultipleCDockable
 		setCloseable(true);
 		setExternalizable(true);
 		setMinimizable(true);
-		setMaximizable(true);
+		setMaximizable(false);
 
 		ShowingGeometryList list = new ShowingGeometryList(viewer);
 		add(list);
