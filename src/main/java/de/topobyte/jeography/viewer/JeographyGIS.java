@@ -485,12 +485,9 @@ public class JeographyGIS
 		selectionRectDockable = new DefaultSingleCDockable("rect-selection",
 				"Rect Selection", pane);
 		selectionRectDockable.setExternalizable(true);
-		selectionRectDockable.setMinimizable(true);
 
 		grid.add(1, 0, 0.3, 1, selectionRectDockable);
-		// control.getContentArea().deploy(grid);
 
-		// control.addDockable(selectionRectDockable);
 		selectionRectDockable.setVisible(show);
 		selectionRectDockable.setMinimizable(false);
 		selectionRectDockable.setMaximizable(false);
@@ -504,12 +501,9 @@ public class JeographyGIS
 		selectionPolyDockable = new DefaultSingleCDockable("poly-selection",
 				"Poly Selection", pane);
 		selectionPolyDockable.setExternalizable(true);
-		selectionPolyDockable.setMinimizable(true);
 
 		grid.add(1, 1, 0.3, 1, selectionPolyDockable);
-		// control.getContentArea().deploy(grid);
 
-		// control.addDockable(selectionPolyDockable);
 		selectionPolyDockable.setVisible(show);
 		selectionPolyDockable.setMinimizable(false);
 		selectionPolyDockable.setMaximizable(false);
@@ -524,12 +518,9 @@ public class JeographyGIS
 		mapWindowDockable = new DefaultSingleCDockable("map-window",
 				"Map Window", mapWindowPane);
 		mapWindowDockable.setExternalizable(true);
-		mapWindowDockable.setMinimizable(true);
 
 		grid.add(1, 2, 0.3, 1, mapWindowDockable);
-		// control.getContentArea().deploy(grid);
 
-		// control.addDockable(mapWindowDockable);
 		mapWindowDockable.setVisible(show);
 		mapWindowDockable.setMinimizable(false);
 		mapWindowDockable.setMaximizable(false);
@@ -559,12 +550,8 @@ public class JeographyGIS
 		bookmarksDockable = new DefaultSingleCDockable("bookmarks", "Bookmarks",
 				bookmarks);
 		bookmarksDockable.setExternalizable(true);
-		bookmarksDockable.setMinimizable(true);
 
 		grid.add(1, 3, 0.3, 1, bookmarksDockable);
-		// control.getContentArea().deploy(grid);
-
-		// control.addDockable(mapWindowDockable);
 		bookmarksDockable.setVisible(show);
 		bookmarksDockable.setMinimizable(false);
 		bookmarksDockable.setMaximizable(false);
