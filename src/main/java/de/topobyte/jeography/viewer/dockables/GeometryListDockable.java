@@ -15,33 +15,26 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with jeography. If not, see <http://www.gnu.org/licenses/>.
 
-package de.topobyte.jeography.viewer.action;
+package de.topobyte.jeography.viewer.dockables;
 
-import java.awt.event.ActionEvent;
+import bibliothek.gui.dock.common.DefaultMultipleCDockable;
+import de.topobyte.jeography.viewer.core.Viewer;
+import de.topobyte.jeography.viewer.geometry.list.ShowingGeometryList;
 
-import de.topobyte.jeography.viewer.JeographyGIS;
-
-/**
- * @author Sebastian Kuerten (sebastian@topobyte.de)
- */
-public class GeometryListAction extends GISAction
+public class GeometryListDockable extends DefaultMultipleCDockable
 {
 
-	private static final long serialVersionUID = 8148758442262262122L;
-
-	public GeometryListAction(JeographyGIS gis)
+	public GeometryListDockable(GeometryListFactory factory, Viewer viewer)
 	{
-		super(gis, null);
+		super(factory);
+		setTitleText("Geometries");
+		setCloseable(true);
+		setExternalizable(true);
+		setMinimizable(true);
+		setMaximizable(true);
 
-		setName("Geometry list");
-		setDescription("show a list of geometries to display as overlay");
-		setIconFromResource("res/images/polygonn.png");
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		getGIS().createGeometryList();
+		ShowingGeometryList list = new ShowingGeometryList(viewer);
+		add(list);
 	}
 
 }

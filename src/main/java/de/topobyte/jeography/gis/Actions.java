@@ -124,7 +124,7 @@ public class Actions
 		srpa = new SelectionRectPanelAction(gis);
 		sppa = new SelectionPolyPanelAction(gis);
 		mpa = new MapWindowPanelAction(gis);
-		gla = new GeometryListAction(viewer, viewer);
+		gla = new GeometryListAction(gis);
 		gia = new GeometryIndexAction(gis.getMainPanel());
 		gsa = new GeometrySelectionAction(gis.getMainPanel());
 		mla = new MeasurePanelAction(gis.getMainPanel());

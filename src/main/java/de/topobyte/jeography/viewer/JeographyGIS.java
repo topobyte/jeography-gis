@@ -45,6 +45,9 @@ import bibliothek.gui.dock.common.CControl;
 import bibliothek.gui.dock.common.CGrid;
 import bibliothek.gui.dock.common.DefaultSingleCDockable;
 import bibliothek.gui.dock.common.SingleCDockable;
+import bibliothek.gui.dock.common.location.CBaseLocation;
+import bibliothek.gui.dock.common.location.TreeLocationRoot;
+import bibliothek.gui.dock.common.mode.ExtendedMode;
 import de.topobyte.adt.geo.Coordinate;
 import de.topobyte.awt.util.GridBagConstraintsEditor;
 import de.topobyte.interactiveview.ZoomChangedListener;
@@ -54,6 +57,8 @@ import de.topobyte.jeography.viewer.bookmarks.Bookmarks;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.core.Viewer;
+import de.topobyte.jeography.viewer.dockables.GeometryListDockable;
+import de.topobyte.jeography.viewer.dockables.GeometryListFactory;
 import de.topobyte.jeography.viewer.geometry.OverlayDragGestureListener;
 import de.topobyte.jeography.viewer.geometry.OverlayManager;
 import de.topobyte.jeography.viewer.geometry.manage.EventJDialog;
@@ -101,6 +106,8 @@ public class JeographyGIS
 	private EventJDialog geometryManagerDialog = null;
 	private OverlayManager overlayManager;
 
+	private DefaultSingleCDockable dockableViewer;
+
 	private DefaultSingleCDockable selectionRectDockable = null;
 	private DefaultSingleCDockable selectionPolyDockable = null;
 
@@ -112,6 +119,8 @@ public class JeographyGIS
 
 	private String statusBarText = null;
 
+	private GeometryListFactory factoryGeometryLists;
+
 	public void create(int width, int height, boolean showGeometryManager,
 			boolean showSelectionRectDialog, boolean showSelectionPolyDialog,
 			boolean showMapWindowDialog)
@@ -121,8 +130,7 @@ public class JeographyGIS
 
 		// layout
 
-		DefaultSingleCDockable dockableViewer = new DefaultSingleCDockable(
-				"Map", "Map", viewer);
+		dockableViewer = new DefaultSingleCDockable("Map", "Map", viewer);
 		dockableViewer.setExternalizable(false);
 		dockableViewer.setMinimizable(false);
 
@@ -136,6 +144,7 @@ public class JeographyGIS
 		mainPanel.add(statusBar, BorderLayout.SOUTH);
 
 		grid = new CGrid(control);
+
 		grid.add(0, 0, 1, 10, dockableViewer);
 
 		// layout done
@@ -192,6 +201,10 @@ public class JeographyGIS
 		GisActions.setupActions(frame, this, toolbar, menuBar,
 				configuration.getTileConfigs(),
 				configuration.getTileConfigsOverlay());
+
+		factoryGeometryLists = new GeometryListFactory(this);
+		control.addMultipleDockableFactory("geometry-lists",
+				factoryGeometryLists);
 	}
 
 	public JPanel getMainPanel()
@@ -695,6 +708,18 @@ public class JeographyGIS
 	public void removePropertyChangeListener(PropertyChangeListener listener)
 	{
 		changeSupport.removePropertyChangeListener(listener);
+	}
+
+	public void createGeometryList()
+	{
+		GeometryListDockable dockable = new GeometryListDockable(
+				factoryGeometryLists, viewer);
+		control.addDockable(dockable);
+		CBaseLocation base = new CBaseLocation(control.getContentArea());
+		TreeLocationRoot location = base.normal().west(0);
+		dockable.setLocation(location);
+		dockable.setVisible(true);
+		dockable.setExtendedMode(ExtendedMode.EXTERNALIZED);
 	}
 
 }
