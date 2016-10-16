@@ -57,6 +57,7 @@ import de.topobyte.jeography.viewer.bookmarks.Bookmarks;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.core.Viewer;
+import de.topobyte.jeography.viewer.dockables.DockableHelper;
 import de.topobyte.jeography.viewer.dockables.GeometryListDockable;
 import de.topobyte.jeography.viewer.dockables.GeometryListFactory;
 import de.topobyte.jeography.viewer.geometry.OverlayDragGestureListener;
@@ -484,14 +485,11 @@ public class JeographyGIS
 
 		selectionRectDockable = new DefaultSingleCDockable("rect-selection",
 				"Rect Selection", pane);
-		selectionRectDockable.setExternalizable(true);
 
 		grid.add(1, 0, 0.3, 1, selectionRectDockable);
 
 		selectionRectDockable.setVisible(show);
-		selectionRectDockable.setMinimizable(false);
-		selectionRectDockable.setMaximizable(false);
-		selectionRectDockable.setCloseable(true);
+		DockableHelper.setDefaultOptions(selectionRectDockable);
 	}
 
 	void setupSelectionPolyDialog(boolean show)
@@ -500,14 +498,11 @@ public class JeographyGIS
 
 		selectionPolyDockable = new DefaultSingleCDockable("poly-selection",
 				"Poly Selection", pane);
-		selectionPolyDockable.setExternalizable(true);
 
 		grid.add(1, 1, 0.3, 1, selectionPolyDockable);
 
 		selectionPolyDockable.setVisible(show);
-		selectionPolyDockable.setMinimizable(false);
-		selectionPolyDockable.setMaximizable(false);
-		selectionPolyDockable.setCloseable(true);
+		DockableHelper.setDefaultOptions(selectionPolyDockable);
 	}
 
 	void setupMapWindowDialog(boolean show)
@@ -517,14 +512,11 @@ public class JeographyGIS
 
 		mapWindowDockable = new DefaultSingleCDockable("map-window",
 				"Map Window", mapWindowPane);
-		mapWindowDockable.setExternalizable(true);
 
 		grid.add(1, 2, 0.3, 1, mapWindowDockable);
 
 		mapWindowDockable.setVisible(show);
-		mapWindowDockable.setMinimizable(false);
-		mapWindowDockable.setMaximizable(false);
-		mapWindowDockable.setCloseable(true);
+		DockableHelper.setDefaultOptions(mapWindowDockable);
 
 		mapWindowPane.addStatusBarCallback(new StatusBarCallback() {
 
@@ -549,13 +541,11 @@ public class JeographyGIS
 
 		bookmarksDockable = new DefaultSingleCDockable("bookmarks", "Bookmarks",
 				bookmarks);
-		bookmarksDockable.setExternalizable(true);
 
 		grid.add(1, 3, 0.3, 1, bookmarksDockable);
+
 		bookmarksDockable.setVisible(show);
-		bookmarksDockable.setMinimizable(false);
-		bookmarksDockable.setMaximizable(false);
-		bookmarksDockable.setCloseable(true);
+		DockableHelper.setDefaultOptions(bookmarksDockable);
 	}
 
 	/**

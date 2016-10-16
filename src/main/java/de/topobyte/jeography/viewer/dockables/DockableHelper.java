@@ -17,21 +17,20 @@
 
 package de.topobyte.jeography.viewer.dockables;
 
-import bibliothek.gui.dock.common.DefaultMultipleCDockable;
-import de.topobyte.jeography.viewer.core.Viewer;
-import de.topobyte.jeography.viewer.geometry.list.ShowingGeometryList;
+import bibliothek.gui.dock.common.intern.DefaultCDockable;
 
-public class GeometryListDockable extends DefaultMultipleCDockable
+/**
+ * @author Sebastian Kuerten (sebastian@topobyte.de)
+ */
+public class DockableHelper
 {
 
-	public GeometryListDockable(GeometryListFactory factory, Viewer viewer)
+	public static void setDefaultOptions(DefaultCDockable dockable)
 	{
-		super(factory);
-		setTitleText("Geometries");
-		DockableHelper.setDefaultOptions(this);
-
-		ShowingGeometryList list = new ShowingGeometryList(viewer);
-		add(list);
+		dockable.setCloseable(true);
+		dockable.setExternalizable(true);
+		dockable.setMinimizable(true);
+		dockable.setMaximizable(false);
 	}
 
 }
