@@ -30,6 +30,7 @@ import javax.swing.Scrollable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.topobyte.awt.util.GridBagConstraintsEditor;
 import de.topobyte.jeography.viewer.config.Configuration;
 
 /**
@@ -106,10 +107,9 @@ public class MiscOptionsPane extends JPanel implements Scrollable
 		zoom = new IntegerOption("zoom", configuration.getZoom());
 
 		GridBagConstraints c = new GridBagConstraints();
-		c.fill = GridBagConstraints.BOTH;
-		c.weightx = 1.0;
-		c.gridy = 0;
-		c.gridwidth = 2;
+		GridBagConstraintsEditor ce = new GridBagConstraintsEditor(c);
+		ce.fill(GridBagConstraints.BOTH);
+		ce.weightX(1.0).gridY(0).gridWidth(2);
 
 		add(lafSelector, c);
 		c.gridy++;
@@ -126,34 +126,32 @@ public class MiscOptionsPane extends JPanel implements Scrollable
 		add(isOnline, c);
 		c.gridy++;
 
-		addAsRow(databaseFile, c, true);
-		addAsRow(width, c, true);
-		addAsRow(height, c, true);
-		addAsRow(lon, c, true);
-		addAsRow(lat, c, true);
-		addAsRow(zoom, c, true);
+		addAsRow(databaseFile, ce, true);
+		addAsRow(width, ce, true);
+		addAsRow(height, ce, true);
+		addAsRow(lon, ce, true);
+		addAsRow(lat, ce, true);
+		addAsRow(zoom, ce, true);
 
 		// SwingHelper.setBorder(this, Color.GREEN);
 	}
 
-	private void addAsRow(TwoComponentOption option, GridBagConstraints c,
-			boolean incrementY)
+	private void addAsRow(TwoComponentOption option,
+			GridBagConstraintsEditor ce, boolean incrementY)
 	{
-		addAsRow(option.getFirstComponent(), option.getSecondComponent(), c);
+		addAsRow(option.getFirstComponent(), option.getSecondComponent(), ce);
 		if (incrementY) {
-			c.gridy++;
+			ce.getConstraints().gridy++;
 		}
 	}
 
-	private void addAsRow(JComponent a, JComponent b, GridBagConstraints c)
+	private void addAsRow(JComponent a, JComponent b,
+			GridBagConstraintsEditor ce)
 	{
-		c.weightx = 0.0;
-		c.gridwidth = 1;
-		c.gridx = 0;
-		add(a, c);
-		c.weightx = 0.0;
-		c.gridx = 1;
-		add(b, c);
+		ce.weightX(0).gridWidth(1).gridX(0);
+		add(a, ce.getConstraints());
+		ce.weightX(0).gridX(1);
+		add(b, ce.getConstraints());
 	}
 
 	@Override
