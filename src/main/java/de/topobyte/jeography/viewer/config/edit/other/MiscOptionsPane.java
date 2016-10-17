@@ -83,6 +83,7 @@ public class MiscOptionsPane extends JPanel implements Scrollable
 	{
 		// setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setLayout(new GridBagLayout());
+		BorderHelper.addEmptyBorder(this, 0, 5, 0, 5);
 
 		lafSelector = new LAFSelector(configuration);
 		dockingFramesThemeSelector = new DockingFramesThemeSelector(
@@ -155,6 +156,7 @@ public class MiscOptionsPane extends JPanel implements Scrollable
 			GridBagConstraintsEditor ce)
 	{
 		ce.weightX(0).gridWidth(1).gridX(0);
+		BorderHelper.addEmptyBorder(a, 0, 0, 0, 5);
 		add(a, ce.getConstraints());
 		ce.weightX(0).gridX(1);
 		add(b, ce.getConstraints());
