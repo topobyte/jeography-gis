@@ -24,6 +24,7 @@ import java.awt.Rectangle;
 import java.nio.file.Paths;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Scrollable;
 
@@ -32,6 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import de.topobyte.awt.util.GridBagConstraintsEditor;
 import de.topobyte.jeography.viewer.config.Configuration;
+import de.topobyte.swing.util.BorderHelper;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -110,7 +112,14 @@ public class MiscOptionsPane extends JPanel implements Scrollable
 		GridBagConstraintsEditor ce = new GridBagConstraintsEditor(c);
 		ce.fill(GridBagConstraints.BOTH).gridY(0);
 
+		JLabel labelLaf = new JLabel("Look & Feel:");
+		JLabel labelTheme = new JLabel("Theme:");
+		BorderHelper.addEmptyBorder(labelLaf, 5, 0, 5, 0);
+		BorderHelper.addEmptyBorder(labelTheme, 5, 0, 5, 0);
+
+		addAsRow(labelLaf, ce);
 		addAsRow(lafSelector, ce);
+		addAsRow(labelTheme, ce);
 		addAsRow(dockingFramesThemeSelector, ce);
 		addAsRow(showGrid, ce);
 		addAsRow(showTileNumbers, ce);
