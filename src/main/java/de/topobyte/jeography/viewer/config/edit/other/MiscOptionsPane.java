@@ -43,6 +43,7 @@ public class MiscOptionsPane extends JPanel implements Scrollable
 	final static Logger logger = LoggerFactory.getLogger(MiscOptionsPane.class);
 
 	private LAFSelector lafSelector;
+	private DockingFramesThemeSelector dockingFramesThemeSelector;
 	private BooleanOption showGrid;
 	private BooleanOption showTileNumbers;
 	private BooleanOption showCrosshair;
@@ -81,6 +82,8 @@ public class MiscOptionsPane extends JPanel implements Scrollable
 		setLayout(new GridBagLayout());
 
 		lafSelector = new LAFSelector(configuration);
+		dockingFramesThemeSelector = new DockingFramesThemeSelector(
+				configuration);
 		showGrid = new BooleanOption("show grid", configuration.isShowGrid());
 		showTileNumbers = new BooleanOption("show tile numbers",
 				configuration.isShowTileNumbers());
@@ -94,8 +97,8 @@ public class MiscOptionsPane extends JPanel implements Scrollable
 		showCrosshair.setAlignmentX(0.0f);
 		showOverlay.setAlignmentX(0.0f);
 		isOnline.setAlignmentX(0.0f);
-		databaseFile = new TextOption("database", configuration
-				.getPathDatabase().toString());
+		databaseFile = new TextOption("database",
+				configuration.getPathDatabase().toString());
 		width = new IntegerOption("width", configuration.getWidth());
 		height = new IntegerOption("height", configuration.getHeight());
 		lon = new DoubleOption("lon", configuration.getLon());
@@ -109,6 +112,8 @@ public class MiscOptionsPane extends JPanel implements Scrollable
 		c.gridwidth = 2;
 
 		add(lafSelector, c);
+		c.gridy++;
+		add(dockingFramesThemeSelector, c);
 		c.gridy++;
 		add(showGrid, c);
 		c.gridy++;
@@ -197,8 +202,8 @@ public class MiscOptionsPane extends JPanel implements Scrollable
 				.setShowCrosshair(showCrosshair.getCheckBox().isSelected());
 		configuration.setShowGrid(showGrid.getCheckBox().isSelected());
 		configuration.setShowOverlay(showOverlay.getCheckBox().isSelected());
-		configuration.setShowTileNumbers(showTileNumbers.getCheckBox()
-				.isSelected());
+		configuration
+				.setShowTileNumbers(showTileNumbers.getCheckBox().isSelected());
 		configuration.setWidth(width.getValue());
 		configuration.setHeight(height.getValue());
 		configuration.setZoom(zoom.getValue());
@@ -206,6 +211,8 @@ public class MiscOptionsPane extends JPanel implements Scrollable
 		configuration.setLat(lat.getValue());
 		configuration.setPathDatabase(Paths.get(databaseFile.getValue()));
 		configuration.setLookAndFeel(lafSelector.getSelectedLookAndFeel());
+		configuration.setDockingFramesTheme(
+				dockingFramesThemeSelector.getSelectedTheme());
 	}
 
 }

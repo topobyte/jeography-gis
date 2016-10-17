@@ -136,6 +136,7 @@ public class JeographyGIS
 		dockableViewer.setMinimizable(false);
 
 		control = new CControl(frame);
+		control.setTheme(configuration.getDockingFramesTheme());
 
 		mainPanel = new JPanel(new BorderLayout());
 		frame.setContentPane(mainPanel);
@@ -697,6 +698,11 @@ public class JeographyGIS
 		dockable.setLocation(location);
 		dockable.setVisible(true);
 		dockable.setExtendedMode(ExtendedMode.EXTERNALIZED);
+	}
+
+	public void setDockingFramesTheme(String dockingFramesTheme)
+	{
+		control.setTheme(dockingFramesTheme);
 	}
 
 }

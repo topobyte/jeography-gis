@@ -107,8 +107,9 @@ class ConfigHandler extends DefaultHandler
 				if (url == null || path == null) {
 					return;
 				}
-				TileConfigUrlDisk c = new TileConfigUrlDisk(configuration
-						.getTileConfigs().size() + 1, name, url, path);
+				TileConfigUrlDisk c = new TileConfigUrlDisk(
+						configuration.getTileConfigs().size() + 1, name, url,
+						path);
 				if (userAgent != null) {
 					c.setUserAgent(userAgent);
 				}
@@ -118,8 +119,8 @@ class ConfigHandler extends DefaultHandler
 				if (path == null) {
 					return;
 				}
-				TileConfigDisk c = new TileConfigDisk(configuration
-						.getTileConfigs().size() + 1, name, path);
+				TileConfigDisk c = new TileConfigDisk(
+						configuration.getTileConfigs().size() + 1, name, path);
 				configuration.getTileConfigs().add(c);
 			}
 		} else if (qName.equals("overlay")) {
@@ -132,8 +133,9 @@ class ConfigHandler extends DefaultHandler
 					return;
 				}
 				String userAgent = attributes.getValue("userAgent");
-				TileConfigUrlDisk c = new TileConfigUrlDisk(configuration
-						.getTileConfigsOverlay().size() + 1, name, url, path);
+				TileConfigUrlDisk c = new TileConfigUrlDisk(
+						configuration.getTileConfigsOverlay().size() + 1, name,
+						url, path);
 				if (userAgent != null) {
 					c.setUserAgent(userAgent);
 				}
@@ -143,10 +145,9 @@ class ConfigHandler extends DefaultHandler
 				if (path == null) {
 					return;
 				}
-				configuration.getTileConfigsOverlay().add(
-						new TileConfigUrlDisk(configuration
-								.getTileConfigsOverlay().size() + 1, name,
-								null, path));
+				configuration.getTileConfigsOverlay().add(new TileConfigUrlDisk(
+						configuration.getTileConfigsOverlay().size() + 1, name,
+						null, path));
 			}
 		}
 	}
@@ -179,6 +180,8 @@ class ConfigHandler extends DefaultHandler
 			configuration.setLat(parseDouble(value));
 		} else if (name.equals("look-and-feel")) {
 			configuration.setLookAndFeel(value);
+		} else if (name.equals("docking-frames-theme")) {
+			configuration.setDockingFramesTheme(value);
 		} else {
 			logger.debug(String.format("unhandled option: %s:%s", name, value));
 		}

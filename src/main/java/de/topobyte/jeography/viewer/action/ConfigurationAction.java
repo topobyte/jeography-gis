@@ -167,6 +167,7 @@ public class ConfigurationAction extends GISAction
 		}
 
 		setLookAndFeel(configuration.getLookAndFeel());
+		setDockingFramesTheme(configuration.getDockingFramesTheme());
 	}
 
 	private void setLookAndFeel(String lookAndFeel)
@@ -185,6 +186,11 @@ public class ConfigurationAction extends GISAction
 			SwingUtilities.updateComponentTreeUI(window);
 			// window.pack();
 		}
+	}
+
+	private void setDockingFramesTheme(String dockingFramesTheme)
+	{
+		getGIS().setDockingFramesTheme(dockingFramesTheme);
 	}
 
 	private void showError(String message)

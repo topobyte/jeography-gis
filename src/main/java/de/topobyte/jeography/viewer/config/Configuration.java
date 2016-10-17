@@ -44,6 +44,7 @@ public class Configuration
 	private double lat = 52.49;
 	private int zoom = 9;
 	private String lookAndFeel = null;
+	private String dockingFramesTheme = null;
 
 	private List<TileConfig> tileConfigs = new ArrayList<>();
 	private List<TileConfig> tileConfigsOverlay = new ArrayList<>();
@@ -377,6 +378,16 @@ public class Configuration
 	public void setPathDatabase(Path pathDatabase)
 	{
 		this.pathDatabase = pathDatabase;
+	}
+
+	public String getDockingFramesTheme()
+	{
+		return dockingFramesTheme;
+	}
+
+	public void setDockingFramesTheme(String dockingFramesTheme)
+	{
+		this.dockingFramesTheme = dockingFramesTheme;
 	}
 
 }

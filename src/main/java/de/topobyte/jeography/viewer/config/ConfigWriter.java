@@ -74,8 +74,8 @@ public class ConfigWriter
 				configuration.isShowOverlay());
 		addOption(documentFactory, eConfiguration, "online",
 				configuration.isOnline());
-		addOption(documentFactory, eConfiguration, "database", configuration
-				.getPathDatabase().toString());
+		addOption(documentFactory, eConfiguration, "database",
+				configuration.getPathDatabase().toString());
 		addOption(documentFactory, eConfiguration, "width",
 				configuration.getWidth());
 		addOption(documentFactory, eConfiguration, "height",
@@ -90,6 +90,10 @@ public class ConfigWriter
 			addOption(documentFactory, eConfiguration, "look-and-feel",
 					configuration.getLookAndFeel());
 		}
+		if (configuration.getDockingFramesTheme() != null) {
+			addOption(documentFactory, eConfiguration, "docking-frames-theme",
+					configuration.getDockingFramesTheme());
+		}
 
 		for (TileConfig config : configuration.getTileConfigs()) {
 			addTileConfig(documentFactory, eConfiguration, config, "tiles");
@@ -100,7 +104,8 @@ public class ConfigWriter
 	}
 
 	private static void addTileConfig(DocumentFactory documentFactory,
-			Element eConfiguration, TileConfig tileConfig, String tileConfigType)
+			Element eConfiguration, TileConfig tileConfig,
+			String tileConfigType)
 	{
 		Element main = documentFactory.createElement(tileConfigType);
 		eConfiguration.add(main);
