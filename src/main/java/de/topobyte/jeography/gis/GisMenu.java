@@ -112,8 +112,10 @@ public class GisMenu
 		addCheckbox(menuWindows, actions.gma);
 		addCheckbox(menuWindows, actions.srpa, InputEvent.CTRL_MASK,
 				KeyEvent.VK_S);
-		addCheckbox(menuWindows, actions.mpa, InputEvent.CTRL_MASK,
+		addCheckbox(menuWindows, actions.sppa, InputEvent.CTRL_MASK,
 				KeyEvent.VK_P);
+		addCheckbox(menuWindows, actions.mpa, InputEvent.CTRL_MASK,
+				KeyEvent.VK_M);
 
 		addItem(menuWindows, actions.gia);
 		addItem(menuWindows, actions.gsa);
