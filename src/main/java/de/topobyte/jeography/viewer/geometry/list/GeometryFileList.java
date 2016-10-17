@@ -106,8 +106,8 @@ public class GeometryFileList extends JPanel
 		{
 			File file = getElementAt(index);
 			try {
-				Geometry geometry = PolygonLoader.readPolygon(file
-						.getAbsolutePath());
+				Geometry geometry = PolygonLoader
+						.readPolygon(file.getAbsolutePath());
 				return geometry;
 			} catch (IOException e) {
 				logger.debug("unable to load geometry: " + file);

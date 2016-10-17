@@ -32,9 +32,9 @@ import de.topobyte.swing.util.dnd.DestinationSourceTransferHandler;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public abstract class GeometryDestinationSourceTransferHandler extends
-		DestinationSourceTransferHandler implements GeometrySource,
-		GeometryDestination
+public abstract class GeometryDestinationSourceTransferHandler
+		extends DestinationSourceTransferHandler
+		implements GeometrySource, GeometryDestination
 {
 
 	private static final long serialVersionUID = 5062007241222686797L;
@@ -67,8 +67,8 @@ public abstract class GeometryDestinationSourceTransferHandler extends
 		return super.importData(ts);
 	}
 
-	class TheGeometryDestinationTransferHandler extends
-			GeometryDestinationTransferHandler
+	class TheGeometryDestinationTransferHandler
+			extends GeometryDestinationTransferHandler
 	{
 
 		private static final long serialVersionUID = 249269940459908811L;
@@ -76,8 +76,8 @@ public abstract class GeometryDestinationSourceTransferHandler extends
 		@Override
 		public void handle(Collection<Geometry> geometries, TransferSupport ts)
 		{
-			GeometryDestinationSourceTransferHandler.this
-					.handle(geometries, ts);
+			GeometryDestinationSourceTransferHandler.this.handle(geometries,
+					ts);
 		}
 
 		@Override
@@ -88,8 +88,7 @@ public abstract class GeometryDestinationSourceTransferHandler extends
 
 	}
 
-	class TheGeometrySourceTransferHandler extends
-			GeometrySourceTransferHandler
+	class TheGeometrySourceTransferHandler extends GeometrySourceTransferHandler
 	{
 
 		private static final long serialVersionUID = -2717744536346756915L;

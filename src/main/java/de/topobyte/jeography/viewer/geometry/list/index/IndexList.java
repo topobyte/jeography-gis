@@ -266,8 +266,8 @@ public class IndexList extends JPanel implements ListDataListener
 
 		add(controlsContainer, cx);
 
-		controlsContainer.setBorder(BorderFactory
-				.createBevelBorder(BevelBorder.LOWERED));
+		controlsContainer.setBorder(
+				BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 		controlsContainer.removeAll();
 
 		controlsContainer.setLayout(new GridBagLayout());

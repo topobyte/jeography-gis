@@ -111,9 +111,9 @@ public class BboxChooser extends JPanel
 
 		selectionAdapter = new SelectionAdapter(viewer);
 		if (bbox != null) {
-			selectionAdapter.setGeographicSelection(new GeographicSelection(
-					bbox.getLon1(), bbox.getLon2(), bbox.getLat1(), bbox
-							.getLat2()));
+			selectionAdapter.setGeographicSelection(
+					new GeographicSelection(bbox.getLon1(), bbox.getLon2(),
+							bbox.getLat1(), bbox.getLat2()));
 		}
 		selectionAdapter.setMouseActive(true);
 		viewer.setMouseActive(false);

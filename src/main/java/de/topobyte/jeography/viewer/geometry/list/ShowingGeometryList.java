@@ -59,8 +59,8 @@ import de.topobyte.jeography.viewer.geometry.manage.GeometryStylesModel;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class ShowingGeometryList extends JPanel implements PaintListener,
-		ListDataListener
+public class ShowingGeometryList extends JPanel
+		implements PaintListener, ListDataListener
 {
 
 	final static Logger logger = LoggerFactory

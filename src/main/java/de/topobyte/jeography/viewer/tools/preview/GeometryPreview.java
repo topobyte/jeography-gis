@@ -136,8 +136,8 @@ public class GeometryPreview
 	public void showViewerWithFile(JRootPane root, Configuration configuration,
 			Set<GeometryContainer> tgs)
 	{
-		Configuration config = configuration == null ? Configuration
-				.createDefaultConfiguration() : configuration;
+		Configuration config = configuration == null
+				? Configuration.createDefaultConfiguration() : configuration;
 		TileConfig tileConfig = config.getTileConfigs().get(0);
 		final Viewer viewer = new Viewer(tileConfig, null);
 
@@ -167,8 +167,8 @@ public class GeometryPreview
 
 		Envelope envelope = new Envelope();
 		for (GeometryContainer gc : bag) {
-			envelope.expandToInclude(gc.getGeometry().getGeometry()
-					.getEnvelopeInternal());
+			envelope.expandToInclude(
+					gc.getGeometry().getGeometry().getEnvelopeInternal());
 		}
 		final BBox box = new BBox(envelope);
 		logger.debug("showing region: " + box);

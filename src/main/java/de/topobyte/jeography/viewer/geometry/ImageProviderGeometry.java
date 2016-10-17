@@ -110,8 +110,8 @@ public class ImageProviderGeometry extends ImageProvider<Tile, BufferedImage>
 		Set<ZoomlevelGeometryProvider> intersects = tree.intersects(viewRect);
 		// TODO: check for real intersection?
 		for (ZoomlevelGeometryProvider zgp : intersects) {
-			Geometry geometryMercator = zgp.getGeometryForZoomlevel(mit
-					.getTileZoom());
+			Geometry geometryMercator = zgp
+					.getGeometryForZoomlevel(mit.getTileZoom());
 			GeometryTransformer transformer = new CoordinateGeometryTransformer(
 					new CoordinateTransformer() {
 

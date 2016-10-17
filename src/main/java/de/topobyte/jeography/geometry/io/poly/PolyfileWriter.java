@@ -72,8 +72,7 @@ public class PolyfileWriter
 		}
 	}
 
-	private static void write(BufferedWriter bw, String name)
-			throws IOException
+	private static void write(BufferedWriter bw, String name) throws IOException
 	{
 		bw.write(name);
 		bw.write(newline);
@@ -95,8 +94,8 @@ public class PolyfileWriter
 			Point point = lineString.getPointN(i);
 			double lon = point.getX();
 			double lat = point.getY();
-			String line = String
-					.format("    %.9e    %.9e%s", lon, lat, newline);
+			String line = String.format("    %.9e    %.9e%s", lon, lat,
+					newline);
 			bw.write(line);
 		}
 		bw.write(String.format("END%s", newline));

@@ -199,8 +199,8 @@ public class GeometryTree extends JPanel
 
 	void showViewerWithFile(File file)
 	{
-		Set<GeometryContainer> tgs = geometryManager.getGeometryCache().read(
-				file);
+		Set<GeometryContainer> tgs = geometryManager.getGeometryCache()
+				.read(file);
 
 		GeometryPreview preview = new GeometryPreview();
 		preview.showViewerWithFile(this, tgs, file.getName());
@@ -363,8 +363,8 @@ public class GeometryTree extends JPanel
 			super("edit", "edit and item");
 			this.setIconFromResource("res/images/stock_edit.png");
 
-			getTree().getSelectionModel().addTreeSelectionListener(
-					new TreeSelectionListener() {
+			getTree().getSelectionModel()
+					.addTreeSelectionListener(new TreeSelectionListener() {
 
 						@Override
 						public void valueChanged(TreeSelectionEvent e)
@@ -402,8 +402,8 @@ public class GeometryTree extends JPanel
 			super("remove", "remove an item");
 			this.setIconFromResource("res/images/list-remove.svg");
 
-			getTree().getSelectionModel().addTreeSelectionListener(
-					new TreeSelectionListener() {
+			getTree().getSelectionModel()
+					.addTreeSelectionListener(new TreeSelectionListener() {
 
 						@Override
 						public void valueChanged(TreeSelectionEvent e)
@@ -515,8 +515,8 @@ public class GeometryTree extends JPanel
 		handler.endDocument();
 	}
 
-	private void openFrom(String path) throws ParserConfigurationException,
-			SAXException, IOException
+	private void openFrom(String path)
+			throws ParserConfigurationException, SAXException, IOException
 	{
 		logger.debug("opening from: " + path);
 

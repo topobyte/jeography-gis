@@ -61,10 +61,9 @@ public class Test
 				gl.getListModel().add(
 						new File("/tmp/osm/germany/kreise/Kronach(62383).jsg"),
 						0);
-				gl.getListModel()
-						.add(new File(
-								"/tmp/osm/germany/kreise/Kulmbach(62479).jsg"),
-								1);
+				gl.getListModel().add(
+						new File("/tmp/osm/germany/kreise/Kulmbach(62479).jsg"),
+						1);
 			}
 		});
 		frame.setVisible(true);

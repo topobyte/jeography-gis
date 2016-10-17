@@ -33,9 +33,9 @@ import de.topobyte.swing.util.dnd.SourceTransferHandler;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public abstract class GeometrySourceTransferHandler extends
-		SourceAwareTransferHandler implements SourceTransferHandler,
-		GeometrySource
+public abstract class GeometrySourceTransferHandler
+		extends SourceAwareTransferHandler
+		implements SourceTransferHandler, GeometrySource
 {
 
 	private static final long serialVersionUID = 460417237371558219L;

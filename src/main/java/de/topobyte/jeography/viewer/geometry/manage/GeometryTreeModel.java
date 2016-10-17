@@ -602,8 +602,8 @@ public class GeometryTreeModel implements TreeModel
 			Node currentNode = root;
 
 			@Override
-			public void startElement(String uri, String localName,
-					String qName, Attributes atts)
+			public void startElement(String uri, String localName, String qName,
+					Attributes atts)
 			{
 				if (qName.equals("tree")) {
 					nTree += 1;
@@ -681,7 +681,8 @@ public class GeometryTreeModel implements TreeModel
 			Object component = path.getPathComponent(i);
 
 			if (node.getIndexOfChild(component) == -1) {
-				logger.debug("path invalid: an entry in path could not be found");
+				logger.debug(
+						"path invalid: an entry in path could not be found");
 				return false;
 			}
 

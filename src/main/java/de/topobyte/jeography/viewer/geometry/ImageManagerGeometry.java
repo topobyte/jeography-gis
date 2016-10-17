@@ -173,8 +173,8 @@ public class ImageManagerGeometry implements ImageManager<Tile, BufferedImage>,
 		tree = new GenericRTree<>();
 
 		for (ZoomlevelGeometryProvider zgp : geometries) {
-			Rectangle rectangle = JsiAndJts.toRectangle(zgp
-					.getOriginalGeometry());
+			Rectangle rectangle = JsiAndJts
+					.toRectangle(zgp.getOriginalGeometry());
 			tree.add(rectangle, zgp);
 		}
 	}

@@ -63,8 +63,8 @@ public class TestDownloadProgressWindow
 			}
 		}
 
-		TileDownloader downloader = new TileDownloader(httpConfigs.get(0),
-				null, selection.toBoundingBox(), levels);
+		TileDownloader downloader = new TileDownloader(httpConfigs.get(0), null,
+				selection.toBoundingBox(), levels);
 
 		DownloadProgressWindow dialog = new DownloadProgressWindow(null,
 				downloader);

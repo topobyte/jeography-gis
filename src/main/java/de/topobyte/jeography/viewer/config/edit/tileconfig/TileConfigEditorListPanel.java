@@ -38,8 +38,8 @@ import de.topobyte.jeography.viewer.config.edit.tileconfig.action.RemoveTileConf
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class TileConfigEditorListPanel extends JPanel implements
-		SelectionChainListener
+public class TileConfigEditorListPanel extends JPanel
+		implements SelectionChainListener
 {
 
 	private static final long serialVersionUID = 6047260382147500642L;

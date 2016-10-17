@@ -36,8 +36,8 @@ public class TestGeometrySelectionOperation
 	public static void main(String[] args)
 	{
 		GeometrySelectionOperation gso = new GeometrySelectionOperation();
-		JFrame frame = FrameHelper.showFrameWithComponent("test", gso, 200,
-				400, 0, 0, true);
+		JFrame frame = FrameHelper.showFrameWithComponent("test", gso, 200, 400,
+				0, 0, true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 

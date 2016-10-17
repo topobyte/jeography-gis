@@ -38,8 +38,8 @@ import de.topobyte.jeography.viewer.config.edit.tileconfig.TileConfigEditorListP
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public abstract class ConfigurationEditor extends JPanel implements
-		ActionListener
+public abstract class ConfigurationEditor extends JPanel
+		implements ActionListener
 {
 
 	private static final long serialVersionUID = 3497678160259202506L;

@@ -84,8 +84,8 @@ public class ZoomAction extends ViewerAction implements ZoomChangedListener
 	@Override
 	public boolean isEnabled()
 	{
-		return (in && getViewer().getZoomLevel() < getViewer()
-				.getMaxZoomLevel())
+		return (in
+				&& getViewer().getZoomLevel() < getViewer().getMaxZoomLevel())
 				|| (!in && getViewer().getZoomLevel() > getViewer()
 						.getMinZoomLevel());
 	}

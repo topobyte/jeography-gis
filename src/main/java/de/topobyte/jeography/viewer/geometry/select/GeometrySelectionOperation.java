@@ -144,8 +144,8 @@ public class GeometrySelectionOperation extends JPanel
 		GenericSpatialIndex<Geometry> index = indexPanel.getData();
 		Geometry input = inputGeometryPanel.getData();
 
-		Set<Geometry> intersects = index.intersects(JsiAndJts
-				.toRectangle(input));
+		Set<Geometry> intersects = index
+				.intersects(JsiAndJts.toRectangle(input));
 
 		Collection<Geometry> results = new ArrayList<>();
 		for (Geometry intersecting : intersects) {
@@ -155,8 +155,8 @@ public class GeometrySelectionOperation extends JPanel
 		}
 
 		GeometryFactory factory = new GeometryFactory();
-		GeometryCollection result = factory.createGeometryCollection(results
-				.toArray(new Geometry[0]));
+		GeometryCollection result = factory
+				.createGeometryCollection(results.toArray(new Geometry[0]));
 
 		outputGeometryPanel.setup(result);
 

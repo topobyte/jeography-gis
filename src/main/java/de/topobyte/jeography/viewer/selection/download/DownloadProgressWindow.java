@@ -37,8 +37,8 @@ import de.topobyte.swing.util.ButtonPane;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class DownloadProgressWindow extends EventJDialog implements
-		DownloadProgressListener
+public class DownloadProgressWindow extends EventJDialog
+		implements DownloadProgressListener
 {
 
 	private static final long serialVersionUID = -830093656649774630L;
@@ -77,8 +77,8 @@ public class DownloadProgressWindow extends EventJDialog implements
 		JLabel labelTotal = new JLabel("tiles total: ");
 		JLabel labelComplete = new JLabel("tiles completed:");
 		JLabel labelFailed = new JLabel("tiles failed:");
-		labelTotalN = new JLabel(""
-				+ tileDownloader.getNumberOfTilesToDownload());
+		labelTotalN = new JLabel(
+				"" + tileDownloader.getNumberOfTilesToDownload());
 		labelCompleteN = new JLabel("0");
 		labelFailedN = new JLabel("0");
 

@@ -32,8 +32,8 @@ import de.topobyte.jeography.tiles.source.ImageProviderDisk;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class ImageManagerDisk<T> extends
-		AbstractImageManagerWithMemoryCache<T, BufferedImage>
+public class ImageManagerDisk<T>
+		extends AbstractImageManagerWithMemoryCache<T, BufferedImage>
 {
 
 	final static Logger logger = LoggerFactory

@@ -104,8 +104,7 @@ public class DatabaseBuilder
 		}
 	}
 
-	private void initConnection() throws DatabaseBuildingException,
-			SQLException
+	private void initConnection() throws DatabaseBuildingException, SQLException
 	{
 		/*
 		 * Setup database connection
@@ -114,8 +113,8 @@ public class DatabaseBuilder
 		logger.debug("configuring output connection");
 		jdbcConnection = null;
 		try {
-			jdbcConnection = DriverManager.getConnection("jdbc:sqlite:"
-					+ pathDatabase);
+			jdbcConnection = DriverManager
+					.getConnection("jdbc:sqlite:" + pathDatabase);
 			jdbcConnection.setAutoCommit(false);
 		} catch (SQLException e) {
 			throw new DatabaseBuildingException(
@@ -164,8 +163,8 @@ public class DatabaseBuilder
 		}
 	}
 
-	private void insertData() throws IOException, OsmInputException,
-			QueryException
+	private void insertData()
+			throws IOException, OsmInputException, QueryException
 	{
 		/*
 		 * Read and insert data

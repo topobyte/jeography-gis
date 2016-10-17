@@ -29,8 +29,8 @@ import de.topobyte.jeography.tiles.UrlProvider;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class ImageProviderHttp<T> extends
-		ImageProvider<T, BufferedImageAndBytes>
+public class ImageProviderHttp<T>
+		extends ImageProvider<T, BufferedImageAndBytes>
 {
 
 	static final Logger logger = LoggerFactory.getLogger(ImageProvider.class);

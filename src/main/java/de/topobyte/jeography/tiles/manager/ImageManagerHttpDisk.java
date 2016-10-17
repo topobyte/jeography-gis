@@ -35,8 +35,8 @@ import de.topobyte.jeography.tiles.source.ImageProviderHttp;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class ImageManagerHttpDisk<T> extends
-		AbstractImageManagerWithMemoryCachePlus<T, BufferedImage>
+public class ImageManagerHttpDisk<T>
+		extends AbstractImageManagerWithMemoryCachePlus<T, BufferedImage>
 {
 
 	final static Logger logger = LoggerFactory
@@ -100,8 +100,8 @@ public class ImageManagerHttpDisk<T> extends
 		}
 	}
 
-	private class LoadListenerHttp implements
-			LoadListener<T, BufferedImageAndBytes>
+	private class LoadListenerHttp
+			implements LoadListener<T, BufferedImageAndBytes>
 	{
 
 		private ImageManagerHttpDisk<T> manager;

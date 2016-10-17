@@ -36,8 +36,8 @@ import de.topobyte.awt.util.GridBagConstraintsEditor;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class BookmarksRenderer extends JPanel implements
-		ListCellRenderer<Bookmark>
+public class BookmarksRenderer extends JPanel
+		implements ListCellRenderer<Bookmark>
 {
 
 	private static final long serialVersionUID = 6406286243991965045L;

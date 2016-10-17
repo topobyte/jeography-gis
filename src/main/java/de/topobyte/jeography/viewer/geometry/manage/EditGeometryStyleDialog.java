@@ -48,8 +48,7 @@ import de.topobyte.swing.util.combobox.BooleanComboBoxModel;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class EditGeometryStyleDialog extends JDialog implements
-		DocumentListener
+public class EditGeometryStyleDialog extends JDialog implements DocumentListener
 {
 
 	private static final long serialVersionUID = -2733578787051285160L;

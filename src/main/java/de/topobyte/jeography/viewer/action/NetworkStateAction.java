@@ -54,8 +54,8 @@ public class NetworkStateAction extends ViewerAction
 
 	private void configure()
 	{
-		setIconFromResource(getViewer().getNetworkState() ? FILE_ONLINE
-				: FILE_OFFLINE);
+		setIconFromResource(
+				getViewer().getNetworkState() ? FILE_ONLINE : FILE_OFFLINE);
 		text = getViewer().getNetworkState() ? "disable network"
 				: "enable network";
 	}

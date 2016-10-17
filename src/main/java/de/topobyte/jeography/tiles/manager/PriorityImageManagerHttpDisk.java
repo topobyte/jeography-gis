@@ -32,8 +32,8 @@ import de.topobyte.jeography.tiles.source.UnwrappingImageSourceWithFileCache;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class PriorityImageManagerHttpDisk<T> extends
-		ImageManagerSourceRam<T, BufferedImage>
+public class PriorityImageManagerHttpDisk<T>
+		extends ImageManagerSourceRam<T, BufferedImage>
 {
 
 	boolean online = true;

@@ -46,8 +46,8 @@ import de.topobyte.swing.util.DocumentAdapter;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class SearchUI extends JPanel implements ActionListener,
-		ListSelectionListener
+public class SearchUI extends JPanel
+		implements ActionListener, ListSelectionListener
 {
 
 	private static final long serialVersionUID = 1623220323023117627L;

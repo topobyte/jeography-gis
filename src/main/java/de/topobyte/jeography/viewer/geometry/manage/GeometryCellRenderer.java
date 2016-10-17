@@ -70,17 +70,17 @@ public class GeometryCellRenderer extends JPanel implements TreeCellRenderer
 	public GeometryCellRenderer()
 	{
 		try {
-			BufferedImage imageDirectory = ImageIO.read(Thread.currentThread()
-					.getContextClassLoader()
-					.getResourceAsStream("res/images/directory.png"));
+			BufferedImage imageDirectory = ImageIO
+					.read(Thread.currentThread().getContextClassLoader()
+							.getResourceAsStream("res/images/directory.png"));
 			iconDirectory = new ImageIcon(imageDirectory);
-			BufferedImage imagePolygon = ImageIO.read(Thread.currentThread()
-					.getContextClassLoader()
-					.getResourceAsStream("res/images/polygon.png"));
+			BufferedImage imagePolygon = ImageIO
+					.read(Thread.currentThread().getContextClassLoader()
+							.getResourceAsStream("res/images/polygon.png"));
 			iconPolygon = new ImageIcon(imagePolygon);
-			BufferedImage imagePolygons = ImageIO.read(Thread.currentThread()
-					.getContextClassLoader()
-					.getResourceAsStream("res/images/polygonn.png"));
+			BufferedImage imagePolygons = ImageIO
+					.read(Thread.currentThread().getContextClassLoader()
+							.getResourceAsStream("res/images/polygonn.png"));
 			iconPolygons = new ImageIcon(imagePolygons);
 		} catch (IOException e) {
 			// do nothing

@@ -56,7 +56,8 @@ public class GeometryIndexTransferable implements Transferable
 	 * @param geometryIndex
 	 *            the index to transfer.
 	 */
-	public GeometryIndexTransferable(GenericSpatialIndex<Geometry> geometryIndex)
+	public GeometryIndexTransferable(
+			GenericSpatialIndex<Geometry> geometryIndex)
 	{
 		this.geometryIndex = geometryIndex;
 	}

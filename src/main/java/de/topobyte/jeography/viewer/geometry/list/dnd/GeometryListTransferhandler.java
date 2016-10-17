@@ -36,8 +36,8 @@ import de.topobyte.jeography.viewer.geometry.list.GeomList;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class GeometryListTransferhandler extends
-		GeometryDestinationSourceTransferHandler
+public class GeometryListTransferhandler
+		extends GeometryDestinationSourceTransferHandler
 {
 
 	final static Logger logger = LoggerFactory

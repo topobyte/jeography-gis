@@ -84,8 +84,8 @@ public class TrashButton extends JButton implements DropTargetListener
 		try {
 			getDropTarget().addDropTargetListener(this);
 		} catch (TooManyListenersException e) {
-			logger.debug("unalbe to add drop target listener: "
-					+ e.getMessage());
+			logger.debug(
+					"unalbe to add drop target listener: " + e.getMessage());
 		}
 	}
 

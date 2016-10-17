@@ -26,8 +26,8 @@ import de.topobyte.jeography.tiles.source.UnwrappingImageSource;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class PriorityImageManagerHttp<T> extends
-		ImageManagerSourceRam<T, BufferedImage>
+public class PriorityImageManagerHttp<T>
+		extends ImageManagerSourceRam<T, BufferedImage>
 {
 
 	boolean online = true;

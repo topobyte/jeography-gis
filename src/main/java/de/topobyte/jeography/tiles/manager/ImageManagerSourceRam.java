@@ -34,9 +34,9 @@ import de.topobyte.jeography.tiles.source.ImageSource;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class ImageManagerSourceRam<T, D> extends
-		AbstractImageManagerWithMemoryCachePlus<T, D> implements
-		PriorityImageManager<T, D, Integer>
+public class ImageManagerSourceRam<T, D>
+		extends AbstractImageManagerWithMemoryCachePlus<T, D>
+		implements PriorityImageManager<T, D, Integer>
 {
 
 	private final int nThreads;

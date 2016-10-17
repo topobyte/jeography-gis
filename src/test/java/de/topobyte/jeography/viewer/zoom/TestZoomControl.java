@@ -36,10 +36,10 @@ public class TestZoomControl
 	{
 
 		try {
-			UIManager
-					.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-			UIManager
-					.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+			UIManager.setLookAndFeel(
+					"com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+			UIManager.setLookAndFeel(
+					"com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
 		} catch (Exception e) {
 			System.out.println("error while setting LAF");
 		}

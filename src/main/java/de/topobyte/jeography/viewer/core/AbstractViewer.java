@@ -56,9 +56,9 @@ import de.topobyte.jeography.viewer.zoom.ZoomMode;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public abstract class AbstractViewer extends JPanel implements MouseUser,
-		ComponentListener, MouseMotionListener, MouseListener,
-		MouseWheelListener
+public abstract class AbstractViewer extends JPanel
+		implements MouseUser, ComponentListener, MouseMotionListener,
+		MouseListener, MouseWheelListener
 {
 
 	private static final long serialVersionUID = -3023462611876276320L;
@@ -358,8 +358,8 @@ public abstract class AbstractViewer extends JPanel implements MouseUser,
 				uninstallDragSource();
 				DragSource dragSource = new DragSource();
 				currentDragGestureListener = dragGestureListener;
-				recognizer = dragSource.createDefaultDragGestureRecognizer(
-						this, TransferHandler.COPY, dragGestureListener);
+				recognizer = dragSource.createDefaultDragGestureRecognizer(this,
+						TransferHandler.COPY, dragGestureListener);
 			}
 		} else {
 			uninstallDragSource();
@@ -629,8 +629,8 @@ public abstract class AbstractViewer extends JPanel implements MouseUser,
 						360, Arc2D.CHORD);
 				g.fill(arc);
 			} else {
-				Rectangle2D rect = new Rectangle2D.Double(px - d / 2, py - d
-						/ 2, d, d);
+				Rectangle2D rect = new Rectangle2D.Double(px - d / 2,
+						py - d / 2, d, d);
 				g.fill(rect);
 			}
 		}
@@ -662,8 +662,8 @@ public abstract class AbstractViewer extends JPanel implements MouseUser,
 		if (points.size() == 1) {
 			logger.debug("hopping to point");
 			OverlayPoint point = points.iterator().next();
-			getMapWindow()
-					.gotoLonLat(point.getLongitude(), point.getLatitude());
+			getMapWindow().gotoLonLat(point.getLongitude(),
+					point.getLatitude());
 		} else {
 			logger.debug("showing points");
 			getMapWindow().gotoPoints(points);

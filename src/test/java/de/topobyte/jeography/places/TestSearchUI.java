@@ -38,9 +38,9 @@ import de.topobyte.luqe.jdbc.JdbcConnection;
 public class TestSearchUI
 {
 
-	public static void main(String args[]) throws InstantiationException,
-			IllegalAccessException, ClassNotFoundException, SQLException,
-			QueryException
+	public static void main(String args[])
+			throws InstantiationException, IllegalAccessException,
+			ClassNotFoundException, SQLException, QueryException
 	{
 		Path pathDatabase = Paths.get("/tmp/places.sqlite");
 

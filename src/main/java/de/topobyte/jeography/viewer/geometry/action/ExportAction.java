@@ -112,8 +112,8 @@ public class ExportAction extends SimpleAction
 			try {
 				serializer.serialize(geometry, outfile);
 			} catch (IOException exeption) {
-				logger.debug("unable to write geometry: "
-						+ exeption.getMessage());
+				logger.debug(
+						"unable to write geometry: " + exeption.getMessage());
 			}
 		}
 	}

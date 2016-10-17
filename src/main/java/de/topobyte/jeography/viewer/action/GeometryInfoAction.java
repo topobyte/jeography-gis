@@ -35,8 +35,7 @@ public class GeometryInfoAction extends BooleanAction
 	 */
 	public GeometryInfoAction(JeographyGIS gis)
 	{
-		super(
-				"show geometry information",
+		super("show geometry information",
 				"toggle whether to display information about the geometry at the current mouse position on click");
 		this.gis = gis;
 		setIconFromResource("res/images/polygonn_info.png");

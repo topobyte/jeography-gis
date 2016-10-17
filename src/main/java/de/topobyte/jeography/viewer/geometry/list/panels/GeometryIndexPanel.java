@@ -27,8 +27,8 @@ import de.topobyte.swing.util.dnd.panel.SimpleSerializingDndPanel;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class GeometryIndexPanel extends
-		SimpleSerializingDndPanel<GenericSpatialIndex<Geometry>>
+public class GeometryIndexPanel
+		extends SimpleSerializingDndPanel<GenericSpatialIndex<Geometry>>
 {
 
 	private static final long serialVersionUID = 8806826692383521733L;

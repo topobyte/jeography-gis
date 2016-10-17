@@ -56,8 +56,8 @@ public class GeometryFileCache
 				|| name.endsWith(".wkt") || name.endsWith(".wkb")) {
 			try {
 				int id = idFactory++;
-				Geometry geometry = PolygonLoader.readPolygon(file
-						.getAbsolutePath());
+				Geometry geometry = PolygonLoader
+						.readPolygon(file.getAbsolutePath());
 				GeoObject tg = new GeoObject(geometry);
 				GeometrySourceJSG source = new GeometrySourceJSG(name);
 				GeometryContainer geometryContainer = new GeometryContainer(id,

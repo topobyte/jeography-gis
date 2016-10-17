@@ -38,8 +38,7 @@ import de.topobyte.jts.utils.JtsHelper;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class BboxDragGeometryPanel extends JPanel implements
-		DragGestureListener
+public class BboxDragGeometryPanel extends JPanel implements DragGestureListener
 {
 
 	private static final long serialVersionUID = 2404823349194508514L;

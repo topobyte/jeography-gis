@@ -34,8 +34,8 @@ import javax.swing.tree.TreeCellEditor;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class GeometryCellEditor extends AbstractCellEditor implements
-		TreeCellEditor
+public class GeometryCellEditor extends AbstractCellEditor
+		implements TreeCellEditor
 {
 
 	// public class CellContainer extends Container {

@@ -76,10 +76,10 @@ public class ShowingTranslateList extends ShowingOperationList
 
 		public Controls()
 		{
-			SpinnerNumberModel modelX = new SpinnerNumberModel(
-					evaluator.getX(), null, null, 0.001);
-			SpinnerNumberModel modelY = new SpinnerNumberModel(
-					evaluator.getY(), null, null, 0.001);
+			SpinnerNumberModel modelX = new SpinnerNumberModel(evaluator.getX(),
+					null, null, 0.001);
+			SpinnerNumberModel modelY = new SpinnerNumberModel(evaluator.getY(),
+					null, null, 0.001);
 
 			spinnerX = new JSpinner(modelX);
 			spinnerY = new JSpinner(modelY);

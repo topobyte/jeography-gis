@@ -57,9 +57,9 @@ import de.topobyte.melon.casting.CastUtil;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class SteplessViewer extends AbstractViewer implements
-		LoadListener<Tile, BufferedImage>, ImageManagerUpdateListener,
-		MapWindowChangeListener, ZoomChangedListener
+public class SteplessViewer extends AbstractViewer
+		implements LoadListener<Tile, BufferedImage>,
+		ImageManagerUpdateListener, MapWindowChangeListener, ZoomChangedListener
 {
 
 	private static final long serialVersionUID = -2141729332089589643L;
@@ -546,7 +546,8 @@ public class SteplessViewer extends AbstractViewer implements
 		this.tileConfig = tileConfig;
 		imageManagerBase = imageManager;
 		imageManagerBase.addLoadListener(this);
-		scaleCacheBase = new MemoryCachePlus<>(tileMapWindow.minimumCacheSize());
+		scaleCacheBase = new MemoryCachePlus<>(
+				tileMapWindow.minimumCacheSize());
 
 		globalManager = tileConfig.createGlobalManager();
 

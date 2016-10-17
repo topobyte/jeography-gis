@@ -27,8 +27,8 @@ import de.topobyte.jeography.viewer.geometry.manage.VisibilityListener;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class GeometryManagerAction extends GISAction implements
-		VisibilityListener
+public class GeometryManagerAction extends GISAction
+		implements VisibilityListener
 {
 
 	private static final long serialVersionUID = 3260669993327051070L;

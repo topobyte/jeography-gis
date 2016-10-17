@@ -70,8 +70,10 @@ public class GeometryListCellRendererLabel implements ListCellRenderer
 		if (selected) {
 			System.out.println(list.getSelectionBackground());
 			System.out.println(list.getSelectionForeground());
-			label.setBackground(bg == null ? list.getSelectionBackground() : bg);
-			label.setForeground(fg == null ? list.getSelectionForeground() : fg);
+			label.setBackground(
+					bg == null ? list.getSelectionBackground() : bg);
+			label.setForeground(
+					fg == null ? list.getSelectionForeground() : fg);
 		} else {
 			label.setBackground(list.getBackground());
 			label.setForeground(list.getForeground());

@@ -31,8 +31,8 @@ import de.topobyte.jeography.viewer.core.Viewer;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class OverlayTileConfigAction extends ViewerAction implements
-		TileConfigListener
+public class OverlayTileConfigAction extends ViewerAction
+		implements TileConfigListener
 {
 
 	private static final long serialVersionUID = 9111846066502896410L;
@@ -92,8 +92,8 @@ public class OverlayTileConfigAction extends ViewerAction implements
 	@Override
 	public void tileConfigChanged()
 	{
-		boolean nowEnabled = getViewer().getOverlayTileConfig().getId() != config
-				.getId();
+		boolean nowEnabled = getViewer().getOverlayTileConfig()
+				.getId() != config.getId();
 		boolean emit = (enabled != nowEnabled);
 		enabled = nowEnabled;
 		if (emit) {

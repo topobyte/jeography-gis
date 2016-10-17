@@ -290,7 +290,8 @@ public class GeometryRulesModel implements ListModel<GeometryRule>
 		for (GeometryRule rule : rules) {
 			atts.clear();
 			atts.addAttribute("", "", "name", "CDATA", rule.getName());
-			atts.addAttribute("", "", "namespace", "CDATA", rule.getNamespace());
+			atts.addAttribute("", "", "namespace", "CDATA",
+					rule.getNamespace());
 			atts.addAttribute("", "", "style", "CDATA", rule.getStyle());
 			handler.startElement("", "", "rule", atts);
 			handler.endElement("", "", "rule");
@@ -320,8 +321,8 @@ public class GeometryRulesModel implements ListModel<GeometryRule>
 			GeometryRule currentRule = null;
 
 			@Override
-			public void startElement(String uri, String localName,
-					String qName, Attributes atts)
+			public void startElement(String uri, String localName, String qName,
+					Attributes atts)
 			{
 				if (qName.equals("rule")) {
 					String name = atts.getValue("name");

@@ -72,8 +72,8 @@ public class PreviewHelper
 		try {
 			configuration = ConfigReader.read(configFile);
 		} catch (Exception e) {
-			System.out.println("unable to read configuration: "
-					+ e.getMessage());
+			System.out
+					.println("unable to read configuration: " + e.getMessage());
 			System.out.println("using default configuration");
 		}
 

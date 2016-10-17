@@ -26,8 +26,8 @@ import de.topobyte.jeography.tiles.FileCache;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class UnwrappingImageSourceWithFileCache<T> implements
-		ImageSource<T, BufferedImage>
+public class UnwrappingImageSourceWithFileCache<T>
+		implements ImageSource<T, BufferedImage>
 {
 
 	public ImageSource<T, BufferedImageAndBytes> source;

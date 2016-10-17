@@ -108,7 +108,8 @@ public class GeometryLoader
 				throw new IOException("Error while parsing WKT", e);
 			}
 		case GEOJSON:
-			throw new IllegalArgumentException("GeoJSON is not yet implemented");
+			throw new IllegalArgumentException(
+					"GeoJSON is not yet implemented");
 		}
 	}
 
@@ -149,7 +150,8 @@ public class GeometryLoader
 		if (geometry != null) {
 			return geometry;
 		}
-		throw new IOException("File could not be parsed using any known format");
+		throw new IOException(
+				"File could not be parsed using any known format");
 	}
 
 }

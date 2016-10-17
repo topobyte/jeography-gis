@@ -52,7 +52,8 @@ public class TestDownloadDialog
 		selectionAdapter.setGeographicSelection(new GeographicSelection(
 				12.969360, 13.840027, 52.703019, 52.305120));
 
-		DownloadDialog dialog = new DownloadDialog(gis, null, "download dialog");
+		DownloadDialog dialog = new DownloadDialog(gis, null,
+				"download dialog");
 		dialog.setSize(500, 400);
 		dialog.pack();
 		dialog.setVisible(true);

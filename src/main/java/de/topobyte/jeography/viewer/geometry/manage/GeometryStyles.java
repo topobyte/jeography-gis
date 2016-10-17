@@ -163,8 +163,8 @@ class GeometryStylesRenderer implements ListCellRenderer<GeometryStyle>
 		p1.setBackground(new Color(0xffffffff, true));
 
 		Border empty = BorderFactory.createEmptyBorder(4, 4, 4, 4);
-		Border line = BorderFactory.createLineBorder(
-				new Color(0x33000000, true), 2);
+		Border line = BorderFactory
+				.createLineBorder(new Color(0x33000000, true), 2);
 		Border b1 = BorderFactory.createCompoundBorder(empty, line);
 		Border b2 = BorderFactory.createCompoundBorder(b1, empty);
 		panel.setBorder(b2);
@@ -172,8 +172,8 @@ class GeometryStylesRenderer implements ListCellRenderer<GeometryStyle>
 
 	@Override
 	public Component getListCellRendererComponent(
-			JList<? extends GeometryStyle> list, GeometryStyle value,
-			int index, boolean isSelected, boolean cellHasFocus)
+			JList<? extends GeometryStyle> list, GeometryStyle value, int index,
+			boolean isSelected, boolean cellHasFocus)
 	{
 
 		GeometryStyle style = value;

@@ -66,7 +66,8 @@ public class GeometryStylePanel extends JPanel
 		g2d.fillRect(0, 0, getWidth(), getHeight());
 		g2d.setColor(checkColor2);
 		for (int y = 0; y < getHeight(); y += checkSize) {
-			for (int x = (y % 2) == 0 ? 0 : checkSize; x < getWidth(); x += checkSize * 2) {
+			for (int x = (y % 2) == 0 ? 0
+					: checkSize; x < getWidth(); x += checkSize * 2) {
 				g2d.fillRect(x, y, checkSize, checkSize);
 			}
 		}

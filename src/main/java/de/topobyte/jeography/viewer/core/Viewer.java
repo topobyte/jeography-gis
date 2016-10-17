@@ -54,9 +54,9 @@ import de.topobyte.melon.casting.CastUtil;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class Viewer extends AbstractViewer implements
-		LoadListener<Tile, BufferedImage>, ImageManagerUpdateListener,
-		MapWindowChangeListener
+public class Viewer extends AbstractViewer
+		implements LoadListener<Tile, BufferedImage>,
+		ImageManagerUpdateListener, MapWindowChangeListener
 {
 
 	private static final long serialVersionUID = -2141729332089589643L;
@@ -99,8 +99,8 @@ public class Viewer extends AbstractViewer implements
 	 * @param lat
 	 *            startup latitude
 	 */
-	public Viewer(TileConfig tileConfig, TileConfig tileConfigOverlay,
-			int zoom, double lon, double lat)
+	public Viewer(TileConfig tileConfig, TileConfig tileConfigOverlay, int zoom,
+			double lon, double lat)
 	{
 		mapWindow = new SteppedMapWindow(1, 1, zoom, lon, lat);
 		mapWindow.setMaxZoom(22);

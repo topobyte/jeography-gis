@@ -255,9 +255,8 @@ public class SelectionAdapter implements MouseListener, MouseMotionListener,
 		double x2 = viewer.getMapWindow().longitudeToX(degrees.getX2().value());
 		double y1 = viewer.getMapWindow().latitudeToY(degrees.getY1().value());
 		double y2 = viewer.getMapWindow().latitudeToY(degrees.getY2().value());
-		selection = new IntSelection((int) Math.round(x1),
-				(int) Math.round(x2), (int) Math.round(y1),
-				(int) Math.round(y2));
+		selection = new IntSelection((int) Math.round(x1), (int) Math.round(x2),
+				(int) Math.round(y1), (int) Math.round(y2));
 		triggerPixelValuesChanged();
 	}
 
@@ -321,8 +320,8 @@ public class SelectionAdapter implements MouseListener, MouseMotionListener,
 					padWidth, padHeight);
 			break;
 		case PAD_BOTTOM_RIGHT:
-			g.fillRect(selection.getX2() - padWidth, selection.getY2()
-					- padHeight, padWidth, padHeight);
+			g.fillRect(selection.getX2() - padWidth,
+					selection.getY2() - padHeight, padWidth, padHeight);
 			break;
 		case PAD_CENTER:
 			break;

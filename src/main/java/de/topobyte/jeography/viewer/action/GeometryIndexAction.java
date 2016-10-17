@@ -48,7 +48,8 @@ public class GeometryIndexAction extends SimpleAction
 		this.source = source;
 
 		setName("Geometry Index creator");
-		setDescription("create a spatial index from a collection of geometries");
+		setDescription(
+				"create a spatial index from a collection of geometries");
 		setIconFromResource("res/images/polygonn.png");
 	}
 

@@ -27,8 +27,8 @@ import de.topobyte.jeography.viewer.JeographyGIS;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class MapWindowPanelAction extends BooleanAction implements
-		CDockableStateListener
+public class MapWindowPanelAction extends BooleanAction
+		implements CDockableStateListener
 {
 
 	private static final long serialVersionUID = 3970439392210144565L;

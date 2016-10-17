@@ -155,8 +155,8 @@ public abstract class ImageProvider<T, D> implements ImageSource<T, D>
 							// do nothing here
 						}
 					} else {
-						Message message = toProvideList.remove(toProvideList
-								.size() - 1);
+						Message message = toProvideList
+								.remove(toProvideList.size() - 1);
 						if (message.type == MessageType.Kill) {
 							System.out.println("stopped!!!!");
 							return;

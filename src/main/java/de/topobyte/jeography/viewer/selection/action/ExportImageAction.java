@@ -56,7 +56,8 @@ public class ExportImageAction extends GISAction
 	 * @param selectionAdapter
 	 *            the adapter to get the selection from.
 	 */
-	public ExportImageAction(JeographyGIS gis, SelectionAdapter selectionAdapter)
+	public ExportImageAction(JeographyGIS gis,
+			SelectionAdapter selectionAdapter)
 	{
 		super(gis, "res/images/16/stock_insert_image.png");
 		this.name = "export image";

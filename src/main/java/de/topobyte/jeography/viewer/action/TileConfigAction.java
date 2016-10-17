@@ -32,8 +32,7 @@ import de.topobyte.jeography.viewer.util.EmptyIcon;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class TileConfigAction extends ViewerAction implements
-		TileConfigListener
+public class TileConfigAction extends ViewerAction implements TileConfigListener
 {
 
 	private static final long serialVersionUID = 2464732546694656245L;

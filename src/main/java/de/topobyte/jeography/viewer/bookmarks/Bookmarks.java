@@ -55,11 +55,15 @@ public class Bookmarks extends JPanel
 		add(jsp, BorderLayout.CENTER);
 
 		model = new ArrayListModel<>();
-		model.add(new Bookmark("Berlin", new Coordinate(13.368988037109375,
-				52.52958999943302)), 0);
+		model.add(
+				new Bookmark("Berlin",
+						new Coordinate(13.368988037109375, 52.52958999943302)),
+				0);
 		model.add(new Bookmark("Düsseldorf", new Coordinate(6.777, 51.225)), 1);
-		model.add(new Bookmark("Cottbus", new Coordinate(14.329948425292969,
-				51.758490455733785)), 1);
+		model.add(
+				new Bookmark("Cottbus",
+						new Coordinate(14.329948425292969, 51.758490455733785)),
+				1);
 
 		list.setCellRenderer(new BookmarksRenderer());
 		list.setModel(model);

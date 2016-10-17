@@ -27,8 +27,8 @@ import de.topobyte.jeography.tiles.cache.MemoryCachePlus;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public abstract class AbstractImageManagerWithMemoryCachePlus<T, D> extends
-		AbstractImageManager<T, D>
+public abstract class AbstractImageManagerWithMemoryCachePlus<T, D>
+		extends AbstractImageManager<T, D>
 {
 
 	protected int desiredCacheSize;

@@ -50,9 +50,10 @@ public class PanelButton extends JPanel
 	private void create()
 	{
 		setLayout(new GridBagLayout());
-		add(button, new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(
-						0, 0, 0, 0), 0, 0));
+		add(button,
+				new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0,
+						GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+						new Insets(0, 0, 0, 0), 0, 0));
 	}
 
 	public JButton getButton()

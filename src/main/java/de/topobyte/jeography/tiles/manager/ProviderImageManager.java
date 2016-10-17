@@ -30,8 +30,8 @@ import de.topobyte.jeography.tiles.source.ImageProvider;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class ProviderImageManager<D> extends
-		AbstractImageManagerWithMemoryCache<Tile, D>
+public class ProviderImageManager<D>
+		extends AbstractImageManagerWithMemoryCache<Tile, D>
 {
 
 	final static Logger logger = LoggerFactory

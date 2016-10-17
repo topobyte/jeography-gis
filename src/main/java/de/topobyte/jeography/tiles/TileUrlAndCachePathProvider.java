@@ -22,8 +22,8 @@ import de.topobyte.jeography.core.Tile;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class TileUrlAndCachePathProvider implements CachePathProvider<Tile>,
-		UrlProvider<Tile>
+public class TileUrlAndCachePathProvider
+		implements CachePathProvider<Tile>, UrlProvider<Tile>
 {
 
 	// private String cacheDir;

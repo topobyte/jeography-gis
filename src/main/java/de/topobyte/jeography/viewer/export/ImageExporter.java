@@ -114,7 +114,8 @@ public class ImageExporter
 	 * @param tileConfig
 	 *            the tile configuration to use.
 	 */
-	public ImageExporter(BBox bbox, int width, int height, TileConfig tileConfig)
+	public ImageExporter(BBox bbox, int width, int height,
+			TileConfig tileConfig)
 	{
 		mapWindow = new SteppedMapWindow(width, height, 10, bbox.getLon1(),
 				bbox.getLat1());

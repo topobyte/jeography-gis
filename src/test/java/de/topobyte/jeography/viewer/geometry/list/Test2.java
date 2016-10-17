@@ -56,8 +56,8 @@ public class Test2
 
 		// file list
 		final GeometryFileList gl = new GeometryFileList();
-		JFrame frame = FrameHelper.showFrameWithComponent("files", gl, 400,
-				600, 0, 0, false);
+		JFrame frame = FrameHelper.showFrameWithComponent("files", gl, 400, 600,
+				0, 0, false);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.addComponentListener(new ComponentAdapter() {
@@ -82,11 +82,11 @@ public class Test2
 		// second
 		final OperationList unionList = OperationListFactory
 				.createOperationList(Operations.UNION);
-		FrameHelper.showFrameWithComponent("union", unionList, 400, 600, 400,
-				0, true);
+		FrameHelper.showFrameWithComponent("union", unionList, 400, 600, 400, 0,
+				true);
 
-		Geometry geometry = new GeometryFactory().createPoint(new Coordinate(
-				1.0, 2.0));
+		Geometry geometry = new GeometryFactory()
+				.createPoint(new Coordinate(1.0, 2.0));
 		unionList.getList().getModel().add(geometry, 0);
 		unionList.getList().getModel().add(geometry, 0);
 		unionList.getList().getModel().add(geometry, 0);

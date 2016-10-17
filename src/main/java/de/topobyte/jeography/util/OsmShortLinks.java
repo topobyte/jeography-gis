@@ -104,8 +104,8 @@ public class OsmShortLinks
 			}
 			Integer index = REVERSE.get(c);
 			if (index == null) {
-				throw new IllegalArgumentException("Invalid character: '" + c
-						+ "'");
+				throw new IllegalArgumentException(
+						"Invalid character: '" + c + "'");
 			}
 			int t = index;
 			for (int i = 0; i < 3; i++) {

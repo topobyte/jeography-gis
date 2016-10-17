@@ -33,8 +33,7 @@ import com.vividsolutions.jts.geom.Geometry;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class GeometryListCellRendererPanel implements
-		ListCellRenderer<Geometry>
+public class GeometryListCellRendererPanel implements ListCellRenderer<Geometry>
 {
 
 	GeometryPanel panel = new GeometryPanel();
@@ -75,8 +74,10 @@ public class GeometryListCellRendererPanel implements
 		boolean even = index % 2 == 0;
 
 		if (selected) {
-			panel.setBackground(bg == null ? list.getSelectionBackground() : bg);
-			panel.setForeground(fg == null ? list.getSelectionForeground() : fg);
+			panel.setBackground(
+					bg == null ? list.getSelectionBackground() : bg);
+			panel.setForeground(
+					fg == null ? list.getSelectionForeground() : fg);
 		} else {
 			panel.setBackground(list.getBackground());
 			panel.setForeground(list.getForeground());

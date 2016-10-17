@@ -37,8 +37,7 @@ import de.topobyte.jeography.viewer.geometry.manage.GeometryStyle;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class ShowingOperationList extends OperationList implements
-		PaintListener
+public class ShowingOperationList extends OperationList implements PaintListener
 {
 
 	private static final long serialVersionUID = -2692520265323153740L;

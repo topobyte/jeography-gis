@@ -60,8 +60,8 @@ public class PolygonalSelectionSnapAction extends ViewerAction
 		if (key.equals("SmallIcon")) {
 			return icon;
 		} else if (key.equals(Action.SELECTED_KEY)) {
-			return new Boolean(gis.getPolygonalSelectionAdapter()
-					.isSnapSelection());
+			return new Boolean(
+					gis.getPolygonalSelectionAdapter().isSnapSelection());
 		} else if (key.equals(Action.NAME)) {
 			return "Polygonal selection's snap mode";
 		} else if (key.equals(Action.SHORT_DESCRIPTION)) {
@@ -75,8 +75,8 @@ public class PolygonalSelectionSnapAction extends ViewerAction
 	{
 		PolySelectionAdapter polygonalSelectionAdapter = gis
 				.getPolygonalSelectionAdapter();
-		polygonalSelectionAdapter.setSnapSelection(!polygonalSelectionAdapter
-				.isSnapSelection());
+		polygonalSelectionAdapter
+				.setSnapSelection(!polygonalSelectionAdapter.isSnapSelection());
 		firePropertyChange(Action.SELECTED_KEY, null, null);
 	}
 

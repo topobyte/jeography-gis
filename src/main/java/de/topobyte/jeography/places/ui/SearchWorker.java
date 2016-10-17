@@ -98,7 +98,8 @@ public class SearchWorker implements Runnable
 		}
 	}
 
-	private void updateWithResults(final String query, final List<Place> results)
+	private void updateWithResults(final String query,
+			final List<Place> results)
 	{
 		SwingUtilities.invokeLater(new Runnable() {
 

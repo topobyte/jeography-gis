@@ -41,8 +41,8 @@ import de.topobyte.jeography.tiles.UrlProvider;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class ImageSourceUrlPattern<T> implements
-		ImageSource<T, BufferedImageAndBytes>
+public class ImageSourceUrlPattern<T>
+		implements ImageSource<T, BufferedImageAndBytes>
 {
 
 	static final Logger logger = LoggerFactory
@@ -160,16 +160,16 @@ public class ImageSourceUrlPattern<T> implements
 						cis.close();
 					}
 				} catch (IOException e) {
-					System.out.println("unable to close InputStream: "
-							+ e.getMessage());
+					System.out.println(
+							"unable to close InputStream: " + e.getMessage());
 				}
 				try {
 					if (bis != null) {
 						bis.close();
 					}
 				} catch (IOException e) {
-					System.out.println("unable to close InputStream: "
-							+ e.getMessage());
+					System.out.println(
+							"unable to close InputStream: " + e.getMessage());
 				}
 			}
 		}

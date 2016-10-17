@@ -46,9 +46,9 @@ import de.topobyte.jts.drawing.awt.GeometryDrawerGraphics;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class PolySelectionAdapter implements MouseListener,
-		MouseMotionListener, MouseUser, PaintListener, MapWindowChangeListener,
-		SelectionChangeListener
+public class PolySelectionAdapter
+		implements MouseListener, MouseMotionListener, MouseUser, PaintListener,
+		MapWindowChangeListener, SelectionChangeListener
 {
 
 	private final Viewer viewer;
@@ -108,7 +108,7 @@ public class PolySelectionAdapter implements MouseListener,
 		GraphicsUtil.useAntialiasing(g2d, true);
 
 		GeometryDrawerGraphics pd = new GeometryDrawerGraphics(
-		// viewer.getMapWindow(),
+				// viewer.getMapWindow(),
 				new IdentityCoordinateTransformer(), 0, 0) {
 
 			@Override

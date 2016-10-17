@@ -20,8 +20,8 @@ package de.topobyte.jeography.places.ui;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public interface UpdateableDataListModel<E> extends DataListModel<E>,
-		UpdateableListModel<E>
+public interface UpdateableDataListModel<E>
+		extends DataListModel<E>, UpdateableListModel<E>
 {
 
 }

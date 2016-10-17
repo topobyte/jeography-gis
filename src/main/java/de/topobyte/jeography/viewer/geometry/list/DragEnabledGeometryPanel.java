@@ -35,8 +35,8 @@ import de.topobyte.jeography.viewer.geometry.list.renderer.GeometryPanel;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class DragEnabledGeometryPanel extends GeometryPanel implements
-		DragGestureListener
+public class DragEnabledGeometryPanel extends GeometryPanel
+		implements DragGestureListener
 {
 
 	private static final long serialVersionUID = 2738726613621310738L;

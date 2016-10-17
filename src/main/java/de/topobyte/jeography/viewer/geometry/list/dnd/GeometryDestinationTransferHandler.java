@@ -38,9 +38,8 @@ import de.topobyte.swing.util.dnd.DestinationTransferHandler;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public abstract class GeometryDestinationTransferHandler extends
-		TransferHandler implements DestinationTransferHandler,
-		GeometryDestination
+public abstract class GeometryDestinationTransferHandler extends TransferHandler
+		implements DestinationTransferHandler, GeometryDestination
 {
 
 	private static final long serialVersionUID = 460417237371558219L;
@@ -109,8 +108,9 @@ public abstract class GeometryDestinationTransferHandler extends
 				Collection<Geometry> geoms = CastUtil.cast(data);
 				handle(geoms, ts);
 			} catch (UnsupportedFlavorException e) {
-				logger.debug("unable to get transfer data (UnsupportedFlavorException): "
-						+ e.getMessage());
+				logger.debug(
+						"unable to get transfer data (UnsupportedFlavorException): "
+								+ e.getMessage());
 			} catch (IOException e) {
 				logger.debug("unable to get transfer data (IOException): "
 						+ e.getMessage());
@@ -128,8 +128,9 @@ public abstract class GeometryDestinationTransferHandler extends
 				Collection<Geometry> geoms = CastUtil.cast(data);
 				handle(geoms, ts);
 			} catch (UnsupportedFlavorException e) {
-				logger.debug("unable to get transfer data (UnsupportedFlavorException): "
-						+ e.getMessage());
+				logger.debug(
+						"unable to get transfer data (UnsupportedFlavorException): "
+								+ e.getMessage());
 			} catch (IOException e) {
 				logger.debug("unable to get transfer data (IOException): "
 						+ e.getMessage());

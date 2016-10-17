@@ -37,8 +37,8 @@ import de.topobyte.swing.util.dnd.DestinationTransferHandler;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public abstract class FileTransferHandler extends TransferHandler implements
-		DestinationTransferHandler
+public abstract class FileTransferHandler extends TransferHandler
+		implements DestinationTransferHandler
 {
 
 	final static Logger logger = LoggerFactory
@@ -54,7 +54,8 @@ public abstract class FileTransferHandler extends TransferHandler implements
 	 * @param ts
 	 *            the TransferSupport this is about.
 	 */
-	public abstract void handleFiles(List<File> handleFiles, TransferSupport ts);
+	public abstract void handleFiles(List<File> handleFiles,
+			TransferSupport ts);
 
 	@Override
 	public boolean canImport(TransferSupport ts)

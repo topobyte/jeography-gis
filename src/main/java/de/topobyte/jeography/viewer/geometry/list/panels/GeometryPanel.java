@@ -91,7 +91,8 @@ public class GeometryPanel extends DndPanel<Geometry>
 	{
 		ArrayList<Geometry> geometries = new ArrayList<>();
 		geometries.add(t);
-		GeometryTransferable transferable = new GeometryTransferable(geometries);
+		GeometryTransferable transferable = new GeometryTransferable(
+				geometries);
 		return transferable.getTransferData(flavor);
 	}
 

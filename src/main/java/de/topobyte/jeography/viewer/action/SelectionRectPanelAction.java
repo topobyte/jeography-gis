@@ -29,8 +29,8 @@ import de.topobyte.jeography.viewer.JeographyGIS;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class SelectionRectPanelAction extends GISAction implements
-		CDockableStateListener
+public class SelectionRectPanelAction extends GISAction
+		implements CDockableStateListener
 {
 
 	private static final long serialVersionUID = 3260669993327051070L;

@@ -31,8 +31,8 @@ import de.topobyte.jeography.tiles.manager.PriorityImageManager;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class TilenumberPrioritizingImageManagerContainer<D> implements
-		ImageManager<Tile, D>
+public class TilenumberPrioritizingImageManagerContainer<D>
+		implements ImageManager<Tile, D>
 {
 
 	private PriorityImageManager<Tile, D, Integer> manager;

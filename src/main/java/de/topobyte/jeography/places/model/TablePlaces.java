@@ -44,7 +44,8 @@ public class TablePlaces extends Table
 		addColumn(ColumnClass.VARCHAR, Tables.COLUMN_NAME);
 
 		for (String language : languages) {
-			addColumn(ColumnClass.VARCHAR, Tables.COLUMN_PREFIX_NAME + language);
+			addColumn(ColumnClass.VARCHAR,
+					Tables.COLUMN_PREFIX_NAME + language);
 		}
 	}
 

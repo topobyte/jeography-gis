@@ -92,8 +92,8 @@ public class SelectionTree extends JTree
 		@Override
 		public void mousePressed(MouseEvent event)
 		{
-			TreePath treePath = SelectionTree.this.getPathForLocation(
-					event.getX(), event.getY());
+			TreePath treePath = SelectionTree.this
+					.getPathForLocation(event.getX(), event.getY());
 			if (treePath == null) {
 				return;
 			}

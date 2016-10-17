@@ -40,8 +40,8 @@ import de.topobyte.swing.util.dnd.DestinationTransferHandler;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class DragEnabledGeometryIndexPanel extends JPanel implements
-		DragGestureListener
+public class DragEnabledGeometryIndexPanel extends JPanel
+		implements DragGestureListener
 {
 
 	private static final long serialVersionUID = -4507519038851053131L;

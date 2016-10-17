@@ -76,9 +76,9 @@ public class Dao
 		connection.execute(Indexes.createStatement(Tables.SEARCH_MAP,
 				"map_index", Tables.COLUMN_FTS_ID, Tables.COLUMN_ID));
 
-		connection.execute("create virtual table " + Tables.TABLE_NAME_FTS
-				+ " using fts4(" + Tables.SEARCH.getColumn(1).getName()
-				+ " TEXT);");
+		connection.execute(
+				"create virtual table " + Tables.TABLE_NAME_FTS + " using fts4("
+						+ Tables.SEARCH.getColumn(1).getName() + " TEXT);");
 	}
 
 	private IConnection connection;
@@ -137,8 +137,8 @@ public class Dao
 
 	public int addType(String name) throws QueryException
 	{
-		IPreparedStatement stmt = connection.prepareStatement(qb
-				.insert(Tables.PLACETYPES));
+		IPreparedStatement stmt = connection
+				.prepareStatement(qb.insert(Tables.PLACETYPES));
 		stmt.setString(idxTypesName, name);
 		IResultSet results = stmt.executeQuery();
 		int id = results.getInt(1);
@@ -163,8 +163,8 @@ public class Dao
 
 	public void addMetadata(String key, String value) throws QueryException
 	{
-		IPreparedStatement stmt = connection.prepareStatement(qb
-				.insert(Tables.METADATA));
+		IPreparedStatement stmt = connection
+				.prepareStatement(qb.insert(Tables.METADATA));
 
 		stmt.setString(idxMetaKey, key);
 		stmt.setString(idxMetaValue, value);
@@ -179,16 +179,16 @@ public class Dao
 			double lon, double lat) throws QueryException
 	{
 		if (stmtInsertPlace == null) {
-			stmtInsertPlace = connection.prepareStatement(qb
-					.insert(tablePlaces));
+			stmtInsertPlace = connection
+					.prepareStatement(qb.insert(tablePlaces));
 		}
 
 		stmtInsertPlace.setInt(idxPlacesType, type);
 		stmtInsertPlace.setString(idxPlacesName, name);
 
 		for (String language : tablePlaces.getLanguages()) {
-			int idx = tablePlaces.getColumnIndexSafe(Tables.COLUMN_PREFIX_NAME
-					+ language);
+			int idx = tablePlaces
+					.getColumnIndexSafe(Tables.COLUMN_PREFIX_NAME + language);
 			stmtInsertPlace.setString(idx, altNames.get(language));
 		}
 
@@ -216,9 +216,8 @@ public class Dao
 			Map<String, String> altNames = new HashMap<>();
 
 			for (String language : languages) {
-				int idx = tablePlaces
-						.getColumnIndexSafe(Tables.COLUMN_PREFIX_NAME
-								+ language);
+				int idx = tablePlaces.getColumnIndexSafe(
+						Tables.COLUMN_PREFIX_NAME + language);
 				String altName = results.getString(idx);
 				if (altName == null) {
 					continue;
@@ -305,9 +304,8 @@ public class Dao
 			double lat = results.getDouble(idxPlacesLat);
 			list.add(new Place(id, type, name, altNames, lon, lat));
 			for (String language : languages) {
-				int idx = tablePlaces
-						.getColumnIndexSafe(Tables.COLUMN_PREFIX_NAME
-								+ language);
+				int idx = tablePlaces.getColumnIndexSafe(
+						Tables.COLUMN_PREFIX_NAME + language);
 				String altName = results.getString(idx);
 				if (altName == null) {
 					continue;

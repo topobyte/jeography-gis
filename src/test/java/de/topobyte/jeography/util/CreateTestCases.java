@@ -40,8 +40,8 @@ public class CreateTestCases
 			String command = String.format(commandPattern, lon, lat, zoom);
 			String output = ProcBuilder.run("ruby", "-r", "/tmp/short_link.rb",
 					"-e", command);
-			System.out.println(String.format(outputPattern, lon, lat, zoom,
-					output));
+			System.out.println(
+					String.format(outputPattern, lon, lat, zoom, output));
 		}
 	}
 

@@ -114,8 +114,9 @@ public class ZoomlevelGeometryProvider
 			simplified = TopologyPreservingSimplifier.simplify(geometry,
 					distance);
 		} catch (IllegalArgumentException e) {
-			logger.warn("Unable to simplify geometry. IllegalArgumentException: "
-					+ e.getMessage());
+			logger.warn(
+					"Unable to simplify geometry. IllegalArgumentException: "
+							+ e.getMessage());
 		}
 		instances.put(zoom, simplified);
 		return simplified;

@@ -107,8 +107,8 @@ public class TestJeographyGIS
 		String filename2 = "/tmp/berlin/Mitte/boroughs/10_Moabit.smx";
 
 		GeometryManager geometryManager = gis.getGeometryManager();
-		geometryManager
-				.showTab(de.topobyte.jeography.viewer.geometry.manage.Tab.FILES);
+		geometryManager.showTab(
+				de.topobyte.jeography.viewer.geometry.manage.Tab.FILES);
 
 		GeometryTree tree = gis.getGeometryManager().getTree();
 		GeometryTreeModel treeModel = tree.getModel();
@@ -131,18 +131,18 @@ public class TestJeographyGIS
 
 		/* Rectangular Selection */
 		SelectionAdapter selectionAdapter = gis.getSelectionAdapter();
-		selectionAdapter.setGeographicSelection(new GeographicSelection(
-				5.3173828125, 15.3369140625, 55.4040698270061,
-				46.980252355218816));
+		selectionAdapter
+				.setGeographicSelection(new GeographicSelection(5.3173828125,
+						15.3369140625, 55.4040698270061, 46.980252355218816));
 
 		/* Polygonal Selection */
 
 		Selection selection = gis.getPolygonalSelectionAdapter().getSelection();
 
-		Geometry geom1 = new WKTReader()
-				.read("POLYGON ((8.1298828125 52.77618568896172, 7.58056640625 51.63165734944997, 9.33837890625 51.481382896100975, 9.84375 52.536273041459474, 8.1298828125 52.77618568896172))");
-		Geometry geom2 = new WKTReader()
-				.read("POLYGON ((9.1845703125 52.816043191549326, 10.48095703125 52.54963607438229, 9.82177734375 51.658926648800524, 11.865234375 52.496159531097106, 11.00830078125 53.05442186546102, 9.1845703125 52.816043191549326))");
+		Geometry geom1 = new WKTReader().read(
+				"POLYGON ((8.1298828125 52.77618568896172, 7.58056640625 51.63165734944997, 9.33837890625 51.481382896100975, 9.84375 52.536273041459474, 8.1298828125 52.77618568896172))");
+		Geometry geom2 = new WKTReader().read(
+				"POLYGON ((9.1845703125 52.816043191549326, 10.48095703125 52.54963607438229, 9.82177734375 51.658926648800524, 11.865234375 52.496159531097106, 11.00830078125 53.05442186546102, 9.1845703125 52.816043191549326))");
 		selection.add((LineString) geom1.getBoundary());
 		selection.add((LineString) geom2.getBoundary());
 

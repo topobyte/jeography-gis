@@ -89,8 +89,8 @@ public class TrashLabel extends JLabel implements DropTargetListener
 		try {
 			getDropTarget().addDropTargetListener(this);
 		} catch (TooManyListenersException e) {
-			logger.debug("unalbe to add drop target listener: "
-					+ e.getMessage());
+			logger.debug(
+					"unalbe to add drop target listener: " + e.getMessage());
 		}
 	}
 
@@ -117,16 +117,18 @@ public class TrashLabel extends JLabel implements DropTargetListener
 	private void updateToDropState()
 	{
 		if (this.drop) {
-			setBorder(BorderFactory.createCompoundBorder(BorderFactory
-					.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5,
-							5, 5), BorderFactory
-							.createBevelBorder(BevelBorder.LOWERED)),
+			setBorder(BorderFactory.createCompoundBorder(
+					BorderFactory.createCompoundBorder(
+							BorderFactory.createEmptyBorder(5, 5, 5, 5),
+							BorderFactory
+									.createBevelBorder(BevelBorder.LOWERED)),
 					BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		} else {
-			setBorder(BorderFactory.createCompoundBorder(BorderFactory
-					.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5,
-							5, 5), BorderFactory
-							.createEtchedBorder(EtchedBorder.LOWERED)),
+			setBorder(BorderFactory.createCompoundBorder(
+					BorderFactory.createCompoundBorder(
+							BorderFactory.createEmptyBorder(5, 5, 5, 5),
+							BorderFactory
+									.createEtchedBorder(EtchedBorder.LOWERED)),
 					BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		}
 	}

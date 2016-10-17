@@ -35,8 +35,8 @@ import de.topobyte.jeography.viewer.config.edit.selectable.SelectionListener;
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public abstract class AbstractTileConfigEditorPanel extends JPanel implements
-		TileConfigEditorPanel, FocusListener
+public abstract class AbstractTileConfigEditorPanel extends JPanel
+		implements TileConfigEditorPanel, FocusListener
 {
 
 	private static final long serialVersionUID = 5194579240225144159L;

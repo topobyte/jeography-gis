@@ -32,8 +32,8 @@ public class CollectionEvaluator implements OperationEvaluator
 	public Geometry operationResult(List<Geometry> geometries)
 	{
 		GeometryFactory factory = new GeometryFactory();
-		return factory.createGeometryCollection(geometries
-				.toArray(new Geometry[0]));
+		return factory
+				.createGeometryCollection(geometries.toArray(new Geometry[0]));
 	}
 
 }

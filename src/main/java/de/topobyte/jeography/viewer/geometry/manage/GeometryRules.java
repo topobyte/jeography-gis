@@ -156,10 +156,10 @@ public class GeometryRules extends JPanel
 		buttonAdd = new JButton(new AddRuleAction());
 		buttonRemove = new JButton(new RemoveRuleAction());
 		buttonEdit = new JButton(new EditRuleAction());
-		buttonMoveUp = new JButton(new GeometryRuleReorderAction(
-				ReorderAction.UP));
-		buttonMoveDown = new JButton(new GeometryRuleReorderAction(
-				ReorderAction.DOWN));
+		buttonMoveUp = new JButton(
+				new GeometryRuleReorderAction(ReorderAction.UP));
+		buttonMoveDown = new JButton(
+				new GeometryRuleReorderAction(ReorderAction.DOWN));
 		buttonSave.setText(null);
 		buttonOpen.setText(null);
 		buttonRefresh.setText(null);
@@ -289,8 +289,8 @@ public class GeometryRules extends JPanel
 		handler.endDocument();
 	}
 
-	private void openFrom(String path) throws ParserConfigurationException,
-			SAXException, IOException
+	private void openFrom(String path)
+			throws ParserConfigurationException, SAXException, IOException
 	{
 		logger.debug("opening from: " + path);
 
@@ -387,8 +387,8 @@ public class GeometryRules extends JPanel
 		{
 			super("edit", "edit and item");
 			this.setIconFromResource("res/images/stock_edit.png");
-			list.getSelectionModel().addListSelectionListener(
-					new ListSelectionListener() {
+			list.getSelectionModel()
+					.addListSelectionListener(new ListSelectionListener() {
 
 						@Override
 						public void valueChanged(ListSelectionEvent e)
@@ -425,8 +425,8 @@ public class GeometryRules extends JPanel
 		{
 			super("remove", "remove an item");
 			this.setIconFromResource("res/images/list-remove.svg");
-			list.getSelectionModel().addListSelectionListener(
-					new ListSelectionListener() {
+			list.getSelectionModel()
+					.addListSelectionListener(new ListSelectionListener() {
 
 						@Override
 						public void valueChanged(ListSelectionEvent e)
@@ -467,8 +467,8 @@ public class GeometryRules extends JPanel
 		public GeometryRuleReorderAction(int direction)
 		{
 			super(direction);
-			list.getSelectionModel().addListSelectionListener(
-					new ListSelectionListener() {
+			list.getSelectionModel()
+					.addListSelectionListener(new ListSelectionListener() {
 
 						@Override
 						public void valueChanged(ListSelectionEvent e)
@@ -574,8 +574,8 @@ public class GeometryRules extends JPanel
 
 }
 
-class GeometryRulesRenderer extends JPanel implements
-		ListCellRenderer<GeometryRule>
+class GeometryRulesRenderer extends JPanel
+		implements ListCellRenderer<GeometryRule>
 {
 
 	private static final long serialVersionUID = 811657575554871786L;
@@ -610,8 +610,8 @@ class GeometryRulesRenderer extends JPanel implements
 		c.gridy++;
 		add(labelTags, c);
 		Border empty = BorderFactory.createEmptyBorder(4, 4, 4, 4);
-		Border line = BorderFactory.createLineBorder(
-				new Color(0x33000000, true), 2);
+		Border line = BorderFactory
+				.createLineBorder(new Color(0x33000000, true), 2);
 		Border b1 = BorderFactory.createCompoundBorder(empty, line);
 		Border b2 = BorderFactory.createCompoundBorder(b1, empty);
 		setBorder(b2);
@@ -622,9 +622,9 @@ class GeometryRulesRenderer extends JPanel implements
 		panelBox.setOpaque(false);
 		panelBox.setPreferredSize(new Dimension(20, -1));
 		panelBox.setMaximumSize(new Dimension(20, 20));
-		panelBox.setBorder(BorderFactory.createCompoundBorder(BorderFactory
-				.createEmptyBorder(3, 3, 3, 3), BorderFactory
-				.createMatteBorder(2, 2, 2, 2, new Color(0x000000))));
+		panelBox.setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createEmptyBorder(3, 3, 3, 3), BorderFactory
+						.createMatteBorder(2, 2, 2, 2, new Color(0x000000))));
 	}
 
 	@Override
