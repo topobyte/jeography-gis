@@ -108,41 +108,38 @@ public class MiscOptionsPane extends JPanel implements Scrollable
 
 		GridBagConstraints c = new GridBagConstraints();
 		GridBagConstraintsEditor ce = new GridBagConstraintsEditor(c);
-		ce.fill(GridBagConstraints.BOTH);
-		ce.weightX(1.0).gridY(0).gridWidth(2);
+		ce.fill(GridBagConstraints.BOTH).gridY(0);
 
-		add(lafSelector, c);
-		c.gridy++;
-		add(dockingFramesThemeSelector, c);
-		c.gridy++;
-		add(showGrid, c);
-		c.gridy++;
-		add(showTileNumbers, c);
-		c.gridy++;
-		add(showCrosshair, c);
-		c.gridy++;
-		add(showOverlay, c);
-		c.gridy++;
-		add(isOnline, c);
-		c.gridy++;
+		addAsRow(lafSelector, ce);
+		addAsRow(dockingFramesThemeSelector, ce);
+		addAsRow(showGrid, ce);
+		addAsRow(showTileNumbers, ce);
+		addAsRow(showCrosshair, ce);
+		addAsRow(showOverlay, ce);
+		addAsRow(isOnline, ce);
 
-		addAsRow(databaseFile, ce, true);
-		addAsRow(width, ce, true);
-		addAsRow(height, ce, true);
-		addAsRow(lon, ce, true);
-		addAsRow(lat, ce, true);
-		addAsRow(zoom, ce, true);
+		addAsRow(databaseFile, ce);
+		addAsRow(width, ce);
+		addAsRow(height, ce);
+		addAsRow(lon, ce);
+		addAsRow(lat, ce);
+		addAsRow(zoom, ce);
 
 		// SwingHelper.setBorder(this, Color.GREEN);
 	}
 
+	private void addAsRow(JComponent component, GridBagConstraintsEditor ce)
+	{
+		ce.weightX(1).gridWidth(2).gridX(0);
+		add(component, ce.getConstraints());
+		ce.getConstraints().gridy++;
+	}
+
 	private void addAsRow(TwoComponentOption option,
-			GridBagConstraintsEditor ce, boolean incrementY)
+			GridBagConstraintsEditor ce)
 	{
 		addAsRow(option.getFirstComponent(), option.getSecondComponent(), ce);
-		if (incrementY) {
-			ce.getConstraints().gridy++;
-		}
+		ce.getConstraints().gridy++;
 	}
 
 	private void addAsRow(JComponent a, JComponent b,
