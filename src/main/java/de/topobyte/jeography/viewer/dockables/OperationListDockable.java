@@ -29,7 +29,7 @@ public class OperationListDockable extends DefaultMultipleCDockable
 			Operations operation)
 	{
 		super(factory);
-		setTitleText(operation.name());
+		setTitleText(operation.name().toLowerCase());
 		DockableHelper.setDefaultOptions(this);
 
 		OperationList list = de.topobyte.jeography.viewer.geometry.list.operation.OperationListFactory

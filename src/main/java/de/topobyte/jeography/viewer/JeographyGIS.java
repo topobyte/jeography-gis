@@ -218,8 +218,8 @@ public class JeographyGIS
 			OperationListFactory factory = new OperationListFactory(this,
 					operation);
 			factoriesOperationLists.put(operation, factory);
-			control.addMultipleDockableFactory("operation-" + operation.name(),
-					factory);
+			control.addMultipleDockableFactory(
+					"operation-" + operation.name().toLowerCase(), factory);
 		}
 	}
 
