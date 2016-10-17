@@ -19,16 +19,16 @@ package de.topobyte.jeography.viewer.dockables;
 
 import bibliothek.gui.dock.common.MultipleCDockableFactory;
 import de.topobyte.jeography.viewer.JeographyGIS;
-import de.topobyte.jeography.viewer.geometry.list.operation.Operations;
+import de.topobyte.jeography.viewer.geometry.list.operation.Operation;
 
 public class OperationListFactory implements
 		MultipleCDockableFactory<OperationListDockable, OperationListLayout>
 {
 
 	private JeographyGIS gis;
-	private Operations operation;
+	private Operation operation;
 
-	public OperationListFactory(JeographyGIS gis, Operations operation)
+	public OperationListFactory(JeographyGIS gis, Operation operation)
 	{
 		this.gis = gis;
 		this.operation = operation;

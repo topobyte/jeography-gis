@@ -30,7 +30,7 @@ public class OperationListFactory
 	 *            the operation to provide.
 	 * @return the list.
 	 */
-	public static OperationList createOperationList(Operations operation)
+	public static OperationList createOperationList(Operation operation)
 	{
 		switch (operation) {
 		case COLLECTION:

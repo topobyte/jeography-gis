@@ -66,7 +66,7 @@ import de.topobyte.jeography.viewer.dockables.OperationListDockable;
 import de.topobyte.jeography.viewer.dockables.OperationListFactory;
 import de.topobyte.jeography.viewer.geometry.OverlayDragGestureListener;
 import de.topobyte.jeography.viewer.geometry.OverlayManager;
-import de.topobyte.jeography.viewer.geometry.list.operation.Operations;
+import de.topobyte.jeography.viewer.geometry.list.operation.Operation;
 import de.topobyte.jeography.viewer.geometry.manage.EventJDialog;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryManager;
 import de.topobyte.jeography.viewer.selection.pane.PolyPane;
@@ -126,7 +126,7 @@ public class JeographyGIS
 	private String statusBarText = null;
 
 	private GeometryListFactory factoryGeometryLists;
-	private Map<Operations, OperationListFactory> factoriesOperationLists = new HashMap<>();
+	private Map<Operation, OperationListFactory> factoriesOperationLists = new HashMap<>();
 
 	public void create(int width, int height, boolean showGeometryManager,
 			boolean showSelectionRectDialog, boolean showSelectionPolyDialog,
@@ -214,7 +214,7 @@ public class JeographyGIS
 		control.addMultipleDockableFactory("geometry-lists",
 				factoryGeometryLists);
 
-		for (Operations operation : Operations.values()) {
+		for (Operation operation : Operation.values()) {
 			OperationListFactory factory = new OperationListFactory(this,
 					operation);
 			factoriesOperationLists.put(operation, factory);
@@ -714,7 +714,7 @@ public class JeographyGIS
 		dockable.setExtendedMode(ExtendedMode.EXTERNALIZED);
 	}
 
-	public void createOperationList(Operations operation)
+	public void createOperationList(Operation operation)
 	{
 		OperationListDockable dockable = new OperationListDockable(
 				factoriesOperationLists.get(operation), viewer, operation);

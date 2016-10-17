@@ -20,7 +20,7 @@ package de.topobyte.jeography.viewer.action;
 import java.awt.event.ActionEvent;
 
 import de.topobyte.jeography.viewer.JeographyGIS;
-import de.topobyte.jeography.viewer.geometry.list.operation.Operations;
+import de.topobyte.jeography.viewer.geometry.list.operation.Operation;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -30,7 +30,7 @@ public class OperationAction extends GISAction
 
 	private static final long serialVersionUID = 3670557874516545808L;
 
-	private final Operations operation;
+	private final Operation operation;
 
 	/**
 	 * Public constructor.
@@ -41,7 +41,7 @@ public class OperationAction extends GISAction
 	 *            the component to use for determining the frame to use as a
 	 *            parent for the dialog to display
 	 */
-	public OperationAction(JeographyGIS gis, Operations operation)
+	public OperationAction(JeographyGIS gis, Operation operation)
 	{
 		super(gis, null);
 

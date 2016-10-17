@@ -33,7 +33,7 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import de.topobyte.jeography.viewer.geometry.list.index.IndexList;
 import de.topobyte.jeography.viewer.geometry.list.operation.OperationList;
 import de.topobyte.jeography.viewer.geometry.list.operation.OperationListFactory;
-import de.topobyte.jeography.viewer.geometry.list.operation.Operations;
+import de.topobyte.jeography.viewer.geometry.list.operation.Operation;
 import de.topobyte.jeography.viewer.geometry.select.GeometrySelectionOperation;
 import de.topobyte.swing.util.FrameHelper;
 
@@ -81,7 +81,7 @@ public class Test2
 
 		// second
 		final OperationList unionList = OperationListFactory
-				.createOperationList(Operations.UNION);
+				.createOperationList(Operation.UNION);
 		FrameHelper.showFrameWithComponent("union", unionList, 400, 600, 400, 0,
 				true);
 
@@ -93,7 +93,7 @@ public class Test2
 
 		// third
 		final OperationList intersectionList = OperationListFactory
-				.createOperationList(Operations.INTERSECTION);
+				.createOperationList(Operation.INTERSECTION);
 		FrameHelper.showFrameWithComponent("intersection", intersectionList,
 				400, 600, 800, 0, true);
 

@@ -20,13 +20,13 @@ package de.topobyte.jeography.viewer.dockables;
 import bibliothek.gui.dock.common.DefaultMultipleCDockable;
 import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.jeography.viewer.geometry.list.operation.OperationList;
-import de.topobyte.jeography.viewer.geometry.list.operation.Operations;
+import de.topobyte.jeography.viewer.geometry.list.operation.Operation;
 
 public class OperationListDockable extends DefaultMultipleCDockable
 {
 
 	public OperationListDockable(OperationListFactory factory, Viewer viewer,
-			Operations operation)
+			Operation operation)
 	{
 		super(factory);
 		setTitleText(operation.name().toLowerCase());

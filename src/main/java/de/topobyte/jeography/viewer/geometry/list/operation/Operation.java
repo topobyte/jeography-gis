@@ -22,7 +22,7 @@ package de.topobyte.jeography.viewer.geometry.list.operation;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public enum Operations {
+public enum Operation {
 
 	/**
 	 * union operation

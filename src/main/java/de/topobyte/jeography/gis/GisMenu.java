@@ -37,7 +37,7 @@ import de.topobyte.jeography.viewer.action.TileConfigAction;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.jeography.viewer.geometry.list.operation.OperationList;
-import de.topobyte.jeography.viewer.geometry.list.operation.Operations;
+import de.topobyte.jeography.viewer.geometry.list.operation.Operation;
 import de.topobyte.jeography.viewer.geometry.list.operation.ShowingBufferUnionList;
 import de.topobyte.jeography.viewer.geometry.list.operation.ShowingTranslateList;
 import de.topobyte.jeography.viewer.geometry.list.operation.transform.ShowingTransformList;
@@ -127,12 +127,11 @@ public class GisMenu
 		menuWindows.add(menuOperationsAdd);
 
 		JPanel source = gis.getMainPanel();
-		menuOperationsAdd.add(new OperationAction(gis, Operations.UNION));
-		menuOperationsAdd
-				.add(new OperationAction(gis, Operations.INTERSECTION));
-		menuOperationsAdd.add(new OperationAction(gis, Operations.DIFFERENCE));
-		menuOperationsAdd.add(new OperationAction(gis, Operations.COLLECTION));
-		menuOperationsAdd.add(new OperationAction(gis, Operations.HULL));
+		menuOperationsAdd.add(new OperationAction(gis, Operation.UNION));
+		menuOperationsAdd.add(new OperationAction(gis, Operation.INTERSECTION));
+		menuOperationsAdd.add(new OperationAction(gis, Operation.DIFFERENCE));
+		menuOperationsAdd.add(new OperationAction(gis, Operation.COLLECTION));
+		menuOperationsAdd.add(new OperationAction(gis, Operation.HULL));
 
 		menuOperationsAdd.add(new DialogAction(source,
 				"res/images/geometryOperation/union.png", "Union Buffered",

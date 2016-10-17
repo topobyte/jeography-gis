@@ -35,7 +35,7 @@ import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.action.OperationAction;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.core.Viewer;
-import de.topobyte.jeography.viewer.geometry.list.operation.Operations;
+import de.topobyte.jeography.viewer.geometry.list.operation.Operation;
 import de.topobyte.jeography.viewer.util.ActionUtil;
 
 /**
@@ -116,11 +116,11 @@ public class GisActions
 				KeyStroke.getKeyStroke(KeyEvent.VK_F12, InputEvent.CTRL_MASK),
 				"ctrl f12");
 
-		actionMap.put("ctrl f1", new OperationAction(gis, Operations.UNION));
+		actionMap.put("ctrl f1", new OperationAction(gis, Operation.UNION));
 		actionMap.put("ctrl f2",
-				new OperationAction(gis, Operations.INTERSECTION));
+				new OperationAction(gis, Operation.INTERSECTION));
 		actionMap.put("ctrl f3",
-				new OperationAction(gis, Operations.DIFFERENCE));
+				new OperationAction(gis, Operation.DIFFERENCE));
 		actionMap.put("ctrl f5", actions.gla);
 	}
 
