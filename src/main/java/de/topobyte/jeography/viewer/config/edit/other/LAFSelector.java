@@ -17,79 +17,70 @@
 
 package de.topobyte.jeography.viewer.config.edit.other;
 
-import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComboBox;
-import javax.swing.JList;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.plaf.basic.BasicComboBoxRenderer;
 
 import de.topobyte.jeography.viewer.config.Configuration;
+import de.topobyte.swing.util.ElementWrapper;
+import de.topobyte.swing.util.combobox.ListComboBoxModel;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class LAFSelector extends JComboBox
+public class LAFSelector extends JComboBox<ElementWrapper<LAFSelector.Entry>>
 {
 
 	private static final long serialVersionUID = 6856865390726849784L;
 
-	private static LookAndFeelInfo[] lafs;
+	private static List<Entry> entries = null;
+
+	static {
+		LookAndFeelInfo[] lafsA = UIManager.getInstalledLookAndFeels();
+		entries = new ArrayList<>();
+		entries.add(new Entry(null));
+		for (int i = 0; i < lafsA.length; i++) {
+			entries.add(new Entry(lafsA[i]));
+		}
+	}
 
 	public LAFSelector(Configuration configuration)
 	{
-		super(buildValues());
+		ListComboBoxModel<Entry> model = new ListComboBoxModel<Entry>(entries) {
 
-		setRenderer(new Renderer());
+			@Override
+			public String toString(Entry element)
+			{
+				if (element.laf == null) {
+					return "Default";
+				}
+				return element.laf.getName();
+			}
+		};
+
+		setModel(model);
+
 		setEditable(false);
 
+		int index = 0;
 		String lookAndFeel = configuration.getLookAndFeel();
-		setSelectedIndex(-1);
-		for (int i = 0; i < getModel().getSize(); i++) {
-			LookAndFeelInfo info = (LookAndFeelInfo) getModel().getElementAt(i);
-			if (info == null && lookAndFeel == null) {
-				setSelectedIndex(i);
-				break;
-			}
-			if (info != null && info.getClassName().equals(lookAndFeel)) {
-				setSelectedIndex(i);
-				break;
+		if (lookAndFeel != null) {
+			for (int i = 0; i < entries.size(); i++) {
+				Entry entry = entries.get(i);
+				if (entry.laf == null) {
+					continue;
+				}
+				if (lookAndFeel.equals(entry.laf.getClassName())) {
+					index = i;
+					break;
+				}
 			}
 		}
-	}
 
-	private static LookAndFeelInfo[] buildValues()
-	{
-		LookAndFeelInfo[] lafsA = UIManager.getInstalledLookAndFeels();
-		lafs = new LookAndFeelInfo[lafsA.length + 1];
-		lafs[0] = null;
-		for (int i = 0; i < lafsA.length; i++) {
-			lafs[i + 1] = lafsA[i];
-		}
-		return lafs;
-	}
-
-	private class Renderer extends BasicComboBoxRenderer
-	{
-		private static final long serialVersionUID = 1L;
-
-		@Override
-		public Component getListCellRendererComponent(JList list, Object value,
-				int index, boolean isSelected, boolean cellHasFocus)
-		{
-			super.getListCellRendererComponent(list, value, index, isSelected,
-					cellHasFocus);
-
-			if (value != null) {
-				LookAndFeelInfo item = (LookAndFeelInfo) value;
-				setText(item.getName());
-			} else {
-				setText("default");
-			}
-
-			return this;
-		}
+		setSelectedIndex(index);
 	}
 
 	public String getSelectedLookAndFeel()
@@ -98,11 +89,23 @@ public class LAFSelector extends JComboBox
 		if (index < 0) {
 			return null;
 		}
-		LookAndFeelInfo laf = lafs[index];
-		if (laf == null) {
+		Entry entry = entries.get(index);
+		if (entry.laf == null) {
 			return null;
 		}
-		return laf.getClassName();
+		return entry.laf.getClassName();
+	}
+
+	static class Entry
+	{
+
+		private LookAndFeelInfo laf;
+
+		public Entry(LookAndFeelInfo laf)
+		{
+			this.laf = laf;
+		}
+
 	}
 
 }
