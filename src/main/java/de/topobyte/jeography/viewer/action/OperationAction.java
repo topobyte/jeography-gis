@@ -19,25 +19,18 @@ package de.topobyte.jeography.viewer.action;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.JComponent;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-
-import de.topobyte.jeography.viewer.geometry.list.operation.OperationList;
-import de.topobyte.jeography.viewer.geometry.list.operation.OperationListFactory;
+import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.geometry.list.operation.Operations;
-import de.topobyte.swing.util.Components;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class OperationAction extends SimpleAction
+public class OperationAction extends GISAction
 {
 
 	private static final long serialVersionUID = 3670557874516545808L;
 
 	private final Operations operation;
-	private final JComponent source;
 
 	/**
 	 * Public constructor.
@@ -48,10 +41,11 @@ public class OperationAction extends SimpleAction
 	 *            the component to use for determining the frame to use as a
 	 *            parent for the dialog to display
 	 */
-	public OperationAction(Operations operation, JComponent source)
+	public OperationAction(JeographyGIS gis, Operations operation)
 	{
+		super(gis, null);
+
 		this.operation = operation;
-		this.source = source;
 
 		String newIcon = null;
 
@@ -89,14 +83,7 @@ public class OperationAction extends SimpleAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		OperationList list = OperationListFactory
-				.createOperationList(operation);
-
-		JFrame frame = Components.getContainingFrame(source);
-		JDialog dialog = new JDialog(frame, name);
-		dialog.setContentPane(list);
-		dialog.pack();
-		dialog.setVisible(true);
+		getGIS().createOperationList(operation);
 	}
 
 }

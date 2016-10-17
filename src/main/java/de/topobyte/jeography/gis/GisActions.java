@@ -116,11 +116,11 @@ public class GisActions
 				KeyStroke.getKeyStroke(KeyEvent.VK_F12, InputEvent.CTRL_MASK),
 				"ctrl f12");
 
-		actionMap.put("ctrl f1", new OperationAction(Operations.UNION, source));
-		actionMap.put("ctrl f2", new OperationAction(Operations.INTERSECTION,
-				gis.getMainPanel()));
+		actionMap.put("ctrl f1", new OperationAction(gis, Operations.UNION));
+		actionMap.put("ctrl f2",
+				new OperationAction(gis, Operations.INTERSECTION));
 		actionMap.put("ctrl f3",
-				new OperationAction(Operations.DIFFERENCE, source));
+				new OperationAction(gis, Operations.DIFFERENCE));
 		actionMap.put("ctrl f5", actions.gla);
 	}
 

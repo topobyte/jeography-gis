@@ -28,6 +28,8 @@ import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -60,8 +62,11 @@ import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.jeography.viewer.dockables.DockableHelper;
 import de.topobyte.jeography.viewer.dockables.GeometryListDockable;
 import de.topobyte.jeography.viewer.dockables.GeometryListFactory;
+import de.topobyte.jeography.viewer.dockables.OperationListDockable;
+import de.topobyte.jeography.viewer.dockables.OperationListFactory;
 import de.topobyte.jeography.viewer.geometry.OverlayDragGestureListener;
 import de.topobyte.jeography.viewer.geometry.OverlayManager;
+import de.topobyte.jeography.viewer.geometry.list.operation.Operations;
 import de.topobyte.jeography.viewer.geometry.manage.EventJDialog;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryManager;
 import de.topobyte.jeography.viewer.selection.pane.PolyPane;
@@ -121,6 +126,7 @@ public class JeographyGIS
 	private String statusBarText = null;
 
 	private GeometryListFactory factoryGeometryLists;
+	private Map<Operations, OperationListFactory> factoriesOperationLists = new HashMap<>();
 
 	public void create(int width, int height, boolean showGeometryManager,
 			boolean showSelectionRectDialog, boolean showSelectionPolyDialog,
@@ -207,6 +213,14 @@ public class JeographyGIS
 		factoryGeometryLists = new GeometryListFactory(this);
 		control.addMultipleDockableFactory("geometry-lists",
 				factoryGeometryLists);
+
+		for (Operations operation : Operations.values()) {
+			OperationListFactory factory = new OperationListFactory(this,
+					operation);
+			factoriesOperationLists.put(operation, factory);
+			control.addMultipleDockableFactory("operation-" + operation.name(),
+					factory);
+		}
 	}
 
 	public JPanel getMainPanel()
@@ -692,6 +706,18 @@ public class JeographyGIS
 	{
 		GeometryListDockable dockable = new GeometryListDockable(
 				factoryGeometryLists, viewer);
+		control.addDockable(dockable);
+		CBaseLocation base = new CBaseLocation(control.getContentArea());
+		TreeLocationRoot location = base.normal().west(0);
+		dockable.setLocation(location);
+		dockable.setVisible(true);
+		dockable.setExtendedMode(ExtendedMode.EXTERNALIZED);
+	}
+
+	public void createOperationList(Operations operation)
+	{
+		OperationListDockable dockable = new OperationListDockable(
+				factoriesOperationLists.get(operation), viewer, operation);
 		control.addDockable(dockable);
 		CBaseLocation base = new CBaseLocation(control.getContentArea());
 		TreeLocationRoot location = base.normal().west(0);

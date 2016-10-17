@@ -127,14 +127,12 @@ public class GisMenu
 		menuWindows.add(menuOperationsAdd);
 
 		JPanel source = gis.getMainPanel();
-		menuOperationsAdd.add(new OperationAction(Operations.UNION, source));
+		menuOperationsAdd.add(new OperationAction(gis, Operations.UNION));
 		menuOperationsAdd
-				.add(new OperationAction(Operations.INTERSECTION, source));
-		menuOperationsAdd
-				.add(new OperationAction(Operations.DIFFERENCE, source));
-		menuOperationsAdd
-				.add(new OperationAction(Operations.COLLECTION, source));
-		menuOperationsAdd.add(new OperationAction(Operations.HULL, source));
+				.add(new OperationAction(gis, Operations.INTERSECTION));
+		menuOperationsAdd.add(new OperationAction(gis, Operations.DIFFERENCE));
+		menuOperationsAdd.add(new OperationAction(gis, Operations.COLLECTION));
+		menuOperationsAdd.add(new OperationAction(gis, Operations.HULL));
 
 		menuOperationsAdd.add(new DialogAction(source,
 				"res/images/geometryOperation/union.png", "Union Buffered",
