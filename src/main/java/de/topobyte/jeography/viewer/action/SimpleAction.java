@@ -77,7 +77,7 @@ public abstract class SimpleAction extends AbstractAction
 	@Override
 	public Object getValue(String key)
 	{
-		if (key.equals("SmallIcon")) {
+		if (key.equals(Action.SMALL_ICON)) {
 			return icon;
 		} else if (key.equals(Action.NAME)) {
 			return name;
