@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 import de.topobyte.jeography.tiles.TileConfigListener;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.core.Viewer;
-import de.topobyte.jeography.viewer.util.EmptyIcon;
+import de.topobyte.swing.util.EmptyIcon;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)

@@ -36,12 +36,12 @@ import de.topobyte.jeography.viewer.action.OverlayTileConfigAction;
 import de.topobyte.jeography.viewer.action.TileConfigAction;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.core.Viewer;
-import de.topobyte.jeography.viewer.geometry.list.operation.OperationList;
 import de.topobyte.jeography.viewer.geometry.list.operation.Operation;
+import de.topobyte.jeography.viewer.geometry.list.operation.OperationList;
 import de.topobyte.jeography.viewer.geometry.list.operation.ShowingBufferUnionList;
 import de.topobyte.jeography.viewer.geometry.list.operation.ShowingTranslateList;
 import de.topobyte.jeography.viewer.geometry.list.operation.transform.ShowingTransformList;
-import de.topobyte.jeography.viewer.util.EmptyIcon;
+import de.topobyte.swing.util.EmptyIcon;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
