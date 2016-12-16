@@ -23,6 +23,7 @@ import java.util.List;
 
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -144,6 +145,8 @@ public class GisActions
 		JToggleButton buttonSRP = new JToggleButton(actions.srpa);
 		JToggleButton buttonSPP = new JToggleButton(actions.sppa);
 		JToggleButton buttonMWP = new JToggleButton(actions.mpa);
+		JButton buttonAddBookmark = new JButton(actions.addBookmark);
+
 		buttonMma1.setText(null);
 		buttonMma2.setText(null);
 		buttonMma3.setText(null);
@@ -159,6 +162,7 @@ public class GisActions
 		buttonSRP.setText(null);
 		buttonSPP.setText(null);
 		buttonMWP.setText(null);
+		buttonAddBookmark.setText(null);
 
 		toolbar.add(actions.network);
 		toolbar.addSeparator();
@@ -181,6 +185,8 @@ public class GisActions
 		toolbar.add(buttonSRP);
 		toolbar.add(buttonSPP);
 		toolbar.add(buttonGM);
+		toolbar.addSeparator();
+		toolbar.add(buttonAddBookmark);
 	}
 
 }

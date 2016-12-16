@@ -25,6 +25,7 @@ import javax.swing.JFrame;
 import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.MouseMode;
 import de.topobyte.jeography.viewer.action.AboutAction;
+import de.topobyte.jeography.viewer.action.AddBookmarkAction;
 import de.topobyte.jeography.viewer.action.ConfigurationAction;
 import de.topobyte.jeography.viewer.action.CrosshairAction;
 import de.topobyte.jeography.viewer.action.FullscreenAction;
@@ -89,6 +90,7 @@ public class Actions
 	FullscreenAction fullscreen;
 	GotoAction gta;
 	SearchAction sa;
+	AddBookmarkAction addBookmark;
 	ManualAction manual;
 	AboutAction about;
 
@@ -131,6 +133,7 @@ public class Actions
 		fullscreen = new FullscreenAction(gis);
 		gta = new GotoAction(gis);
 		sa = new SearchAction(gis);
+		addBookmark = new AddBookmarkAction(gis);
 
 		manual = new ManualAction(gis);
 		about = new AboutAction(gis);

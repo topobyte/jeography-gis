@@ -93,6 +93,8 @@ public class GisMenu
 		add(menuMap, 'M');
 		addItem(menuMap, actions.gta, InputEvent.CTRL_MASK, KeyEvent.VK_G);
 		addItem(menuMap, actions.sa, InputEvent.CTRL_MASK, KeyEvent.VK_F);
+		addItem(menuMap, actions.addBookmark, InputEvent.CTRL_MASK,
+				KeyEvent.VK_D);
 
 		JMenu menuTiles = new JMenu("Tiles");
 		add(menuTiles, 'T');
