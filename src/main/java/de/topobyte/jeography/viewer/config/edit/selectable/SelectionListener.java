@@ -27,7 +27,7 @@ public interface SelectionListener
 	 * Triggered when the selection state changes
 	 * 
 	 * @param event
-	 *            the event that occured.
+	 *            the event that occurred.
 	 */
 	public void selectionChanged(SelectionEvent event);
 

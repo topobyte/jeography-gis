@@ -35,7 +35,7 @@ public enum MouseMode {
 	 */
 	POLYSELECT,
 	/**
-	 * Draggin content
+	 * Dragging content
 	 */
 	DRAG
 

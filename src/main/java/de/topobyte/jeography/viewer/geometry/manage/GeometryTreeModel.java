@@ -71,7 +71,7 @@ public class GeometryTreeModel implements TreeModel
 	 * Create this folder namespace.
 	 * 
 	 * @param namespace
-	 *            a namespace with parts seperated by dots.
+	 *            a namespace with parts separated by dots.
 	 * @return the node representing the last part in the tree given by the
 	 *         namespace path.
 	 */

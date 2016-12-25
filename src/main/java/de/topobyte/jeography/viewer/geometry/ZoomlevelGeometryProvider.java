@@ -87,7 +87,7 @@ public class ZoomlevelGeometryProvider
 	private Map<Integer, CachedImage> cacheImageInstances = new HashMap<>();
 
 	/**
-	 * @return the goemetry this provider was created with.
+	 * @return the geometry this provider was created with.
 	 */
 	public Geometry getOriginalGeometry()
 	{
