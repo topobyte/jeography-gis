@@ -48,7 +48,7 @@ public class ContextEnabledGeometryPanel extends GeometryPanel
 	 * @param isSource
 	 *            whether dragging from the panel shall be enabled.
 	 * @param isDestination
-	 *            whether draggin to the panel shall be enabled.
+	 *            whether dragging to the panel shall be enabled.
 	 */
 	public ContextEnabledGeometryPanel(Geometry geometry, boolean isSource,
 			boolean isDestination)

@@ -24,7 +24,7 @@ public interface DownloadProgressListener
 {
 
 	/**
-	 * called when the donwload's progress has changed.
+	 * called when the download's progress has changed.
 	 */
 	public void progress();
 

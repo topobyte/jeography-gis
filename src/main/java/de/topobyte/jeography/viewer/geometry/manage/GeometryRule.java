@@ -34,7 +34,7 @@ public class GeometryRule
 	 * @param name
 	 *            the name of this rule.
 	 * @param namespace
-	 *            a slash-seperated name
+	 *            a slash-separated name
 	 * @param style
 	 *            a style to use
 	 * @param filters

@@ -41,7 +41,7 @@ public class ConfigReader
 	final static Logger logger = LoggerFactory.getLogger(ConfigReader.class);
 
 	/**
-	 * Read a configuration from the given fileame.
+	 * Read a configuration from the given filename.
 	 * 
 	 * @param filename
 	 *            the filename to read the xml from.

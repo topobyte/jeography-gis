@@ -30,7 +30,7 @@ public abstract class BooleanAction extends SimpleAction
 	private static final long serialVersionUID = 7648212308884524179L;
 
 	/**
-	 * @return whether this action is enbaled.
+	 * @return whether this action is enabled.
 	 */
 	public abstract boolean getState();
 

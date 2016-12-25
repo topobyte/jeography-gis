@@ -54,7 +54,7 @@ public class DragEnabledGeometryIndexPanel extends JPanel
 	private JLabel label;
 
 	/**
-	 * Create a new IndexPanle representing the denoted index.
+	 * Create a new IndexPanel representing the denoted index.
 	 * 
 	 * @param geometryIndex
 	 *            the index to represent.

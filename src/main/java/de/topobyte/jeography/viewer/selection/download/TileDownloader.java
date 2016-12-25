@@ -99,7 +99,7 @@ public class TileDownloader
 	}
 
 	/**
-	 * @return the number of tiles already donwloaded
+	 * @return the number of tiles already downloaded
 	 */
 	public int getNumberOfTilesToDownload()
 	{

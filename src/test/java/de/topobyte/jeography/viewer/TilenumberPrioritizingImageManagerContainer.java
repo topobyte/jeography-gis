@@ -24,7 +24,7 @@ import de.topobyte.jeography.tiles.manager.PriorityImageManager;
 
 /**
  * This is a container for tile-based ImageManagers that will introduce a
- * priorization based on tile numbers.
+ * prioritization based on tile numbers.
  * 
  * @param <D>
  *            the type of data.

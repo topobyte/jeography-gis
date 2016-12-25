@@ -216,7 +216,7 @@ public class EditGeometryStyleDialog extends JDialog implements DocumentListener
 	}
 
 	/**
-	 * @return the color for fillage.
+	 * @return the color for filling.
 	 */
 	public ColorCode getColorFill()
 	{
