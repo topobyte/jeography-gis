@@ -156,7 +156,7 @@ public class GeometryTreeModel implements TreeModel
 	 * Add all files in this directory to the given node.
 	 * 
 	 * @param dir
-	 *            the direcotry containing the files.
+	 *            the directory containing the files.
 	 * @param node
 	 *            the node to add the files in.
 	 */
