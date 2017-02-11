@@ -22,6 +22,9 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.io.InputStreamInStream;
 import com.vividsolutions.jts.io.ParseException;
@@ -35,6 +38,8 @@ import de.topobyte.jeography.geometry.io.poly.PolyfileReader;
  */
 public class PolygonLoader
 {
+
+	final static Logger logger = LoggerFactory.getLogger(PolygonLoader.class);
 
 	/**
 	 * Load a polygon from a file trying different formats.
@@ -84,7 +89,7 @@ public class PolygonLoader
 			}
 		}
 		if (geom == null) {
-			System.out.println("unable to load...");
+			logger.debug("unable to load: " + filename);
 			throw new IOException("unable to load file: " + filename);
 		}
 		return geom;
