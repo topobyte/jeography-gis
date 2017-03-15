@@ -22,14 +22,14 @@ repositories {
 }
 
 dependencies {
-    compile 'de.topobyte:commons-cli-helper:0.0.3'
+    compile 'de.topobyte:commons-cli-helper:0.0.5'
     compile 'de.topobyte:jts2awt:0.0.1'
-    compile 'de.topobyte:jts-utils:0.0.8'
+    compile 'de.topobyte:jts-utils:0.0.9'
     compile 'de.topobyte:jts-indexing:0.0.1'
     compile 'de.topobyte:melon-casting:0.0.1'
     compile 'de.topobyte:awt-utils:0.0.3'
     compile 'de.topobyte:swing-utils:0.0.7'
-    compile 'de.topobyte:jsi:1.1.0'
+    compile 'de.topobyte:jsi:1.1.1'
     compile 'de.topobyte:mercator-image:0.0.2'
     compile 'de.topobyte:chromaticity-awt:0.0.2'
     compile 'de.topobyte:jts-drawing-core:0.0.1'
@@ -37,10 +37,11 @@ dependencies {
     compile 'de.topobyte:jts-drawing-batik:0.0.1'
     compile 'de.topobyte:jts-drawing-util:0.0.1'
     compile 'com.bric:javagraphics-color-ui:0.0.2'
-    compile 'de.topobyte:jeography-core:0.0.4'
+    compile 'de.topobyte:jeography-core:0.0.5'
     compile 'de.topobyte:async-utils:0.0.1'
-    compile 'de.topobyte:osm4j-utils:0.0.22'
+    compile 'de.topobyte:osm4j-utils:0.0.24'
     compile 'de.topobyte:jsqltables:0.0.8'
+    compile 'de.topobyte:adt-misc:0.0.2'
 
     compile 'de.topobyte:luqe-jdbc:0.0.6'
     runtime 'org.xerial:sqlite-jdbc:3.8.11.2'
