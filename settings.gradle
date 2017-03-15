@@ -1,1 +1,3 @@
-rootProject.name = pName
+include 'core', 'exe'
+project(':core').name = 'jeography-gis'
+project(':exe').name = 'jeography-gis-exe'
