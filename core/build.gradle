@@ -58,7 +58,7 @@ artifacts {
     archives sourcesJar
 }
 
-def pomInfo = new XmlSlurper().parse(new File('info.pom'));
+def pomInfo = new XmlSlurper().parse(new File(projectDir, 'info.pom'));
 
 afterEvaluate { project ->
     uploadArchives {
