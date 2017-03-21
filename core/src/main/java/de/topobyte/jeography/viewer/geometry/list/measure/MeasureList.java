@@ -202,10 +202,8 @@ public class MeasureList extends JPanel implements ListDataListener
 		} else if (geometry instanceof LineString) {
 			strings.add((LineString) geometry);
 		} else if (geometry instanceof GeometryCollection) {
-			System.out.println("in");
 			GeometryCollection collection = (GeometryCollection) geometry;
 			for (int i = 0; i < collection.getNumGeometries(); i++) {
-				System.out.println(i);
 				Geometry child = collection.getGeometryN(i);
 				strings.addAll(extractLines(child));
 			}

@@ -26,6 +26,9 @@ import java.net.URISyntaxException;
 
 import javax.swing.JButton;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
@@ -33,6 +36,8 @@ public abstract class UrlButton extends JButton implements ActionListener
 {
 
 	private static final long serialVersionUID = -8729725449611359987L;
+
+	final static Logger logger = LoggerFactory.getLogger(UrlButton.class);
 
 	public UrlButton(String title)
 	{
@@ -46,7 +51,7 @@ public abstract class UrlButton extends JButton implements ActionListener
 	public void actionPerformed(ActionEvent event)
 	{
 		String url = getUrl();
-		System.out.println(url);
+		logger.info(url);
 		try {
 			Desktop.getDesktop().browse(new URI(url));
 		} catch (IOException e) {

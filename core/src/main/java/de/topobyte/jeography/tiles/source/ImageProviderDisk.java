@@ -25,6 +25,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.topobyte.jeography.tiles.BufferedImageAndBytes;
 import de.topobyte.jeography.tiles.CachePathProvider;
 import de.topobyte.jeography.tiles.FileCache;
@@ -37,6 +40,9 @@ import de.topobyte.jeography.tiles.FileCache;
  */
 public class ImageProviderDisk<T> extends ImageProvider<T, BufferedImage>
 {
+
+	final static Logger logger = LoggerFactory
+			.getLogger(ImageProviderDisk.class);
 
 	private CachePathProvider<T> resolver;
 	private FileCache<T> cache;
@@ -72,7 +78,7 @@ public class ImageProviderDisk<T> extends ImageProvider<T, BufferedImage>
 				try {
 					fis.close();
 				} catch (IOException e) {
-					System.out.println("unable to close FileInputStream: "
+					logger.warn("unable to close FileInputStream: "
 							+ e.getMessage());
 				}
 			}

@@ -19,6 +19,9 @@ package de.topobyte.jeography.viewer.geometry.list.panels;
 
 import java.awt.datatransfer.DataFlavor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.vividsolutions.jts.geom.Geometry;
 
 import de.topobyte.jsi.GenericSpatialIndex;
@@ -32,6 +35,9 @@ public class GeometryIndexPanel
 {
 
 	private static final long serialVersionUID = 8806826692383521733L;
+
+	final static Logger logger = LoggerFactory
+			.getLogger(GeometryIndexPanel.class);
 
 	private static final DataFlavor flavor = new DataFlavor("geometry/index",
 			"Index of geometries");
@@ -58,7 +64,7 @@ public class GeometryIndexPanel
 	{
 		int size = index.size();
 		String string = String.format("index with %d elements", size);
-		System.out.println(string);
+		logger.info(string);
 		return string;
 	}
 

@@ -101,7 +101,7 @@ public class GeometryManager extends JPanel
 			if (entry instanceof Node) {
 				Node node = (Node) entry;
 				namespace = node.getNamespace();
-				System.out.println(namespace);
+				logger.debug("namespace: " + namespace);
 			}
 		}
 		JFrame frame = Components.getContainingFrame(this);

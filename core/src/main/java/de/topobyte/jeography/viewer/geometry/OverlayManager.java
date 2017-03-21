@@ -169,7 +169,7 @@ public class OverlayManager implements GeometryRuleModelListener
 
 		private void free(AssociatedInformation ai)
 		{
-			System.out.println("free");
+			logger.debug("free");
 			ai.imageManager.destroy();
 		}
 

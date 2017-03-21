@@ -22,6 +22,9 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryCollection;
@@ -36,6 +39,9 @@ import de.topobyte.jeography.viewer.geometry.list.operation.OperationEvaluator;
  */
 public class TransformEvaluator implements OperationEvaluator
 {
+
+	final static Logger logger = LoggerFactory
+			.getLogger(TransformEvaluator.class);
 
 	double tx = 0.0, ty = 0.0; // translation
 	double theta = 0.0; // rotation
@@ -176,7 +182,7 @@ public class TransformEvaluator implements OperationEvaluator
 		if (centroid == null) {
 			centroid = factory.createPoint(new Coordinate(0, 0));
 		}
-		System.out.println(centroid);
+		logger.debug("centroid: " + centroid);
 
 		Geometry translated = editor.edit(collection, new TranslateOperation());
 

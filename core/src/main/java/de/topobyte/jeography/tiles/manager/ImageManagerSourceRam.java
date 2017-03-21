@@ -23,6 +23,9 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.topobyte.jeography.tiles.LoadListener;
 import de.topobyte.jeography.tiles.source.ImageSource;
 
@@ -38,6 +41,9 @@ public class ImageManagerSourceRam<T, D>
 		extends AbstractImageManagerWithMemoryCachePlus<T, D>
 		implements PriorityImageManager<T, D, Integer>
 {
+
+	final static Logger logger = LoggerFactory
+			.getLogger(ImageManagerSourceRam.class);
 
 	private final int nThreads;
 
@@ -232,7 +238,7 @@ public class ImageManagerSourceRam<T, D>
 							Message message = messages
 									.remove(messages.size() - 1);
 							if (message.type == MessageType.Kill) {
-								System.out.println("stopped!!!!");
+								logger.debug("thread stopped");
 								return;
 							}
 						}

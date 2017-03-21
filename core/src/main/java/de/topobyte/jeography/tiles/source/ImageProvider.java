@@ -22,6 +22,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.topobyte.jeography.tiles.LoadListener;
 
 /**
@@ -34,6 +37,8 @@ import de.topobyte.jeography.tiles.LoadListener;
  */
 public abstract class ImageProvider<T, D> implements ImageSource<T, D>
 {
+
+	final static Logger logger = LoggerFactory.getLogger(ImageProvider.class);
 
 	Object lock = new Object();
 
@@ -158,7 +163,7 @@ public abstract class ImageProvider<T, D> implements ImageSource<T, D>
 						Message message = toProvideList
 								.remove(toProvideList.size() - 1);
 						if (message.type == MessageType.Kill) {
-							System.out.println("stopped!!!!");
+							logger.debug("thread stopped");
 							return;
 						}
 						provide = message.data;

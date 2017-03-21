@@ -86,8 +86,7 @@ public class GeometryMouseAdapter extends MouseAdapter
 		Set<GeometryContainer> intersect = map.test(point);
 		List<GeometryContainer> intersectionContainers = new ArrayList<>();
 		for (GeometryContainer gc : intersect) {
-			System.out
-					.println("intersection with: " + gc.getSource().getInfo());
+			logger.debug("intersection with: " + gc.getSource().getInfo());
 			intersectionContainers.add(gc);
 		}
 		if (intersectionContainers.size() > 0) {

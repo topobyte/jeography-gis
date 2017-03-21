@@ -701,9 +701,9 @@ public class SteplessViewer extends AbstractViewer
 
 		tileScale = Math.pow(2, realZoom - tileZoom);
 
-		System.out.println("real zoom: " + realZoom);
-		System.out.println("tile zoom: " + tileZoom);
-		System.out.println("scale factor: " + tileScale);
+		logger.info("real zoom: " + realZoom);
+		logger.info("tile zoom: " + tileZoom);
+		logger.info("scale factor: " + tileScale);
 	}
 
 	public void setTileSize(int tileSize)

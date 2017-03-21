@@ -45,6 +45,9 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.topobyte.jeography.viewer.geometry.manage.filetree.Entry;
 import de.topobyte.jeography.viewer.geometry.manage.filetree.Node;
 import de.topobyte.swing.util.DocumentAdapter;
@@ -56,6 +59,10 @@ public class AddDirectoryDialog extends JDialog
 {
 
 	private static final long serialVersionUID = -3583598746828016900L;
+
+	final static Logger logger = LoggerFactory
+			.getLogger(AddDirectoryDialog.class);
+
 	private GeometryManager geometryManager;
 	private JTextField fieldParent;
 	private JTextField fieldName;
@@ -216,7 +223,7 @@ public class AddDirectoryDialog extends JDialog
 
 	private boolean checkName()
 	{
-		System.out.println("check name");
+		logger.debug("check name");
 		if (!checkParent()) {
 			return false;
 		}
@@ -237,10 +244,11 @@ public class AddDirectoryDialog extends JDialog
 
 	private boolean checkParent()
 	{
+		logger.debug("check parent");
 		String namespace = fieldParent.getText();
 		GeometryTreeModel namespaceModel = geometryManager.getTree().getModel();
 		Entry entry = namespaceModel.getByNamespace(namespace);
-		System.out.println(entry);
+		logger.debug("entry: " + entry);
 		boolean namespaceValid = entry != null;
 		return namespaceValid;
 	}

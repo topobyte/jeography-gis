@@ -129,7 +129,7 @@ public class SearchAction extends GISAction
 			@Override
 			public void placeActivated(Place place)
 			{
-				System.out.println(String.format("activated: %s, %f %f",
+				logger.info(String.format("activated: %s, %f %f",
 						place.getName(), place.getLon(), place.getLat()));
 
 				Viewer viewer = getGIS().getViewer();

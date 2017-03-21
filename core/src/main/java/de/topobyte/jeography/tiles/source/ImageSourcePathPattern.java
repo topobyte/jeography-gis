@@ -107,7 +107,7 @@ public class ImageSourcePathPattern<T> implements ImageSource<T, BufferedImage>
 				try {
 					fis.close();
 				} catch (IOException e) {
-					System.out.println("unable to close FileInputStream: "
+					logger.warn("unable to close FileInputStream: "
 							+ e.getMessage());
 				}
 			}

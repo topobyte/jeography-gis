@@ -17,6 +17,9 @@
 
 package de.topobyte.jeography.tiles.manager;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.topobyte.jeography.tiles.cache.MemoryCache;
 
 /**
@@ -31,6 +34,9 @@ public abstract class AbstractImageManagerWithMemoryCache<T, D>
 		extends AbstractImageManager<T, D>
 {
 
+	final static Logger logger = LoggerFactory
+			.getLogger(AbstractImageManagerWithMemoryCache.class);
+
 	protected int desiredCacheSize;
 
 	protected MemoryCache<T, D> memoryCache;
@@ -44,7 +50,7 @@ public abstract class AbstractImageManagerWithMemoryCache<T, D>
 	{
 		this.desiredCacheSize = desiredCacheSize;
 		memoryCache = new MemoryCache<>(desiredCacheSize);
-		System.out.println("desired: " + desiredCacheSize);
+		logger.debug("desired size: " + desiredCacheSize);
 	}
 
 	@Override

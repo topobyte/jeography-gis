@@ -31,12 +31,18 @@ import javax.swing.JTree;
 import javax.swing.JViewport;
 import javax.swing.tree.TreeCellEditor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
 public class GeometryCellEditor extends AbstractCellEditor
 		implements TreeCellEditor
 {
+
+	final static Logger logger = LoggerFactory
+			.getLogger(GeometryCellEditor.class);
 
 	// public class CellContainer extends Container {
 	//
@@ -127,7 +133,7 @@ public class GeometryCellEditor extends AbstractCellEditor
 	public boolean stopCellEditing()
 	{
 		super.stopCellEditing();
-		System.out.println("stop: " + textField.getText());
+		logger.debug("stop: " + textField.getText());
 		fireEditingStopped();
 		return true;
 	}
@@ -137,7 +143,7 @@ public class GeometryCellEditor extends AbstractCellEditor
 	{
 		super.cancelCellEditing();
 		fireEditingCanceled();
-		System.out.println("cancel: " + textField.getText());
+		logger.debug("cancel: " + textField.getText());
 	}
 
 	@Override

@@ -160,7 +160,7 @@ public class ImageSourceUrlPattern<T>
 						cis.close();
 					}
 				} catch (IOException e) {
-					System.out.println(
+					logger.warn(
 							"unable to close InputStream: " + e.getMessage());
 				}
 				try {
@@ -168,7 +168,7 @@ public class ImageSourceUrlPattern<T>
 						bis.close();
 					}
 				} catch (IOException e) {
-					System.out.println(
+					logger.warn(
 							"unable to close InputStream: " + e.getMessage());
 				}
 			}

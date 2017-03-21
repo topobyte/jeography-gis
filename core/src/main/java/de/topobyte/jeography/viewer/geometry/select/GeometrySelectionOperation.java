@@ -33,6 +33,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.GeometryFactory;
@@ -51,6 +54,9 @@ public class GeometrySelectionOperation extends JPanel
 {
 
 	private static final long serialVersionUID = -1635794074628327505L;
+
+	final static Logger logger = LoggerFactory
+			.getLogger(GeometrySelectionOperation.class);
 
 	private GeometryIndexPanel indexPanel;
 	private ContextEnabledGeometryPanel inputGeometryPanel;
@@ -160,9 +166,9 @@ public class GeometrySelectionOperation extends JPanel
 
 		outputGeometryPanel.setup(result);
 
-		System.out.println(index.size());
-		System.out.println(input);
-		System.out.println(result);
+		logger.info("index size: " + index.size());
+		logger.info("input: " + input);
+		logger.info("result: " + result);
 	}
 
 }

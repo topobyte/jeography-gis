@@ -27,6 +27,9 @@ import javax.swing.ListCellRenderer;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * A renderer for the geometry list that simply displays a label for each entry.
  * 
@@ -34,6 +37,9 @@ import javax.swing.border.Border;
  */
 public class GeometryListCellRendererLabel implements ListCellRenderer
 {
+
+	final static Logger logger = LoggerFactory
+			.getLogger(GeometryListCellRendererLabel.class);
 
 	private JLabel label = new JLabel();
 
@@ -68,8 +74,8 @@ public class GeometryListCellRendererLabel implements ListCellRenderer
 		}
 
 		if (selected) {
-			System.out.println(list.getSelectionBackground());
-			System.out.println(list.getSelectionForeground());
+			logger.debug(list.getSelectionBackground().toString());
+			logger.debug(list.getSelectionForeground().toString());
 			label.setBackground(
 					bg == null ? list.getSelectionBackground() : bg);
 			label.setForeground(

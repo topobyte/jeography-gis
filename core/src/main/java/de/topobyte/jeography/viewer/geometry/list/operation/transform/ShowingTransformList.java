@@ -27,6 +27,9 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.jeography.viewer.geometry.list.operation.ShowingOperationList;
 
@@ -37,6 +40,9 @@ public class ShowingTransformList extends ShowingOperationList
 {
 
 	private static final long serialVersionUID = 704986111160705317L;
+
+	final static Logger logger = LoggerFactory
+			.getLogger(ShowingTransformList.class);
 
 	TransformEvaluator evaluator;
 	private Controls controls;
@@ -125,7 +131,7 @@ public class ShowingTransformList extends ShowingOperationList
 			DecimalFormat format = new DecimalFormat();
 			format.setMaximumFractionDigits(6);
 			String pattern = format.toPattern();
-			System.out.println(String.format("Pattern: %s", pattern));
+			logger.debug(String.format("Pattern: %s", pattern));
 
 			setLayout(new GridBagLayout());
 			GridBagConstraints c = new GridBagConstraints();

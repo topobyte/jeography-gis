@@ -21,6 +21,9 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.infomatiq.jsi.Rectangle;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
@@ -44,6 +47,9 @@ import de.topobyte.mercator.image.MercatorTileImage;
  */
 public class ImageProviderGeometry extends ImageProvider<Tile, BufferedImage>
 {
+
+	final static Logger logger = LoggerFactory
+			.getLogger(ImageProviderGeometry.class);
 
 	private GenericRTree<ZoomlevelGeometryProvider> tree;
 	private GeometryStyle style;
@@ -74,7 +80,7 @@ public class ImageProviderGeometry extends ImageProvider<Tile, BufferedImage>
 	@Override
 	protected void finalize()
 	{
-		System.out.println("ImageProviderGeometry finalize");
+		logger.debug("ImageProviderGeometry finalize");
 	}
 
 	@Override

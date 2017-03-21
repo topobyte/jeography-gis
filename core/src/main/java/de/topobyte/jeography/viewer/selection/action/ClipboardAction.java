@@ -120,7 +120,7 @@ public class ClipboardAction extends GISAction
 		String pattern = "lon1=\"%%.%df\" lon2=\"%%.%df\" lat1=\"%%.%df\" lat2=\"%%.%df\"";
 		String realPattern = String.format(pattern, digits, digits, digits,
 				digits);
-		System.out.println(realPattern);
+		logger.debug(realPattern);
 		text = String.format(realPattern, selection.getX1().value(),
 				selection.getX2().value(), selection.getY1().value(),
 				selection.getY2().value());

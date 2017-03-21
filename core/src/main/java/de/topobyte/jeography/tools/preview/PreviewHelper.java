@@ -24,6 +24,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileOnWindow;
 import de.topobyte.jeography.core.TileUtil;
@@ -40,6 +43,8 @@ import de.topobyte.jeography.viewer.config.TileConfig;
  */
 public class PreviewHelper
 {
+
+	final static Logger logger = LoggerFactory.getLogger(PreviewHelper.class);
 
 	private Graphics2D graphics;
 	private TileMapWindow mapWindow;
@@ -68,13 +73,12 @@ public class PreviewHelper
 		Configuration configuration = Configuration
 				.createDefaultConfiguration();
 		String configFile = ConfigurationHelper.getUserConfigurationFilePath();
-		System.out.println("default user config file: " + configFile);
+		logger.info("default user config file: " + configFile);
 		try {
 			configuration = ConfigReader.read(configFile);
 		} catch (Exception e) {
-			System.out
-					.println("unable to read configuration: " + e.getMessage());
-			System.out.println("using default configuration");
+			logger.warn("unable to read configuration: " + e.getMessage());
+			logger.warn("using default configuration");
 		}
 
 		TileConfig tileConfig = configuration.getTileConfigs().get(0);
@@ -144,7 +148,7 @@ public class PreviewHelper
 				}
 			}
 		}
-		System.out.println("drawing, base layer");
+		logger.debug("drawing, base layer");
 		for (TileOnWindow tow : mapWindow) {
 			if (!TileUtil.isValid(tow)) {
 				continue;
