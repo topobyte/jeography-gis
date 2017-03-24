@@ -18,11 +18,12 @@
 package de.topobyte.jeography.viewer.action;
 
 import de.topobyte.jeography.viewer.JeographyGIS;
+import de.topobyte.swing.util.action.SimpleBooleanAction;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class GeometryInfoAction extends BooleanAction
+public class GeometryInfoAction extends SimpleBooleanAction
 {
 
 	private static final long serialVersionUID = 8677899982048514674L;
@@ -38,7 +39,7 @@ public class GeometryInfoAction extends BooleanAction
 		super("show geometry information",
 				"toggle whether to display information about the geometry at the current mouse position on click");
 		this.gis = gis;
-		setIconFromResource("res/images/polygonn_info.png");
+		setIcon("res/images/polygonn_info.png");
 	}
 
 	@Override

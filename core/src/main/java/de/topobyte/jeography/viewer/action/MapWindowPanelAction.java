@@ -23,11 +23,12 @@ import bibliothek.gui.dock.common.event.CDockableStateListener;
 import bibliothek.gui.dock.common.intern.CDockable;
 import bibliothek.gui.dock.common.mode.ExtendedMode;
 import de.topobyte.jeography.viewer.JeographyGIS;
+import de.topobyte.swing.util.action.SimpleBooleanAction;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class MapWindowPanelAction extends BooleanAction
+public class MapWindowPanelAction extends SimpleBooleanAction
 		implements CDockableStateListener
 {
 
@@ -43,7 +44,7 @@ public class MapWindowPanelAction extends BooleanAction
 	{
 		super("MapWindowPanel", "toggle visibility of the MapWindowPanel");
 		this.gis = gis;
-		setIconFromResource("res/images/stock_draw-line-45.png");
+		setIcon("res/images/stock_draw-line-45.png");
 		gis.getMapWindowPanelDialog().addCDockableStateListener(this);
 	}
 

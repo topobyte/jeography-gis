@@ -18,11 +18,12 @@
 package de.topobyte.jeography.viewer.action;
 
 import de.topobyte.jeography.viewer.core.Viewer;
+import de.topobyte.swing.util.action.SimpleBooleanAction;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class TileNumberAction extends BooleanAction
+public class TileNumberAction extends SimpleBooleanAction
 {
 
 	private static final long serialVersionUID = -7954791594958331416L;
@@ -39,7 +40,7 @@ public class TileNumberAction extends BooleanAction
 	{
 		super("tile numbers", "toggle visibility of the tile numbers");
 		this.viewer = viewer;
-		setIconFromResource("res/images/font.png");
+		setIcon("res/images/font.png");
 	}
 
 	@Override
