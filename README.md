@@ -8,7 +8,7 @@ also contains the main executables of the GIS itself.
 This library is released under the terms of the GNU Lesser General Public
 License.
 
-See  [LGPL.md](LGPL.md) and [GPL.md](GPL.md) for details.
+See [LGPL.md](LGPL.md) and [GPL.md](GPL.md) for details.
 
 # Running the main GIS user interface
 
