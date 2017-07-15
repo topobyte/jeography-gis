@@ -151,8 +151,10 @@ public class ImageSourceUrlPattern<T>
 				BufferedImage image = ImageIO.read(bais);
 				return new BufferedImageAndBytes(image, bytes);
 			} catch (MalformedURLException e) {
+				logger.warn("Malformed URL: " + e.getMessage());
 				continue;
 			} catch (IOException e) {
+				logger.warn("IOException: " + e.getMessage());
 				continue;
 			} finally {
 				try {
