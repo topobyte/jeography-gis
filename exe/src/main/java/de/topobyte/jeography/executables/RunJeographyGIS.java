@@ -18,6 +18,7 @@
 package de.topobyte.jeography.executables;
 
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -30,6 +31,7 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,6 +39,7 @@ import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.config.ConfigReader;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.config.ConfigurationHelper;
+import de.topobyte.melon.io.StreamUtil;
 import de.topobyte.utilities.apache.commons.cli.OptionHelper;
 
 /**
@@ -93,8 +96,9 @@ public class RunJeographyGIS
 			System.exit(1);
 		}
 
-		if (line == null)
+		if (line == null) {
 			return;
+		}
 
 		String configFile = null;
 		Configuration configuration = Configuration
@@ -103,7 +107,10 @@ public class RunJeographyGIS
 		if (line.hasOption("config")) {
 			configFile = line.getOptionValue("config");
 			try {
-				configuration = ConfigReader.read(configFile);
+				InputStream configInput = StreamUtil
+						.bufferedInputStream(configFile);
+				configuration = ConfigReader.read(configInput);
+				IOUtils.closeQuietly(configInput);
 			} catch (Exception e) {
 				logger.warn(
 						"unable to read configuration specified at command-line",
@@ -114,7 +121,10 @@ public class RunJeographyGIS
 			configFile = ConfigurationHelper.getUserConfigurationFilePath();
 			logger.debug("default user config file: " + configFile);
 			try {
-				configuration = ConfigReader.read(configFile);
+				InputStream configInput = StreamUtil
+						.bufferedInputStream(configFile);
+				configuration = ConfigReader.read(configInput);
+				IOUtils.closeQuietly(configInput);
 			} catch (FileNotFoundException e) {
 				logger.warn(
 						"no configuration file found, using default configuration");
@@ -147,13 +157,15 @@ public class RunJeographyGIS
 
 		if (line.hasOption("width")) {
 			int w = Integer.valueOf(line.getOptionValue("width"));
-			if (w != 0)
+			if (w != 0) {
 				width = w;
+			}
 		}
 		if (line.hasOption("height")) {
 			int h = Integer.valueOf(line.getOptionValue("height"));
-			if (h != 0)
+			if (h != 0) {
 				height = h;
+			}
 		}
 		if (line.hasOption("network")) {
 			isOnline = line.getOptionValue("network").equals("yes");

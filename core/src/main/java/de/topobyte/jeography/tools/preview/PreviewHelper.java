@@ -19,11 +19,13 @@ package de.topobyte.jeography.tools.preview;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,6 +39,7 @@ import de.topobyte.jeography.viewer.config.ConfigReader;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.config.ConfigurationHelper;
 import de.topobyte.jeography.viewer.config.TileConfig;
+import de.topobyte.melon.io.StreamUtil;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -75,7 +78,10 @@ public class PreviewHelper
 		String configFile = ConfigurationHelper.getUserConfigurationFilePath();
 		logger.info("default user config file: " + configFile);
 		try {
-			configuration = ConfigReader.read(configFile);
+			InputStream configInput = StreamUtil
+					.bufferedInputStream(configFile);
+			configuration = ConfigReader.read(configInput);
+			IOUtils.closeQuietly(configInput);
 		} catch (Exception e) {
 			logger.warn("unable to read configuration: " + e.getMessage());
 			logger.warn("using default configuration");

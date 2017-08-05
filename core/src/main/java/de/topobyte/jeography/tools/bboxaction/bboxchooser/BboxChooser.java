@@ -33,6 +33,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.InputStream;
 
 import javax.accessibility.AccessibleContext;
 import javax.swing.JButton;
@@ -42,6 +43,7 @@ import javax.swing.JRootPane;
 import javax.swing.JToolBar;
 import javax.swing.UIManager;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,6 +55,7 @@ import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.jeography.viewer.selection.rectangular.GeographicSelection;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;
+import de.topobyte.melon.io.StreamUtil;
 import de.topobyte.swing.util.Components;
 
 /**
@@ -87,14 +90,16 @@ public class BboxChooser extends JPanel
 		 * viewer
 		 */
 
-		String configFile = null;
 		Configuration configuration = Configuration
 				.createDefaultConfiguration();
 
-		configFile = ConfigurationHelper.getUserConfigurationFilePath();
+		String configFile = ConfigurationHelper.getUserConfigurationFilePath();
 		logger.debug("default user config file: " + configFile);
 		try {
-			configuration = ConfigReader.read(configFile);
+			InputStream configInput = StreamUtil
+					.bufferedInputStream(configFile);
+			configuration = ConfigReader.read(configInput);
+			IOUtils.closeQuietly(configInput);
 		} catch (Exception e) {
 			logger.info("unable to read configuration: " + e.getMessage());
 			logger.info("using default configuration");

@@ -17,7 +17,13 @@
 
 package de.topobyte.jeography.viewer.config;
 
+import java.io.InputStream;
+import java.nio.file.Path;
+
 import org.apache.log4j.BasicConfigurator;
+
+import de.topobyte.melon.io.StreamUtil;
+import de.topobyte.system.utils.SystemPaths;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -36,7 +42,11 @@ public class TestConfigReader
 	public static void main(String[] args) throws Exception
 	{
 		BasicConfigurator.configure();
-		ConfigReader.read("res/gis/config1.xml");
+
+		Path path = SystemPaths.CWD.getParent().resolve("res/gis/config1.xml");
+		InputStream input = StreamUtil.bufferedInputStream(path);
+		ConfigReader.read(input);
+		input.close();
 	}
 
 }

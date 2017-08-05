@@ -18,10 +18,12 @@
 package de.topobyte.jeography.viewer;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.swing.SwingUtilities;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,6 +46,7 @@ import de.topobyte.jeography.viewer.geometry.manage.filetree.Node;
 import de.topobyte.jeography.viewer.selection.polygonal.Selection;
 import de.topobyte.jeography.viewer.selection.rectangular.GeographicSelection;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;
+import de.topobyte.melon.io.StreamUtil;
 
 /**
  * A test class for the main UI
@@ -73,7 +76,10 @@ public class TestJeographyGIS
 
 		logger.debug("default user config file: " + configFile);
 		try {
-			configuration = ConfigReader.read(configFile);
+			InputStream configInput = StreamUtil
+					.bufferedInputStream(configFile);
+			configuration = ConfigReader.read(configInput);
+			IOUtils.closeQuietly(configInput);
 		} catch (Exception e) {
 			logger.info("unable to read configuration: " + e.getMessage());
 			logger.info("using default configuration");

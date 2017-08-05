@@ -18,10 +18,13 @@
 package de.topobyte.jeography.viewer.config;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import de.topobyte.melon.io.StreamUtil;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -48,11 +51,15 @@ public class TestConfigWriter
 				.createDefaultConfiguration();
 
 		String path = ConfigurationHelper.getUserConfigurationFilePath();
+		InputStream input = StreamUtil.bufferedInputStream(path);
+
 		try {
-			configuration = ConfigReader.read(path);
+			configuration = ConfigReader.read(input);
 		} catch (Exception e) {
 			logger.debug("exception while reading config: " + e.getMessage());
 		}
+
+		input.close();
 
 		ConfigWriter.write(configuration, System.out);
 	}

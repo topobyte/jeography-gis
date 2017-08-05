@@ -17,9 +17,9 @@
 
 package de.topobyte.jeography.viewer.config;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Paths;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -43,8 +43,8 @@ public class ConfigReader
 	/**
 	 * Read a configuration from the given filename.
 	 * 
-	 * @param filename
-	 *            the filename to read the xml from.
+	 * @param input
+	 *            the stream to read the xml from.
 	 * @return the configuration read.
 	 * @throws SAXException
 	 *             on parsing failure
@@ -55,13 +55,13 @@ public class ConfigReader
 	 * @throws FileNotFoundException
 	 *             on failure.
 	 */
-	public static Configuration read(String filename)
+	public static Configuration read(InputStream input)
 			throws ParserConfigurationException, SAXException,
 			FileNotFoundException, IOException
 	{
 		SAXParser sax = SAXParserFactory.newInstance().newSAXParser();
 		ConfigHandler configHandler = new ConfigHandler();
-		sax.parse(new FileInputStream(filename), configHandler);
+		sax.parse(input, configHandler);
 
 		for (TileConfig config : configHandler.configuration.getTileConfigs()) {
 			logger.info("tiles: " + config.toString());
