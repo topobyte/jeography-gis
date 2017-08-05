@@ -22,7 +22,6 @@ import java.io.InputStream;
 
 import javax.swing.JFrame;
 
-import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,8 +47,6 @@ public class TestConfigurationEditor
 	 */
 	public static void main(String[] args) throws IOException
 	{
-		BasicConfigurator.configure();
-
 		final JFrame frame = new JFrame("Configuration Editor");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
