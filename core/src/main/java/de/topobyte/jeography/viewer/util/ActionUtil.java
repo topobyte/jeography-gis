@@ -93,30 +93,23 @@ public class ActionUtil
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H, 0), "left");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_L, 0), "right");
 
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_UP, InputEvent.SHIFT_MASK),
-				"up much");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, InputEvent.SHIFT_MASK),
-				"down much");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, InputEvent.SHIFT_MASK),
-				"left much");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP,
+				InputEvent.SHIFT_DOWN_MASK), "up much");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN,
+				InputEvent.SHIFT_DOWN_MASK), "down much");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT,
+				InputEvent.SHIFT_DOWN_MASK), "left much");
 		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT,
-				InputEvent.SHIFT_MASK), "right much");
+				InputEvent.SHIFT_DOWN_MASK), "right much");
 
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_K, InputEvent.SHIFT_MASK),
-				"up much");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_J, InputEvent.SHIFT_MASK),
-				"down much");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_H, InputEvent.SHIFT_MASK),
-				"left much");
-		inputMap.put(
-				KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.SHIFT_MASK),
-				"right much");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_K,
+				InputEvent.SHIFT_DOWN_MASK), "up much");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_J,
+				InputEvent.SHIFT_DOWN_MASK), "down much");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_H,
+				InputEvent.SHIFT_DOWN_MASK), "left much");
+		inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_L,
+				InputEvent.SHIFT_DOWN_MASK), "right much");
 	}
 
 }
