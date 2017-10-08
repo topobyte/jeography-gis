@@ -58,19 +58,19 @@ public class ActionUtil
 		int much = 256;
 		MoveAction moveLittleUp = new MoveAction(viewer, "up",
 				"move the viewers viewport up", null, 0, -little);
-		MoveAction moveLittleDown = new MoveAction(viewer, "up",
+		MoveAction moveLittleDown = new MoveAction(viewer, "down",
 				"move the viewers viewport down", null, 0, little);
-		MoveAction moveLittleLeft = new MoveAction(viewer, "up",
+		MoveAction moveLittleLeft = new MoveAction(viewer, "left",
 				"move the viewers viewport left", null, -little, 0);
-		MoveAction moveLittleRight = new MoveAction(viewer, "up",
+		MoveAction moveLittleRight = new MoveAction(viewer, "right",
 				"move the viewers viewport right", null, little, 0);
 		MoveAction moveMuchUp = new MoveAction(viewer, "up",
 				"move the viewers viewport up", null, 0, -much);
-		MoveAction moveMuchDown = new MoveAction(viewer, "up",
+		MoveAction moveMuchDown = new MoveAction(viewer, "down",
 				"move the viewers viewport down", null, 0, much);
-		MoveAction moveMuchLeft = new MoveAction(viewer, "up",
+		MoveAction moveMuchLeft = new MoveAction(viewer, "left",
 				"move the viewers viewport left", null, -much, 0);
-		MoveAction moveMuchRight = new MoveAction(viewer, "up",
+		MoveAction moveMuchRight = new MoveAction(viewer, "right",
 				"move the viewers viewport right", null, much, 0);
 
 		actionMap.put("up", moveLittleUp);
