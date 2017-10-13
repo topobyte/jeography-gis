@@ -87,7 +87,7 @@ public class JeographyGIS
 
 	static final Logger logger = LoggerFactory.getLogger(JeographyGIS.class);
 
-	private String configFile;
+	private Path configFile;
 	private Configuration configuration;
 
 	private JPanel mainPanel;
@@ -264,7 +264,7 @@ public class JeographyGIS
 	 * @param showOverlay
 	 *            whether to show the overlay
 	 */
-	public JeographyGIS(String configFile, Configuration configuration,
+	public JeographyGIS(Path configFile, Configuration configuration,
 			int tilesIndex, Path pathDatabase, boolean isOnline,
 			boolean showGrid, boolean showTileNumbers, boolean showCrosshair,
 			boolean showOverlay)
@@ -301,7 +301,7 @@ public class JeographyGIS
 	 * @param lat
 	 *            startup latitude
 	 */
-	public JeographyGIS(String configFile, Configuration configuration,
+	public JeographyGIS(Path configFile, Configuration configuration,
 			int tilesIndex, Path pathDatabase, boolean isOnline,
 			boolean showGrid, boolean showTileNumbers, boolean showCrosshair,
 			boolean showOverlay, int zoom, double lon, double lat)
@@ -383,7 +383,7 @@ public class JeographyGIS
 	/**
 	 * @return the config file the configuration comes from or null
 	 */
-	public String getConfigFile()
+	public Path getConfigFile()
 	{
 		return configFile;
 	}

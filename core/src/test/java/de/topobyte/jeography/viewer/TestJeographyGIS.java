@@ -19,6 +19,7 @@ package de.topobyte.jeography.viewer;
 
 import java.io.File;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 import javax.swing.SwingUtilities;
@@ -69,7 +70,7 @@ public class TestJeographyGIS
 		final boolean showSelectionPolyDialog = false;
 		final boolean showMapWindowDialog = false;
 
-		String configFile = ConfigurationHelper.getUserConfigurationFilePath();
+		Path configFile = ConfigurationHelper.getUserConfigurationFilePath();
 
 		Configuration configuration = Configuration
 				.createDefaultConfiguration();

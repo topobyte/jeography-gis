@@ -100,12 +100,13 @@ public class RunJeographyGIS
 			return;
 		}
 
-		String configFile = null;
+		Path configFile = null;
 		Configuration configuration = Configuration
 				.createDefaultConfiguration();
 
 		if (line.hasOption("config")) {
-			configFile = line.getOptionValue("config");
+			String argConfigFile = line.getOptionValue("config");
+			configFile = Paths.get(argConfigFile);
 			try {
 				InputStream configInput = StreamUtil
 						.bufferedInputStream(configFile);

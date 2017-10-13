@@ -17,6 +17,10 @@
 
 package de.topobyte.jeography.viewer.config;
 
+import java.nio.file.Path;
+
+import de.topobyte.system.utils.SystemPaths;
+
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
@@ -28,15 +32,13 @@ public class ConfigurationHelper
 	 * 
 	 * @return the path to the user's configuration file
 	 */
-	public static String getUserConfigurationFilePath()
+	public static Path getUserConfigurationFilePath()
 	{
-		String home = System.getProperty("user.home");
-		String sep = System.getProperty("file.separator");
+		Path jeography = SystemPaths.HOME.resolve(".config")
+				.resolve("jeography");
+		Path configXml = jeography.resolve("config.xml");
 
-		String configFile = home + sep + ".config" + sep + "jeography" + sep
-				+ "config.xml";
-
-		return configFile;
+		return configXml;
 	}
 
 }

@@ -19,6 +19,7 @@ package de.topobyte.jeography.viewer.config.edit;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 
 import javax.swing.JFrame;
 
@@ -53,7 +54,7 @@ public class TestConfigurationEditor
 		Configuration configuration = Configuration
 				.createDefaultConfiguration();
 
-		String path = ConfigurationHelper.getUserConfigurationFilePath();
+		Path path = ConfigurationHelper.getUserConfigurationFilePath();
 		InputStream input = StreamUtil.bufferedInputStream(path);
 		try {
 			configuration = ConfigReader.read(input);

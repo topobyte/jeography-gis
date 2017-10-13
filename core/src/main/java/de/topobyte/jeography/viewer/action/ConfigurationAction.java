@@ -21,11 +21,11 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -41,6 +41,7 @@ import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.config.ConfigWriter;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.config.edit.ConfigurationEditor;
+import de.topobyte.melon.io.StreamUtil;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -55,7 +56,7 @@ public class ConfigurationAction extends GISAction
 
 	private static final String FILE_IMAGE = "res/images/preferences-other.png";
 
-	private String configFile;
+	private Path configFile;
 
 	private JDialog dialog;
 	private ConfigurationEditor configurationEditor;
@@ -135,16 +136,19 @@ public class ConfigurationAction extends GISAction
 		OutputStream out = null;
 		boolean success = false;
 
-		File file = new File(configFile);
-		File directory = file.getParentFile();
+		Path directory = configFile.getParent();
 		if (directory != null) {
-			if (!directory.exists()) {
-				directory.mkdirs();
+			if (!Files.exists(directory)) {
+				try {
+					Files.createDirectories(directory);
+				} catch (IOException e) {
+					// ignore
+				}
 			}
 		}
 
 		try {
-			out = new FileOutputStream(configFile);
+			out = StreamUtil.bufferedOutputStream(configFile);
 			// out = System.out;
 			ConfigWriter.write(configuration, out);
 			success = true;

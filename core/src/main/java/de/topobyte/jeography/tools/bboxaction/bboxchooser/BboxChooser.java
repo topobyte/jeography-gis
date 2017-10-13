@@ -34,6 +34,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.InputStream;
+import java.nio.file.Path;
 
 import javax.accessibility.AccessibleContext;
 import javax.swing.JButton;
@@ -93,7 +94,7 @@ public class BboxChooser extends JPanel
 		Configuration configuration = Configuration
 				.createDefaultConfiguration();
 
-		String configFile = ConfigurationHelper.getUserConfigurationFilePath();
+		Path configFile = ConfigurationHelper.getUserConfigurationFilePath();
 		logger.debug("default user config file: " + configFile);
 		try {
 			InputStream configInput = StreamUtil

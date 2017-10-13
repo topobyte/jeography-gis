@@ -19,6 +19,7 @@ package de.topobyte.jeography.viewer.config;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,7 +48,7 @@ public class TestConfigWriter
 		Configuration configuration = Configuration
 				.createDefaultConfiguration();
 
-		String path = ConfigurationHelper.getUserConfigurationFilePath();
+		Path path = ConfigurationHelper.getUserConfigurationFilePath();
 		InputStream input = StreamUtil.bufferedInputStream(path);
 
 		try {

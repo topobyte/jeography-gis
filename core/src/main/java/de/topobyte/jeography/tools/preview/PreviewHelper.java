@@ -20,6 +20,7 @@ package de.topobyte.jeography.tools.preview;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -75,7 +76,7 @@ public class PreviewHelper
 	{
 		Configuration configuration = Configuration
 				.createDefaultConfiguration();
-		String configFile = ConfigurationHelper.getUserConfigurationFilePath();
+		Path configFile = ConfigurationHelper.getUserConfigurationFilePath();
 		logger.info("default user config file: " + configFile);
 		try {
 			InputStream configInput = StreamUtil
