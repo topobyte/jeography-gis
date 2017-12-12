@@ -60,7 +60,6 @@ public class ConfigWriter
 	private static void buildDocument(DocumentFactory documentFactory,
 			Document document, Configuration configuration)
 	{
-
 		Element eConfiguration = documentFactory.createElement("configuration");
 		document.add(eConfiguration);
 
