@@ -25,3 +25,5 @@ Setup the execution environment:
 Then you can run the main executables from the build directory:
 
     ./scripts/jeography
+    ./scripts/geometry-preview
+    ./scripts/create-place-database
