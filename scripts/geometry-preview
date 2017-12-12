@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIR=$(dirname $0)
+CMD="$DIR/jeography-gis.sh"
+CLASS="de.topobyte.jeography.executables.RunGeometryPreview"
+
+exec "$CMD" "$CLASS" "$@"
