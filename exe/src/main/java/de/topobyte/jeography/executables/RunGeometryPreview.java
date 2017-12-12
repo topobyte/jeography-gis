@@ -17,11 +17,7 @@
 
 package de.topobyte.jeography.executables;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -35,7 +31,6 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
@@ -44,13 +39,10 @@ import com.vividsolutions.jts.geom.Geometry;
 
 import de.topobyte.jeography.geometry.GeoObject;
 import de.topobyte.jeography.geometry.io.PolygonLoader;
-import de.topobyte.jeography.viewer.config.ConfigReader;
 import de.topobyte.jeography.viewer.config.Configuration;
-import de.topobyte.jeography.viewer.config.ConfigurationHelper;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryContainer;
 import de.topobyte.jeography.viewer.geometry.manage.GeometrySourceJSG;
 import de.topobyte.jeography.viewer.tools.preview.GeometryPreview;
-import de.topobyte.melon.io.StreamUtil;
 import de.topobyte.simplemapfile.core.EntityFile;
 import de.topobyte.simplemapfile.xml.SmxFileReader;
 import de.topobyte.utilities.apache.commons.cli.OptionHelper;
@@ -91,40 +83,8 @@ public class RunGeometryPreview
 			return;
 		}
 
-		Path configFile = null;
-		Configuration configuration = Configuration
-				.createDefaultConfiguration();
-
-		if (line.hasOption("config")) {
-			String argConfigFile = line.getOptionValue("config");
-			configFile = Paths.get(argConfigFile);
-			try {
-				InputStream configInput = StreamUtil
-						.bufferedInputStream(configFile);
-				configuration = ConfigReader.read(configInput);
-				IOUtils.closeQuietly(configInput);
-			} catch (Exception e) {
-				logger.warn(
-						"unable to read configuration specified at command-line",
-						e);
-				logger.warn("using default configuration");
-			}
-		} else {
-			configFile = ConfigurationHelper.getUserConfigurationFilePath();
-			logger.debug("default user config file: " + configFile);
-			try {
-				InputStream configInput = StreamUtil
-						.bufferedInputStream(configFile);
-				configuration = ConfigReader.read(configInput);
-				IOUtils.closeQuietly(configInput);
-			} catch (FileNotFoundException e) {
-				logger.warn(
-						"no configuration file found, using default configuration");
-			} catch (Exception e) {
-				logger.warn("unable to read configuration at user home", e);
-				logger.warn("using default configuration");
-			}
-		}
+		LoadedConfiguration loadedConfiguration = Util.loadConfiguration(line);
+		Configuration configuration = loadedConfiguration.getConfiguration();
 
 		String[] list = line.getArgs();
 		if (list.length == 0) {

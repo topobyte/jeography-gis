@@ -17,8 +17,6 @@
 
 package de.topobyte.jeography.executables;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -31,15 +29,11 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.topobyte.jeography.viewer.JeographyGIS;
-import de.topobyte.jeography.viewer.config.ConfigReader;
 import de.topobyte.jeography.viewer.config.Configuration;
-import de.topobyte.jeography.viewer.config.ConfigurationHelper;
-import de.topobyte.melon.io.StreamUtil;
 import de.topobyte.utilities.apache.commons.cli.OptionHelper;
 
 /**
@@ -100,40 +94,8 @@ public class RunJeographyGIS
 			return;
 		}
 
-		Path configFile = null;
-		Configuration configuration = Configuration
-				.createDefaultConfiguration();
-
-		if (line.hasOption("config")) {
-			String argConfigFile = line.getOptionValue("config");
-			configFile = Paths.get(argConfigFile);
-			try {
-				InputStream configInput = StreamUtil
-						.bufferedInputStream(configFile);
-				configuration = ConfigReader.read(configInput);
-				IOUtils.closeQuietly(configInput);
-			} catch (Exception e) {
-				logger.warn(
-						"unable to read configuration specified at command-line",
-						e);
-				logger.warn("using default configuration");
-			}
-		} else {
-			configFile = ConfigurationHelper.getUserConfigurationFilePath();
-			logger.debug("default user config file: " + configFile);
-			try {
-				InputStream configInput = StreamUtil
-						.bufferedInputStream(configFile);
-				configuration = ConfigReader.read(configInput);
-				IOUtils.closeQuietly(configInput);
-			} catch (FileNotFoundException e) {
-				logger.warn(
-						"no configuration file found, using default configuration");
-			} catch (Exception e) {
-				logger.warn("unable to read configuration at user home", e);
-				logger.warn("using default configuration");
-			}
-		}
+		LoadedConfiguration loadedConfiguration = Util.loadConfiguration(line);
+		Configuration configuration = loadedConfiguration.getConfiguration();
 
 		int width = configuration.getWidth(),
 				height = configuration.getHeight();
@@ -215,8 +177,9 @@ public class RunJeographyGIS
 			}
 		}
 
-		final JeographyGIS gis = new JeographyGIS(configFile, configuration,
-				tilesIndex, pathDatabase, isOnline, showGrid, showTileNumbers,
+		final JeographyGIS gis = new JeographyGIS(
+				loadedConfiguration.getConfigFile(), configuration, tilesIndex,
+				pathDatabase, isOnline, showGrid, showTileNumbers,
 				showCrosshair, showOverlay, zoom, lon, lat);
 
 		final int fWidth = width;
