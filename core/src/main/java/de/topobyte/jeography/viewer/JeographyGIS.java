@@ -111,6 +111,7 @@ public class JeographyGIS
 	private GeometryManager geometryManager;
 	private EventJDialog geometryManagerDialog = null;
 	private OverlayManager overlayManager;
+	private Bookmarks bookmarks;
 
 	private DefaultSingleCDockable dockableViewer;
 
@@ -328,6 +329,8 @@ public class JeographyGIS
 		OverlayDragGestureListener dragGestureListener = new OverlayDragGestureListener(
 				this);
 		viewer.setDragGestureListener(dragGestureListener);
+
+		bookmarks = new Bookmarks(this);
 
 		geometryManager = new GeometryManager();
 		overlayManager = new OverlayManager(geometryManager, this);
@@ -552,8 +555,6 @@ public class JeographyGIS
 
 	void setupBookmarksDialog(boolean show)
 	{
-		Bookmarks bookmarks = new Bookmarks(this);
-
 		bookmarksDockable = new DefaultSingleCDockable("bookmarks", "Bookmarks",
 				bookmarks);
 
@@ -630,6 +631,11 @@ public class JeographyGIS
 	public OverlayManager getOverlayManager()
 	{
 		return overlayManager;
+	}
+
+	public Bookmarks getBookmarks()
+	{
+		return bookmarks;
 	}
 
 	/**

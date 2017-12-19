@@ -127,4 +127,9 @@ public class Bookmarks extends JPanel
 		viewer.repaint();
 	}
 
+	public BookmarksModel getModel()
+	{
+		return model;
+	}
+
 }

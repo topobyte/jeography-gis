@@ -22,7 +22,13 @@ import java.awt.event.ActionEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.vividsolutions.jts.geom.Coordinate;
+
+import de.topobyte.jeography.core.mapwindow.TileMapWindow;
 import de.topobyte.jeography.viewer.JeographyGIS;
+import de.topobyte.jeography.viewer.bookmarks.Bookmark;
+import de.topobyte.jeography.viewer.bookmarks.Bookmarks;
+import de.topobyte.jeography.viewer.bookmarks.BookmarksModel;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -50,7 +56,20 @@ public class AddBookmarkAction extends GISAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO: implement this
+		Bookmarks bookmarks = getGIS().getBookmarks();
+		BookmarksModel model = bookmarks.getModel();
+
+		TileMapWindow mapWindow = getGIS().getViewer().getMapWindow();
+		double lon = mapWindow.getCenterLon();
+		double lat = mapWindow.getCenterLat();
+
+		// TODO: get name via dialog
+		String name = "Test";
+
+		int size = model.getSize();
+		model.add(new Bookmark(name, new Coordinate(lon, lat)), size);
+
+		// TODO: also store to file?
 	}
 
 }
