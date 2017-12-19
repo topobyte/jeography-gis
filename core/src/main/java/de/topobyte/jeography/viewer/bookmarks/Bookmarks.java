@@ -22,6 +22,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 import javax.swing.JList;
@@ -34,6 +36,7 @@ import org.slf4j.LoggerFactory;
 import com.vividsolutions.jts.geom.Coordinate;
 
 import de.topobyte.jeography.viewer.JeographyGIS;
+import de.topobyte.jeography.viewer.config.ConfigurationHelper;
 import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.melon.casting.CastUtil;
 
@@ -63,14 +66,9 @@ public class Bookmarks extends JPanel
 
 		model = new BookmarksModel();
 
-		InputStream input = Thread.currentThread().getContextClassLoader()
-				.getResourceAsStream("res/bookmarks.xml");
-		try {
-			List<Bookmark> bookmarks = BookmarksIO.read(input);
-			input.close();
-			model.addAll(bookmarks, 0);
-		} catch (IOException e) {
-			logger.warn("Error while reading bookmarks", e);
+		boolean gotBookmarks = loadConfigBoomarks();
+		if (!gotBookmarks) {
+			loadDefaultBookmarks();
 		}
 
 		list.setCellRenderer(new BookmarksRenderer());
@@ -87,6 +85,36 @@ public class Bookmarks extends JPanel
 				}
 			}
 		});
+	}
+
+	private boolean loadConfigBoomarks()
+	{
+		Path pathInput = ConfigurationHelper.getBookmarksFilePath();
+		try {
+			InputStream input = Files.newInputStream(pathInput);
+			List<Bookmark> bookmarks = BookmarksIO.read(input);
+			input.close();
+			model.addAll(bookmarks, 0);
+			return true;
+		} catch (IOException e) {
+			logger.warn("Error while reading bookmarks from config dir", e);
+			return false;
+		}
+	}
+
+	private boolean loadDefaultBookmarks()
+	{
+		try {
+			InputStream input = Thread.currentThread().getContextClassLoader()
+					.getResourceAsStream("res/bookmarks.xml");
+			List<Bookmark> bookmarks = BookmarksIO.read(input);
+			input.close();
+			model.addAll(bookmarks, 0);
+			return true;
+		} catch (IOException e) {
+			logger.warn("Error while reading bookmarks from resources", e);
+			return false;
+		}
 	}
 
 	protected void activate(int index)

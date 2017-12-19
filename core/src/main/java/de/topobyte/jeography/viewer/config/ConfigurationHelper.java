@@ -18,6 +18,7 @@
 package de.topobyte.jeography.viewer.config;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import de.topobyte.system.utils.SystemPaths;
 
@@ -27,6 +28,8 @@ import de.topobyte.system.utils.SystemPaths;
 public class ConfigurationHelper
 {
 
+	private static Path pathConfig = Paths.get(".config/jeography");
+
 	/**
 	 * Retrieve the path to the user's configuration file
 	 * 
@@ -34,10 +37,20 @@ public class ConfigurationHelper
 	 */
 	public static Path getUserConfigurationFilePath()
 	{
-		Path jeography = SystemPaths.HOME.resolve(".config")
-				.resolve("jeography");
+		Path jeography = SystemPaths.HOME.resolve(pathConfig);
 		Path configXml = jeography.resolve("config.xml");
+		return configXml;
+	}
 
+	/**
+	 * Retrieve the path to the user's bookmarks file
+	 * 
+	 * @return the path to the user's bookmarks file
+	 */
+	public static Path getBookmarksFilePath()
+	{
+		Path jeography = SystemPaths.HOME.resolve(pathConfig);
+		Path configXml = jeography.resolve("bookmarks.xml");
 		return configXml;
 	}
 
