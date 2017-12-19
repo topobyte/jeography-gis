@@ -20,10 +20,16 @@ package de.topobyte.jeography.viewer.bookmarks;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.vividsolutions.jts.geom.Coordinate;
 
@@ -36,6 +42,8 @@ import de.topobyte.melon.casting.CastUtil;
  */
 public class Bookmarks extends JPanel
 {
+
+	final static Logger logger = LoggerFactory.getLogger(Bookmarks.class);
 
 	private static final long serialVersionUID = 535219091704824790L;
 
@@ -53,16 +61,17 @@ public class Bookmarks extends JPanel
 		JScrollPane jsp = new JScrollPane(list);
 		add(jsp, BorderLayout.CENTER);
 
+		InputStream input = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream("res/bookmarks.xml");
+		List<Bookmark> bookmarks = BookmarksIO.read(input);
+		try {
+			input.close();
+		} catch (IOException e) {
+			logger.warn("Error while reading bookmarks", e);
+		}
+
 		model = new BookmarksModel();
-		model.add(
-				new Bookmark("Berlin",
-						new Coordinate(13.368988037109375, 52.52958999943302)),
-				0);
-		model.add(new Bookmark("Düsseldorf", new Coordinate(6.777, 51.225)), 1);
-		model.add(
-				new Bookmark("Cottbus",
-						new Coordinate(14.329948425292969, 51.758490455733785)),
-				1);
+		model.addAll(bookmarks, 0);
 
 		list.setCellRenderer(new BookmarksRenderer());
 		list.setModel(model);
