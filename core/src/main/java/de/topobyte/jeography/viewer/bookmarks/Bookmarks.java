@@ -61,17 +61,17 @@ public class Bookmarks extends JPanel
 		JScrollPane jsp = new JScrollPane(list);
 		add(jsp, BorderLayout.CENTER);
 
+		model = new BookmarksModel();
+
 		InputStream input = Thread.currentThread().getContextClassLoader()
 				.getResourceAsStream("res/bookmarks.xml");
-		List<Bookmark> bookmarks = BookmarksIO.read(input);
 		try {
+			List<Bookmark> bookmarks = BookmarksIO.read(input);
 			input.close();
+			model.addAll(bookmarks, 0);
 		} catch (IOException e) {
 			logger.warn("Error while reading bookmarks", e);
 		}
-
-		model = new BookmarksModel();
-		model.addAll(bookmarks, 0);
 
 		list.setCellRenderer(new BookmarksRenderer());
 		list.setModel(model);

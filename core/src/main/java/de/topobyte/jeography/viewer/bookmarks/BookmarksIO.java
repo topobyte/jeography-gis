@@ -21,8 +21,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.SAXException;
 
 import de.topobyte.melon.io.StreamUtil;
 
@@ -37,11 +42,24 @@ public class BookmarksIO
 		return result;
 	}
 
-	public static List<Bookmark> read(InputStream is)
+	public static List<Bookmark> read(InputStream is) throws IOException
 	{
-		List<Bookmark> result = new ArrayList<>();
-		// TODO: implement
-		return result;
+		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+		SAXParser parser;
+		try {
+			parser = saxParserFactory.newSAXParser();
+		} catch (ParserConfigurationException | SAXException e) {
+			throw new IOException(e);
+		}
+
+		BookmarksSaxHandler saxHandler = BookmarksSaxHandler.createInstance();
+		try {
+			parser.parse(is, saxHandler);
+		} catch (SAXException e) {
+			throw new IOException(e);
+		}
+
+		return saxHandler.getBookmarks();
 	}
 
 	public static void write(Path path, List<Bookmark> bookmarks)
