@@ -30,7 +30,6 @@ import com.vividsolutions.jts.geom.Coordinate;
 import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.core.Viewer;
 import de.topobyte.melon.casting.CastUtil;
-import de.topobyte.swing.util.list.ArrayListModel;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -42,7 +41,7 @@ public class Bookmarks extends JPanel
 
 	private JeographyGIS gis;
 
-	private ArrayListModel<Bookmark> model;
+	private BookmarksModel model;
 
 	public Bookmarks(JeographyGIS gis)
 	{
@@ -54,7 +53,7 @@ public class Bookmarks extends JPanel
 		JScrollPane jsp = new JScrollPane(list);
 		add(jsp, BorderLayout.CENTER);
 
-		model = new ArrayListModel<>();
+		model = new BookmarksModel();
 		model.add(
 				new Bookmark("Berlin",
 						new Coordinate(13.368988037109375, 52.52958999943302)),
