@@ -1,0 +1,43 @@
+apply plugin: 'java'
+
+if (project.hasProperty("topobyte")) {
+    apply from: 'file:///' + System.getProperty("user.home") \
+        + '/.gradle/topobyte.gradle'
+}
+
+dependencies {
+    compile 'de.topobyte:jeography-core:0.0.6'
+    compile 'de.topobyte:adt-misc:0.0.2'
+
+    compile 'org.slf4j:slf4j-api:1.6.1'
+
+    testRuntime 'org.slf4j:slf4j-log4j12:1.6.1'
+    testCompile 'log4j:log4j:1.2.16'
+
+    testCompile 'junit:junit:4.11'
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+def pomInfo = new XmlSlurper().parse(new File(projectDir, 'info.pom'));
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                pom.project {
+                    name pomInfo.name
+                    description pomInfo.description
+                    url pomInfo.url
+                }
+            }
+        }
+    }
+}

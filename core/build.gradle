@@ -6,6 +6,8 @@ if (project.hasProperty("topobyte")) {
 }
 
 dependencies {
+    compile project(':jeography-viewers')
+
     compile 'de.topobyte:commons-cli-helper:0.0.5'
     compile 'de.topobyte:jts2awt:0.0.1'
     compile 'de.topobyte:jts-utils:0.1.2'
