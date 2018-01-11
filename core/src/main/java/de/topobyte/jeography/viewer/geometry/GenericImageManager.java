@@ -30,6 +30,7 @@ import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.tiles.LoadListener;
 import de.topobyte.jeography.tiles.cache.MemoryCache;
 import de.topobyte.jeography.tiles.manager.ImageManager;
+import de.topobyte.jeography.tiles.manager.ImageManagerUpdateListener;
 import de.topobyte.jeography.tiles.source.ImageProvider;
 
 /**

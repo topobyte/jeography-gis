@@ -44,11 +44,11 @@ import de.topobyte.jeography.tiles.LoadListener;
 import de.topobyte.jeography.tiles.cache.MemoryCachePlus;
 import de.topobyte.jeography.tiles.manager.ImageManager;
 import de.topobyte.jeography.tiles.manager.ImageManagerHttpDisk;
+import de.topobyte.jeography.tiles.manager.ImageManagerUpdateListener;
 import de.topobyte.jeography.tiles.manager.PriorityImageManager;
 import de.topobyte.jeography.tiles.manager.PriorityImageManagerHttpDisk;
 import de.topobyte.jeography.viewer.Constants;
 import de.topobyte.jeography.viewer.config.TileConfig;
-import de.topobyte.jeography.viewer.geometry.ImageManagerUpdateListener;
 import de.topobyte.melon.casting.CastUtil;
 
 /**

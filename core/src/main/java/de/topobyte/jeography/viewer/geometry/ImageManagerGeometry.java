@@ -36,6 +36,7 @@ import de.topobyte.jeography.core.mapwindow.TileMapWindow;
 import de.topobyte.jeography.tiles.LoadListener;
 import de.topobyte.jeography.tiles.cache.MemoryCache;
 import de.topobyte.jeography.tiles.manager.ImageManager;
+import de.topobyte.jeography.tiles.manager.ImageManagerUpdateListener;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryContainer;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryStyle;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryStyleChangeListener;
