@@ -83,7 +83,7 @@ public abstract class AbstractViewer extends JPanel
 
 	private Set<OverlayPoint> points = null;
 
-	protected abstract MapWindow getMapWindow();
+	public abstract MapWindow getMapWindow();
 
 	@Override
 	public boolean getMouseActive()
