@@ -20,6 +20,8 @@ package de.topobyte.jeography.viewer.bookmarks;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -71,8 +73,19 @@ public class BookmarksIO
 	}
 
 	public static void write(OutputStream os, List<Bookmark> bookmarks)
+			throws IOException
 	{
-		// TODO: implement
+		OutputStreamWriter writer = new OutputStreamWriter(os);
+		PrintWriter pw = new PrintWriter(writer);
+		pw.println("<bookmarks>");
+		for (Bookmark bookmark : bookmarks) {
+			pw.println(String.format(
+					"    <bookmark lat=\"%.6f\" lon=\"%.6f\" name=\"%s\"",
+					bookmark.getCoordinate().y, bookmark.getCoordinate().x,
+					bookmark.getName()));
+		}
+		pw.println("</bookmarks>");
+		pw.close();
 	}
 
 }
