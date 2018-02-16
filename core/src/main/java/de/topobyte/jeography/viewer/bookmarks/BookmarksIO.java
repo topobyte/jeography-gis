@@ -80,7 +80,7 @@ public class BookmarksIO
 		pw.println("<bookmarks>");
 		for (Bookmark bookmark : bookmarks) {
 			pw.println(String.format(
-					"    <bookmark lat=\"%.6f\" lon=\"%.6f\" name=\"%s\"",
+					"    <bookmark lat=\"%.6f\" lon=\"%.6f\" name=\"%s\"/>",
 					bookmark.getCoordinate().y, bookmark.getCoordinate().x,
 					bookmark.getName()));
 		}
