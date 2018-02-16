@@ -15,12 +15,12 @@ See [LGPL.md](LGPL.md) and [GPL.md](GPL.md) for details.
 ## Using gradle
 You can run the main UI using gradle directly:
 
-    gradle run
+    ./gradlew run
 
 ## Using scripts
 Setup the execution environment:
 
-    gradle createRuntime
+    ./gradlew createRuntime
 
 Then you can run the main executables from the build directory:
 
