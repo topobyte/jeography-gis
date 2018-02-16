@@ -31,6 +31,16 @@ public class ConfigurationHelper
 	private static Path pathConfig = Paths.get(".config/jeography");
 
 	/**
+	 * Retrieve the path of the directory where the user's configuration will be
+	 * stored.
+	 */
+	public static Path getUserConfigurationDirectory()
+	{
+		Path jeography = SystemPaths.HOME.resolve(pathConfig);
+		return jeography;
+	}
+
+	/**
 	 * Retrieve the path to the user's configuration file
 	 * 
 	 * @return the path to the user's configuration file

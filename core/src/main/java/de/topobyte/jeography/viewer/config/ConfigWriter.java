@@ -19,6 +19,8 @@ package de.topobyte.jeography.viewer.config;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Locale;
 
 import org.dom4j.Document;
@@ -32,6 +34,24 @@ import org.dom4j.io.XMLWriter;
  */
 public class ConfigWriter
 {
+
+	/**
+	 * Write a configuration to a Path
+	 * 
+	 * @param configuration
+	 *            the configuration to write
+	 * @param path
+	 *            the destination
+	 * @throws IOException
+	 *             on IO failure
+	 */
+	public static void write(Configuration configuration, Path path)
+			throws IOException
+	{
+		OutputStream out = Files.newOutputStream(path);
+		write(configuration, out);
+		out.close();
+	}
 
 	/**
 	 * Write the denoted configuration to the denoted OutputStream
@@ -73,8 +93,10 @@ public class ConfigWriter
 				configuration.isShowOverlay());
 		addOption(documentFactory, eConfiguration, "online",
 				configuration.isOnline());
-		addOption(documentFactory, eConfiguration, "database",
-				configuration.getPathDatabase().toString());
+		if (configuration.getPathDatabase() != null) {
+			addOption(documentFactory, eConfiguration, "database",
+					configuration.getPathDatabase().toString());
+		}
 		addOption(documentFactory, eConfiguration, "width",
 				configuration.getWidth());
 		addOption(documentFactory, eConfiguration, "height",

@@ -17,8 +17,12 @@
 
 package de.topobyte.jeography.executables;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -33,7 +37,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.topobyte.jeography.viewer.JeographyGIS;
+import de.topobyte.jeography.viewer.bookmarks.Bookmark;
+import de.topobyte.jeography.viewer.bookmarks.BookmarksIO;
+import de.topobyte.jeography.viewer.config.ConfigWriter;
 import de.topobyte.jeography.viewer.config.Configuration;
+import de.topobyte.jeography.viewer.config.ConfigurationHelper;
 import de.topobyte.utilities.apache.commons.cli.OptionHelper;
 
 /**
@@ -92,6 +100,12 @@ public class RunJeographyGIS
 
 		if (line == null) {
 			return;
+		}
+
+		try {
+			ensureConfiguration();
+		} catch (IOException e) {
+			logger.error("Unable to ensure configuration files existance", e);
 		}
 
 		LoadedConfiguration loadedConfiguration = Util.loadConfiguration(line);
@@ -195,6 +209,25 @@ public class RunJeographyGIS
 						showMapWindowDialog);
 			}
 		});
+	}
+
+	private static void ensureConfiguration() throws IOException
+	{
+		Path directory = ConfigurationHelper.getUserConfigurationDirectory();
+		if (!Files.exists(directory)) {
+			Files.createDirectories(directory);
+		}
+		Path config = ConfigurationHelper.getUserConfigurationFilePath();
+		if (!Files.exists(config)) {
+			Configuration configuration = Configuration
+					.createDefaultConfiguration();
+			ConfigWriter.write(configuration, config);
+		}
+		Path bookmarks = ConfigurationHelper.getBookmarksFilePath();
+		if (!Files.exists(bookmarks)) {
+			List<Bookmark> list = new ArrayList<>();
+			BookmarksIO.write(bookmarks, list);
+		}
 	}
 
 }
