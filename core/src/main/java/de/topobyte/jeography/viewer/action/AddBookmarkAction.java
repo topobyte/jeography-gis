@@ -18,6 +18,10 @@
 package de.topobyte.jeography.viewer.action;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +32,9 @@ import de.topobyte.jeography.core.mapwindow.TileMapWindow;
 import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.bookmarks.Bookmark;
 import de.topobyte.jeography.viewer.bookmarks.Bookmarks;
+import de.topobyte.jeography.viewer.bookmarks.BookmarksIO;
 import de.topobyte.jeography.viewer.bookmarks.BookmarksModel;
+import de.topobyte.jeography.viewer.config.ConfigurationHelper;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -54,7 +60,7 @@ public class AddBookmarkAction extends GISAction
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e)
+	public void actionPerformed(ActionEvent event)
 	{
 		Bookmarks bookmarks = getGIS().getBookmarks();
 		BookmarksModel model = bookmarks.getModel();
@@ -69,7 +75,20 @@ public class AddBookmarkAction extends GISAction
 		int size = model.getSize();
 		model.add(new Bookmark(name, new Coordinate(lon, lat)), size);
 
-		// TODO: also store to file?
+		Path file = ConfigurationHelper.getBookmarksFilePath();
+
+		// TODO: copying into another list is kind of stupid
+		List<Bookmark> list = new ArrayList<>();
+		for (int i = 0; i < model.getSize(); i++) {
+			list.add(model.getElementAt(i));
+		}
+
+		try {
+			BookmarksIO.write(file, list);
+		} catch (IOException e) {
+			logger.error("Error while writing bookmarks file", e);
+			// TODO: display error message
+		}
 	}
 
 }
