@@ -89,6 +89,7 @@ public class MapWindowPane extends JPanel implements StatusBarInfoEmitter
 		JButton buttonOsmWeb = new PatternUrlButton("Openstreetmap Mapnik",
 				mapWindow,
 				"http://www.openstreetmap.org/?lat=%f&lon=%f&zoom=%d&layers=M");
+		JButton buttonOsmShortLink = new ShortLinkButton(mapWindow);
 		JButton buttonPotlatch1 = new PatternUrlButton("Potlatch 1", mapWindow,
 				"http://www.openstreetmap.org/edit?editor=potlatch&lat=%f&lon=%f&zoom=%d&layers=M");
 		JButton buttonPotlatch2 = new PatternUrlButton("Potlatch 2", mapWindow,
@@ -108,6 +109,7 @@ public class MapWindowPane extends JPanel implements StatusBarInfoEmitter
 		buttons.add(buttonCopyDegMinSec);
 		buttons.add(buttonCopyXml);
 		buttons.add(buttonOsmWeb);
+		buttons.add(buttonOsmShortLink);
 		buttons.add(buttonPotlatch1);
 		buttons.add(buttonPotlatch2);
 
