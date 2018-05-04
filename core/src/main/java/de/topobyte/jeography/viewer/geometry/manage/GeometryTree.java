@@ -342,7 +342,7 @@ public class GeometryTree extends JPanel
 		public AddFileAction()
 		{
 			super("add", "add an item");
-			this.setIconFromResource("res/images/list-add.svg");
+			this.setIconFromResource("res/images/list-add.png");
 		}
 
 		@Override
@@ -400,7 +400,7 @@ public class GeometryTree extends JPanel
 		public RemoveFileAction()
 		{
 			super("remove", "remove an item");
-			this.setIconFromResource("res/images/list-remove.svg");
+			this.setIconFromResource("res/images/list-remove.png");
 
 			getTree().getSelectionModel()
 					.addTreeSelectionListener(new TreeSelectionListener() {

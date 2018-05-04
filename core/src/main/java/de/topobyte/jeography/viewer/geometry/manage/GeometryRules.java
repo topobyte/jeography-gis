@@ -367,7 +367,7 @@ public class GeometryRules extends JPanel
 		public AddRuleAction()
 		{
 			super("add", "add an item");
-			this.setIconFromResource("res/images/list-add.svg");
+			this.setIconFromResource("res/images/list-add.png");
 		}
 
 		@Override
@@ -424,7 +424,7 @@ public class GeometryRules extends JPanel
 		public RemoveRuleAction()
 		{
 			super("remove", "remove an item");
-			this.setIconFromResource("res/images/list-remove.svg");
+			this.setIconFromResource("res/images/list-remove.png");
 			list.getSelectionModel()
 					.addListSelectionListener(new ListSelectionListener() {
 
