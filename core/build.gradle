@@ -33,8 +33,7 @@ dependencies {
     compile 'de.topobyte:luqe-jdbc:0.0.6'
     runtime 'org.xerial:sqlite-jdbc:3.8.11.2'
 
-    compile 'org.apache.xmlgraphics:batik-transcoder:1.7'
-    compile 'org.apache.xmlgraphics:batik-codec:1.7'
+    compile 'commons-io:commons-io:2.6'
     compile 'commons-cli:commons-cli:1.2'
     compile 'commons-codec:commons-codec:1.10'
     compile 'com.vividsolutions:jts:1.13'
