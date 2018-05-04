@@ -20,7 +20,6 @@ package de.topobyte.jeography.viewer.action;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.topobyte.jeography.util.ImageLoader;
 import de.topobyte.swing.util.EmptyIcon;
 
 /**
@@ -54,7 +53,7 @@ public abstract class SimpleAction
 	{
 		if (filename != null) {
 			logger.debug("loading icon: " + filename);
-			setIcon(ImageLoader.load(filename));
+			setIcon(filename);
 		} else {
 			setIcon(new EmptyIcon(24));
 		}

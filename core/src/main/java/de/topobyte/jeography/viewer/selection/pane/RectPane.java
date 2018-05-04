@@ -30,7 +30,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import de.topobyte.jeography.util.ImageLoader;
 import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.selection.action.ApiAction;
 import de.topobyte.jeography.viewer.selection.action.ClipboardAction;
@@ -43,6 +42,7 @@ import de.topobyte.jeography.viewer.selection.rectangular.Longitude;
 import de.topobyte.jeography.viewer.selection.rectangular.Selection;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionChangeListener;
+import de.topobyte.swing.util.ImageLoader;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)

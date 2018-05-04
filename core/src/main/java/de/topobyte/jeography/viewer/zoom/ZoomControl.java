@@ -30,7 +30,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import de.topobyte.interactiveview.ZoomChangedListener;
-import de.topobyte.jeography.util.ImageLoader;
+import de.topobyte.swing.util.ImageLoader;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
