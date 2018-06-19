@@ -22,14 +22,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.common.collect.Lists;
 
 import de.topobyte.jeography.places.setup.DatabaseBuilder;
 import de.topobyte.jeography.places.setup.DatabaseBuildingException;
@@ -57,8 +56,8 @@ public class TestBuildDatabase
 		languages.add("en");
 		languages.add("de");
 
-		List<String> types = Lists.newArrayList("country", "state", "county",
-				"city", "town", "village", "region", "island");
+		List<String> types = Arrays.asList("country", "state", "county", "city",
+				"town", "village", "region", "island");
 
 		Map<String, Path> files = new HashMap<>();
 		for (String type : types) {
