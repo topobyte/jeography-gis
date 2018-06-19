@@ -145,7 +145,7 @@ public class TileConfigUrlDisk implements TileConfig
 		TileUrlAndCachePathProvider tileResoluterBase = new TileUrlAndCachePathProvider(
 				getPath(), getUrl());
 		PriorityImageManagerHttpDisk<Tile> manager = new PriorityImageManagerHttpDisk<>(
-				4, 150, tileResoluterBase);
+				2, 150, tileResoluterBase);
 
 		if (userAgent != null) {
 			manager.setUserAgent(userAgent);
