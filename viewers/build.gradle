@@ -1,9 +1,12 @@
-apply plugin: 'java'
+apply plugin: 'java-library'
 
 if (project.hasProperty("topobyte")) {
     apply from: 'file:///' + System.getProperty("user.home") \
-        + '/.gradle/topobyte.gradle'
+        + '/.gradle/topobyte7.gradle'
 }
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 dependencies {
     compile project(':jeography-tiles')
