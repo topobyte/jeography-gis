@@ -1,5 +1,5 @@
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+wrapper {
+    gradleVersion = '4.9'
 }
 
 allprojects {
