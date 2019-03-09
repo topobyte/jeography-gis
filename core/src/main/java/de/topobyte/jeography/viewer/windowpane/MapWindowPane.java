@@ -176,6 +176,7 @@ public class MapWindowPane extends JPanel implements StatusBarInfoEmitter
 		ScrollablePanel buttonPane = new ScrollablePanel(new GridBagLayout());
 		buttonPane.setTracksViewportWidth(true);
 		JScrollPane jsp = new JScrollPane(buttonPane);
+		jsp.getVerticalScrollBar().setUnitIncrement(16);
 
 		ce.gridWidth(2).weightY(1.0).fill(GridBagConstraints.BOTH);
 		ce.gridPos(0, GridBagConstraints.RELATIVE);
