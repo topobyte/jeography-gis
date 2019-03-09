@@ -24,7 +24,6 @@ import java.util.ArrayList;
 
 import javax.swing.SwingUtilities;
 
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -76,11 +75,9 @@ public class TestJeographyGIS
 				.createDefaultConfiguration();
 
 		logger.debug("default user config file: " + configFile);
-		try {
-			InputStream configInput = StreamUtil
-					.bufferedInputStream(configFile);
+		try (InputStream configInput = StreamUtil
+				.bufferedInputStream(configFile)) {
 			configuration = ConfigReader.read(configInput);
-			IOUtils.closeQuietly(configInput);
 		} catch (Exception e) {
 			logger.info("unable to read configuration: " + e.getMessage());
 			logger.info("using default configuration");

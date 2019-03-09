@@ -26,7 +26,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -78,11 +77,9 @@ public class PreviewHelper
 				.createDefaultConfiguration();
 		Path configFile = ConfigurationHelper.getUserConfigurationFilePath();
 		logger.info("default user config file: " + configFile);
-		try {
-			InputStream configInput = StreamUtil
-					.bufferedInputStream(configFile);
+		try (InputStream configInput = StreamUtil
+				.bufferedInputStream(configFile)) {
 			configuration = ConfigReader.read(configInput);
-			IOUtils.closeQuietly(configInput);
 		} catch (Exception e) {
 			logger.warn("unable to read configuration: " + e.getMessage());
 			logger.warn("using default configuration");

@@ -23,7 +23,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,11 +45,9 @@ public class Util
 		if (line.hasOption("config")) {
 			String argConfigFile = line.getOptionValue("config");
 			configFile = Paths.get(argConfigFile);
-			try {
-				InputStream configInput = StreamUtil
-						.bufferedInputStream(configFile);
+			try (InputStream configInput = StreamUtil
+					.bufferedInputStream(configFile)) {
 				configuration = ConfigReader.read(configInput);
-				IOUtils.closeQuietly(configInput);
 			} catch (Exception e) {
 				logger.warn(
 						"unable to read configuration specified at command-line",
@@ -60,11 +57,9 @@ public class Util
 		} else {
 			configFile = ConfigurationHelper.getUserConfigurationFilePath();
 			logger.debug("default user config file: " + configFile);
-			try {
-				InputStream configInput = StreamUtil
-						.bufferedInputStream(configFile);
+			try (InputStream configInput = StreamUtil
+					.bufferedInputStream(configFile)) {
 				configuration = ConfigReader.read(configInput);
-				IOUtils.closeQuietly(configInput);
 			} catch (FileNotFoundException e) {
 				logger.warn(
 						"no configuration file found, using default configuration");

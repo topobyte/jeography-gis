@@ -44,7 +44,6 @@ import javax.swing.JRootPane;
 import javax.swing.JToolBar;
 import javax.swing.UIManager;
 
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -96,11 +95,9 @@ public class BboxChooser extends JPanel
 
 		Path configFile = ConfigurationHelper.getUserConfigurationFilePath();
 		logger.debug("default user config file: " + configFile);
-		try {
-			InputStream configInput = StreamUtil
-					.bufferedInputStream(configFile);
+		try (InputStream configInput = StreamUtil
+				.bufferedInputStream(configFile)) {
 			configuration = ConfigReader.read(configInput);
-			IOUtils.closeQuietly(configInput);
 		} catch (Exception e) {
 			logger.info("unable to read configuration: " + e.getMessage());
 			logger.info("using default configuration");
