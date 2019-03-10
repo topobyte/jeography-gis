@@ -17,6 +17,7 @@
 
 package de.topobyte.jeography.places;
 
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
@@ -38,13 +39,14 @@ import de.topobyte.luqe.jdbc.JdbcConnection;
 public class TestSearchUI
 {
 
-	public static void main(String args[])
-			throws InstantiationException, IllegalAccessException,
-			ClassNotFoundException, SQLException, QueryException
+	public static void main(String args[]) throws InstantiationException,
+			IllegalAccessException, ClassNotFoundException, SQLException,
+			QueryException, IllegalArgumentException, InvocationTargetException,
+			NoSuchMethodException, SecurityException
 	{
 		Path pathDatabase = Paths.get("/tmp/places.sqlite");
 
-		Class.forName("org.sqlite.JDBC").newInstance();
+		Class.forName("org.sqlite.JDBC").getDeclaredConstructor().newInstance();
 		String url = "jdbc:sqlite:" + pathDatabase;
 		Connection connex = DriverManager.getConnection(url);
 
