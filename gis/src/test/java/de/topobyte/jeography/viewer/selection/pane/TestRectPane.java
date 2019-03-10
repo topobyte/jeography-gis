@@ -17,12 +17,10 @@
 
 package de.topobyte.jeography.viewer.selection.pane;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
 import javax.swing.JDialog;
 
 import de.topobyte.jeography.viewer.JeographyGIS;
+import de.topobyte.jeography.viewer.TestUtil;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;
 
@@ -55,14 +53,7 @@ public class TestRectPane
 		dialog.pack();
 		dialog.setVisible(true);
 
-		dialog.addWindowListener(new WindowAdapter() {
-
-			@Override
-			public void windowClosing(WindowEvent e)
-			{
-				System.exit(0);
-			}
-		});
+		TestUtil.exitOnClose(dialog);
 	}
 
 }

@@ -17,11 +17,10 @@
 
 package de.topobyte.jeography.viewer.selection.download;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.topobyte.jeography.viewer.TestUtil;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.config.TileConfig;
 import de.topobyte.jeography.viewer.config.TileConfigUrlDisk;
@@ -72,20 +71,7 @@ public class TestDownloadProgressWindow
 		dialog.setSize(500, 400);
 		dialog.pack();
 		dialog.setVisible(true);
-		dialog.addWindowListener(new WindowAdapter() {
-
-			@Override
-			public void windowClosing(WindowEvent event)
-			{
-				System.exit(0);
-			}
-
-			@Override
-			public void windowClosed(WindowEvent event)
-			{
-				System.exit(0);
-			}
-		});
+		TestUtil.exitOnClose(dialog);
 	}
 
 }

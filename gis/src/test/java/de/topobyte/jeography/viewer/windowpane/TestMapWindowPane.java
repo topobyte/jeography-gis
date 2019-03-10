@@ -17,13 +17,11 @@
 
 package de.topobyte.jeography.viewer.windowpane;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
 import javax.swing.JDialog;
 
 import de.topobyte.jeography.core.mapwindow.MapWindow;
 import de.topobyte.jeography.core.mapwindow.SteppedMapWindow;
+import de.topobyte.jeography.viewer.TestUtil;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
@@ -48,14 +46,7 @@ public class TestMapWindowPane
 		dialog.setSize(300, 200);
 		dialog.setVisible(true);
 
-		dialog.addWindowListener(new WindowAdapter() {
-
-			@Override
-			public void windowClosing(WindowEvent e)
-			{
-				System.exit(0);
-			}
-		});
+		TestUtil.exitOnClose(dialog);
 	}
 
 }

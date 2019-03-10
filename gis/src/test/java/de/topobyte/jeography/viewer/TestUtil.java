@@ -36,6 +36,11 @@ public class TestUtil
 				System.exit(0);
 			}
 
+			@Override
+			public void windowClosed(WindowEvent event)
+			{
+				System.exit(0);
+			}
 		});
 	}
 

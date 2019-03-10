@@ -17,14 +17,13 @@
 
 package de.topobyte.jeography.viewer.selection.pane;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.vividsolutions.jts.geom.LinearRing;
 
 import de.topobyte.jeography.viewer.JeographyGIS;
+import de.topobyte.jeography.viewer.TestUtil;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.selection.polygonal.PolySelectionAdapter;
 import de.topobyte.jeography.viewer.selection.polygonal.Selection;
@@ -64,14 +63,7 @@ public class TestDialog
 		dialog.setSize(500, 400);
 		dialog.pack();
 		dialog.setVisible(true);
-		dialog.addWindowListener(new WindowAdapter() {
-
-			@Override
-			public void windowClosing(WindowEvent event)
-			{
-				System.exit(0);
-			}
-		});
+		TestUtil.exitOnClose(dialog);
 
 		dialog.showTab(Tab.RectPane);
 
