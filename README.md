@@ -11,7 +11,7 @@ and is not distributed for reuse.
 
 # License
 
-This library is released under the terms of the GNU Lesser General Public
+This project is released under the terms of the GNU Lesser General Public
 License.
 
 See [LGPL.md](LGPL.md) and [GPL.md](GPL.md) for details.
