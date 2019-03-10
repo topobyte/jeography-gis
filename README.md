@@ -1,7 +1,13 @@
 # About
 
-This project provides reusable components of the Jeography GIS as a library. It
-also contains the main executables of the GIS itself.
+Jeography is a geographical information system (GIS) with a strong focus on
+OpenStreetMap (OSM) maps and data.
+The project is broken down into a number of modules, most of which can be
+reused as libraries in other maps-related projects.
+In particular, the `core`, `tiles`, `viewers` and `gis` modules are provided
+as libraries for this purpose.
+The `exe` modules contains the code necessary for running the GIS' executables
+and is not distributed for reuse.
 
 # License
 
