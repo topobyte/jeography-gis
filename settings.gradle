@@ -1,4 +1,5 @@
-include 'gis', 'tiles', 'viewers', 'exe'
+include 'core', 'gis', 'tiles', 'viewers', 'exe'
+project(':core').name = 'jeography-core'
 project(':gis').name = 'jeography-gis'
 project(':tiles').name = 'jeography-tiles'
 project(':viewers').name = 'jeography-viewers'
