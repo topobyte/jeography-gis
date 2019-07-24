@@ -1,7 +1,6 @@
 apply plugin: 'application'
 
 mainClassName = 'de.topobyte.jeography.executables.RunJeographyGIS'
-applicationDefaultJvmArgs = ["-Dlog4j.configuration=file:log4j.properties"]
 
 dependencies {
     compile project(':jeography-gis')
