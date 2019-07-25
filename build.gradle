@@ -21,3 +21,19 @@ subprojects {
         mavenCentral()
     }
 }
+
+def createScript(project, mainClass, name) {
+    project.tasks.create(name: name, type: CreateStartScripts) {
+        outputDir = new File(project.buildDir, 'scripts')
+        mainClassName = mainClass
+        applicationName = name
+        classpath = project.tasks.startScripts.classpath
+    }
+
+    project.tasks[name].dependsOn(project.jar)
+
+    project.distributions.main.contents.from(project.tasks[name]) {
+         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+         into 'bin'
+    }
+}

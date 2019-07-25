@@ -2,27 +2,11 @@ apply plugin: 'application'
 
 mainClassName = 'de.topobyte.jeography.executables.RunJeographyGIS'
 
-task scriptGeometryPreview(type: CreateStartScripts) {
-    outputDir = file('build/scripts')
-    mainClassName = 'de.topobyte.jeography.executables.RunGeometryPreview'
-    applicationName = 'geometry-preview'
-    classpath = tasks.startScripts.classpath
-}
+startScripts.enabled = false
 
-task scriptCreatePlaceDatabase(type: CreateStartScripts) {
-    outputDir = file('build/scripts')
-    mainClassName = 'de.topobyte.jeography.executables.CreatePlaceDatabase'
-    applicationName = 'create-place-database'
-    classpath = tasks.startScripts.classpath
-}
-
-applicationDistribution.from(scriptGeometryPreview) {
-    into 'bin'
-}
-
-applicationDistribution.from(scriptCreatePlaceDatabase) {
-    into 'bin'
-}
+createScript(project, 'de.topobyte.jeography.executables.RunJeographyGIS', 'jeography-gis')
+createScript(project, 'de.topobyte.jeography.executables.RunGeometryPreview', 'geometry-preview')
+createScript(project, 'de.topobyte.jeography.executables.CreatePlaceDatabase', 'create-place-database')
 
 dependencies {
     compile project(':jeography-gis')
