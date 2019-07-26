@@ -21,36 +21,3 @@ subprojects {
         mavenCentral()
     }
 }
-
-def createScript(project, mainClass, name) {
-    project.tasks.create(name: name, type: CreateStartScripts) {
-        outputDir = new File(project.buildDir, 'scripts')
-        mainClassName = mainClass
-        applicationName = name
-        classpath = project.tasks.startScripts.classpath
-        if (!project.hasProperty('scripts')) {
-            project.ext.scripts = []
-        }
-        project.ext.scripts.add(name)
-    }
-
-    project.tasks[name].dependsOn(project.jar)
-
-    project.distributions.main.contents.from(project.tasks[name]) {
-         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-         into 'bin'
-    }
-}
-
-def createPostInstallScript(project) {
-    def dir = new File("$project.buildDir/setup")
-    def file = new File("$dir/post-install.sh")
-    mkdir dir
-    delete file
-    file.append("#!/bin/bash\n")
-    file.append("\n")
-    project.scripts.each {
-        file.append("ln -fsr ~/share/topobyte/jeography-gis/bin/$it ~/bin/$it\n")
-    }
-    project.exec { executable 'chmod' args '+x', file  }
-}

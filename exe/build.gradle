@@ -1,24 +1,19 @@
 apply plugin: 'application'
+apply plugin: de.topobyte.gradle.ScriptsPlugin
 
 mainClassName = 'de.topobyte.jeography.executables.RunJeographyGIS'
 
 startScripts.enabled = false
 
-createScript(project, 'de.topobyte.jeography.executables.RunJeographyGIS', 'jeography-gis')
-createScript(project, 'de.topobyte.jeography.executables.RunGeometryPreview', 'geometry-preview')
-createScript(project, 'de.topobyte.jeography.executables.CreatePlaceDatabase', 'create-place-database')
+scripts.createScript(project, 'de.topobyte.jeography.executables.RunJeographyGIS', 'jeography-gis')
+scripts.createScript(project, 'de.topobyte.jeography.executables.RunGeometryPreview', 'geometry-preview')
+scripts.createScript(project, 'de.topobyte.jeography.executables.CreatePlaceDatabase', 'create-place-database')
 
 dependencies {
     compile project(':jeography-gis')
 
     runtime 'org.slf4j:slf4j-log4j12:1.6.1'
     runtime 'log4j:log4j:1.2.16'
-}
-
-task postInstallScript() {
-    doLast {
-        createPostInstallScript(project)
-    }
 }
 
 distributions {
