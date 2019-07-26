@@ -28,6 +28,10 @@ def createScript(project, mainClass, name) {
         mainClassName = mainClass
         applicationName = name
         classpath = project.tasks.startScripts.classpath
+        if (!project.hasProperty('scripts')) {
+            project.ext.scripts = []
+        }
+        project.ext.scripts.add(name)
     }
 
     project.tasks[name].dependsOn(project.jar)
@@ -35,5 +39,11 @@ def createScript(project, mainClass, name) {
     project.distributions.main.contents.from(project.tasks[name]) {
          duplicatesStrategy = DuplicatesStrategy.EXCLUDE
          into 'bin'
+    }
+}
+
+def printScriptNames(project) {
+    project.scripts.each {
+        println it
     }
 }

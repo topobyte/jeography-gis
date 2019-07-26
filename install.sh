@@ -1,5 +1,5 @@
 #!/bin/bash
 
-./gradlew clean installDist
+./gradlew clean installDist linkerScript
 
 rsync -av --delete exe/build/install/jeography-gis ~/share/topobyte/
