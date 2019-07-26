@@ -15,8 +15,10 @@ dependencies {
     runtime 'log4j:log4j:1.2.16'
 }
 
-task linkerScript() {
-    printScriptNames(project)
+task postInstallScript() {
+    doLast {
+        createPostInstallScript(project)
+    }
 }
 
 distributions {

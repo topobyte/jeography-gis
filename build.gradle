@@ -42,8 +42,15 @@ def createScript(project, mainClass, name) {
     }
 }
 
-def printScriptNames(project) {
+def createPostInstallScript(project) {
+    def dir = new File("$project.buildDir/setup")
+    def file = new File("$dir/post-install.sh")
+    mkdir dir
+    delete file
+    file.append("#!/bin/bash\n")
+    file.append("\n")
     project.scripts.each {
-        println it
+        file.append("ln -fsr ~/share/topobyte/jeography-gis/bin/$it ~/bin/$it\n")
     }
+    project.exec { executable 'chmod' args '+x', file  }
 }
