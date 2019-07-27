@@ -22,6 +22,8 @@ class ScriptsPlugin implements Plugin<Project> {
         project.delete file
         file.append("#!/bin/bash\n")
         file.append("\n")
+        file.append("mkdir -p ~/bin\n")
+        file.append("\n")
         project.scriptNames.each {
             // TODO: remove hardcoded project name
             file.append("ln -fsr ~/share/topobyte/jeography-gis/bin/$it ~/bin/$it\n")
