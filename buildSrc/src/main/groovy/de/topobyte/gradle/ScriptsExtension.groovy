@@ -6,6 +6,7 @@ import org.gradle.api.file.DuplicatesStrategy
 class ScriptsExtension {
 
     String installationPath
+    String makeselfLabel
 
     def createScript(project, mainClass, name) {
         project.tasks.create(name: name, type: CreateStartScripts) {
