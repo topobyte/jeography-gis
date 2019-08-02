@@ -6,7 +6,7 @@ mainClassName = 'de.topobyte.jeography.executables.RunJeographyGIS'
 startScripts.enabled = false
 
 scripts {
-    installationPath = 'topobyte/jeography-gis'
+    installationPath = 'topobyte/jeography-gis/jeography-gis-snapshot'
     createScript(project, 'de.topobyte.jeography.executables.RunJeographyGIS', 'jeography-gis')
     createScript(project, 'de.topobyte.jeography.executables.RunGeometryPreview', 'geometry-preview')
     createScript(project, 'de.topobyte.jeography.executables.CreatePlaceDatabase', 'create-place-database')
