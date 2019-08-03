@@ -1,5 +1,14 @@
+buildscript {
+    repositories {
+        maven { url 'http://mvn.topobyte.de' }
+    }
+    dependencies {
+        classpath 'de.topobyte:gradle-launch-and-install-plugin:0.0.1'
+    }
+}
+
 apply plugin: 'application'
-apply plugin: de.topobyte.gradle.ScriptsPlugin
+apply plugin: 'de.topobyte.launch-and-install-gradle-plugin'
 
 mainClassName = 'de.topobyte.jeography.executables.RunJeographyGIS'
 
