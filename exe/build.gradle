@@ -3,7 +3,7 @@ buildscript {
         maven { url 'http://mvn.topobyte.de' }
     }
     dependencies {
-        classpath 'de.topobyte:gradle-launch-and-install-plugin:0.0.1'
+        classpath 'de.topobyte:gradle-launch-and-install-plugin:0.0.2'
     }
 }
 
@@ -14,7 +14,7 @@ mainClassName = 'de.topobyte.jeography.executables.RunJeographyGIS'
 
 startScripts.enabled = false
 
-scripts {
+launchAndInstall {
     installationPath = 'topobyte/jeography-gis'
     makeselfLabel = 'Jeography GIS'
     createScript(project, 'de.topobyte.jeography.executables.RunJeographyGIS', 'jeography-gis')
