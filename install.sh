@@ -5,12 +5,8 @@ set -e
 DIR=$(dirname $0)
 
 pushd "$DIR" > /dev/null
-./gradlew clean installDist postInstallScript
+./gradlew clean installDist setupScripts
 popd
 
-TARGET="$HOME/share/topobyte/jeography-gis/jeography-gis-snapshot"
-
-mkdir -p "$TARGET"
-rsync -av --delete "$DIR/exe/build/install/jeography-gis/" "$TARGET"
-
+"$DIR"/exe/build/setup/install.sh
 "$DIR"/exe/build/setup/post-install.sh
