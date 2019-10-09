@@ -8,6 +8,8 @@ if (project.hasProperty("topobyte")) {
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
+eclipse.project.name = 'jeography-gis'
+
 dependencies {
     compile project(':jeography-viewers')
 
