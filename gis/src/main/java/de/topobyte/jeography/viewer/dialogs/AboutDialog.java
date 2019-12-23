@@ -34,6 +34,8 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.topobyte.jeography.Version;
+
 public class AboutDialog extends JDialog
 {
 
@@ -60,7 +62,7 @@ public class AboutDialog extends JDialog
 
 		try {
 			String html = IOUtils.toString(input);
-			html = html.replace("VERSIONCODE", "0.1.0");
+			html = html.replace("VERSIONCODE", Version.getVersion());
 
 			Path file = Files.createTempFile("jeography", ".html");
 			BufferedWriter writer = Files.newBufferedWriter(file);

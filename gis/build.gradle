@@ -1,4 +1,14 @@
+buildscript {
+    repositories {
+        maven { url 'http://mvn.topobyte.de' }
+    }
+    dependencies {
+        classpath 'de.topobyte:gradle-version-access-plugin:0.0.1'
+    }
+}
+
 apply plugin: 'java-library'
+apply plugin: 'de.topobyte.version-access-gradle-plugin'
 
 if (project.hasProperty("topobyte")) {
     apply from: 'file:///' + System.getProperty("user.home") \
@@ -77,4 +87,8 @@ afterEvaluate { project ->
             }
         }
     }
+}
+
+generateVersionAccessSource {
+    packageName = "de.topobyte.jeography"
 }
