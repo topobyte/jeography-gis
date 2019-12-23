@@ -47,7 +47,7 @@ public class ShowStatusbarAction extends GISAction
 	public Object getValue(String key)
 	{
 		if (key.equals(Action.SELECTED_KEY)) {
-			return new Boolean(getGIS().isShowStatusBar());
+			return Boolean.valueOf(getGIS().isShowStatusBar());
 		}
 		return super.getValue(key);
 	}

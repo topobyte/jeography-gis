@@ -54,7 +54,7 @@ public class CrosshairAction extends ViewerAction
 		if (key.equals("SmallIcon")) {
 			return icon;
 		} else if (key.equals(Action.SELECTED_KEY)) {
-			return new Boolean(getViewer().isDrawCrosshair());
+			return Boolean.valueOf(getViewer().isDrawCrosshair());
 		} else if (key.equals(Action.NAME)) {
 			return "Crosshair";
 		} else if (key.equals(Action.SHORT_DESCRIPTION)) {

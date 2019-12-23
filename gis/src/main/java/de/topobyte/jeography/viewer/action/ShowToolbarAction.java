@@ -47,7 +47,7 @@ public class ShowToolbarAction extends GISAction
 	public Object getValue(String key)
 	{
 		if (key.equals(Action.SELECTED_KEY)) {
-			return new Boolean(getGIS().isShowToolBar());
+			return Boolean.valueOf(getGIS().isShowToolBar());
 		}
 		return super.getValue(key);
 	}

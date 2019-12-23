@@ -60,7 +60,7 @@ public class SelectionSnapAction extends ViewerAction
 		if (key.equals("SmallIcon")) {
 			return icon;
 		} else if (key.equals(Action.SELECTED_KEY)) {
-			return new Boolean(gis.getSelectionAdapter().isSnapSelection());
+			return Boolean.valueOf(gis.getSelectionAdapter().isSnapSelection());
 		} else if (key.equals(Action.NAME)) {
 			return "Selection's snap mode";
 		} else if (key.equals(Action.SHORT_DESCRIPTION)) {

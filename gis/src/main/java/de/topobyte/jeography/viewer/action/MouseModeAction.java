@@ -81,7 +81,7 @@ public class MouseModeAction extends ViewerAction
 		if (key.equals(Action.SMALL_ICON)) {
 			return icon;
 		} else if (key.equals(Action.SELECTED_KEY)) {
-			return new Boolean(gis.getMouseMode() == mouseMode);
+			return Boolean.valueOf(gis.getMouseMode() == mouseMode);
 		} else if (key.equals(Action.NAME)) {
 			return mouseMode.toString();
 		} else if (key.equals(Action.SHORT_DESCRIPTION)) {

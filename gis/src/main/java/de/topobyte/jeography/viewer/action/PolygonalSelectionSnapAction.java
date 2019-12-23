@@ -60,7 +60,7 @@ public class PolygonalSelectionSnapAction extends ViewerAction
 		if (key.equals("SmallIcon")) {
 			return icon;
 		} else if (key.equals(Action.SELECTED_KEY)) {
-			return new Boolean(
+			return Boolean.valueOf(
 					gis.getPolygonalSelectionAdapter().isSnapSelection());
 		} else if (key.equals(Action.NAME)) {
 			return "Polygonal selection's snap mode";

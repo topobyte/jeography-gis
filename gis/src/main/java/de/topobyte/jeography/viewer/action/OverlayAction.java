@@ -61,7 +61,7 @@ public class OverlayAction extends ViewerAction
 		} else if (key.equals(Action.SHORT_DESCRIPTION)) {
 			return "toggle visibility of overlay";
 		} else if (key.equals(Action.SELECTED_KEY)) {
-			return new Boolean(getViewer().isDrawOverlay());
+			return Boolean.valueOf(getViewer().isDrawOverlay());
 		}
 		return null;
 	}
@@ -69,7 +69,6 @@ public class OverlayAction extends ViewerAction
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
 		getViewer().setDrawOverlay(!getViewer().isDrawOverlay());
 		firePropertyChange(Action.SELECTED_KEY, null, null);
 	}

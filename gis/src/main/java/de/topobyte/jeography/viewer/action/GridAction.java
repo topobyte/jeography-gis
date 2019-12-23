@@ -53,7 +53,7 @@ public class GridAction extends ViewerAction
 		if (key.equals(Action.SMALL_ICON)) {
 			return icon;
 		} else if (key.equals(Action.SELECTED_KEY)) {
-			return new Boolean(getViewer().isDrawBorder());
+			return Boolean.valueOf(getViewer().isDrawBorder());
 		} else if (key.equals(Action.NAME)) {
 			return "Grid";
 		} else if (key.equals(Action.SHORT_DESCRIPTION)) {
