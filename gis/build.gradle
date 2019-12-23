@@ -39,6 +39,7 @@ dependencies {
 
     compile 'commons-cli:commons-cli:1.2'
     compile 'commons-codec:commons-codec:1.10'
+    compile 'commons-io:commons-io:2.4'
     compile 'com.vividsolutions:jts:1.13'
     compile 'dom4j:dom4j:1.6.1'
     compile 'org.dockingframes:docking-frames-core:1.1.1'

@@ -18,14 +18,19 @@
 package de.topobyte.jeography.viewer.dialogs;
 
 import java.awt.Window;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
 import javax.swing.text.html.HTMLEditorKit;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,13 +55,27 @@ public class AboutDialog extends JDialog
 		pane.setEditorKit(kit);
 
 		String filename = "res/help/about.html";
-		URL url = Thread.currentThread().getContextClassLoader()
-				.getResource(filename);
+		InputStream input = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream(filename);
+
 		try {
+			String html = IOUtils.toString(input);
+			html = html.replace("VERSIONCODE", "0.1.0");
+
+			Path file = Files.createTempFile("jeography", ".html");
+			BufferedWriter writer = Files.newBufferedWriter(file);
+			IOUtils.write(html, writer);
+			writer.close();
+
+			file.toFile().deleteOnExit();
+
+			URL url = file.toUri().toURL();
+
 			logger.debug("url: " + url);
 			pane.setPage(url);
 		} catch (IOException e) {
 			logger.debug("unable to set page: " + e.getMessage());
 		}
 	}
+
 }
