@@ -17,6 +17,9 @@
 
 package de.topobyte.jeography.viewer.dialogs;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 public class TestAboutDialog
 {
 
@@ -25,6 +28,15 @@ public class TestAboutDialog
 		AboutDialog aboutDialog = new AboutDialog(null);
 		aboutDialog.setSize(400, 300);
 		aboutDialog.setVisible(true);
+		aboutDialog.addWindowListener(new WindowAdapter() {
+
+			@Override
+			public void windowClosing(WindowEvent e)
+			{
+				System.exit(0);
+			}
+
+		});
 	}
 
 }
