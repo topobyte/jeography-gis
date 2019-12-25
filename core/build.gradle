@@ -5,8 +5,8 @@ if (project.hasProperty("topobyte")) {
         + '/.gradle/topobyte7.gradle'
 }
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = JDK_VERSION
+targetCompatibility = JDK_VERSION
 
 dependencies {
     api 'de.topobyte:adt-geo:0.0.4'
