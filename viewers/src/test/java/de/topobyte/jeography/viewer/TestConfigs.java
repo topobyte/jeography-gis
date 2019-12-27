@@ -30,7 +30,7 @@ public class TestConfigs
 {
 
 	public static String tileUrl1 = "http://tile.openstreetmap.org/%d/%d/%d.png";
-	public static String tileUrl2 = "http://opentopomap.org/%d/%d/%d.png";
+	public static String tileUrl2 = "https://maps.wikimedia.org/osm/%d/%d/%d.png";
 	public static String[] urls = new String[] { tileUrl1, tileUrl2 };
 
 	public static List<TileConfig> configs = new ArrayList<>();
