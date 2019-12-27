@@ -22,6 +22,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.topobyte.jeography.UserAgent;
+
 /**
  * A configuration for JeographyGIS.
  * 
@@ -107,7 +109,7 @@ public class Configuration
 				"http://opentopomap.org/%d/%d/%d.png",
 				"/tmp/mapImagesOpenTopoMap"));
 
-		String userAgent = "Jeography GIS";
+		String userAgent = UserAgent.getDefault();
 
 		for (TileConfig tileConfig : configuration.tileConfigs) {
 			if (tileConfig instanceof TileConfigUrl) {
