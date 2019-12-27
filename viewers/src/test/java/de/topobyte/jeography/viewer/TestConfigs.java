@@ -36,7 +36,9 @@ public class TestConfigs
 	public static List<TileConfig> configs = new ArrayList<>();
 	static {
 		for (int i = 0; i < urls.length; i++) {
-			configs.add(new TileConfigUrl(i, "name " + i, urls[i]));
+			TileConfigUrl config = new TileConfigUrl(i, "name " + i, urls[i]);
+			config.setUserAgent("Jeography GIS");
+			configs.add(config);
 		}
 	}
 
