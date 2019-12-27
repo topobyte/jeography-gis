@@ -41,7 +41,7 @@ import de.topobyte.jeography.viewer.core.Viewer;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class CustomViewerTest
+public class TestCustomViewer
 {
 
 	/*
@@ -59,7 +59,7 @@ public class CustomViewerTest
 	 */
 	public static void main(String[] args)
 	{
-		CustomViewerTest test = new CustomViewerTest();
+		TestCustomViewer test = new TestCustomViewer();
 		test.start();
 	}
 
