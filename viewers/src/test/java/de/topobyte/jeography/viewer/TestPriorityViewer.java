@@ -36,7 +36,7 @@ import de.topobyte.jeography.viewer.core.Viewer;
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class PriorityViewerTest
+public class TestPriorityViewer
 {
 
 	/*
@@ -59,7 +59,7 @@ public class PriorityViewerTest
 	 */
 	public static void main(String[] args)
 	{
-		PriorityViewerTest test = new PriorityViewerTest();
+		TestPriorityViewer test = new TestPriorityViewer();
 		test.start();
 	}
 

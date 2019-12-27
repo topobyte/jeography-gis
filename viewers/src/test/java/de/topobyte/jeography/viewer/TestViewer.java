@@ -25,15 +25,14 @@ import java.util.Set;
 import javax.swing.JFrame;
 
 import de.topobyte.jeography.core.OverlayPoint;
-import de.topobyte.jeography.viewer.core.SteplessViewer;
-import de.topobyte.jeography.viewer.core.SteplessViewer.TileDrawMode;
+import de.topobyte.jeography.viewer.core.Viewer;
 
 /**
- * A test for the stepless map viewer.
+ * A test for the basic map viewer.
  * 
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class SteplessViewerTest
+public class TestViewer
 {
 
 	/*
@@ -41,7 +40,7 @@ public class SteplessViewerTest
 	 */
 
 	int currentTiles = 0;
-	SteplessViewer viewer;
+	Viewer viewer;
 
 	/**
 	 * Execute the test
@@ -51,24 +50,20 @@ public class SteplessViewerTest
 	 */
 	public static void main(String[] args)
 	{
-		SteplessViewerTest test = new SteplessViewerTest();
+		TestViewer test = new TestViewer();
 		test.start();
 	}
 
 	private void start()
 	{
-		viewer = new SteplessViewer(TestConfigs.configs.get(0), null);
+		viewer = new Viewer(TestConfigs.configs.get(0), null);
 		viewer.setMouseActive(true);
-		viewer.setDrawCrosshair(false);
-		viewer.setDrawBorder(false);
-		viewer.setDrawTileNumbers(false);
-		viewer.setMode(TileDrawMode.SCALE_SMOOTH);
 
 		Set<OverlayPoint> ps = new HashSet<>();
 		ps.add(new OverlayPoint(Constants.DEFAULT_LON, Constants.DEFAULT_LAT));
 		viewer.setOverlayPoints(ps);
 
-		JFrame frame = new JFrame("Stepless Viewer Test");
+		JFrame frame = new JFrame("Viewer Test");
 		frame.setContentPane(viewer);
 		frame.setSize(800, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
