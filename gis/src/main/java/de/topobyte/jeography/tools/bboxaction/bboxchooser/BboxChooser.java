@@ -220,11 +220,15 @@ public class BboxChooser extends JPanel
 				title);
 
 		JDialog dialog;
-		Window window = Components.getContainingWindow(parent);
-		if (window instanceof Frame) {
-			dialog = new JDialog((Frame) window, title, true);
+		if (parent == null) {
+			dialog = new JDialog((Frame) null, title, true);
 		} else {
-			dialog = new JDialog((Dialog) window, title, true);
+			Window window = Components.getContainingWindow(parent);
+			if (window instanceof Frame) {
+				dialog = new JDialog((Frame) window, title, true);
+			} else {
+				dialog = new JDialog((Dialog) window, title, true);
+			}
 		}
 		dialog.setComponentOrientation(this.getComponentOrientation());
 
