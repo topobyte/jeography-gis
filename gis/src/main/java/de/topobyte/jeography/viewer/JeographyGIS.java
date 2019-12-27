@@ -413,7 +413,8 @@ public class JeographyGIS
 		mouseMode = mode;
 
 		if (mode != MouseMode.NAVIGATE) {
-			viewer.setMouseActive(false);
+			viewer.setPanWithButton1(false);
+			viewer.setZoomByDoubleClick(false);
 		}
 		if (mode != MouseMode.POLYSELECT) {
 			polySelectionAdapter.setMouseActive(false);
@@ -426,7 +427,8 @@ public class JeographyGIS
 		}
 		switch (mode) {
 		case NAVIGATE:
-			viewer.setMouseActive(true);
+			viewer.setPanWithButton1(true);
+			viewer.setZoomByDoubleClick(true);
 			break;
 		case SELECT:
 			selectionAdapter.setMouseActive(true);

@@ -45,6 +45,9 @@ import javax.swing.TransferHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.slimjars.dist.gnu.trove.set.TIntSet;
+import com.slimjars.dist.gnu.trove.set.hash.TIntHashSet;
+
 import de.topobyte.awt.util.GraphicsUtil;
 import de.topobyte.jeography.core.OverlayPoint;
 import de.topobyte.jeography.core.mapwindow.MapWindow;
@@ -70,6 +73,7 @@ public abstract class AbstractViewer extends JPanel
 	protected Color colorTilenumbers = new Color(0, 0, 0, 255);
 	protected Color colorCrosshair = new Color(127, 0, 0, 255);
 
+	protected boolean panWithButton1 = true;
 	protected boolean mouseActive = false;
 	protected ZoomMode zoomMode = ZoomMode.ZOOM_AND_KEEP_POINT;
 
@@ -84,6 +88,16 @@ public abstract class AbstractViewer extends JPanel
 	private Set<OverlayPoint> points = null;
 
 	public abstract MapWindow getMapWindow();
+
+	public boolean isPanWithButton1()
+	{
+		return panWithButton1;
+	}
+
+	public void setPanWithButton1(boolean panWithButton1)
+	{
+		this.panWithButton1 = panWithButton1;
+	}
 
 	@Override
 	public boolean getMouseActive()
@@ -514,7 +528,7 @@ public abstract class AbstractViewer extends JPanel
 	 */
 
 	private Point pointPress;
-	private boolean mousePressed = false;
+	private TIntSet pressed = new TIntHashSet();
 
 	/*
 	 * MouseMotionListener implementation
@@ -523,16 +537,28 @@ public abstract class AbstractViewer extends JPanel
 	@Override
 	public void mouseDragged(MouseEvent e)
 	{
-		if (mouseActive && mousePressed) {
-			Point currentPoint = e.getPoint();
-			int dx = pointPress.x - currentPoint.x;
-			int dy = pointPress.y - currentPoint.y;
-			pointPress = currentPoint;
-			// down right movement is negative for both
-			// System.out.println(String.format("%d %d", dx, dy));
-			getMapWindow().move(dx, dy);
-			repaint();
+		if (!mouseActive) {
+			return;
 		}
+
+		boolean process = false;
+		if (pressed.size() == 1) {
+			int button = pressed.iterator().next();
+			process = panWithButton1 || button != MouseEvent.BUTTON1;
+		}
+		if (!process) {
+			return;
+		}
+
+		// if (mouseActive && pressed.size() == 1) {
+		Point currentPoint = e.getPoint();
+		int dx = pointPress.x - currentPoint.x;
+		int dy = pointPress.y - currentPoint.y;
+		pointPress = currentPoint;
+		// down right movement is negative for both
+		// System.out.println(String.format("%d %d", dx, dy));
+		getMapWindow().move(dx, dy);
+		repaint();
 	}
 
 	@Override
@@ -554,18 +580,16 @@ public abstract class AbstractViewer extends JPanel
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
-		if (e.getButton() == MouseEvent.BUTTON1) {
+		pressed.add(e.getButton());
+		if (pressed.size() == 1) {
 			pointPress = e.getPoint();
-			mousePressed = true;
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e)
 	{
-		if (e.getButton() == MouseEvent.BUTTON1) {
-			mousePressed = false;
-		}
+		pressed.remove(e.getButton());
 	}
 
 	@Override

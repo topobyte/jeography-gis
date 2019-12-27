@@ -71,6 +71,8 @@ public class Viewer extends AbstractViewer
 	private MemoryCachePlus<Tile, Image> scaleCacheBase;
 	private MemoryCachePlus<Tile, Image> scaleCacheOverlay;
 
+	private boolean zoomByDoubleClick = true;
+
 	/**
 	 * default constructor
 	 * 
@@ -120,6 +122,16 @@ public class Viewer extends AbstractViewer
 		Repainter repainter = new Repainter();
 		Thread repainterThread = new Thread(repainter);
 		repainterThread.start();
+	}
+
+	public boolean isZoomByDoubleClick()
+	{
+		return zoomByDoubleClick;
+	}
+
+	public void setZoomByDoubleClick(boolean zoomByDoubleClick)
+	{
+		this.zoomByDoubleClick = zoomByDoubleClick;
 	}
 
 	/**
@@ -339,7 +351,7 @@ public class Viewer extends AbstractViewer
 	public void mouseClicked(MouseEvent e)
 	{
 		this.grabFocus();
-		if (mouseActive) {
+		if (zoomByDoubleClick) {
 			if (e.getClickCount() == 2) {
 				if (e.getButton() == MouseEvent.BUTTON1) {
 					zoomIn(e.getPoint());
