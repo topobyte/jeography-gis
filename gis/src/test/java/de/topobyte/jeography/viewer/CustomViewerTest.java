@@ -25,6 +25,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
+import de.topobyte.jeography.UserAgent;
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.TileOnWindow;
 import de.topobyte.jeography.core.mapwindow.MapWindow;
@@ -111,6 +112,7 @@ public class CustomViewerTest
 			TileUrlAndCachePathProvider resolver = new TileUrlAndCachePathProvider(
 					null, tileUrl);
 			source = new ImageSourceUrlPattern<>(resolver, 3);
+			source.setUserAgent(UserAgent.getDefault());
 			UnwrappingImageSource<Tile> unwrapper = new UnwrappingImageSource<>(
 					source);
 			manager = new ImageManagerSourceRam<>(1, 40, unwrapper);
