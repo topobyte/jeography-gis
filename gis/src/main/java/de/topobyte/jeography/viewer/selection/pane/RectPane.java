@@ -171,13 +171,17 @@ public class RectPane extends JPanel implements SelectionChangeListener,
 		buttonClipboard.addMouseListener(new MouseOverClipboardAdapter(
 				buttonClipboard, this, ca::getClipboardText));
 
+		JButton buttonApi = new JButton(aa);
+		buttonApi.addMouseListener(new MouseOverClipboardAdapter(buttonApi,
+				this, aa::getClipboardText));
+
 		buttons.add(new JButton(da));
 		buttons.add(
 				new JButton(ImageLoader.load("res/images/16/edit-delete.png")));
 		buttons.add(new JButton(
 				ImageLoader.load("res/images/16/edit-delete-advanced.png")));
 		buttons.add(new JButton(eia));
-		buttons.add(new JButton(aa));
+		buttons.add(buttonApi);
 		buttons.add(buttonClipboard);
 		buttons.add(new JButton(
 				ImageLoader.load("res/images/16/stock_bookmark.png")));

@@ -103,13 +103,7 @@ public class ApiAction extends GISAction
 					throws UnsupportedFlavorException
 			{
 				if (flavor.equals(DataFlavor.stringFlavor)) {
-					String text = String.format(Locale.US,
-							"http://www.openstreetmap.org/api/0.6/map?bbox=%.6f,%.6f,%.6f,%.6f",
-							selection.getX1().value(),
-							selection.getY2().value(),
-							selection.getX2().value(),
-							selection.getY1().value());
-					return text;
+					return getClipboardText();
 				}
 				throw new UnsupportedFlavorException(flavor);
 			}
@@ -118,6 +112,16 @@ public class ApiAction extends GISAction
 		ClipboardOwner owner = null;
 
 		clipboard.setContents(transferable, owner);
+	}
+
+	public String getClipboardText()
+	{
+		GeographicSelection selection = selectionAdapter
+				.getGeographicSelection();
+		return String.format(Locale.US,
+				"http://www.openstreetmap.org/api/0.6/map?bbox=%.6f,%.6f,%.6f,%.6f",
+				selection.getX1().value(), selection.getY2().value(),
+				selection.getX2().value(), selection.getY1().value());
 	}
 
 }
