@@ -102,6 +102,7 @@ public class JeographyGIS
 	private CControl control;
 	private CGrid grid;
 
+	private StatusBarCallback statusBarCallback = null;
 	private SelectionAdapter selectionAdapter;
 	private PolySelectionAdapter polySelectionAdapter;
 	// private GeometryAdapter geometryAdapter;
@@ -180,6 +181,7 @@ public class JeographyGIS
 		geometryManagerDialog.setLocation(width, mainFrameY);
 		geometryManagerDialog.setVisible(showGeometryManager);
 
+		setupStatusBarListener();
 		setupSelectionRectDialog(showSelectionRectDialog);
 		setupSelectionPolyDialog(showSelectionPolyDialog);
 		setupMapWindowDialog(showMapWindowDialog);
@@ -499,19 +501,9 @@ public class JeographyGIS
 		geometryManagerDialog.setSize(new Dimension(300, 500));
 	}
 
-	void setupSelectionRectDialog(boolean show)
+	private void setupStatusBarListener()
 	{
-		RectPane pane = new RectPane(this, selectionAdapter);
-
-		selectionRectDockable = new DefaultSingleCDockable("rect-selection",
-				"Rect Selection", pane);
-
-		grid.add(1, 0, 0.3, 1, selectionRectDockable);
-
-		selectionRectDockable.setVisible(show);
-		DockableHelper.setDefaultOptions(selectionRectDockable);
-
-		pane.addStatusBarCallback(new StatusBarCallback() {
+		statusBarCallback = new StatusBarCallback() {
 
 			@Override
 			public void noInfoAvailable()
@@ -525,7 +517,22 @@ public class JeographyGIS
 				statusLabel.setText(info);
 			}
 
-		});
+		};
+	}
+
+	void setupSelectionRectDialog(boolean show)
+	{
+		RectPane pane = new RectPane(this, selectionAdapter);
+
+		selectionRectDockable = new DefaultSingleCDockable("rect-selection",
+				"Rect Selection", pane);
+
+		grid.add(1, 0, 0.3, 1, selectionRectDockable);
+
+		selectionRectDockable.setVisible(show);
+		DockableHelper.setDefaultOptions(selectionRectDockable);
+
+		pane.addStatusBarCallback(statusBarCallback);
 	}
 
 	void setupSelectionPolyDialog(boolean show)
@@ -554,21 +561,7 @@ public class JeographyGIS
 		mapWindowDockable.setVisible(show);
 		DockableHelper.setDefaultOptions(mapWindowDockable);
 
-		mapWindowPane.addStatusBarCallback(new StatusBarCallback() {
-
-			@Override
-			public void noInfoAvailable()
-			{
-				statusLabel.setText(statusBarText);
-			}
-
-			@Override
-			public void infoAvailable(String info)
-			{
-				statusLabel.setText(info);
-			}
-
-		});
+		mapWindowPane.addStatusBarCallback(statusBarCallback);
 	}
 
 	void setupBookmarksDialog(boolean show)

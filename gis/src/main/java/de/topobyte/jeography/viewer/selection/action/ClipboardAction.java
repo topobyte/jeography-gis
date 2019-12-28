@@ -106,7 +106,7 @@ public class ClipboardAction extends GISAction
 					throws UnsupportedFlavorException
 			{
 				if (flavor.equals(DataFlavor.stringFlavor)) {
-					return formatter.format(selection);
+					return getClipboardText();
 				}
 				throw new UnsupportedFlavorException(flavor);
 			}
@@ -119,7 +119,7 @@ public class ClipboardAction extends GISAction
 
 	public String getClipboardText()
 	{
-		final GeographicSelection selection = selectionAdapter
+		GeographicSelection selection = selectionAdapter
 				.getGeographicSelection();
 		return formatter.format(selection);
 	}
