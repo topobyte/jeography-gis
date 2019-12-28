@@ -22,6 +22,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.JButton;
@@ -62,7 +64,7 @@ public class RectPane extends JPanel implements SelectionChangeListener
 
 	private static final String placeHolder = "none";
 
-	private JButton[] buttons = new JButton[8];
+	private List<JButton> buttons = new ArrayList<>();
 	private boolean[] states = new boolean[] { true, false, false, true, true,
 			true, false, true };
 
@@ -151,18 +153,17 @@ public class RectPane extends JPanel implements SelectionChangeListener
 		ClipboardAction ca = new ClipboardAction(gis, selectionAdapter);
 		DismissAction dma = new DismissAction(gis, selectionAdapter);
 
-		int i = 0;
-		buttons[i++] = new JButton(da);
-		buttons[i++] = new JButton(
-				ImageLoader.load("res/images/16/edit-delete.png"));
-		buttons[i++] = new JButton(
-				ImageLoader.load("res/images/16/edit-delete-advanced.png"));
-		buttons[i++] = new JButton(eia);
-		buttons[i++] = new JButton(aa);
-		buttons[i++] = new JButton(ca);
-		buttons[i++] = new JButton(
-				ImageLoader.load("res/images/16/stock_bookmark.png"));
-		buttons[i++] = new JButton(dma);
+		buttons.add(new JButton(da));
+		buttons.add(
+				new JButton(ImageLoader.load("res/images/16/edit-delete.png")));
+		buttons.add(new JButton(
+				ImageLoader.load("res/images/16/edit-delete-advanced.png")));
+		buttons.add(new JButton(eia));
+		buttons.add(new JButton(aa));
+		buttons.add(new JButton(ca));
+		buttons.add(new JButton(
+				ImageLoader.load("res/images/16/stock_bookmark.png")));
+		buttons.add(new JButton(dma));
 
 		for (JButton button : buttons) {
 			pButtons.add(button);
@@ -228,16 +229,16 @@ public class RectPane extends JPanel implements SelectionChangeListener
 
 	private void updateStateHaveSelection()
 	{
-		for (int i = 0; i < buttons.length; i++) {
-			buttons[i].setEnabled(states[i]);
+		for (int i = 0; i < buttons.size(); i++) {
+			buttons.get(i).setEnabled(states[i]);
 		}
 		// TODO: enable drag box here
 	}
 
 	private void updateStateNoSelection()
 	{
-		for (int i = 0; i < buttons.length; i++) {
-			buttons[i].setEnabled(false);
+		for (int i = 0; i < buttons.size(); i++) {
+			buttons.get(i).setEnabled(false);
 		}
 		// TODO: disable drag box here
 	}
