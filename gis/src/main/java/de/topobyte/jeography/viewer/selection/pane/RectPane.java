@@ -73,7 +73,7 @@ public class RectPane extends JPanel implements SelectionChangeListener,
 
 	private List<JButton> buttons = new ArrayList<>();
 	private boolean[] states = new boolean[] { true, false, false, true, true,
-			true, false, true };
+			true, true };
 
 	private BboxDragGeometryPanel dragPanel;
 
@@ -183,8 +183,6 @@ public class RectPane extends JPanel implements SelectionChangeListener,
 		buttons.add(new JButton(eia));
 		buttons.add(buttonApi);
 		buttons.add(buttonClipboard);
-		buttons.add(new JButton(
-				ImageLoader.load("res/images/16/stock_bookmark.png")));
 		buttons.add(new JButton(dma));
 
 		for (JButton button : buttons) {
