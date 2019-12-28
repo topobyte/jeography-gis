@@ -33,6 +33,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import de.topobyte.awt.util.GridBagConstraintsEditor;
+import de.topobyte.jeography.swing.widgets.ButtonWithDropdown;
 import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.selection.action.ApiAction;
 import de.topobyte.jeography.viewer.selection.action.ClipboardAction;
@@ -40,17 +41,23 @@ import de.topobyte.jeography.viewer.selection.action.DismissAction;
 import de.topobyte.jeography.viewer.selection.action.DownloadAction;
 import de.topobyte.jeography.viewer.selection.action.ExportImageAction;
 import de.topobyte.jeography.viewer.selection.rectangular.GeographicSelection;
+import de.topobyte.jeography.viewer.selection.rectangular.GeographicSelectionFormatter;
 import de.topobyte.jeography.viewer.selection.rectangular.Latitude;
 import de.topobyte.jeography.viewer.selection.rectangular.Longitude;
 import de.topobyte.jeography.viewer.selection.rectangular.Selection;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionChangeListener;
+import de.topobyte.jeography.viewer.statusbar.MouseOverClipboardAdapter;
+import de.topobyte.jeography.viewer.statusbar.StatusBarCallback;
+import de.topobyte.jeography.viewer.statusbar.StatusBarInfoEmitter;
+import de.topobyte.jeography.viewer.statusbar.StatusBarInfoReceiver;
 import de.topobyte.swing.util.ImageLoader;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)
  */
-public class RectPane extends JPanel implements SelectionChangeListener
+public class RectPane extends JPanel implements SelectionChangeListener,
+		StatusBarInfoEmitter, StatusBarInfoReceiver
 {
 
 	private static final long serialVersionUID = 7041037824730396550L;
@@ -144,14 +151,25 @@ public class RectPane extends JPanel implements SelectionChangeListener
 		e.gridX(2);
 		pTextfields.add(lat2, c);
 
+		List<GeographicSelectionFormatter> formatters = GeographicSelectionFormatters.FORMATTERS;
+
 		/*
 		 * buttons
 		 */
 		ExportImageAction eia = new ExportImageAction(gis, selectionAdapter);
 		DownloadAction da = new DownloadAction(gis, selectionAdapter);
 		ApiAction aa = new ApiAction(gis, selectionAdapter);
-		ClipboardAction ca = new ClipboardAction(gis, selectionAdapter);
+		ClipboardAction ca = new ClipboardAction(gis, selectionAdapter,
+				formatters.get(0));
 		DismissAction dma = new DismissAction(gis, selectionAdapter);
+
+		ClipboardPopupMenu popupClipboard = new ClipboardPopupMenu(this,
+				selectionAdapter, formatters);
+		ButtonWithDropdown buttonClipboard = new ButtonWithDropdown(ca,
+				ca.getIcon(), popupClipboard);
+
+		buttonClipboard.addMouseListener(new MouseOverClipboardAdapter(
+				buttonClipboard, this, ca::getClipboardText));
 
 		buttons.add(new JButton(da));
 		buttons.add(
@@ -160,7 +178,7 @@ public class RectPane extends JPanel implements SelectionChangeListener
 				ImageLoader.load("res/images/16/edit-delete-advanced.png")));
 		buttons.add(new JButton(eia));
 		buttons.add(new JButton(aa));
-		buttons.add(new JButton(ca));
+		buttons.add(buttonClipboard);
 		buttons.add(new JButton(
 				ImageLoader.load("res/images/16/stock_bookmark.png")));
 		buttons.add(new JButton(dma));
@@ -241,6 +259,36 @@ public class RectPane extends JPanel implements SelectionChangeListener
 			buttons.get(i).setEnabled(false);
 		}
 		// TODO: disable drag box here
+	}
+
+	private List<StatusBarCallback> statusBarCallbacks = new ArrayList<>();
+
+	@Override
+	public void addStatusBarCallback(StatusBarCallback callback)
+	{
+		statusBarCallbacks.add(callback);
+	}
+
+	@Override
+	public void removeStatusBarCallback(StatusBarCallback callback)
+	{
+		statusBarCallbacks.remove(callback);
+	}
+
+	@Override
+	public void triggerStatusBarInfoAvailable(String info)
+	{
+		for (StatusBarCallback callback : statusBarCallbacks) {
+			callback.infoAvailable(info);
+		}
+	}
+
+	@Override
+	public void triggerStatusBarNoInfo()
+	{
+		for (StatusBarCallback callback : statusBarCallbacks) {
+			callback.noInfoAvailable();
+		}
 	}
 
 }

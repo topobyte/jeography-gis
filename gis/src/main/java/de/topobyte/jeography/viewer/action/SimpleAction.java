@@ -17,6 +17,8 @@
 
 package de.topobyte.jeography.viewer.action;
 
+import javax.swing.Icon;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,6 +59,11 @@ public abstract class SimpleAction
 		} else {
 			setIcon(new EmptyIcon(24));
 		}
+	}
+
+	public Icon getIcon()
+	{
+		return icon;
 	}
 
 }

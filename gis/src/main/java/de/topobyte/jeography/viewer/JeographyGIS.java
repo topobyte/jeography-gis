@@ -510,6 +510,22 @@ public class JeographyGIS
 
 		selectionRectDockable.setVisible(show);
 		DockableHelper.setDefaultOptions(selectionRectDockable);
+
+		pane.addStatusBarCallback(new StatusBarCallback() {
+
+			@Override
+			public void noInfoAvailable()
+			{
+				statusLabel.setText(statusBarText);
+			}
+
+			@Override
+			public void infoAvailable(String info)
+			{
+				statusLabel.setText(info);
+			}
+
+		});
 	}
 
 	void setupSelectionPolyDialog(boolean show)

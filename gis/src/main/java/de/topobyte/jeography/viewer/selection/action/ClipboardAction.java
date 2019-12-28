@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.action.GISAction;
 import de.topobyte.jeography.viewer.selection.rectangular.GeographicSelection;
+import de.topobyte.jeography.viewer.selection.rectangular.GeographicSelectionFormatter;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;
 
 /**
@@ -43,6 +44,7 @@ public class ClipboardAction extends GISAction
 	final static Logger logger = LoggerFactory.getLogger(ClipboardAction.class);
 
 	private final SelectionAdapter selectionAdapter;
+	private GeographicSelectionFormatter formatter;
 
 	/**
 	 * Create this action with the given SelectionAdapter as a source for the
@@ -54,13 +56,15 @@ public class ClipboardAction extends GISAction
 	 * @param selectionAdapter
 	 *            the adapter to get the selection from.
 	 */
-	public ClipboardAction(JeographyGIS gis, SelectionAdapter selectionAdapter)
+	public ClipboardAction(JeographyGIS gis, SelectionAdapter selectionAdapter,
+			GeographicSelectionFormatter formatter)
 	{
 		super(gis, "res/images/16/edit-copy.png");
 		this.name = "copy to clipboard";
 		this.description = "copy the selection's coordinates to clipboard";
 
 		this.selectionAdapter = selectionAdapter;
+		this.formatter = formatter;
 	}
 
 	@Override
@@ -102,8 +106,7 @@ public class ClipboardAction extends GISAction
 					throws UnsupportedFlavorException
 			{
 				if (flavor.equals(DataFlavor.stringFlavor)) {
-					String text = selection.toString();
-					return text;
+					return formatter.format(selection);
 				}
 				throw new UnsupportedFlavorException(flavor);
 			}
@@ -114,17 +117,11 @@ public class ClipboardAction extends GISAction
 		clipboard.setContents(transferable, owner);
 	}
 
-	private String textForXml(GeographicSelection selection, int digits)
+	public String getClipboardText()
 	{
-		String text = selection.toString();
-		String pattern = "lon1=\"%%.%df\" lon2=\"%%.%df\" lat1=\"%%.%df\" lat2=\"%%.%df\"";
-		String realPattern = String.format(pattern, digits, digits, digits,
-				digits);
-		logger.debug(realPattern);
-		text = String.format(realPattern, selection.getX1().value(),
-				selection.getX2().value(), selection.getY1().value(),
-				selection.getY2().value());
-		return text;
+		final GeographicSelection selection = selectionAdapter
+				.getGeographicSelection();
+		return formatter.format(selection);
 	}
 
 }
