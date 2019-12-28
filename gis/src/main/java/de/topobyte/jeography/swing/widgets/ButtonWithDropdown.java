@@ -70,7 +70,9 @@ public class ButtonWithDropdown extends JButton
 			@Override
 			public void mousePressed(MouseEvent e)
 			{
-				menu.show(ButtonWithDropdown.this, 0, getHeight());
+				if (ButtonWithDropdown.this.isEnabled()) {
+					menu.show(ButtonWithDropdown.this, 0, getHeight());
+				}
 			}
 
 		});
