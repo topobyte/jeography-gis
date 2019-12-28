@@ -18,6 +18,7 @@
 package de.topobyte.jeography.viewer.windowpane;
 
 import de.topobyte.jeography.core.mapwindow.MapWindow;
+import de.topobyte.jeography.swing.widgets.ClipboardButton;
 import de.topobyte.jeography.viewer.windowpane.patterns.CoordinateFormatter;
 
 /**
