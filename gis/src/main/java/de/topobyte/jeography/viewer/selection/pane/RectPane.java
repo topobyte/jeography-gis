@@ -30,6 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import de.topobyte.awt.util.GridBagConstraintsEditor;
 import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.selection.action.ApiAction;
 import de.topobyte.jeography.viewer.selection.action.ClipboardAction;
@@ -100,55 +101,45 @@ public class RectPane extends JPanel implements SelectionChangeListener
 		}
 
 		GridBagConstraints c = new GridBagConstraints();
+		GridBagConstraintsEditor e = new GridBagConstraintsEditor(c);
 
 		setLayout(new GridBagLayout());
 		JPanel pTextfields = new JPanel(new GridBagLayout());
 		JPanel pButtons = new JPanel(new FlowLayout(FlowLayout.LEADING));
 
-		c.fill = GridBagConstraints.BOTH;
-		c.weightx = 1.0;
-		c.gridy = 0;
+		e.fill(GridBagConstraints.BOTH).weightX(1.0).gridY(0);
 		add(pTextfields, c);
-		c.gridy = 1;
-		c.weighty = 1.0;
+		e.weightY(1.0).gridY(1);
 		add(pButtons, c);
-		// c.gridy = 2;
+		// e.gridY(2);
 		// add(new JPanel(), c);
 
 		/*
 		 * layout of the textfields and describing row / column
 		 */
 
-		c.fill = GridBagConstraints.BOTH;
+		e.fill(GridBagConstraints.BOTH).weightX(1.0).gridX(2).gridY(0);
 
 		// first row
-		c.gridy = 0;
-		c.weightx = 1.0;
-		c.gridx = 1;
+		e.weightX(1.0).gridY(0).gridX(1);
 		pTextfields.add(labelLon, c);
-		c.gridx = 2;
+		e.gridX(2);
 		pTextfields.add(labelLat, c);
 
 		// second row
-		c.gridy = 1;
-		c.gridx = 0;
-		c.weightx = 0.0;
+		e.weightX(0.0).gridY(1).gridX(0);
 		pTextfields.add(new JLabel(image1), c);
-		c.weightx = 1.0;
-		c.gridx = 1;
+		e.weightX(1.0).gridX(1);
 		pTextfields.add(lon1, c);
-		c.gridx = 2;
+		e.gridX(2);
 		pTextfields.add(lat1, c);
 
 		// third row
-		c.gridy = 2;
-		c.gridx = 0;
-		c.weightx = 0.0;
+		e.weightX(0.0).gridY(2).gridX(0);
 		pTextfields.add(new JLabel(image2), c);
-		c.weightx = 1.0;
-		c.gridx = 1;
+		e.weightX(1.0).gridX(1);
 		pTextfields.add(lon2, c);
-		c.gridx = 2;
+		e.gridX(2);
 		pTextfields.add(lat2, c);
 
 		/*
