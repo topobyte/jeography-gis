@@ -151,29 +151,36 @@ public class RectPane extends JPanel implements SelectionChangeListener,
 		e.gridX(2);
 		pTextfields.add(lat2, c);
 
-		List<GeographicSelectionFormatter> formatters = GeographicSelectionFormatters.FORMATTERS;
+		List<GeographicSelectionFormatter> formattersBbox = GeographicSelectionFormatters.FORMATTERS_BBOX;
+		List<GeographicSelectionFormatter> formattersData = GeographicSelectionFormatters.FORMATTERS_DATA;
 
 		/*
 		 * buttons
 		 */
+
 		ExportImageAction eia = new ExportImageAction(gis, selectionAdapter);
 		DownloadAction da = new DownloadAction(gis, selectionAdapter);
-		ApiAction aa = new ApiAction(gis, selectionAdapter);
+		ApiAction aa = new ApiAction(gis, selectionAdapter,
+				formattersData.get(0));
 		ClipboardAction ca = new ClipboardAction(gis, selectionAdapter,
-				formatters.get(0));
+				formattersBbox.get(0));
 		DismissAction dma = new DismissAction(gis, selectionAdapter);
 
+		ApiPopupMenu popupApi = new ApiPopupMenu(this, selectionAdapter,
+				formattersData);
+		ButtonWithDropdown buttonApi = new ButtonWithDropdown(aa, aa.getIcon(),
+				popupApi);
+
+		buttonApi.addMouseListener(new MouseOverClipboardAdapter(buttonApi,
+				this, aa::getClipboardText));
+
 		ClipboardPopupMenu popupClipboard = new ClipboardPopupMenu(this,
-				selectionAdapter, formatters);
+				selectionAdapter, formattersBbox);
 		ButtonWithDropdown buttonClipboard = new ButtonWithDropdown(ca,
 				ca.getIcon(), popupClipboard);
 
 		buttonClipboard.addMouseListener(new MouseOverClipboardAdapter(
 				buttonClipboard, this, ca::getClipboardText));
-
-		JButton buttonApi = new JButton(aa);
-		buttonApi.addMouseListener(new MouseOverClipboardAdapter(buttonApi,
-				this, aa::getClipboardText));
 
 		buttons.add(new JButton(da));
 		buttons.add(

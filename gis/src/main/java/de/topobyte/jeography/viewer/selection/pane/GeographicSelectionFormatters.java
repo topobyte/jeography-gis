@@ -25,14 +25,24 @@ import de.topobyte.jeography.viewer.selection.rectangular.GeographicSelectionFor
 public class GeographicSelectionFormatters
 {
 
-	public static List<GeographicSelectionFormatter> FORMATTERS = new ArrayList<>();
+	public static List<GeographicSelectionFormatter> FORMATTERS_BBOX = new ArrayList<>();
 	static {
-		FORMATTERS.add(new GeographicSelectionFormatter("lon1,lat1:lon2,lat2",
-				"%f,%f:%f,%f"));
-		FORMATTERS.add(new GeographicSelectionFormatter("lon1,lat1,lon2,lat2",
-				"%f,%f,%f,%f"));
-		FORMATTERS
+		FORMATTERS_BBOX.add(new GeographicSelectionFormatter(
+				"lon1,lat1:lon2,lat2", "%f,%f:%f,%f"));
+		FORMATTERS_BBOX.add(new GeographicSelectionFormatter(
+				"lon1,lat1,lon2,lat2", "%f,%f,%f,%f"));
+		FORMATTERS_BBOX
 				.add(new GeographicSelectionFormatter("xml", patternForXml(6)));
+	}
+
+	public static List<GeographicSelectionFormatter> FORMATTERS_DATA = new ArrayList<>();
+	static {
+		FORMATTERS_DATA.add(new GeographicSelectionFormatter(
+				"OpenStreetMap API bbox query",
+				"http://www.openstreetmap.org/api/0.6/map?bbox=%1$.6f,%4$.6f,%3$.6f,%2$.6f"));
+		FORMATTERS_DATA.add(new GeographicSelectionFormatter(
+				"Overpass API bbox query",
+				"http://overpass-api.de/api/interpreter?data=(node(%4$.6f,%1$.6f,%2$.6f,%3$.6f);<;>;);out;"));
 	}
 
 	private static String patternForXml(int digits)

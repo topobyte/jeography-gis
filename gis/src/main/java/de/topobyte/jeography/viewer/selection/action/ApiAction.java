@@ -23,7 +23,6 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
-import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +30,7 @@ import org.slf4j.LoggerFactory;
 import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.action.GISAction;
 import de.topobyte.jeography.viewer.selection.rectangular.GeographicSelection;
+import de.topobyte.jeography.viewer.selection.rectangular.GeographicSelectionFormatter;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;
 
 /**
@@ -44,6 +44,7 @@ public class ApiAction extends GISAction
 	final static Logger logger = LoggerFactory.getLogger(ApiAction.class);
 
 	private final SelectionAdapter selectionAdapter;
+	private GeographicSelectionFormatter formatter;
 
 	/**
 	 * Create this action with the given SelectionAdapter as a source for the
@@ -55,13 +56,15 @@ public class ApiAction extends GISAction
 	 * @param selectionAdapter
 	 *            the adapter to get the selection from.
 	 */
-	public ApiAction(JeographyGIS gis, SelectionAdapter selectionAdapter)
+	public ApiAction(JeographyGIS gis, SelectionAdapter selectionAdapter,
+			GeographicSelectionFormatter formatter)
 	{
 		super(gis, "res/images/16/stock_update-data.png");
 		this.name = "download data";
 		this.description = "download data via openstreetmap http API";
 
 		this.selectionAdapter = selectionAdapter;
+		this.formatter = formatter;
 	}
 
 	@Override
@@ -118,10 +121,7 @@ public class ApiAction extends GISAction
 	{
 		GeographicSelection selection = selectionAdapter
 				.getGeographicSelection();
-		return String.format(Locale.US,
-				"http://www.openstreetmap.org/api/0.6/map?bbox=%.6f,%.6f,%.6f,%.6f",
-				selection.getX1().value(), selection.getY2().value(),
-				selection.getX2().value(), selection.getY1().value());
+		return formatter.format(selection);
 	}
 
 }
