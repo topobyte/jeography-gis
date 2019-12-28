@@ -15,8 +15,8 @@ if (project.hasProperty("topobyte")) {
         + '/.gradle/topobyte7.gradle'
 }
 
-sourceCompatibility = JDK_VERSION
-targetCompatibility = JDK_VERSION
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 eclipse.project.name = 'jeography-gis'
 
