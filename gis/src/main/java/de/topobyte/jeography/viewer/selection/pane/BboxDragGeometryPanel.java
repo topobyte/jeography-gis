@@ -17,6 +17,8 @@
 
 package de.topobyte.jeography.viewer.selection.pane;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragSource;
@@ -24,9 +26,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
+import javax.swing.border.EmptyBorder;
 
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
@@ -53,9 +57,14 @@ public class BboxDragGeometryPanel extends JPanel implements DragGestureListener
 	 */
 	public BboxDragGeometryPanel(BBox bbox)
 	{
+		setLayout(new BorderLayout(0, 0));
 		this.bbox = bbox;
 		setupDragndrop();
 		setToolTipText("drag'n'drop selection as polygon");
+		int s = 2;
+		setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createLineBorder(Color.GRAY),
+				new EmptyBorder(s, s, s, s)));
 	}
 
 	public void setBoundingBox(BBox bbox)
