@@ -55,6 +55,7 @@ public class BboxDragGeometryPanel extends JPanel implements DragGestureListener
 	{
 		this.bbox = bbox;
 		setupDragndrop();
+		setToolTipText("drag'n'drop selection as polygon");
 	}
 
 	public void setBoundingBox(BBox bbox)
