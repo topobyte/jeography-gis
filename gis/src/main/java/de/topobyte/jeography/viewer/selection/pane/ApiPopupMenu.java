@@ -19,14 +19,21 @@ package de.topobyte.jeography.viewer.selection.pane;
 
 import java.util.List;
 
+import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import de.topobyte.adt.geo.BBox;
 import de.topobyte.jeography.viewer.selection.rectangular.GeographicSelectionFormatter;
 import de.topobyte.jeography.viewer.selection.rectangular.SelectionAdapter;
 import de.topobyte.jeography.viewer.statusbar.MouseOverClipboardAdapter;
 
 public class ApiPopupMenu extends JPopupMenu
 {
+
+	final static Logger logger = LoggerFactory.getLogger(ApiPopupMenu.class);
 
 	private static final long serialVersionUID = 1L;
 
@@ -42,6 +49,21 @@ public class ApiPopupMenu extends JPopupMenu
 					item::getClipboardText));
 		}
 
+		JMenuItem item = new JMenuItem(
+				"Download data from Overpass API and examine");
+		add(item);
+
+		item.addActionListener(event -> {
+			downloadAndExamine(
+					selectionAdapter.getGeographicSelection().toBoundingBox());
+		});
+	}
+
+	private void downloadAndExamine(BBox bbox)
+	{
+		TaskDownloadAndExamineOverpass task = new TaskDownloadAndExamineOverpass(
+				bbox);
+		new Thread(task).start();
 	}
 
 }

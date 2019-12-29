@@ -43,6 +43,7 @@ dependencies {
     compile 'de.topobyte:adt-misc:0.0.2'
     compile 'de.topobyte:system-utils:0.0.1'
     compile 'de.topobyte:simple-mapfile-xml:0.0.1'
+    compile 'de.topobyte:osmocrat-core:0.1.1'
 
     compile 'de.topobyte:luqe-jdbc:0.0.6'
     runtime 'org.xerial:sqlite-jdbc:3.8.11.2'
