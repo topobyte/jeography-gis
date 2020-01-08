@@ -142,10 +142,12 @@ public class TileConfigUrlDisk implements TileConfig
 			return null;
 		}
 
+		int nThreads = 2;
+		int cacheSize = 150;
 		TileUrlAndCachePathProvider tileResoluterBase = new TileUrlAndCachePathProvider(
 				getPath(), getUrl());
 		PriorityImageManagerHttpDisk<Tile> manager = new PriorityImageManagerHttpDisk<>(
-				2, 150, tileResoluterBase);
+				nThreads, cacheSize, tileResoluterBase);
 
 		if (userAgent != null) {
 			manager.setUserAgent(userAgent);

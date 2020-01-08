@@ -18,17 +18,22 @@
 package de.topobyte.jeography.tiles.source;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.URLConnection;
 
 import javax.imageio.ImageIO;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,6 +61,8 @@ public class ImageSourceUrlPattern<T>
 
 	private boolean online = true;
 
+	private CloseableHttpClient client;
+
 	/**
 	 * An ImageSource implementation based that works with UrlResoluter
 	 * 
@@ -68,6 +75,12 @@ public class ImageSourceUrlPattern<T>
 	{
 		this.resolver = resolver;
 		this.nTries = nTries;
+
+		PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
+		cm.setMaxTotal(10);
+		cm.setDefaultMaxPerRoute(10);
+
+		client = HttpClients.custom().setConnectionManager(cm).build();
 	}
 
 	/**
@@ -126,53 +139,29 @@ public class ImageSourceUrlPattern<T>
 			if (k > 0) {
 				logger.debug("retry #" + k);
 			}
-			InputStream cis = null;
-			InputStream bis = null;
 			try {
 				URL url = new URL(iurl);
-				URLConnection connection = url.openConnection();
-				if (userAgent != null) {
-					connection.setRequestProperty("User-Agent", userAgent);
-				}
-				cis = connection.getInputStream();
-				bis = new BufferedInputStream(cis);
-				ByteArrayOutputStream baos = new ByteArrayOutputStream(40000);
-				byte[] buffer = new byte[1024];
-				while (true) {
-					int b = bis.read(buffer);
-					if (b < 0) {
-						break;
-					}
-					baos.write(buffer, 0, b);
-				}
-				byte[] bytes = baos.toByteArray();
+				HttpGet get = new HttpGet(url.toURI());
+				HttpClientContext context = HttpClientContext.create();
 
-				ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
-				BufferedImage image = ImageIO.read(bais);
-				return new BufferedImageAndBytes(image, bytes);
-			} catch (MalformedURLException e) {
-				logger.warn("Malformed URL: " + e.getMessage());
-				continue;
-			} catch (IOException e) {
-				logger.warn("IOException: " + e.getMessage());
-				continue;
-			} finally {
-				try {
-					if (cis != null) {
-						cis.close();
-					}
-				} catch (IOException e) {
-					logger.warn(
-							"unable to close InputStream: " + e.getMessage());
+				if (userAgent != null) {
+					get.addHeader("User-Agent", userAgent);
 				}
-				try {
-					if (bis != null) {
-						bis.close();
+				try (CloseableHttpResponse response = client.execute(get,
+						context)) {
+					if (response.getStatusLine()
+							.getStatusCode() == HttpStatus.SC_OK) {
+						HttpEntity entity = response.getEntity();
+						byte[] bytes = EntityUtils.toByteArray(entity);
+						ByteArrayInputStream bais = new ByteArrayInputStream(
+								bytes);
+						BufferedImage image = ImageIO.read(bais);
+						return new BufferedImageAndBytes(image, bytes);
 					}
-				} catch (IOException e) {
-					logger.warn(
-							"unable to close InputStream: " + e.getMessage());
 				}
+			} catch (URISyntaxException | IOException e) {
+				logger.warn("Exception: " + e.getMessage());
+				continue;
 			}
 		}
 
