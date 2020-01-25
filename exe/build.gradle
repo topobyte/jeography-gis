@@ -22,8 +22,8 @@ launchAndInstall {
     createScript(project, 'de.topobyte.jeography.executables.CreatePlaceDatabase', 'create-place-database')
 }
 
-sourceCompatibility = JDK_VERSION
-targetCompatibility = JDK_VERSION
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 dependencies {
     compile project(':jeography-gis')

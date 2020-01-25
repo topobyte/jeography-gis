@@ -12,7 +12,7 @@ apply plugin: 'de.topobyte.version-access-gradle-plugin'
 
 if (project.hasProperty("topobyte")) {
     apply from: 'file:///' + System.getProperty("user.home") \
-        + '/.gradle/topobyte7.gradle'
+        + '/.gradle/topobyte.gradle'
 }
 
 sourceCompatibility = 1.8
