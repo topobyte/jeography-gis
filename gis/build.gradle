@@ -22,47 +22,33 @@ eclipse.project.name = 'jeography-gis'
 
 dependencies {
     compile project(':jeography-viewers')
+    compile project(':jeography-tools')
+    compile project(':jeography-places')
 
     compile 'de.topobyte:commons-cli-helper:0.0.6'
     compile 'de.topobyte:jts2awt:0.0.1'
-    compile 'de.topobyte:jts-utils:0.1.2'
     compile 'de.topobyte:jts-indexing:0.1.1'
     compile 'de.topobyte:melon-casting:0.0.1'
-    compile 'de.topobyte:awt-utils:0.0.3'
-    compile 'de.topobyte:swing-utils:0.0.11'
-    compile 'de.topobyte:jsi:1.2.0'
-    compile 'de.topobyte:mercator-image:0.0.4'
     compile 'de.topobyte:chromaticity-awt:0.0.2'
-    compile 'de.topobyte:jts-drawing-core:0.1.0'
-    compile 'de.topobyte:jts-drawing-awt:0.1.0'
-    compile 'de.topobyte:jts-drawing-util:0.1.0'
     compile 'com.bric:javagraphics-color-ui:0.1.0'
     compile 'de.topobyte:async-utils:0.0.2'
-    compile 'de.topobyte:osm4j-utils:0.1.2'
-    compile 'de.topobyte:jsqltables:0.0.8'
     compile 'de.topobyte:adt-misc:0.0.2'
-    compile 'de.topobyte:system-utils:0.0.1'
     compile 'de.topobyte:simple-mapfile-xml:0.0.1'
     compile 'de.topobyte:osmocrat-core:0.1.1'
-
-    compile 'de.topobyte:luqe-jdbc:0.0.6'
-    runtime 'org.xerial:sqlite-jdbc:3.8.11.2'
 
     compile 'commons-cli:commons-cli:1.2'
     compile 'commons-codec:commons-codec:1.10'
     compile 'commons-io:commons-io:2.4'
     compile 'com.vividsolutions:jts:1.13'
-    compile 'dom4j:dom4j:1.6.1'
     compile 'org.dockingframes:docking-frames-core:1.1.1'
     compile 'org.dockingframes:docking-frames-common:1.1.1'
 
     compile 'org.slf4j:slf4j-api:1.6.1'
 
     testRuntime 'org.slf4j:slf4j-log4j12:1.6.1'
-    testCompile 'log4j:log4j:1.2.16'
+    testRuntime 'log4j:log4j:1.2.16'
 
     testCompile 'junit:junit:4.11'
-    testCompile 'org.buildobjects:jproc:2.2.0'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {

@@ -9,12 +9,12 @@ sourceCompatibility = JDK_VERSION
 targetCompatibility = JDK_VERSION
 
 dependencies {
-    compile project(':jeography-tiles')
-
     compile 'de.topobyte:awt-utils:0.0.3'
-    compile 'de.topobyte:melon-casting:0.0.1'
-    compile 'de.topobyte:swing-utils:0.0.11'
-    compile 'com.slimjars.trove4j:trove4j-int-hash-set:1.0.1'
+    compile 'de.topobyte:swing-utils:0.0.12'
+    compile 'de.topobyte:osm4j-utils:0.1.2'
+    compile 'de.topobyte:jsqltables:0.0.8'
+    compile 'de.topobyte:luqe-jdbc:0.0.6'
+    runtime 'org.xerial:sqlite-jdbc:3.8.11.2'
 
     compile 'org.slf4j:slf4j-api:1.6.1'
 

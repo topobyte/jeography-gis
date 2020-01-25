@@ -9,19 +9,24 @@ sourceCompatibility = JDK_VERSION
 targetCompatibility = JDK_VERSION
 
 dependencies {
-    compile project(':jeography-tiles')
+    compile project(':jeography-viewers')
+    compile project(':jeography-config')
 
-    compile 'de.topobyte:awt-utils:0.0.3'
-    compile 'de.topobyte:melon-casting:0.0.1'
-    compile 'de.topobyte:swing-utils:0.0.11'
-    compile 'com.slimjars.trove4j:trove4j-int-hash-set:1.0.1'
-
-    compile 'org.slf4j:slf4j-api:1.6.1'
+    compile 'de.topobyte:jts-utils:0.1.2'
+    compile 'de.topobyte:jsi:1.2.0'
+    compile 'de.topobyte:jsi-and-jts:0.1.0'
+    compile 'de.topobyte:jts-drawing-core:0.1.0'
+    compile 'de.topobyte:jts-drawing-awt:0.1.0'
+    compile 'de.topobyte:jts-drawing-util:0.1.0'
+    compile 'de.topobyte:mercator-image:0.0.4'
+    compile 'de.topobyte:melon-io:0.0.1'
+    compile 'de.topobyte:swing-utils:0.0.12'
 
     testRuntime 'org.slf4j:slf4j-log4j12:1.6.1'
     testRuntime 'log4j:log4j:1.2.16'
 
     testCompile 'junit:junit:4.11'
+    testCompile 'org.buildobjects:jproc:2.2.0'
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
