@@ -21,13 +21,13 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.Set;
 
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.util.GeometryTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.infomatiq.jsi.Rectangle;
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.util.GeometryTransformer;
 
 import de.topobyte.awt.util.GraphicsUtil;
 import de.topobyte.geomath.WGS84;

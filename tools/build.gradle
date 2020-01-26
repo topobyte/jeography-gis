@@ -12,13 +12,13 @@ dependencies {
     compile project(':jeography-viewers')
     compile project(':jeography-config')
 
-    compile 'de.topobyte:jts-utils:0.1.2'
+    compile 'de.topobyte:jts-utils:0.2.0'
     compile 'de.topobyte:jsi:1.2.0'
-    compile 'de.topobyte:jsi-and-jts:0.1.0'
-    compile 'de.topobyte:jts-drawing-core:0.1.0'
-    compile 'de.topobyte:jts-drawing-awt:0.1.0'
-    compile 'de.topobyte:jts-drawing-util:0.1.0'
-    compile 'de.topobyte:mercator-image:0.0.4'
+    compile 'de.topobyte:jsi-and-jts:0.2.0'
+    compile 'de.topobyte:jts-drawing-core:0.2.0'
+    compile 'de.topobyte:jts-drawing-awt:0.2.0'
+    compile 'de.topobyte:jts-drawing-util:0.2.0'
+    compile 'de.topobyte:mercator-image:0.1.0'
     compile 'de.topobyte:melon-io:0.0.1'
     compile 'de.topobyte:swing-utils:0.0.12'
 

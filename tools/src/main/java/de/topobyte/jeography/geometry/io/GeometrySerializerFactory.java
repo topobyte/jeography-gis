@@ -24,13 +24,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.io.OutputStreamOutStream;
+import org.locationtech.jts.io.WKBWriter;
+import org.locationtech.jts.io.WKTWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.io.OutputStreamOutStream;
-import com.vividsolutions.jts.io.WKBWriter;
-import com.vividsolutions.jts.io.WKTWriter;
 
 import de.topobyte.jeography.geometry.io.geojson.GeoJsonSerializer;
 import de.topobyte.jeography.geometry.io.poly.PolyfileWriter;

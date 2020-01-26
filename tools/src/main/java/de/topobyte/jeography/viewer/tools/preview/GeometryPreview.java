@@ -34,11 +34,10 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JRootPane;
 
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.vividsolutions.jts.geom.Envelope;
-import com.vividsolutions.jts.geom.Geometry;
 
 import de.topobyte.adt.geo.BBox;
 import de.topobyte.jeography.core.Tile;
@@ -137,7 +136,8 @@ public class GeometryPreview
 			Set<GeometryContainer> tgs)
 	{
 		Configuration config = configuration == null
-				? Configuration.createDefaultConfiguration() : configuration;
+				? Configuration.createDefaultConfiguration()
+				: configuration;
 		TileConfig tileConfig = config.getTileConfigs().get(0);
 		final Viewer viewer = new Viewer(tileConfig, null);
 

@@ -20,7 +20,7 @@ package de.topobyte.jeography.geometry.io;
 import java.io.File;
 import java.io.IOException;
 
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Geometry;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)

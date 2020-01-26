@@ -29,7 +29,6 @@ import de.topobyte.jeography.places.model.TablePlaces;
 import de.topobyte.jeography.places.model.Tables;
 import de.topobyte.jsqltables.dialect.SqliteDialect;
 import de.topobyte.jsqltables.index.Indexes;
-import de.topobyte.jsqltables.query.LimitOffset;
 import de.topobyte.jsqltables.query.Select;
 import de.topobyte.jsqltables.query.TableReference;
 import de.topobyte.jsqltables.query.order.OrderDirection;
@@ -288,7 +287,8 @@ public class Dao
 
 		select.where(condition);
 		select.order(new SingleOrder(search, "rowid", OrderDirection.ASC));
-		select.limit(new LimitOffset(max, offset));
+		select.limit(max);
+		select.offset(offset);
 
 		IPreparedStatement stmt = connection.prepareStatement(select.sql());
 		stmt.setString(1, "%" + query + "%");

@@ -24,9 +24,9 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.LinearRing;
-import com.vividsolutions.jts.geom.MultiPolygon;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.LinearRing;
+import org.locationtech.jts.geom.MultiPolygon;
 
 import de.topobyte.jts.utils.PolygonHelper;
 

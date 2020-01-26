@@ -24,11 +24,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.locationtech.jts.geom.Geometry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.infomatiq.jsi.Rectangle;
-import com.vividsolutions.jts.geom.Geometry;
 
 import de.topobyte.jeography.core.Tile;
 import de.topobyte.jeography.core.mapwindow.MapWindowChangeListener;
