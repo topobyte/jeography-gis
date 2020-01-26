@@ -42,12 +42,11 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryCollection;
+import org.locationtech.jts.geom.GeometryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryCollection;
-import com.vividsolutions.jts.geom.GeometryFactory;
 
 import de.topobyte.jeography.viewer.geometry.action.ExportAction;
 import de.topobyte.jeography.viewer.geometry.action.InspectCollectionAction;

@@ -31,7 +31,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTree;
 import javax.swing.tree.TreePath;
 
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Geometry;
 
 import de.topobyte.jeography.geometry.GeoObject;
 import de.topobyte.jeography.viewer.geometry.action.ExportAction;

@@ -17,7 +17,7 @@
 
 package de.topobyte.jeography.viewer.bookmarks;
 
-import com.vividsolutions.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Coordinate;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)

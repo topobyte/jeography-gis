@@ -21,7 +21,7 @@ import java.util.Collection;
 
 import javax.swing.JComponent;
 
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Geometry;
 
 import de.topobyte.swing.util.dnd.DestinationSourceTransferHandler;
 

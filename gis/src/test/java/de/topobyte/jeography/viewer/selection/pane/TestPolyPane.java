@@ -22,7 +22,7 @@ import java.util.List;
 
 import javax.swing.JDialog;
 
-import com.vividsolutions.jts.geom.LinearRing;
+import org.locationtech.jts.geom.LinearRing;
 
 import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.TestUtil;

@@ -40,11 +40,11 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 
+import org.locationtech.jts.geom.Geometry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.infomatiq.jsi.Rectangle;
-import com.vividsolutions.jts.geom.Geometry;
 
 import de.topobyte.jeography.viewer.geometry.list.GeomList;
 import de.topobyte.jeography.viewer.geometry.list.PreviewMouseAdapter;

@@ -17,7 +17,7 @@
 
 package de.topobyte.jeography.viewer.geometry.list.dnd;
 
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Geometry;
 
 import de.topobyte.jsi.GenericSpatialIndex;
 

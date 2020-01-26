@@ -31,11 +31,10 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.locationtech.jts.geom.Geometry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
-
-import com.vividsolutions.jts.geom.Geometry;
 
 import de.topobyte.jeography.geometry.GeoObject;
 import de.topobyte.jeography.geometry.io.PolygonLoader;

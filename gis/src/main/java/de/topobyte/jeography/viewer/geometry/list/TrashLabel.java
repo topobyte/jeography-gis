@@ -29,10 +29,9 @@ import javax.swing.JLabel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EtchedBorder;
 
+import org.locationtech.jts.geom.Geometry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.vividsolutions.jts.geom.Geometry;
 
 import de.topobyte.jeography.viewer.geometry.list.dnd.GeometryDestinationTransferHandler;
 

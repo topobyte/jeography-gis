@@ -27,7 +27,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Geometry;
 
 import de.topobyte.jeography.viewer.geometry.list.panels.GeometryIndexPanel;
 import de.topobyte.jsi.GenericSpatialIndex;

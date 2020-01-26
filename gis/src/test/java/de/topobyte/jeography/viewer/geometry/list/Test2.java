@@ -23,17 +23,16 @@ import java.io.File;
 
 import javax.swing.JFrame;
 
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
-
 import de.topobyte.jeography.viewer.geometry.list.index.IndexList;
+import de.topobyte.jeography.viewer.geometry.list.operation.Operation;
 import de.topobyte.jeography.viewer.geometry.list.operation.OperationList;
 import de.topobyte.jeography.viewer.geometry.list.operation.OperationListFactory;
-import de.topobyte.jeography.viewer.geometry.list.operation.Operation;
 import de.topobyte.jeography.viewer.geometry.select.GeometrySelectionOperation;
 import de.topobyte.swing.util.FrameHelper;
 
@@ -65,14 +64,10 @@ public class Test2
 			@Override
 			public void componentShown(ComponentEvent e)
 			{
-				gl.getListModel()
-						.add(new File(
-								"/tmp/osm/germany/osm/kreise/Kronach(62383).jsg"),
-								0);
-				gl.getListModel()
-						.add(new File(
-								"/tmp/osm/germany/osm/kreise/Kulmbach(62479).jsg"),
-								1);
+				gl.getListModel().add(new File(
+						"/tmp/osm/germany/osm/kreise/Kronach(62383).jsg"), 0);
+				gl.getListModel().add(new File(
+						"/tmp/osm/germany/osm/kreise/Kulmbach(62479).jsg"), 1);
 				gl.getListModel().add(new File("/tmp/temp.jsg"), 2);
 				gl.getListModel().add(new File("/tmp/test3.jsg"), 3);
 			}

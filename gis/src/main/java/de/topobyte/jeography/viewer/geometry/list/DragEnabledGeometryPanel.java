@@ -27,7 +27,7 @@ import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Geometry;
 
 import de.topobyte.jeography.viewer.geometry.list.dnd.GeometrySourceTransferHandler;
 import de.topobyte.jeography.viewer.geometry.list.renderer.GeometryPanel;

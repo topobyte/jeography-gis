@@ -30,10 +30,9 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import org.locationtech.jts.geom.Coordinate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.vividsolutions.jts.geom.Coordinate;
 
 import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.config.ConfigurationHelper;

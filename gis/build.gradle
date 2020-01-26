@@ -25,21 +25,20 @@ dependencies {
     compile project(':jeography-tools')
     compile project(':jeography-places')
 
-    compile 'de.topobyte:commons-cli-helper:0.0.6'
-    compile 'de.topobyte:jts2awt:0.0.1'
-    compile 'de.topobyte:jts-indexing:0.1.1'
+    compile 'de.topobyte:commons-cli-helper:0.1.0'
+    compile 'de.topobyte:jts2awt:0.1.0'
+    compile 'de.topobyte:jts-indexing:0.2.0'
     compile 'de.topobyte:melon-casting:0.0.1'
     compile 'de.topobyte:chromaticity-awt:0.0.2'
     compile 'com.bric:javagraphics-color-ui:0.1.0'
     compile 'de.topobyte:async-utils:0.0.2'
     compile 'de.topobyte:adt-misc:0.0.2'
-    compile 'de.topobyte:simple-mapfile-xml:0.0.1'
-    compile 'de.topobyte:osmocrat-core:0.1.1'
+    compile 'de.topobyte:simple-mapfile-xml:0.1.0'
+    compile 'de.topobyte:osmocrat-core:0.2.0'
 
     compile 'commons-cli:commons-cli:1.2'
     compile 'commons-codec:commons-codec:1.10'
     compile 'commons-io:commons-io:2.4'
-    compile 'com.vividsolutions:jts:1.13'
     compile 'org.dockingframes:docking-frames-core:1.1.1'
     compile 'org.dockingframes:docking-frames-common:1.1.1'
 

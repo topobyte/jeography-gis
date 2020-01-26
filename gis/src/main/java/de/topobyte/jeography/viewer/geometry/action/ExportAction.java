@@ -23,10 +23,9 @@ import java.io.IOException;
 
 import javax.swing.JFileChooser;
 
+import org.locationtech.jts.geom.Geometry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.vividsolutions.jts.geom.Geometry;
 
 import de.topobyte.jeography.geometry.io.FileFormat;
 import de.topobyte.jeography.geometry.io.GeometrySerializer;

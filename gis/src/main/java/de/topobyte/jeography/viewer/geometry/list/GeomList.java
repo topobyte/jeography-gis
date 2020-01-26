@@ -20,7 +20,7 @@ package de.topobyte.jeography.viewer.geometry.list;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Geometry;
 
 import de.topobyte.jeography.viewer.geometry.list.renderer.GeometryListCellRendererPanel;
 

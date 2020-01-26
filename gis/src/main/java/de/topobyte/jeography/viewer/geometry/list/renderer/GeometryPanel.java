@@ -27,12 +27,12 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.Lineal;
-import com.vividsolutions.jts.geom.Point;
-import com.vividsolutions.jts.geom.Polygonal;
-import com.vividsolutions.jts.geom.Puntal;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.Lineal;
+import org.locationtech.jts.geom.Point;
+import org.locationtech.jts.geom.Polygonal;
+import org.locationtech.jts.geom.Puntal;
 
 /**
  * A panel that can represent a geometry for example within a list rendering

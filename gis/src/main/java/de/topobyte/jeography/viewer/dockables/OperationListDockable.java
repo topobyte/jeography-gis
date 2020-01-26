@@ -19,8 +19,8 @@ package de.topobyte.jeography.viewer.dockables;
 
 import bibliothek.gui.dock.common.DefaultMultipleCDockable;
 import de.topobyte.jeography.viewer.core.Viewer;
-import de.topobyte.jeography.viewer.geometry.list.operation.OperationList;
 import de.topobyte.jeography.viewer.geometry.list.operation.Operation;
+import de.topobyte.jeography.viewer.geometry.list.operation.OperationList;
 
 public class OperationListDockable extends DefaultMultipleCDockable
 {

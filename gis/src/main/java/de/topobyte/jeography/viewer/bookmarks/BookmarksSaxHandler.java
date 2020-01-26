@@ -20,7 +20,7 @@ package de.topobyte.jeography.viewer.bookmarks;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.vividsolutions.jts.geom.Coordinate;
+import org.locationtech.jts.geom.Coordinate;
 
 import de.topobyte.xml.dynsax.Child;
 import de.topobyte.xml.dynsax.ChildType;

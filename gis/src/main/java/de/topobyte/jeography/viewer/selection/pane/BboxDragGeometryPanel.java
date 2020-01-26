@@ -32,8 +32,8 @@ import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 import javax.swing.border.EmptyBorder;
 
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
 
 import de.topobyte.adt.geo.BBox;
 import de.topobyte.jeography.viewer.geometry.list.dnd.GeometrySourceTransferHandler;

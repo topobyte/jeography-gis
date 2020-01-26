@@ -24,11 +24,10 @@ import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryCollection;
 
 import de.topobyte.jeography.viewer.action.SimpleAction;
 import de.topobyte.jeography.viewer.geometry.list.GeomList;

@@ -19,8 +19,8 @@ package de.topobyte.jeography.viewer.geometry.list.operation;
 
 import java.util.List;
 
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.GeometryFactory;
 
 /**
  * @author Sebastian Kuerten (sebastian@topobyte.de)

@@ -23,10 +23,9 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.locationtech.jts.geom.Coordinate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.vividsolutions.jts.geom.Coordinate;
 
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
 import de.topobyte.jeography.viewer.JeographyGIS;

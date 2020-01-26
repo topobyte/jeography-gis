@@ -22,10 +22,9 @@ import java.util.Collection;
 
 import javax.swing.JComponent;
 
+import org.locationtech.jts.geom.Geometry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.vividsolutions.jts.geom.Geometry;
 
 import de.topobyte.swing.util.dnd.SourceAwareTransferHandler;
 import de.topobyte.swing.util.dnd.SourceTransferHandler;

@@ -17,10 +17,9 @@
 
 package de.topobyte.jeography.viewer.geometry.list;
 
+import org.locationtech.jts.geom.Geometry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.vividsolutions.jts.geom.Geometry;
 
 import de.topobyte.swing.util.list.ArrayListModel;
 

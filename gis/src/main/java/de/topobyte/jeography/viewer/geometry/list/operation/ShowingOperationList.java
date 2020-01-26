@@ -22,7 +22,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.vividsolutions.jts.geom.Geometry;
+import org.locationtech.jts.geom.Geometry;
 
 import de.topobyte.jeography.core.TileOnWindow;
 import de.topobyte.jeography.core.mapwindow.TileMapWindow;
