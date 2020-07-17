@@ -12,33 +12,33 @@ apply plugin: 'de.topobyte.version-access-gradle-plugin'
 eclipse.project.name = 'jeography-gis'
 
 dependencies {
-    compile project(':jeography-viewers')
-    compile project(':jeography-tools')
-    compile project(':jeography-places')
+    api project(':jeography-viewers')
+    api project(':jeography-tools')
+    api project(':jeography-places')
 
-    compile 'de.topobyte:commons-cli-helper:0.1.0'
-    compile 'de.topobyte:jts2awt:0.1.0'
-    compile 'de.topobyte:jts-indexing:0.2.0'
-    compile 'de.topobyte:melon-casting:0.0.1'
-    compile 'de.topobyte:chromaticity-awt:0.0.2'
-    compile 'com.bric:javagraphics-color-ui:0.1.0'
-    compile 'de.topobyte:async-utils:0.0.2'
-    compile 'de.topobyte:adt-misc:0.0.2'
-    compile 'de.topobyte:simple-mapfile-xml:0.1.0'
-    compile 'de.topobyte:osmocrat-core:0.2.0'
+    api 'de.topobyte:commons-cli-helper:0.1.0'
+    api 'de.topobyte:jts2awt:0.1.0'
+    api 'de.topobyte:jts-indexing:0.2.0'
+    api 'de.topobyte:melon-casting:0.0.1'
+    api 'de.topobyte:chromaticity-awt:0.0.2'
+    api 'com.bric:javagraphics-color-ui:0.1.0'
+    api 'de.topobyte:async-utils:0.0.2'
+    api 'de.topobyte:adt-misc:0.0.2'
+    api 'de.topobyte:simple-mapfile-xml:0.1.0'
+    api 'de.topobyte:osmocrat-core:0.2.0'
 
-    compile 'commons-cli:commons-cli:1.2'
-    compile 'commons-codec:commons-codec:1.10'
-    compile 'commons-io:commons-io:2.4'
-    compile 'org.dockingframes:docking-frames-core:1.1.1'
-    compile 'org.dockingframes:docking-frames-common:1.1.1'
+    api 'commons-cli:commons-cli:1.2'
+    api 'commons-codec:commons-codec:1.10'
+    api 'commons-io:commons-io:2.4'
+    api 'org.dockingframes:docking-frames-core:1.1.1'
+    api 'org.dockingframes:docking-frames-common:1.1.1'
 
-    compile 'org.slf4j:slf4j-api:1.6.1'
+    api 'org.slf4j:slf4j-api:1.6.1'
 
-    testRuntime 'org.slf4j:slf4j-log4j12:1.6.1'
-    testRuntime 'log4j:log4j:1.2.16'
+    testRuntimeOnly 'org.slf4j:slf4j-log4j12:1.6.1'
+    testRuntimeOnly 'log4j:log4j:1.2.16'
 
-    testCompile 'junit:junit:4.11'
+    testImplementation 'junit:junit:4.11'
 }
 
 generateVersionAccessSource {

@@ -1,15 +1,15 @@
 dependencies {
-    compile project(':jeography-tiles')
+    api project(':jeography-tiles')
 
-    compile 'de.topobyte:awt-utils:0.0.3'
-    compile 'de.topobyte:melon-casting:0.0.1'
-    compile 'de.topobyte:swing-utils:0.0.12'
-    compile 'com.slimjars.trove4j:trove4j-int-hash-set:1.0.1'
+    api 'de.topobyte:awt-utils:0.0.3'
+    api 'de.topobyte:melon-casting:0.0.1'
+    api 'de.topobyte:swing-utils:0.0.12'
+    api 'com.slimjars.trove4j:trove4j-int-hash-set:1.0.1'
 
-    compile 'org.slf4j:slf4j-api:1.6.1'
+    api 'org.slf4j:slf4j-api:1.6.1'
 
-    testRuntime 'org.slf4j:slf4j-log4j12:1.6.1'
-    testRuntime 'log4j:log4j:1.2.16'
+    testRuntimeOnly 'org.slf4j:slf4j-log4j12:1.6.1'
+    testRuntimeOnly 'log4j:log4j:1.2.16'
 
-    testCompile 'junit:junit:4.11'
+    testImplementation 'junit:junit:4.11'
 }

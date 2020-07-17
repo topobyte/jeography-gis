@@ -1,15 +1,15 @@
 dependencies {
-    compile 'de.topobyte:awt-utils:0.0.3'
-    compile 'de.topobyte:swing-utils:0.0.12'
-    compile 'de.topobyte:osm4j-utils:0.2.0'
-    compile 'de.topobyte:jsqltables:0.1.0'
-    compile 'de.topobyte:luqe-jdbc:0.0.8'
-    runtime 'org.xerial:sqlite-jdbc:3.8.11.2'
+    api 'de.topobyte:awt-utils:0.0.3'
+    api 'de.topobyte:swing-utils:0.0.12'
+    api 'de.topobyte:osm4j-utils:0.2.0'
+    api 'de.topobyte:jsqltables:0.1.0'
+    api 'de.topobyte:luqe-jdbc:0.0.8'
+    runtimeOnly 'org.xerial:sqlite-jdbc:3.8.11.2'
 
-    compile 'org.slf4j:slf4j-api:1.6.1'
+    api 'org.slf4j:slf4j-api:1.6.1'
 
-    testRuntime 'org.slf4j:slf4j-log4j12:1.6.1'
-    testRuntime 'log4j:log4j:1.2.16'
+    testRuntimeOnly 'org.slf4j:slf4j-log4j12:1.6.1'
+    testRuntimeOnly 'log4j:log4j:1.2.16'
 
-    testCompile 'junit:junit:4.11'
+    testImplementation 'junit:junit:4.11'
 }

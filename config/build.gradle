@@ -1,12 +1,12 @@
 dependencies {
-    compile project(':jeography-viewers')
+    api project(':jeography-viewers')
 
-    compile 'de.topobyte:system-utils:0.0.1'
+    api 'de.topobyte:system-utils:0.0.1'
 
-    compile 'dom4j:dom4j:1.6.1'
+    api 'dom4j:dom4j:1.6.1'
 
-    testCompile 'de.topobyte:melon-io:0.0.1'
-    testCompile 'junit:junit:4.11'
-    testRuntime 'org.slf4j:slf4j-log4j12:1.6.1'
-    testRuntime 'log4j:log4j:1.2.16'
+    testImplementation 'de.topobyte:melon-io:0.0.1'
+    testImplementation 'junit:junit:4.11'
+    testRuntimeOnly 'org.slf4j:slf4j-log4j12:1.6.1'
+    testRuntimeOnly 'log4j:log4j:1.2.16'
 }
