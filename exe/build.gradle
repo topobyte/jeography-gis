@@ -34,7 +34,7 @@ dependencies {
 
 distributions {
     main {
-        baseName = 'jeography-gis'
+        distributionBaseName = 'jeography-gis'
     }
 }
 
@@ -45,7 +45,7 @@ task copyJars(type: Copy) {
 
 task copyDeps(type: Copy) {
     into "$buildDir/lib-run"
-    from configurations.runtime
+    from configurations.runtimeClasspath
 }
 
 task createRuntime(dependsOn: [copyJars, copyDeps]) {
@@ -56,7 +56,7 @@ task jarMain(type: Jar) {
     manifest {
         attributes 'Main-Class': mainClassName
     }
-    baseName = 'jeography'
+    archiveBaseName = 'jeography'
     from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
