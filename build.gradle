@@ -7,13 +7,31 @@ allprojects {
     version = pVersion
 }
 
-ext {
-    JDK_VERSION = 1.7
+ext.libraries = [
+    project(':jeography-config'),
+    project(':jeography-core'),
+    project(':jeography-gis'),
+    project(':jeography-places'),
+    project(':jeography-tiles'),
+    project(':jeography-tools'),
+    project(':jeography-viewers')
+]
+
+configure(libraries) {
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+}
+
+configure(project(':jeography-gis')) {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 }
 
 subprojects {
     apply plugin: 'eclipse'
-    apply plugin: 'maven'
 
     repositories {
         maven {
@@ -23,5 +41,31 @@ subprojects {
             url 'http://mvn.slimjars.com'
         }
         mavenCentral()
+    }
+}
+
+configure(libraries) {
+    if (project.hasProperty("topobyte")) {
+        apply from: 'file:///' + System.getProperty("user.home") \
+            + '/.gradle/topobyte.gradle'
+    }
+
+    java {
+        withSourcesJar()
+    }
+
+    def pomInfo = new XmlSlurper().parse(new File(projectDir, 'info.pom'));
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                from components.java
+                pom {
+                    name = "$pomInfo.name"
+                    description = "$pomInfo.description"
+                    url = "$pomInfo.url"
+                }
+            }
+        }
     }
 }

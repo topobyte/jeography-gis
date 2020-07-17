@@ -1,13 +1,3 @@
-apply plugin: 'java-library'
-
-if (project.hasProperty("topobyte")) {
-    apply from: 'file:///' + System.getProperty("user.home") \
-        + '/.gradle/topobyte7.gradle'
-}
-
-sourceCompatibility = JDK_VERSION
-targetCompatibility = JDK_VERSION
-
 dependencies {
     compile project(':jeography-viewers')
 
@@ -19,29 +9,4 @@ dependencies {
     testCompile 'junit:junit:4.11'
     testRuntime 'org.slf4j:slf4j-log4j12:1.6.1'
     testRuntime 'log4j:log4j:1.2.16'
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives sourcesJar
-}
-
-def pomInfo = new XmlSlurper().parse(new File(projectDir, 'info.pom'));
-
-afterEvaluate { project ->
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                pom.project {
-                    name pomInfo.name
-                    description pomInfo.description
-                    url pomInfo.url
-                }
-            }
-        }
-    }
 }

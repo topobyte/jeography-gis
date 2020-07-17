@@ -7,16 +7,7 @@ buildscript {
     }
 }
 
-apply plugin: 'java-library'
 apply plugin: 'de.topobyte.version-access-gradle-plugin'
-
-if (project.hasProperty("topobyte")) {
-    apply from: 'file:///' + System.getProperty("user.home") \
-        + '/.gradle/topobyte.gradle'
-}
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 eclipse.project.name = 'jeography-gis'
 
@@ -48,31 +39,6 @@ dependencies {
     testRuntime 'log4j:log4j:1.2.16'
 
     testCompile 'junit:junit:4.11'
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-artifacts {
-    archives sourcesJar
-}
-
-def pomInfo = new XmlSlurper().parse(new File(projectDir, 'info.pom'));
-
-afterEvaluate { project ->
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                pom.project {
-                    name pomInfo.name
-                    description pomInfo.description
-                    url pomInfo.url
-                }
-            }
-        }
-    }
 }
 
 generateVersionAccessSource {
