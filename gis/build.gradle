@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        maven { url 'http://mvn.topobyte.de' }
+        maven { url 'https://mvn.topobyte.de' }
     }
     dependencies {
         classpath 'de.topobyte:gradle-version-access-plugin:0.0.2'
