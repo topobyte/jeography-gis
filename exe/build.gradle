@@ -3,7 +3,7 @@ buildscript {
         maven { url 'https://mvn.topobyte.de' }
     }
     dependencies {
-        classpath 'de.topobyte:gradle-launch-and-install-plugin:0.0.3'
+        classpath 'de.topobyte:gradle-launch-and-install-plugin:0.0.5'
     }
 }
 
