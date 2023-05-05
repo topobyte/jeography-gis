@@ -12,6 +12,8 @@ dependencies {
     api 'de.topobyte:melon-io:0.0.1'
     api 'de.topobyte:swing-utils:0.0.12'
 
+    testImplementation project(':jeography-testing')
+
     testRuntimeOnly 'org.slf4j:slf4j-log4j12:1.6.1'
     testRuntimeOnly 'log4j:log4j:1.2.16'
 
