@@ -85,11 +85,7 @@ public class SearchUI extends JPanel
 			@Override
 			public void update(DocumentEvent e)
 			{
-				try {
-					SearchUI.this.update(input.getText());
-				} catch (QueryException ex) {
-					ex.printStackTrace();
-				}
+				SearchUI.this.update(input.getText());
 			}
 
 		});
@@ -131,7 +127,7 @@ public class SearchUI extends JPanel
 		return query;
 	}
 
-	protected void update(String text) throws QueryException
+	protected void update(String text)
 	{
 		setQuery(text);
 		worker.kickOff();
