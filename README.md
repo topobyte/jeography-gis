@@ -33,3 +33,15 @@ Then you can run the main executables from the build directory:
     ./scripts/jeography
     ./scripts/geometry-preview
     ./scripts/create-place-database
+
+## Creating a place database
+
+First download place data, for example using [osmocrat](https://github.com/topobyte/osmocrat):
+
+    osmocrat overpass --output places.osm --raw "(node[place=city]; node[place=town]; node[place=island];); out;"
+
+Then create the database:
+
+    ./scripts/create-place-database --input-format xml --input places.osm --output places.sqlite
+
+Then configure the database path in the `File` → `Settings` menu.
