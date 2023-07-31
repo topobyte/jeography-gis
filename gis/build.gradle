@@ -17,8 +17,8 @@ dependencies {
     api project(':jeography-places')
 
     api 'de.topobyte:commons-cli-helper:0.1.0'
-    api 'de.topobyte:jts2awt:0.1.0'
-    api 'de.topobyte:jts-indexing:0.2.0'
+    api 'de.topobyte:jts2awt:0.2.0'
+    api 'de.topobyte:jts-indexing:0.3.2'
     api 'de.topobyte:melon-casting:0.0.1'
     api 'de.topobyte:chromaticity-awt:0.0.2'
     api 'com.bric:javagraphics-color-ui:0.1.0'

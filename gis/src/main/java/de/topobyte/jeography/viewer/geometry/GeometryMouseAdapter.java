@@ -82,7 +82,7 @@ public class GeometryMouseAdapter extends MouseAdapter
 		double lat = mapWindow.getPositionLat(event.getY());
 		Point point = new GeometryFactory()
 				.createPoint(new Coordinate(lon, lat));
-		Set<GeometryContainer> intersect = map.test(point);
+		Set<GeometryContainer> intersect = map.intersecting(point);
 		List<GeometryContainer> intersectionContainers = new ArrayList<>();
 		for (GeometryContainer gc : intersect) {
 			logger.debug("intersection with: " + gc.getSource().getInfo());

@@ -1,6 +1,6 @@
 dependencies {
     api 'de.topobyte:adt-geo:0.1.0'
-    api 'de.topobyte:geomath:0.0.2'
+    api 'de.topobyte:geomath:0.1.0'
     api 'de.topobyte:jgs:0.0.1'
     api 'de.topobyte:interactive-view:0.0.2'
 

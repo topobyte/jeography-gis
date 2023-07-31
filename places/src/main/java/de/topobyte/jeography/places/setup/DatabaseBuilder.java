@@ -120,13 +120,7 @@ public class DatabaseBuilder
 			throw new DatabaseBuildingException(
 					"unable to create jdbc connection", e);
 		}
-		connection = null;
-		try {
-			connection = new JdbcConnection(jdbcConnection);
-		} catch (SQLException e) {
-			throw new DatabaseBuildingException(
-					"unable to create jdbc connection", e);
-		}
+		connection = new JdbcConnection(jdbcConnection);
 
 		jdbcConnection.setAutoCommit(false);
 	}

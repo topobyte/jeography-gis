@@ -78,7 +78,7 @@ public class GeometryTester
 		Point point = new GeometryFactory()
 				.createPoint(new Coordinate(lon, lat));
 
-		Set<Geometry> intersects = tree.test(point);
+		Set<Geometry> intersects = tree.intersecting(point);
 		return intersects;
 	}
 

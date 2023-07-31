@@ -99,13 +99,7 @@ public class SearchAction extends GISAction
 			return;
 		}
 
-		IConnection connection;
-		try {
-			connection = new JdbcConnection(connex);
-		} catch (SQLException e) {
-			logger.error("unable to create jdbc connection wrapper", e);
-			return;
-		}
+		IConnection connection = new JdbcConnection(connex);
 
 		SearchUI searchUI;
 		try {

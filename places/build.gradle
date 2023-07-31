@@ -1,9 +1,9 @@
 dependencies {
     api 'de.topobyte:awt-utils:0.0.3'
     api 'de.topobyte:swing-utils:0.0.12'
-    api 'de.topobyte:osm4j-utils:0.2.0'
-    api 'de.topobyte:jsqltables:0.1.0'
-    api 'de.topobyte:luqe-jdbc:0.0.8'
+    api 'de.topobyte:osm4j-utils:1.2.0'
+    api 'de.topobyte:jsqltables:0.1.1'
+    api 'de.topobyte:luqe-jdbc:0.4.0'
     runtimeOnly 'org.xerial:sqlite-jdbc:3.8.11.2'
 
     api 'org.slf4j:slf4j-api:1.6.1'
