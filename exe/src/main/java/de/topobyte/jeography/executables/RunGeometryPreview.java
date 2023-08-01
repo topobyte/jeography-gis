@@ -42,6 +42,7 @@ import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryContainer;
 import de.topobyte.jeography.viewer.geometry.manage.GeometrySourceJSG;
 import de.topobyte.jeography.viewer.tools.preview.GeometryPreview;
+import de.topobyte.shared.preferences.SharedPreferences;
 import de.topobyte.simplemapfile.core.EntityFile;
 import de.topobyte.simplemapfile.xml.SmxFileReader;
 import de.topobyte.utilities.apache.commons.cli.OptionHelper;
@@ -68,6 +69,9 @@ public class RunGeometryPreview
 		Options options = new Options();
 		OptionHelper.addL(options, "config", true, false, "file",
 				"configuration to use");
+
+		System.setProperty("sun.java2d.uiScale",
+				Double.toString(SharedPreferences.getUIScale()));
 
 		CommandLine line = null;
 		try {

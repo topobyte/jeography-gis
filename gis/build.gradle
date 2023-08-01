@@ -26,6 +26,7 @@ dependencies {
     api 'de.topobyte:adt-misc:0.0.2'
     api 'de.topobyte:simple-mapfile-xml:0.1.0'
     api 'de.topobyte:osmocrat-core:0.2.0'
+    api 'de.topobyte:shared-preferences:0.0.1'
 
     api 'commons-cli:commons-cli:1.2'
     api 'commons-codec:commons-codec:1.10'
