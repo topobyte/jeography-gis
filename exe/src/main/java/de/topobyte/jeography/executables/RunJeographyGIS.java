@@ -43,6 +43,7 @@ import de.topobyte.jeography.viewer.config.ConfigWriter;
 import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.config.ConfigurationHelper;
 import de.topobyte.shared.preferences.SharedPreferences;
+import de.topobyte.swing.util.SwingUtils;
 import de.topobyte.utilities.apache.commons.cli.OptionHelper;
 
 /**
@@ -87,8 +88,7 @@ public class RunJeographyGIS
 				"the ordinal index of the tile configuration to use");
 		// @formatter:on
 
-		System.setProperty("sun.java2d.uiScale",
-				Double.toString(SharedPreferences.getUIScale()));
+		SwingUtils.setUiScale(SharedPreferences.getUIScale());
 
 		CommandLineParser clp = new DefaultParser();
 

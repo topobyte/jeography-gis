@@ -10,7 +10,7 @@ dependencies {
     api 'de.topobyte:jts-drawing-util:0.2.0'
     api 'de.topobyte:mercator-image:0.1.0'
     api 'de.topobyte:melon-io:0.1.0'
-    api 'de.topobyte:swing-utils:0.0.12'
+    api 'de.topobyte:swing-utils:0.0.13'
 
     testImplementation project(':jeography-testing')
 
