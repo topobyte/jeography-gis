@@ -1,7 +1,7 @@
 dependencies {
     api 'de.topobyte:awt-utils:0.0.3'
     api 'de.topobyte:swing-utils:0.0.13'
-    api 'de.topobyte:osm4j-utils:1.2.0'
+    api 'de.topobyte:osm4j-utils:1.3.0'
     api 'de.topobyte:jsqltables:0.1.1'
     api 'de.topobyte:luqe-jdbc:0.4.0'
     runtimeOnly 'org.xerial:sqlite-jdbc:3.8.11.2'
