@@ -7,7 +7,6 @@ buildscript {
     }
 }
 
-apply plugin: 'application'
 apply plugin: 'de.topobyte.launch-and-install-gradle-plugin'
 
 mainClassName = 'de.topobyte.jeography.executables.RunJeographyGIS'

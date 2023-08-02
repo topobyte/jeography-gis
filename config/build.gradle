@@ -3,7 +3,7 @@ dependencies {
 
     api 'de.topobyte:system-utils:0.0.1'
 
-    api 'dom4j:dom4j:1.6.1'
+    api 'org.dom4j:dom4j:2.1.4'
 
     testImplementation 'de.topobyte:melon-io:0.1.0'
     testImplementation 'junit:junit:4.11'

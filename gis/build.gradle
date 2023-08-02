@@ -29,8 +29,8 @@ dependencies {
     api 'de.topobyte:shared-preferences:0.0.1'
 
     api 'commons-cli:commons-cli:1.2'
-    api 'commons-codec:commons-codec:1.10'
-    api 'commons-io:commons-io:2.4'
+    api 'commons-codec:commons-codec:1.16.0'
+    api 'commons-io:commons-io:2.13.0'
     api 'org.dockingframes:docking-frames-core:1.1.1'
     api 'org.dockingframes:docking-frames-common:1.1.1'
 
