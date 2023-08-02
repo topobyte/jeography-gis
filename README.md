@@ -45,3 +45,9 @@ Then create the database:
     ./scripts/create-place-database --input-format xml --input places.osm --output places.sqlite
 
 Then configure the database path in the `File` → `Settings` menu.
+
+## Publishing Maven artifacts
+
+Use scripts `publish-libraries.sh` and `publish-gis.sh` for publishing Maven
+artifacts to separate the core libraries from the gis module (which depends
+on osmocrat which in turn depends on the core jeography libararies).
