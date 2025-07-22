@@ -33,6 +33,7 @@ dependencies {
     api 'commons-io:commons-io:2.13.0'
     api 'org.dockingframes:docking-frames-core:1.1.1'
     api 'org.dockingframes:docking-frames-common:1.1.1'
+    api 'com.formdev:flatlaf:3.6'
 
     api 'org.slf4j:slf4j-api:1.6.1'
 

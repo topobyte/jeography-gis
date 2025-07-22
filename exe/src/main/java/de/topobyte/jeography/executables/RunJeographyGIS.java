@@ -36,6 +36,9 @@ import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+
 import de.topobyte.jeography.viewer.JeographyGIS;
 import de.topobyte.jeography.viewer.bookmarks.Bookmark;
 import de.topobyte.jeography.viewer.bookmarks.BookmarksIO;
@@ -89,6 +92,8 @@ public class RunJeographyGIS
 		// @formatter:on
 
 		SwingUtils.setUiScale(SharedPreferences.getUIScale());
+		FlatLightLaf.installLafInfo();
+		FlatDarkLaf.installLafInfo();
 
 		CommandLineParser clp = new DefaultParser();
 
