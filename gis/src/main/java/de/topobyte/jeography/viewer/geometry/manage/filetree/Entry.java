@@ -74,7 +74,7 @@ public class Entry
 	 */
 	public List<Entry> getPath()
 	{
-		List<Entry> path = parent == null ? new ArrayList<Entry>()
+		List<Entry> path = parent == null ? new ArrayList<>()
 				: parent.getPath();
 		path.add(Entry.this);
 		return path;

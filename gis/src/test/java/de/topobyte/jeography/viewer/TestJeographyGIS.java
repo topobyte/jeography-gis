@@ -36,7 +36,6 @@ import de.topobyte.jeography.viewer.config.Configuration;
 import de.topobyte.jeography.viewer.config.ConfigurationHelper;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryManager;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryRule;
-import de.topobyte.jeography.viewer.geometry.manage.GeometryRuleTag;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryRules;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryRulesModel;
 import de.topobyte.jeography.viewer.geometry.manage.GeometryTree;
@@ -127,10 +126,10 @@ public class TestJeographyGIS
 
 		GeometryRules rules = gis.getGeometryManager().getRules();
 		GeometryRulesModel rulesModel = rules.getModel();
-		rulesModel.add(new GeometryRule("foo", "test", "Red",
-				new ArrayList<GeometryRuleTag>()));
-		rulesModel.add(new GeometryRule("xxx", "bar", "Blue",
-				new ArrayList<GeometryRuleTag>()));
+		rulesModel
+				.add(new GeometryRule("foo", "test", "Red", new ArrayList<>()));
+		rulesModel
+				.add(new GeometryRule("xxx", "bar", "Blue", new ArrayList<>()));
 
 		/* Rectangular Selection */
 		SelectionAdapter selectionAdapter = gis.getSelectionAdapter();

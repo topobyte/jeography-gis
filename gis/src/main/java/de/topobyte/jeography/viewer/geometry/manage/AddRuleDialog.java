@@ -304,7 +304,7 @@ public class AddRuleDialog extends JDialog
 		String namespace = fieldNamespace.getText();
 		// String filters = fieldFilter.getText();
 		GeometryRule rule = new GeometryRule(name, namespace, stylename,
-				new ArrayList<GeometryRuleTag>());
+				new ArrayList<>());
 		return rule;
 	}
 

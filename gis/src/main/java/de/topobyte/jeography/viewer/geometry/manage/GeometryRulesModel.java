@@ -329,7 +329,7 @@ public class GeometryRulesModel implements ListModel<GeometryRule>
 					String namespace = atts.getValue("namespace");
 					String style = atts.getValue("style");
 					currentRule = new GeometryRule(name, namespace, style,
-							new ArrayList<GeometryRuleTag>());
+							new ArrayList<>());
 				}
 			}
 

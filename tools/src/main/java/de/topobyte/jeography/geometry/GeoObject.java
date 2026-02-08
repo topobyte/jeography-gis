@@ -43,7 +43,7 @@ public class GeoObject implements Serializable
 	public GeoObject(Geometry geometry)
 	{
 		this.setGeometry(geometry);
-		setTags(new HashMap<String, String>());
+		setTags(new HashMap<>());
 	}
 
 	/**

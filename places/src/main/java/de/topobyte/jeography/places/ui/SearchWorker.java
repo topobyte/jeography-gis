@@ -80,7 +80,7 @@ public class SearchWorker implements Runnable
 			// At this point, not both can be null, and their are not equal
 			if (query == null) {
 				logger.debug("new query is null");
-				updateWithResults(null, new ArrayList<Place>());
+				updateWithResults(null, new ArrayList<>());
 				last = null;
 				continue;
 			}
